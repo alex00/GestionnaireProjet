@@ -1,0 +1,11 @@
+views:			/app/components/tzRender.class.php
+router:			/app/components/tzRouter.class.php
+sqlConnect:		/app/components/tzSQL.class.php
+errorCore:		/app/components/error/tzErrorCore.class.php
+errorExtend:	/app/components/error/tzErrorExtend.class.php
+devToobar: 		/app/components/devToolbar/tzToolbar.class.php
+TiiTz: 			/app/components/tiitz.class.php
+tzController: 	/app/components/tzController.class.php
+tzValidator:	/app/components/tzValidator.class.php
+tzFileManager:	/app/components/tzFileManager.class.php
+TzPlugin:		/app/components/tzPlugin.class.php

@@ -1,0 +1,16 @@
+
+default_show:
+	pattern:	 / 
+	controller: default:show
+dashboard_show:
+	pattern:	/dashboard
+	controller: dashboard:show 
+project_show:
+	pattern:	/project
+	controller: project:show 
+task_show:
+	pattern:	/task
+	controller: task:show 
+account_show:
+	pattern:	/account
+	controller: account:show 
