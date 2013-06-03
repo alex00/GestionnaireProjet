@@ -1,27 +1,72 @@
 {% block header %}
-	
+
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
+<head>
+    <meta charset="utf-8" />
 
-		<meta name="description" content="" />
-		<meta name="author" content="" />
-				
-		<title>{{ title }}</title>
-	</head>
-	
-{% endblock %}
-<body>
+    <title>Project Manager</title>
+    <link rel="stylesheet" type="text/css" href="http://projectmanager.dev/css/styles.css">
+    <link type="text/css" rel="stylesheet" href="http://projectmanager.dev/tiitz/css/bootstrap.css">
+    <link href='http://fonts.googleapis.com/css?family=Jockey+One' rel='stylesheet' type='text/css'>
+    <script type="text/javascript" src="http://projectmanager.dev/tiitz/js/jquery-1.9.0.min.js"></script>
 
-{% block content %}
-	<p>Ceci est le contenu par default</p>
+    <script type="text/javascript" src="http://projectmanager.dev/js/toolBar/toolBar.js" ></script>
+    <script type="text/javascript" src="http://projectmanager.dev/js/toolBar/toolBarController.js" ></script>
+
+</head>
+
 {% endblock %}
+<body class="tiitz">
+<header class="row-fluid header">
+    <div class="span2 containr">
+        <a href="#" class="logo"></a>
+    </div>
+    <div  id="topNav" class="span3 offset7">
+
+        <a href="#">My Account</a>
+
+        <a href="#">Projects</a>
+
+        <a href="#">Activities</a>
+
+        <a class="deco" href="#">Sign Out</a>
+    </div>
+</header>
+
+{% include 'templates/presentation.html.twig' with {'presentation' : presentation } %}
+
+{% include 'toolBar/'.toolBar.'ToolBar.html.twig' with {'toolBar' : toolBarRules } %}
+
+
+<div class="row-fluid" id="toolBar">
+</div>
+<div class="row-fluid" id="beginContent">
+    <div  id="content" class="span10 offset1">
+        <div  class="container-fluid">
+            <div class="span8">
+                {% block contentLeft %}
+
+                {% endblock %}
+            </div>
+            <div class="span3 offset1">
+                {% block contentRight %}
+
+                {% endblock %}
+            </div>
+        </div>
+
+    </div>
+</div>
 
 {% block footer %}
-	
-	<p>Ceci est un footer</p>
-	
+
+    <footer class="row-fluid footer">
+
+    </footer>
+
+
+
 {% endblock %}
 </body>
 </html>
