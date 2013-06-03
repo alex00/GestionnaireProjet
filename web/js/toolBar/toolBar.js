@@ -8,11 +8,12 @@ var toolBar = (function() {
         this.last_button = false;
         this.current_button = false;
 
-        this.id = ['modifProject','addTask','showGant'];
+        this.id = ['recapPictos','modifProject','addTask','showGant'];
 
         this.template_folder = "formToolBar/";
 
-        this.currentToolBar = [['300',this.template_folder+'modifProject.html.twig'],
+        this.currentToolBar = [['100',this.template_folder+'recapPictos.html.twig'],
+            ['300',this.template_folder+'modifProject.html.twig'],
             ['200',this.template_folder+'modifProject.html.twig'],
             ['200',this.template_folder+'modifProject.html.twig']];
 

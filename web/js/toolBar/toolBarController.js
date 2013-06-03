@@ -17,6 +17,11 @@ function toolBarController(id){
     toolBarAdmin.doing = true;
     toolBarAdmin.current_button = id;
 
+    if (toolBarAdmin.current_button == 'recapPictos')
+        var buttons = false;
+    else
+        var buttons = true;
+
     if (toolBarAdmin.current_button == 'cancelToolBar'){
         animateClose(toolBarAdmin);
         return true;
@@ -32,48 +37,66 @@ function toolBarController(id){
             animateClose(toolBarAdmin);
         }
         else{
-            animateRepresent(toolBarAdmin, infos);
+            animateRepresent(toolBarAdmin, infos, buttons);
         }
 
     }
     else {
-        animateOpen(toolBarAdmin, infos);
+        animateOpen(toolBarAdmin, infos, buttons);
     }
 
     return true;
 
 }
 
-function animateOpen (toolBarAdmin, infos) {
+function animateOpen (toolBarAdmin, infos, buttons) {
     $('#toolBar').animate({
         'height': infos[0]
     }, 1500, function(){
         $("#toolBar").load(infos[1]);
         $("#toolBar ").animate({
             'opacity': '10'
-        }, 1500);
-        $("#submitSeperateTopAndContent").animate({
-            'opacity': '10'
         }, 1500, function(){
             toolBarAdmin.doing = false;
             toolBarAdmin.position = 1;
             toolBarAdmin.last_button = toolBarAdmin.current_button;
         });
+        if (buttons === true){
+            $("#submitSeperateTopAndContent").animate({
+                'opacity': '10'
+            }, 1500);
+        }
     });
 }
 
-function animateRepresent (toolBarAdmin, infos){
+function animateRepresent (toolBarAdmin, infos, buttons){
+    if (buttons === true){
+        $("#submitSeperateTopAndContent").animate({
+            'opacity': '10'
+        }, 1500);
+    }
+    else {
+        $("#submitSeperateTopAndContent").animate({
+            'opacity': '0'
+        }, 1500);
+
+    }
+
     $("#toolBar ").animate({
         'opacity': '0',
         'height': infos[0]
     },1000, function(){
         $("#toolBar").load(infos[1]);
-    }).animate({
+
+
+        }).animate({
             'opacity': '10'
         }, 1500, function(){
             toolBarAdmin.doing = false;
             toolBarAdmin.last_button = toolBarAdmin.current_button;
         });
+
+
 }
 
 function animateClose (toolBarAdmin){

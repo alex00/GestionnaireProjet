@@ -3,9 +3,11 @@
 
         <div id="navSeperateTopAndContent" class="span7">
             <div class="btn" id="recapPictos"  onclick="javascript:return toolBarController(this.id);">Rappel</div>
+            {% if toolBar == 'admin' or toolBar == 'resp' %}
+                <div class="btn" id="modifProject" onclick="javascript:return toolBarController(this.id);">Modifier le projet</div>
+            {% endif %}
             {% if toolBar == 'admin' %}
-            <div class="btn" id="modifProject" onclick="javascript:return toolBarController(this.id);">Modifier le projet</div>
-            <div class="btn" id="addTask"  onclick="javascript:return toolBarController(this.id);">Ajouter une tâche</div>
+                <div class="btn" id="addTask"  onclick="javascript:return toolBarController(this.id);">Ajouter une tâche</div>
             {% endif %}
             <div class="btn" id="showGant"  onclick="javascript:return toolBarController(this.id);">Diagramme de Gant</div>
         </div>
