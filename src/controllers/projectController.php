@@ -2,8 +2,8 @@
 
 class projectController extends TzController {
 	 public function showAction () {
-         $this->tzRender->run('/templates/project',array('presentation' => 'project',
-                                                         'toolBar' => 'project',
+         $this->tzRender->run('/templates/project',array('presentation' => 'presentation/projectPresentation.html.twig',
+                                                         'toolBar' => 'toolBar/projectToolBar.html.twig',
                                                          'toolBarRules' => 'admin'));
 	}
 }

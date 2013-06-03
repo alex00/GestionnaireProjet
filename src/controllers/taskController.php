@@ -2,6 +2,8 @@
 
 class taskController extends TzController {
 	 public function showAction () {
-		 echo 'Vous &ecirc;tes sur la page : task';
+         $this->tzRender->run('/templates/project',array('presentation' => 'presentation/taskPresentation.html.twig',
+                                                         'toolBar' => 'toolBar/taskToolBar.html.twig',
+                                                         'toolBarRules' => 'admin'));
 	}
 }

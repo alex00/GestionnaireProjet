@@ -1,0 +1,15 @@
+<div id="seperateTopAndContent" class="row-fluid">
+    <div class="span10 offset1">
+
+        <div id="navSeperateTopAndContent" class="span7">
+            <div class="btn" id="recapPictos"  onclick="javascript:return toolBarController(this.id);">Rappel</div>
+            {% if toolBar == 'admin' or toolBar == 'resp' %}
+                <div class="btn" id="modifTask" onclick="javascript:return toolBarController(this.id);">Modifier la tâche</div>
+            {% endif %}
+        </div>
+        <div id="submitSeperateTopAndContent" class="span3 offset1">
+            <div class="btn btn-danger"  id="cancelToolBar" name="cancelToolBar" onclick="javascript:return toolBarController(this.id);">Annuler</div>
+            <div class="btn btn-success" id="submitToolBar" name="submitToolBar" onclick="javascript:return toolBarController(this.id);">Valider</div>
+        </div>
+    </div>
+</div>

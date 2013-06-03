@@ -1,4 +1,3 @@
-
 var toolBar = (function() {
     var constructeur = function() {
 
@@ -8,14 +7,17 @@ var toolBar = (function() {
         this.last_button = false;
         this.current_button = false;
 
-        this.id = ['recapPictos','modifProject','addTask','showGant'];
+        this.id = ['recapPictos','modifProject','addTask','showGant','modifTask','modifAccount','createProject'];
 
-        this.template_folder = "formToolBar/";
+        this.template_folder = "http://localhost/src/views/formToolBar/";
 
         this.currentToolBar = [['100',this.template_folder+'recapPictos.html.twig'],
-            ['300',this.template_folder+'modifProject.html.twig'],
-            ['200',this.template_folder+'modifProject.html.twig'],
-            ['200',this.template_folder+'modifProject.html.twig']];
+                                ['300',this.template_folder+'modifProject.html.twig'],
+                                ['200',this.template_folder+'addTask.html.twig'],
+                                ['200',this.template_folder+'showGant.html.twig'],
+                                ['200',this.template_folder+'modifTask.html.twig'],
+                                ['400',this.template_folder+'modifAccount.html.twig'],
+                                ['200',this.template_folder+'createProject.html.twig']];
 
         this.getParams = function (id){
 

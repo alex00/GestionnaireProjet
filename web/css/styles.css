@@ -102,41 +102,23 @@ body {
     margin-top: 10px;
 }
 
-#imgDashboardPresentation {
+#imgPresentation {
     margin-left: 25px;
-    margin-top: 49px;
+    margin-top: 47px;
     position: relative;
     float: left;
 }
 
-#infoDashboardPresentation{
-    margin-left: 25px;
-    float: left;
-}
 
-#infoDashboardPresentation span{
+#infoPresentation span{
     font-family: Kingthings_Organica;
     font-size: 46px;
     line-height: 120px;
-    float: left;
 }
 
-#imgProjectPresentation {
-    vertical-align: middle;
-    height: 100%;
-}
-
-#imgProjectPresentation img {
-    margin-top: 61px;
-}
-
-#infoProjectPresentation{
-    height: 100%;
-}
-
-#infoProjectPresentation table {
+#infoPresentation table {
     font-size: 20px;
-    height: 100%;
+    height: 200px;
 }
 
 .infoProjectPresentation_title {
@@ -149,32 +131,6 @@ body {
     font-size: 22px;
 }
 
-#imgTaskPresentation {
-    margin-left: 25px;
-    margin-top: 20px;
-    position: relative;
-    float: left;
-}
-
-#infoTaskPresentation{
-    margin-left: 25px;
-    float: left;
-}
-
-#infoTaskPresentation table {
-    font-size: 20px;
-    width: 70%;
-}
-
-.infoTaskPresentation_title {
-    font-family: Kingthings_Organica;
-    font-size: 46px;
-    line-height: 40px;
-}
-
-.infoTaskPresentation_description {
-    font-size: 22px;
-}
 
 .clearBoth {
     clear: both;

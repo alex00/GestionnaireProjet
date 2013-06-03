@@ -1,11 +1,3 @@
-/**
- * Created with JetBrains PhpStorm.
- * User: SUPINTERNET
- * Date: 30/05/13
- * Time: 23:51
- * To change this template use File | Settings | File Templates.
- */
-
 function toolBarController(id){
     var toolBarAdmin = toolBar.getInstance();
 
