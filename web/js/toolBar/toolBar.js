@@ -6,38 +6,53 @@ var toolBar = (function() {
         this.doing = false;
         this.last_button = false;
         this.current_button = false;
-
-        this.id = ['recapPictos','modifProject','addTask','showGant','modifTask','modifAccount','createProject'];
-
         this.template_folder = "http://localhost/src/views/formToolBar/";
 
-        this.currentToolBar = [['100',this.template_folder+'recapPictos.html.twig'],
-                                ['300',this.template_folder+'modifProject.html.twig'],
-                                ['200',this.template_folder+'addTask.html.twig'],
-                                ['200',this.template_folder+'showGant.html.twig'],
-                                ['200',this.template_folder+'modifTask.html.twig'],
-                                ['400',this.template_folder+'modifAccount.html.twig'],
-                                ['200',this.template_folder+'createProject.html.twig']];
+        this.infosToolBar = { recapPictos:
+                                    { height: 100,
+                                      submit: false,
+                                      template: this.template_folder+'recapPictos.html.twig' },
+
+                                addProject:
+                                    { height: 200,
+                                      submit: true,
+                                      template: this.template_folder+'addProject.html.twig' },
+
+                                addTask:
+                                    { height: 300,
+                                      submit: true,
+                                      template: this.template_folder+'addTask.html.twig' },
+
+                                modifProject:
+                                    { height: 200,
+                                      submit: true,
+                                      template: this.template_folder+'modifProject.html.twig' },
+
+                                modifTask:
+                                    { height: 300,
+                                      submit: true,
+                                      template: this.template_folder+'modifTask.html.twig' },
+
+                                modifAccount:
+                                    { height: 300,
+                                      submit: true,
+                                      template: this.template_folder+'modifAccount.html.twig' },
+
+                                showGant:
+                                    { height: 200,
+                                      submit: false,
+                                      template: this.template_folder+'showGant.html.twig' }};
 
         this.getParams = function (id){
 
-            if (!this.inArray(id,this.id)){
+            if (!this.infosToolBar[id]){
                 return false;
             }
 
-            var num = this.id.indexOf(id);
-            var params = this.currentToolBar[num];
+            return this.infosToolBar[id];
 
-            return params;
         }
 
-        this.inArray = function(needle, haystack) {
-            var length = haystack.length;
-            for(var i = 0; i < length; i++) {
-                if(haystack[i] == needle) return true;
-            }
-            return false;
-        }
 
     }
 
