@@ -9,7 +9,7 @@ function toolBarController(id){
     toolBarAdmin.doing = true;
     toolBarAdmin.current_button = id;
 
-    if (toolBarAdmin.current_button == 'recapPictos')
+    if (!infos.submit)
         var buttons = false;
     else
         var buttons = true;
@@ -43,9 +43,9 @@ function toolBarController(id){
 
 function animateOpen (toolBarAdmin, infos, buttons) {
     $('#toolBar').animate({
-        'height': infos[0]
+        'height': infos.height
     }, 1500, function(){
-        $("#toolBar").load(infos[1]);
+        $("#toolBar").load(infos.template);
         $("#toolBar ").animate({
             'opacity': '10'
         }, 1500, function(){
@@ -76,9 +76,9 @@ function animateRepresent (toolBarAdmin, infos, buttons){
 
     $("#toolBar ").animate({
         'opacity': '0',
-        'height': infos[0]
+        'height': infos.height
     },1000, function(){
-        $("#toolBar").load(infos[1]);
+        $("#toolBar").load(infos.template);
 
 
         }).animate({
