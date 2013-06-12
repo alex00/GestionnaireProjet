@@ -1,7 +1,7 @@
 <?php
 	session_start();
 	// Global configuration for the framework
-	require_once("../app/components/Tiitz/Tiitz.php");
+	require_once("../app/components/Tiitz/Tiitz.php"); 
 	$tiitz = new TiiTz();
 	define("ROOT", realpath(__DIR__."/../")); // base of the web site
 
