@@ -1,10 +1,13 @@
 <?php
 /**
- *	This class is called when the url doesn't match with any Route.
-**/
-Class pageNotFoundController extends tzController {
+ * This class is call by /src/config/routing.yml
+ * when no parameters are passed.
+ * You can change is behavior, do what you want.
+ */
+class pageNotFoundController extends TzController {
 
+	// first method call when the website is launched
 	public function showAction () {
-		include (ROOT.'/src/views/templates/pageNotFound.php');
+		require ROOT.'/src/views/templates/pageNotFound.php';                                                     
 	}
 }

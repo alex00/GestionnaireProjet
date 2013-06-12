@@ -4,7 +4,7 @@
  * when no parameters are passed.
  * You can change is behavior, do what you want.
  */
-class defaultController extends tzController {
+class defaultController extends TzController {
 
 	// first method call when the website is launched
 	public function showAction () {

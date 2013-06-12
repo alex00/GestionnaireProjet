@@ -172,14 +172,14 @@
  * C'est ici que vous pouvez inclure les differents tpl
  * qui sont appele dans vos fichier de routing
  *
- *if(tzRender::getPage() == 'Default') {
+ *if(TzRender::getPage() == 'Default') {
  *	include_once  ROOT.'/src/views/templates/default.php'; 
- *} elseif (tzRender::getPage() == 'Article') {
+ *} elseif (TzRender::getPage() == 'Article') {
  *	include_once  ROOT.'/src/views/templates/article.php'; 
  *}
  */
 
-if(tzRender::getPage() == 'Default') {
+if(TzRender::getPage() == 'Default') {
  	include_once  ROOT.'/src/views/templates/default.php'; 
 }
 
