@@ -1,0 +1,25 @@
+
+default_show:
+	pattern:	 / 
+	controller: default:show
+home_show:
+	pattern:	/home
+	controller: home:show 
+account_show:
+	pattern:	/account
+	controller: account:show 
+ticket_show:
+	pattern:	/ticket
+	controller: ticket:show 
+dashboard_show:
+	pattern:	/dashboard
+	controller: dashboard:show 
+roadmap_show:
+	pattern:	/roadmap
+	controller: roadmap:show 
+activity_show:
+	pattern:	/activity
+	controller: activity:show 
+announcement_show:
+	pattern:	/announcement
+	controller: announcement:show 
