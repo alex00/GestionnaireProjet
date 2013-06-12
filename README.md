@@ -1,4 +1,0 @@
-tiitz
-=====
-
-Tiitz : PHP framework
