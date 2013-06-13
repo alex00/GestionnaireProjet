@@ -40,27 +40,29 @@
                     <a class="brand" href="/">ProjectManager</a>
                 </div>
                 <div class="span7" id="formConnectHeader">
-                    <table cellspacing="0">
-                        <thead>
-                            <tr>
-                                <td>Login :</td>
-                                <td>Password :</td>
-                                <td></td>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><input type="text" name="lol" /></td>
-                                <td><input type="text" name="lol" /></td>
-                                <td class="btnConnectHeader"><input class="btn" type="submit" name="lol" value="Connexion" /></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td class="passConnectHeader"><a href="" >Mot de passe oublié ?</a></td>
-                                <td></td>
+                    <form method="post" action="/connect">
+                        <table cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <td>Login :</td>
+                                    <td>Password :</td>
+                                    <td></td>
                                 </tr>
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><input type="text" name="login" /></td>
+                                    <td><input type="password" name="pass" /></td>
+                                    <td class="btnConnectHeader"><input class="btn" type="submit" name="lol" value="Connexion" /></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td class="passConnectHeader"><a href="" >Mot de passe oublié ?</a></td>
+                                    <td></td>
+                                    </tr>
+                            </tbody>
+                        </table>
+                    </form>
                 </div>
             </div>
         </div>

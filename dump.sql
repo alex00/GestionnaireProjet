@@ -9,9 +9,10 @@
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
-
+SET foreign_key_checks = 0;
 --
 -- Base de données: `gestionnaire_projet`
+
 --
 
 -- --------------------------------------------------------
@@ -19,7 +20,7 @@ SET time_zone = "+00:00";
 --
 -- Structure de la table `announcement`
 --
-
+DROP TABLE IF EXISTS `announcement`;
 CREATE TABLE `announcement` (
   `idannouncement` int(11) NOT NULL AUTO_INCREMENT,
   `announcement_title` varchar(100) NOT NULL,
@@ -36,16 +37,16 @@ CREATE TABLE `announcement` (
 --
 -- Structure de la table `comments`
 --
-
+DROP TABLE IF EXISTS `comments`;
 CREATE TABLE `comments` (
   `comment_id` int(11) NOT NULL AUTO_INCREMENT,
   `comment_description` text NOT NULL,
   `comment_date_create` datetime NOT NULL,
   `ticket_id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
   PRIMARY KEY (`comment_id`),
   KEY `fk_comments_tickets1_idx` (`ticket_id`),
-  KEY `fk_comments_users1_idx` (`user_id`)
+  KEY `fk_comments_users1_idx` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -53,7 +54,7 @@ CREATE TABLE `comments` (
 --
 -- Structure de la table `logs`
 --
-
+DROP TABLE IF EXISTS `logs`;
 CREATE TABLE `logs` (
   `logs_key` varchar(45) NOT NULL,
   `logs_value` varchar(45) NOT NULL,
@@ -66,7 +67,7 @@ CREATE TABLE `logs` (
 --
 -- Structure de la table `notifiaction_types`
 --
-
+DROP TABLE IF EXISTS `notifiaction_types` ;
 CREATE TABLE `notifiaction_types` (
   `type_id` int(11) NOT NULL AUTO_INCREMENT,
   `type_code` varchar(60) NOT NULL,
@@ -79,7 +80,7 @@ CREATE TABLE `notifiaction_types` (
 --
 -- Structure de la table `notifications`
 --
-
+DROP TABLE IF EXISTS `notifications` ;
 CREATE TABLE `notifications` (
   `notification_id` int(11) NOT NULL,
   `project_id` int(11) NOT NULL,
@@ -98,10 +99,10 @@ CREATE TABLE `notifications` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `prioritys`
+-- Structure de la table `priorities`
 --
-
-CREATE TABLE `prioritys` (
+DROP TABLE IF EXISTS `priorities`;
+CREATE TABLE `priorities` (
   `priority_id` int(11) NOT NULL AUTO_INCREMENT,
   `priority_code` varchar(45) NOT NULL,
   `priority_name` varchar(45) NOT NULL,
@@ -110,10 +111,10 @@ CREATE TABLE `prioritys` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
 --
--- Contenu de la table `prioritys`
+-- Contenu de la table `priorities`
 --
 
-INSERT INTO `prioritys` (`priority_id`, `priority_code`, `priority_name`, `priority_color`) VALUES
+INSERT INTO `priorities` (`priority_id`, `priority_code`, `priority_name`, `priority_color`) VALUES
 (1, 'low', 'low', ''),
 (2, 'normal', 'normal', ''),
 (3, 'high', 'high', ''),
@@ -125,7 +126,7 @@ INSERT INTO `prioritys` (`priority_id`, `priority_code`, `priority_name`, `prior
 --
 -- Structure de la table `projects`
 --
-
+DROP TABLE IF EXISTS `projects`;
 CREATE TABLE `projects` (
   `project_id` int(11) NOT NULL AUTO_INCREMENT,
   `project_name` varchar(100) NOT NULL,
@@ -142,7 +143,7 @@ CREATE TABLE `projects` (
 --
 -- Structure de la table `rights_project`
 --
-
+DROP TABLE IF EXISTS `rights_project`;
 CREATE TABLE `rights_project` (
   `right_key` int(11) NOT NULL,
   `right_value` varchar(45) NOT NULL,
@@ -154,7 +155,7 @@ CREATE TABLE `rights_project` (
 --
 -- Structure de la table `roadmap`
 --
-
+DROP TABLE IF EXISTS `roadmap`;
 CREATE TABLE `roadmap` (
   `roadmap_id` int(11) NOT NULL AUTO_INCREMENT,
   `roadmap_name` varchar(155) NOT NULL,
@@ -170,7 +171,7 @@ CREATE TABLE `roadmap` (
 --
 -- Structure de la table `services`
 --
-
+DROP TABLE IF EXISTS `services`;
 CREATE TABLE `services` (
   `service_id` int(11) NOT NULL AUTO_INCREMENT,
   `service_name` varchar(100) NOT NULL,
@@ -181,22 +182,22 @@ CREATE TABLE `services` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `statuts`
+-- Structure de la table `statuss`
 --
-
-CREATE TABLE `statuts` (
-  `statut_id` int(11) NOT NULL AUTO_INCREMENT,
-  `statut_name` varchar(45) NOT NULL,
-  `statut_code` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`statut_id`)
+DROP TABLE IF EXISTS `status`;
+CREATE TABLE `status` (
+  `status_id` int(11) NOT NULL AUTO_INCREMENT,
+  `status_name` varchar(45) NOT NULL,
+  `status_code` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`status_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
 --
--- Contenu de la table `statuts`
+-- Contenu de la table `statuss`
 --
 
-INSERT INTO `statuts` (`statut_id`, `statut_name`, `statut_code`) VALUES
-(1, 'attributed', 'attributed'),
+INSERT INTO `status` (`status_id`, `status_name`, `status_code`) VALUES
+(1, 'assigned', 'assigned'),
 (2, 'in progress', 'in-progess'),
 (3, 'resolved', 'resolved'),
 (4, 'closed', 'closed'),
@@ -207,7 +208,7 @@ INSERT INTO `statuts` (`statut_id`, `statut_name`, `statut_code`) VALUES
 --
 -- Structure de la table `tickets`
 --
-
+DROP TABLE IF EXISTS `tickets`;
 CREATE TABLE `tickets` (
   `ticket_id` int(11) NOT NULL AUTO_INCREMENT,
   `ticket_name` varchar(70) NOT NULL,
@@ -220,15 +221,15 @@ CREATE TABLE `tickets` (
   `ticket_parent_id` int(11) NOT NULL,
   `project_id` int(11) NOT NULL,
   `priority_id` int(11) NOT NULL,
-  `statut_id` int(11) NOT NULL,
+  `status_id` int(11) NOT NULL,
   `tracker_id` int(11) NOT NULL,
   `roadmap_id` int(11) NOT NULL,
   PRIMARY KEY (`ticket_id`),
   KEY `fk_action_project1_idx` (`project_id`),
-  KEY `fk_tickets_prioritys1_idx` (`priority_id`),
+  KEY `fk_tickets_priorities1_idx` (`priority_id`),
   KEY `fk_tickets_trackers1_idx` (`tracker_id`),
   KEY `fk_tickets_roadmap1_idx` (`roadmap_id`),
-  KEY `fk_tickets_statuts1_idx` (`statut_id`)
+  KEY `fk_tickets_status1_idx` (`status_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -236,7 +237,7 @@ CREATE TABLE `tickets` (
 --
 -- Structure de la table `ticket_files`
 --
-
+DROP TABLE IF EXISTS `ticket_files`;
 CREATE TABLE `ticket_files` (
   `ticket_file_id` int(11) NOT NULL AUTO_INCREMENT,
   `file_url` varchar(255) NOT NULL,
@@ -250,7 +251,7 @@ CREATE TABLE `ticket_files` (
 --
 -- Structure de la table `trackers`
 --
-
+DROP TABLE IF EXISTS `trackers`;
 CREATE TABLE `trackers` (
   `tracker_id` int(11) NOT NULL AUTO_INCREMENT,
   `tracker_name` varchar(45) NOT NULL,
@@ -265,24 +266,24 @@ CREATE TABLE `trackers` (
 INSERT INTO `trackers` (`tracker_id`, `tracker_name`, `tracker_code`) VALUES
 (1, 'evolution', 'evolution'),
 (2, 'bug', 'bug'),
-(3, 'assistance', 'assistance'),
-(4, 'to be confirmed', 'to-be-confirmed');
+(3, 'support', 'support');
+
 
 -- --------------------------------------------------------
 
 --
 -- Structure de la table `users`
 --
-
+DROP TABLE IF EXISTS `users` ;
 CREATE TABLE `users` (
-  `user_id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_mail` varchar(45) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
-  `user_pass` varchar(45) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `password` varchar(45) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `user_img_url` varchar(255) NOT NULL,
   `user_login` varchar(45) NOT NULL,
   `user_login_code` varchar(45) NOT NULL,
   `user_date_create` datetime NOT NULL,
-  PRIMARY KEY (`user_id`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -290,13 +291,13 @@ CREATE TABLE `users` (
 --
 -- Structure de la table `users_receive_tickets`
 --
-
+DROP TABLE IF EXISTS `users_receive_tickets`;
 CREATE TABLE `users_receive_tickets` (
-  `user_id` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
   `ticket_id` int(11) NOT NULL,
-  PRIMARY KEY (`user_id`,`ticket_id`),
+  PRIMARY KEY (`id`,`ticket_id`),
   KEY `fk_user_has_action_action1_idx` (`ticket_id`),
-  KEY `fk_user_has_action_user1_idx` (`user_id`)
+  KEY `fk_user_has_action_user1_idx` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -304,14 +305,14 @@ CREATE TABLE `users_receive_tickets` (
 --
 -- Structure de la table `user_project`
 --
-
+DROP TABLE IF EXISTS `user_project`;
 CREATE TABLE `user_project` (
-  `user_id` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
   `project_id` int(11) NOT NULL,
   `rights_key` int(11) NOT NULL,
-  PRIMARY KEY (`user_id`,`project_id`,`rights_key`),
+  PRIMARY KEY (`id`,`project_id`,`rights_key`),
   KEY `fk_user_has_project_project1_idx` (`project_id`),
-  KEY `fk_user_has_project_user_idx` (`user_id`),
+  KEY `fk_user_has_project_idx` (`id`),
   KEY `fk_user_project_rights1_idx` (`rights_key`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -320,14 +321,14 @@ CREATE TABLE `user_project` (
 --
 -- Structure de la table `user_service_project`
 --
-
+DROP TABLE IF EXISTS `user_service_project`;
 CREATE TABLE `user_service_project` (
-  `user_id` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
   `project_id` int(11) NOT NULL,
   `service_id` int(11) NOT NULL,
-  PRIMARY KEY (`user_id`,`project_id`,`service_id`),
+  PRIMARY KEY (`id`,`project_id`,`service_id`),
   KEY `fk_users_has_projects_projects1_idx` (`project_id`),
-  KEY `fk_users_has_projects_users1_idx` (`user_id`),
+  KEY `fk_users_has_projects_users1_idx` (`id`),
   KEY `fk_user_service_project_services1_idx` (`service_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -346,23 +347,23 @@ ALTER TABLE `announcement`
 --
 ALTER TABLE `comments`
   ADD CONSTRAINT `fk_comments_tickets1` FOREIGN KEY (`ticket_id`) REFERENCES `tickets` (`ticket_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_comments_users1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_comments_users1` FOREIGN KEY (`id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `notifications`
 --
 ALTER TABLE `notifications`
   ADD CONSTRAINT `fk_notifications_notifiaction_types1` FOREIGN KEY (`type_id`) REFERENCES `notifiaction_types` (`type_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_notifications_users1` FOREIGN KEY (`user_receive_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_notifications_users1` FOREIGN KEY (`user_receive_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `tickets`
 --
 ALTER TABLE `tickets`
   ADD CONSTRAINT `fk_action_project1` FOREIGN KEY (`project_id`) REFERENCES `projects` (`project_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_tickets_prioritys1` FOREIGN KEY (`priority_id`) REFERENCES `prioritys` (`priority_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_tickets_priorities1` FOREIGN KEY (`priority_id`) REFERENCES `priorities` (`priority_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_tickets_roadmap1` FOREIGN KEY (`roadmap_id`) REFERENCES `roadmap` (`roadmap_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_tickets_status1` FOREIGN KEY (`statut_id`) REFERENCES `statuts` (`statut_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_tickets_status1` FOREIGN KEY (`status_id`) REFERENCES `status` (`status_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_tickets_trackers1` FOREIGN KEY (`tracker_id`) REFERENCES `trackers` (`tracker_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
@@ -376,14 +377,14 @@ ALTER TABLE `ticket_files`
 --
 ALTER TABLE `users_receive_tickets`
   ADD CONSTRAINT `fk_user_has_action_action1` FOREIGN KEY (`ticket_id`) REFERENCES `tickets` (`ticket_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_user_has_action_user1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_user_has_action_user1` FOREIGN KEY (`id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `user_project`
 --
 ALTER TABLE `user_project`
   ADD CONSTRAINT `fk_user_has_project_project1` FOREIGN KEY (`project_id`) REFERENCES `projects` (`project_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_user_has_project_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_user_has_project_user` FOREIGN KEY (`id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_user_project_rights1` FOREIGN KEY (`rights_key`) REFERENCES `rights_project` (`right_key`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
@@ -391,5 +392,5 @@ ALTER TABLE `user_project`
 --
 ALTER TABLE `user_service_project`
   ADD CONSTRAINT `fk_users_has_projects_projects1` FOREIGN KEY (`project_id`) REFERENCES `projects` (`project_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_users_has_projects_users1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_users_has_projects_users1` FOREIGN KEY (`id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_user_service_project_services1` FOREIGN KEY (`service_id`) REFERENCES `services` (`service_id`) ON DELETE CASCADE ON UPDATE CASCADE;

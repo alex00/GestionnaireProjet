@@ -1,7 +1,7 @@
 
 default_show:
 	pattern:	 / 
-	controller: default:show
+	controller: home:index
 home_show:
 	pattern:	/home
 	controller: home:show 
@@ -22,4 +22,13 @@ activity_show:
 	controller: activity:show 
 announcement_show:
 	pattern:	/announcement
-	controller: announcement:show 
+	controller: announcement:show
+account_connect:
+	pattern:	/connect
+	controller: account:connect
+account_signup:
+	pattern:	/signup
+	controller: account:signup
+account_deconnect:
+	pattern:	/deconnect
+	controller: account:deconnect
