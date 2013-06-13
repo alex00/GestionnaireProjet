@@ -1,7 +1,8 @@
 <?php 
 
 class homeController extends TzController {
-	 public function showAction () {
-		 echo 'Vous &ecirc;tes sur la page : home';
+	 public function connectAction () {
+         $this->tzRender->run('/templates/home', array('header' => "headers/homeHeader.html.twig",
+                                                       'subMenu' => true));
 	}
 }

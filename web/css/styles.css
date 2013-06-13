@@ -1,0 +1,506 @@
+.btn{
+    border-radius: 3px;
+}
+
+h4, h6 {
+
+    letter-spacing: 1px;
+}
+#Presentation {
+    padding-top: 20px;
+    min-height: 160px;
+}
+#PresentationResumDashboard {
+    min-height: 60px;
+    padding-top: 10px;
+    font-size: 16px;
+}
+
+#PresentationResum {
+    min-height: 120px;
+    padding-top: 10px;
+    font-size: 16px;
+}
+
+#PresentationInfos {
+    font-size: 14px;
+    padding-top: 15px;
+}
+
+#PresentationInfos img{
+    padding-right: 5px;
+}
+
+.block-slogan h2:first-letter{
+    color: #F25C27;
+    font-weight: bold;
+    font-size: 32px;
+}
+
+.block-slogan h2{
+    color: #F25C27;
+    max-width: 250px;
+    font-size: 28px;
+}
+
+.block-slogan span{
+    padding-right: 40px;
+}
+
+.block-slogan {
+    padding-bottom: 15px;
+}
+
+article h4 {
+    font-size: 26px;
+}
+
+#otherInfos p{
+    padding-top: 5px;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+}
+
+@media (max-width: 480px) {
+    .notTooSmall {
+        display: none;
+    }
+}
+
+#toolBarContent {
+    margin-top: 20px;
+    min-height: 40px;
+    background-color: #FFF;
+
+}
+#toolBar {
+    opacity: 0;
+}
+
+#toolBar input[type="checkbox"]{
+    margin: -2px 5px 0 0;
+}
+
+#panel, footer {
+    letter-spacing: 1px;
+}
+
+#panel{
+    min-height: 41px;
+}
+
+.row-1 {
+    min-height: 600px;
+}
+
+#submitSeperateTopAndContent {
+    opacity: 0;
+}
+
+#submitSeperateTopAndContent div{
+    margin-top: 10px;
+}
+
+.navbar-fixed-top {
+    position: relative;
+}
+
+.dropdown-menu li > a:hover {
+    background-color: #f5f5f5;
+    background-image: -moz-linear-gradient(top, #ffffff, #F4F4F4);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#F4F4F4));
+    background-image: -webkit-linear-gradient(top, #ffffff, #F4F4F4);
+    background-image: -o-linear-gradient(top, #ffffff, #F4F4F4);
+    background-image: linear-gradient(to bottom, #ffffff, #F4F4F4);
+    background-repeat: repeat-x;
+    -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+    -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+    cursor: pointer;
+    color: #181818;
+}
+
+#descProject {
+    min-width: 75%;
+}
+
+#formAddTask input[type='text'] {
+    min-width: 427px;
+}
+
+#formAddTask div {
+    margin-top: 20px;
+}
+
+#formAddTask input, select, textarea {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.prioritySelect {
+    width: 148px;
+}
+
+.deadlineInput {
+    width: 125px;
+}
+
+.padLeft {
+    margin-left: 30px;
+}
+
+.nameProjectSubMenu{
+    font-size: 16px;
+}
+
+#sub-menu li {
+    float: left;
+    list-style-type: none;
+    margin: 0px 50px 0px 0px;
+    padding: 0px 0px 0px 0px;
+    white-space: nowrap;
+    font-size: 15px;
+    letter-spacing: 1px;
+}
+
+#sub-menu .current a{
+    font-weight: bold;
+    color: #F25C27;
+}
+
+#sub-menu .current a:hover{
+    font-weight: bold;
+    color: #F25C27;
+    cursor: default;
+    text-decoration: none;
+}
+
+#sub-menu li a {
+    font-weight: normal;
+    color: #a0a0a0;
+}
+
+
+#sub-menu li a:hover {
+    color: #FFF;
+}
+
+.progress-striped .bar {
+    background-color: #F25C27;
+}
+
+.progress {
+    width: 70%;
+    float: left;
+}
+
+.infoRoadMapBar {
+    width: 20%;
+    margin-left: 10%;
+    float: right;
+}
+.row-1 article {
+   margin-left: 0px;
+}
+
+
+#contentLeft  {
+    margin-left: 0px;
+}
+
+.table-list tbody tr:hover  {
+     background-color: #f5f5f5;
+     background-image: -moz-linear-gradient(top, #ffffff, #F4F4F4);
+     background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#F4F4F4));
+     background-image: -webkit-linear-gradient(top, #ffffff, #F4F4F4);
+     background-image: -o-linear-gradient(top, #ffffff, #F4F4F4);
+     background-image: linear-gradient(to bottom, #ffffff, #F4F4F4);
+     background-repeat: repeat-x;
+     -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+     -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+     cursor: pointer;
+}
+
+.dataTables_length {
+    min-width: 100px;
+    float: left;
+}
+
+.dataTables_length select{
+    width: 100px;
+}
+
+.dataTables_filter {
+    min-width: 100px;
+    float: right;
+}
+
+.dataTables_info {
+    min-width: 200px;
+    float: left;
+    margin-left: 10%;
+}
+
+.dataTables_paginate {
+    width: 100px;
+    float: right;
+    margin-right: 10%;
+    margin-left: 5%;
+}
+
+.dataTables_paginate a {
+    margin-left: 5%;
+    float: left;
+}
+
+.dataTables_paginate a:hover {
+    color: #F25C27;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.dividerBlock {
+    border-bottom: 1px solid #dddddd;
+    margin-top: 40px;
+    margin-bottom: 15px;
+    margin-left: 0px;
+}
+
+
+input[type='text'] {
+    margin-left: 10px;
+}
+
+input[type='text']:focus {
+    border-color: #F25C27;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px #F25C27;
+    -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px #F25C27;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px #F25C27;
+}
+
+li {
+    line-height: 28px;
+}
+#dashboardMemberProject h6{
+    color: #707070;
+    font-size: 20px;
+    text-align: center;
+}
+
+#dashboardMemberProject ul{
+    list-style-type: none;
+    margin-left: auto;
+    text-align: center;
+}
+
+#dashboardMemberProject .span2{
+    margin-left: 0;
+}
+
+
+.homeProgressProject p {
+    padding-bottom: 10px;
+}
+
+#Presentation ul, .homeProgressProject ul {
+    font-size: 12px;
+    list-style-type: none;
+    display: block;
+    padding-bottom: 27px;
+
+}
+
+.homeProgressProject ul {
+    margin-left: 5px;
+
+}
+.homeProgressProject .span3 {
+    margin-right: 60px;
+    margin-bottom: 30px;
+    margin-left: 0px;
+}
+
+
+
+#Presentation ul  img, .homeProgressProject ul  img{
+    margin-right: 5px;
+    margin-top: -2px;
+}
+
+#Presentation ul > li, .homeProgressProject ul > li {
+    float: left;
+    margin-right: 5px;
+}
+
+#Presentation ul > li:not(:first-child), .homeProgressProject ul > li:not(:first-child) {
+    margin-left: 11px;
+}
+
+.tasksHeaderHome {
+    border-left: 1px solid #454545;
+    padding-top: 5px;
+    padding-bottom: 0px;
+    padding-left: 26px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+}
+
+.tasksHeaderHome li:first-child {
+    font-size: 16px;
+}
+
+.homeProgressProject h6{
+    color: #707070;
+    font-size: 20px;
+    letter-spacing: 1px;
+    text-align: center;
+    padding-bottom: 10px;
+}
+
+.homeProgressProject .progress {
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+.homeProjectList {
+    list-style-type: none;
+    letter-spacing: 1px;
+    margin-left: 0px;
+    font-size: 16px;
+}
+.homeProjectList a{
+    color: #707070;
+}
+
+
+.homeProjectList a:hover{
+    text-decoration: underline;
+}
+
+.nameHeaderHome {
+    font-size: 34px;
+}
+.projectHeaderHome {
+    line-height: 40px;
+    font-size: 18px;
+}
+.numberProjectHeaderHome {
+    font-size: 28px;
+}
+
+.nameListAnnonces{
+    padding-bottom: 10px;
+}
+.titleListAnnonces {
+    padding-left: 30px;
+    padding-bottom: 5px;
+}
+
+.titleListAnnonces img {
+    margin-top: -14px;
+    margin-right: 12px;
+}
+
+.descListAnnonces {
+    padding-left: 57px;
+    padding-bottom: 40px;
+}
+
+.announceHome a:hover{
+    color:#F25C27;
+    text-decoration: underline;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*     Connection page */
+
+#connectHeader {
+    min-height: 100px;
+}
+
+#connectHeader .span5 {
+    padding-top: 25px;
+}
+
+#connectHeader .brand {
+
+    color: #a0a0a0;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+    display: block;
+    padding: 10px 20px 10px;
+    margin-left: -20px;
+    font-size: 20px;
+    font-weight: 200;
+    letter-spacing: 1px;
+}
+
+#connectHeader .brand:hover {
+    color: #FFFFFF;
+}
+#formConnectHeader {
+    padding-top: 15px;
+}
+
+#formConnectHeader table thead {
+    color: #F25C27;
+    font-size: 14px;
+    text-align: left;
+}
+
+#formConnectHeader table thead td{
+    padding-left: 10px;
+    padding-bottom: 4px;
+}
+
+#formConnectHeader input[type="text"] {
+    margin-bottom: 0px;
+}
+
+#formConnectHeader table tbody .passConnectHeader a{
+    font-size: 12px;
+    color: #a0a0a0;
+    padding-left: 11px;
+    padding-top: 0px;
+}
+
+#formConnectHeader table tbody .passConnectHeader a:hover{
+    color: #FFF;
+}
+
+#formConnectHeader table .btnConnectHeader .btn{
+    margin-left: 10px;
+}
+
+
+#containerInscription h4{
+    font-size: 40px;
+}
+
+#contentConnect .row-1 {
+    min-height: 540px;
+}
+
+.titleFormConnect {
+    padding-left: 10px;
+    padding-bottom: 10px;
+}
+
+.btnInscription {
+    padding-left: 10px;
+    padding-top: 25px;
+}
