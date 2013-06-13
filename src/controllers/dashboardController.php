@@ -1,7 +1,11 @@
 <?php 
 
 class dashboardController extends TzController {
-	 public function showAction () {
-		 echo 'Vous &ecirc;tes sur la page : dashboard';
+	 public function indexAction ($params) {
+
+		 $id_project = intval($params['id_project']);
+
+         $this->tzRender->run('/templates/dashboard', array('header' => 'headers/dashboardHeader.html.twig'));
 	}
+
 }

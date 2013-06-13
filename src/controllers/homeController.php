@@ -1,12 +1,13 @@
-<?php 
+<?php
 
 class homeController extends TzController {
-	 public function indexAction () {
+    public function indexAction () {
         if(TzAuth::isUserLoggedIn()){
-            $this->tzRender->run('/templates/home', array('header' => "headers/homeHeader.html.twig"));
+            $this->tzRender->run('/templates/home', array('header' => "headers/homeHeader.html.twig",
+                                                          'subMenu' => true));
         }
         else{
-             $this->tzRender->run('/templates/connect');
+            $this->tzRender->run('/templates/connect');
         }
-     }
+    }
 }

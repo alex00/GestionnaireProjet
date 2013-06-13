@@ -8,7 +8,7 @@ h4, h6 {
 }
 #Presentation {
     padding-top: 20px;
-    min-height: 160px;
+    min-height: 140px;
 }
 #PresentationResumDashboard {
     min-height: 60px;
@@ -39,8 +39,11 @@ h4, h6 {
 
 .block-slogan h2{
     color: #F25C27;
-    max-width: 250px;
+    min-width: 130px;
+    text-align: right;
     font-size: 28px;
+    padding-right: 30px;
+    line-height: 50px;
 }
 
 .block-slogan span{
@@ -56,7 +59,7 @@ article h4 {
 }
 
 #otherInfos p{
-    padding-top: 5px;
+    padding-top: 15px;
     padding-bottom: 0px;
     margin-bottom: 0px;
 }
@@ -267,12 +270,15 @@ article h4 {
     margin-left: 0px;
 }
 
+input[type='password'] {
+    margin-top: 8px;
+}
 
-input[type='text'] {
+input[type='text'], input[type='password']  {
     margin-left: 10px;
 }
 
-input[type='text']:focus {
+input[type='text']:focus, input[type='password']:focus, input[type='submit']:hover {
     border-color: #F25C27;
     -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px #F25C27;
     -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px #F25C27;
@@ -303,15 +309,23 @@ li {
     padding-bottom: 10px;
 }
 
-#Presentation ul, .homeProgressProject ul {
+.homeProgressProject ul {
     font-size: 12px;
     list-style-type: none;
     display: block;
-    padding-bottom: 27px;
+    padding-bottom: 5px;
+}
 
+#Presentation ul{
+    font-size: 14px;
+    list-style-type: none;
+    display: block;
+    padding-bottom: 30px;
+    border-left: 1px solid #454545;
 }
 
 .homeProgressProject ul {
+    padding-bottom: 27px;
     margin-left: 5px;
 
 }
@@ -339,16 +353,13 @@ li {
 
 .tasksHeaderHome {
     border-left: 1px solid #454545;
-    padding-top: 5px;
+    padding-top: 0px;
     padding-bottom: 0px;
     padding-left: 26px;
     margin-bottom: 0px;
     margin-left: 0px;
 }
 
-.tasksHeaderHome li:first-child {
-    font-size: 16px;
-}
 
 .homeProgressProject h6{
     color: #707070;
@@ -375,7 +386,7 @@ li {
 
 
 .homeProjectList a:hover{
-    text-decoration: underline;
+    color:#F25C27;
 }
 
 .nameHeaderHome {
@@ -389,12 +400,22 @@ li {
     font-size: 28px;
 }
 
+.projectHeaderHome span{
+    padding-left: 0px;padding-right: 5px;
+}
 .nameListAnnonces{
-    padding-bottom: 10px;
+    padding-bottom: 3px;
 }
 .titleListAnnonces {
     padding-left: 30px;
+    padding-top: 5px;
     padding-bottom: 5px;
+}
+
+.adminHeaderDashboard {
+    border-left: none;
+    margin-top: 2px;
+    font-size: 16px;
 }
 
 .titleListAnnonces img {
@@ -402,15 +423,56 @@ li {
     margin-right: 12px;
 }
 
-.descListAnnonces {
-    padding-left: 57px;
-    padding-bottom: 40px;
+.titleListAnnonces a {
+    color:#F25C27;
 }
 
-.announceHome a:hover{
+.titleListAnnonces a:hover {
+    color:#F25C27;
+}
+
+.descListAnnonces {
+    padding-left: 57px;
+    padding-bottom: 30px;
+}
+
+#subMenuBar {
+    padding-bottom: 10px;
+}
+
+
+#listSuiviMembers a {
+    color: #707070;
+}
+
+
+#listSuiviMembers a:hover {
+    color: #707070;
+    text-decoration: underline;
+}
+
+
+.linkBlack {
+    color: #707070;
+}
+
+
+.linkBlack:hover {
+    color: #707070;
+    text-decoration: underline;
+}
+
+.linkRed {
+    color:#F25C27;
+}
+
+
+.linkRed:hover {
     color:#F25C27;
     text-decoration: underline;
 }
+
+
 
 
 

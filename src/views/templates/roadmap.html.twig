@@ -1,0 +1,99 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+    <div id="contentLeft" class="span7" >
+        <article class="roadMap">
+            <h4>Deuxième version :</h4>
+            <p>
+                Cette version blablalblalb alblalblalb blbalbllbalb blablalblab blablalblab blalbalbalbl lb la lla l bal al lblalb all ablbal l
+            </p>
+
+            <div class="progress progress-striped active advanceBar">
+                <div class="bar" style="width: 40%;"></div>
+            </div>
+            <div class="infoRoadMapBar">18 / 52 tâches</div>
+            <div class="clear-fix"></div>
+            <table class="roadmapTable table table-list " >
+                <thead>
+                <tr style="border: none;">
+                    <th style="width: 10%;border-top: none">ID</th><th class="notTooSmall" style="width: 30%;border-top: none">Titre</th><th style="width: 20%;border-top: none">Deadline</th><th style="width: 20%;border-top: none">Statut</th><th style="width: 20%;border-top: none">Importance</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>211</td><td class="notTooSmall">Première tache</td><td>16/02/5222</td><td><img src="img/assigned.png" title="Assigné" alt="Assigné"></td><td>Urgent</td>
+                </tr>
+                <tr>
+                    <td>211</td><td class="notTooSmall">Première tache</td><td>16/02/5222</td><td><img src="img/assigned.png" title="Assigné" alt="Assigné"></td><td>Urgent</td>
+                </tr>
+                <tr>
+                    <td>211</td><td class="notTooSmall">Première tache</td><td>16/02/5222</td><td><img src="img/assigned.png" title="Assigné" alt="Assigné"></td><td>Urgent</td>
+                </tr>
+                <tr>
+                    <td>211</td><td class="notTooSmall">Première tache</td><td>16/02/5222</td><td><img src="img/assigned.png" title="Assigné" alt="Assigné"></td><td>Urgent</td>
+                </tr>
+                <tr>
+                    <td>211</td><td class="notTooSmall">Première tache</td><td>16/02/5222</td><td><img src="img/assigned.png" title="Assigné" alt="Assigné"></td><td>Urgent</td>
+                </tr>
+                </tbody>
+            </table>
+        </article>
+        <div class="span7 dividerBlock"></div>
+        <article class="roadMap">
+            <h4>Première version :</h4>
+            <p>
+                Cette version blablalblalb alblalblalb blbalbllbalb blablalblab blablalblab blalbalbalbl lb la lla l bal al lblalb all ablbal l
+            </p>
+            <p>
+            <div class="progress progress-striped active advanceBar">
+                <div class="bar" style="width: 100%;"></div>
+            </div>
+            <div class="infoRoadMapBar">18 / 18 tâches</div>
+            </p>
+            <div class="clear-fix"></div>
+            <table class="roadmapTable table table-list " >
+                <thead>
+                <tr style="border: none;">
+                    <th style="width: 10%;border-top: none">ID</th><th class="notTooSmall" style="width: 30%;border-top: none">Titre</th><th style="width: 20%;border-top: none">Deadline</th><th style="width: 20%;border-top: none">Statut</th><th style="width: 20%;border-top: none">Importance</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>211</td><td class="notTooSmall">Première tache</td><td>16/02/5222</td><td><img src="img/assigned.png" title="Assigné" alt="Assigné"></td><td>Urgent</td>
+                </tr>
+                <tr>
+                    <td>211</td><td class="notTooSmall">Première tache</td><td>16/02/5222</td><td><img src="img/assigned.png" title="Assigné" alt="Assigné"></td><td>Urgent</td>
+                </tr>
+                <tr>
+                    <td>211</td><td class="notTooSmall">Première tache</td><td>16/02/5222</td><td><img src="img/assigned.png" title="Assigné" alt="Assigné"></td><td>Urgent</td>
+                </tr>
+                <tr>
+                    <td>211</td><td class="notTooSmall">Première tache</td><td>16/02/5222</td><td><img src="img/assigned.png" title="Assigné" alt="Assigné"></td><td>Urgent</td>
+                </tr>
+                <tr>
+                    <td>211</td><td class="notTooSmall">Première tache</td><td>16/02/5222</td><td><img src="img/assigned.png" title="Assigné" alt="Assigné"></td><td>Urgent</td>
+                </tr>
+                </tbody>
+            </table>
+        </article>
+    </div>
+
+    <article class="span4 offset1 pull-right">
+        <h4>Resume : </h4>
+        <ul id="listSuiviTickets">
+            <li><span>Not affiliated : </span><ul>
+                    <li><span >Tickets : 52</span></li>
+                    <li><span >Progress : 40%</span></ul>
+            </li>
+            <li><span>Deuxième version : </span><ul>
+                    <li><span >Tickets : 52</span></li>
+                    <li><span >Progress : 40%</span></ul>
+            </li>
+            <li><span>Première version : </span><ul>
+                    <li><span >Tickets : 18</span></li>
+                    <li><span >Progress : 100%</span></ul>
+            </li>
+        </ul>
+    </article>
+    <div class="clear-fix"></div>
+{% endblock %}

@@ -1,7 +1,10 @@
 <?php 
 
 class ticketController extends TzController {
-	 public function showAction () {
-		 echo 'Vous &ecirc;tes sur la page : ticket';
+	 public function indexAction ($params) {
+
+         $id_project = intval($params['id_project']);
+
+         $this->tzRender->run('/templates/ticket', array('header' => 'headers/ticketHeader.html.twig'));
 	}
 }

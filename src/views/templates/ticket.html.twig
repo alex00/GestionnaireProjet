@@ -1,0 +1,87 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+    <article  id="myTickets" class="span7 tableContener">
+        <h4>My tickets :</h4>
+        <table id="tableMyTickets" class="table table-list">
+            <thead>
+            <tr>
+                <th style="width: 10%;border-top: none">ID</th><th class="notTooSmall" style="width: 40%;border-top: none">Titre</th><th style="width: 10%;border-top: none">Deadline</th><th style="width: 10%;border-top: none">Statut</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>211</td><td class="notTooSmall" >Première tache</td><td>16/02/5222</td><td><img src="/img/assigned.png" title="Assigné" alt="Assigné"></td>
+            </tr>
+            <tr>
+                <td>211</td><td class="notTooSmall" >Première tache</td><td>16/02/5222</td><td><img src="/img/assigned.png" title="Assigné" alt="Assigné"></td>
+            </tr>
+            <tr>
+                <td>211</td><td class="notTooSmall" >Première tache</td><td>16/02/5222</td><td><img src="/img/assigned.png" title="Assigné" alt="Assigné"></td>
+            </tr>
+            <tr>
+                <td>211</td><td class="notTooSmall" >Première tache</td><td>16/02/5222</td><td><img src="/img/assigned.png" title="Assigné" alt="Assigné"></td>
+            </tr>
+            <tr>
+                <td>211</td><td class="notTooSmall" >Première tache</td><td>16/02/5222</td><td><img src="/img/assigned.png" title="Assigné" alt="Assigné"></td>
+            </tr>
+            <tr>
+                <td>211</td><td class="notTooSmall" >Première tache</td><td>16/02/5222</td><td><img src="/img/assigned.png" title="Assigné" alt="Assigné"></td>
+            </tr>
+            </tbody>
+        </table>
+    </article>
+    <article class="span4 offset1 pull-right">
+        <h4>Resume : </h4>
+        <p>
+            Total : 286
+        </p>
+        <p>
+            Progress : 26%
+        </p>
+        <ul id="listSuiviTickets">
+            <li><span>Par catégories : </span><ul>
+                    <li><span >Evolution : 12</span></li>
+                    <li><span >Bug : 35</span></li>
+                    <li><span >Support : 12</span></li></ul>
+            </li>
+            <li><span >Par roadmap : </span><ul>
+                    <li><span >Non-affilié : 125</span></li>
+                    <li><span >Deuxième version : 100</span></li>
+                    <li><span>Première version : 50</span></ul>
+            </li>
+        </ul>
+    </article>
+    <div class="span12 dividerBlock"></div>
+    <article class="span12">
+        <h4>Others tickets :</h4>
+        <table id="allTicketsProject" class="table table-list">
+            <thead>
+            <tr>
+                <th style="width: 10%;border-top: none">ID</th><th class="notTooSmall" style="width: 20%;border-top: none">Titre</th><th class="notTooSmall"  style="width: 50%;border-top: none">Description</th><th style="width: 10%;border-top: none">Deadline</th><th style="width: 10%;border-top: none">Statut</th><th style="width: 10%;border-top: none">Importance</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>211</td><td class="notTooSmall" >Première tache</td><td class="notTooSmall" >La tache consiste..</td><td>16/02/5222</td><td><img src="/img/assigned.png" title="Assigné" alt="Assigné"></td><td>Urgent</td>
+            </tr>
+            <tr>
+                <td>211</td><td class="notTooSmall" >Première tache</td><td class="notTooSmall" >La tache consiste..</td><td>16/02/5222</td><td><img src="/img/assigned.png" title="Assigné" alt="Assigné"></td><td>Urgent</td>
+            </tr>
+            <tr>
+                <td>211</td><td class="notTooSmall" >Première tache</td><td class="notTooSmall" >La tache consiste..</td><td>16/02/5222</td><td><img src="/img/assigned.png" title="Assigné" alt="Assigné"></td><td>Urgent</td>
+            </tr>
+            <tr>
+                <td>211</td><td class="notTooSmall" >Première tache</td><td class="notTooSmall" >La tache consiste..</td><td>16/02/5222</td><td><img src="/img/assigned.png" title="Assigné" alt="Assigné"></td><td>Urgent</td>
+            </tr>
+            <tr>
+                <td>211</td><td class="notTooSmall" >Première tache</td><td class="notTooSmall" >La tache consiste..</td><td>16/02/5222</td><td><img src="/img/assigned.png" title="Assigné" alt="Assigné"></td><td>Urgent</td>
+            </tr>
+            <tr>
+                <td>211</td><td class="notTooSmall" >Première tache</td><td class="notTooSmall" >La tache consiste..</td><td>16/02/5222</td><td><img src="/img/assigned.png" title="Assigné" alt="Assigné"></td><td>Urgent</td>
+            </tr>
+            </tbody>
+        </table>
+    </article>
+    <div class="clear-fix"></div>
+{% endblock %}

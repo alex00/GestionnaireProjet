@@ -42,7 +42,7 @@
                 <a class="brand" href="/">ProjectManager</a>
                 <div class="nav-collapse collapse nav-top-collapse">
                     <ul class="nav">
-                        <li class="home"><a href="/"><img src="img/tm_home.png"></a></li>
+                        <li class="home"><a href="/"><img src="/img/tm_home.png"></a></li>
                         <li class="divider-vertical"></li>
                         <li><a href="/myprojects">My Projects</a></li>
                     </ul>
@@ -61,23 +61,18 @@
         {% include header with {'header' : header } %}
     </div>
     {%  if subMenu == false %}
-    <div class="row-fluid">
+    <div class="row-fluid" id="subMenuBar">
         <div class="container">
-            <div class="span8 offset2">
+            <div class="span6 offset3">
                 <div id="sub-menu">
                     <ul >
-                        <li id="DashboardSubMenu"><a href="#navbar">Dashboard</a></li>
-                        <li id="TicketSubMenu"><a href="#body">Mes Tickets</a></li>
-                        <li id="ActivitySubMenu"><a href="#typography">Activité</a></li>
-                        <li id="RoadmapSubMenu"><a href="#buttons">Roadmap</a></li>
-                        <li id="AnnonceSubMenu"><a href="#form">Annonces</a></li>
+                        <li id="DashboardSubMenu"><a href="/project/1">Dashboard</a></li>
+                        <li id="TicketSubMenu"><a href="/project/1/tickets">Tickets</a></li>
+                        <li id="ActivitySubMenu"><a href="/project/1/activity">Activity</a></li>
+                        <li id="RoadmapSubMenu"><a href="/project/1/roadmaps">Roadmaps</a></li>
                     </ul>
                 </div>
             </div>
-        </div>
-    </div>
-    <div class="row-fluid" id="toolBarContent">
-        <div class="container">
         </div>
     </div>
     {%  endif %}

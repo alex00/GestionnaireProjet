@@ -4,31 +4,60 @@ default_show:
 	controller: home:index
 home_show:
 	pattern:	/home
-	controller: home:show 
+	controller: home:index
+
 account_show:
 	pattern:	/account
-	controller: account:show 
+	controller: account:show
+
 ticket_show:
-	pattern:	/ticket
-	controller: ticket:show 
+	pattern:	/ticket/{id_project}
+	controller: ticket:show
+
 dashboard_show:
-	pattern:	/dashboard
-	controller: dashboard:show 
+	pattern:	/dashboard/{id_project}
+	controller: dashboard:show
+
 roadmap_show:
-	pattern:	/roadmap
-	controller: roadmap:show 
+	pattern:	/roadmap/{id_project}
+	controller: roadmap:show
+
 activity_show:
-	pattern:	/activity
-	controller: activity:show 
-announcement_show:
-	pattern:	/announcement
-	controller: announcement:show
+	pattern:	/activity/{id_project}
+	controller: activity:show
+
+dashboard_index:
+    pattern:    /project/{id_project}
+    controller: dashboard:index
+    requirements:
+        id_project:   int
+
+ticket_index:
+    pattern:    /project/{id_project}/tickets
+    controller: ticket:index
+    requirements:
+        id_project:   int
+
+activity_index:
+    pattern:    /project/{id_project}/activity
+    controller: activity:index
+    requirements:
+        id_project:   int
+
+roadmap_index:
+    pattern:    /project/{id_project}/roadmaps
+    controller: roadmap:index
+    requirements:
+        id_project:   int
+
 account_connect:
 	pattern:	/connect
 	controller: account:connect
+
 account_signup:
 	pattern:	/signup
 	controller: account:signup
+
 account_deconnect:
 	pattern:	/deconnect
 	controller: account:deconnect

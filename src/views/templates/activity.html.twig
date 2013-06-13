@@ -1,0 +1,56 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+    <div id="contentLeft" class="span7" >
+        <article class="span7 announceHome">
+            <h4>Last news :</h4>
+            <div class="span7">
+                <p class="nameListAnnonces">
+                   Announce - 16/01/2013 21:07
+                </p>
+                <p class="titleListAnnonces">
+                    <img src="img/lineBack.png" title="Assigned" alt="Assigned"><a class="linkRed" href="">Nouvelle arrangement du truc</a>
+                </p>
+            </div>
+            <div class="span7">
+                <p class="nameListAnnonces">
+                    <a class="linkRed" href="">Tickets</a> - 16/01/2013 21:07
+                </p>
+                <p class="titleListAnnonces">
+                    <img src="img/lineBack.png" title="Assigned" alt="Assigned"><a class="linkRed" href="">Nouvelle arrangement du truc</a> assigned to <a class="linkRed" href="">AlexKtf</a>
+                </p>
+            </div>
+            <div class="span7">
+                <p class="nameListAnnonces">
+                    <a class="linkRed" href="">Roadmaps</a> - 16/01/2013 21:07
+                </p>
+                <p class="titleListAnnonces">
+                    <img src="img/lineBack.png" title="Assigned" alt="Assigned"><a class="linkRed" href="">Nouvelle arrangement du truc</a>
+                </p>
+            </div>
+            <div class="span7">
+                <p class="nameListAnnonces">
+                    <a class="linkRed" href="">Members</a> - 16/01/2013 21:07
+                </p>
+                <p class="titleListAnnonces">
+                    <img src="img/lineBack.png" title="Assigned" alt="Assigned"><a  href="" class="linkRed">SouleyD</a> is a new member of the project!
+                </p>
+            </div>
+        </article>
+
+        <div class="dividerBlock span7"></div>
+    </div>
+    <div id="contentRight" class="span4 offset1 pull-right" >
+        <article class="span4 ">
+            <h4> Resume : </h4>
+            <ul id="listSuiviMembers">
+                <li><a href="">Roadmaps</a> - 2 </span></li>
+                <li><a href="">Tickets</a>  - 206</span><ul>
+                        <li><span >Evolution : 120</span></li>
+                        <li><span >Bug : 20</span></li>
+                        <li><span >Assistance : 110</span></li></ul>
+                </li>
+            </ul>
+        </article>
+    </div>
+{% endblock %}
