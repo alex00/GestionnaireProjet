@@ -6,9 +6,9 @@ home_show:
 	pattern:	/home
 	controller: home:index
 
-account_show:
+account_index:
 	pattern:	/account
-	controller: account:show
+	controller: account:index
 
 ticket_show:
 	pattern:	/ticket/{id_project}

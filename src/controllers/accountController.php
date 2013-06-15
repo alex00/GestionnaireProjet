@@ -1,9 +1,17 @@
 <?php 
 
 class accountController extends TzController {
-	 public function showAction () {
-		 echo 'Vous &ecirc;tes sur la page : account';
+	 public function indexAction () {
+
+
+         $arianeParams = array('category' => 'My account');
+
+         $this->tzRender->run('/templates/account', array('header' => 'headers/accountHeader.html.twig',
+             'subMenu' => 'true',
+             'paramsAriane' => $arianeParams));
+
 	}
+
     public function signupAction () {
         $login = htmlspecialchars($_POST["login"]);
         $pass = htmlspecialchars($_POST["pass"]);

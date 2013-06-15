@@ -398,9 +398,19 @@ li {
 }
 .numberProjectHeaderHome {
     font-size: 28px;
+    color :#a0a0a0;
 }
 
-.projectHeaderHome span{
+
+.progressHeaderHome {
+    border-left: none;
+}
+.colorNumberHeader {
+    color :#a0a0a0;
+    padding-right: 0px;
+}
+
+.tasksHeaderHome span, .nameHeaderHome span, .projectHeaderHome span{
     padding-left: 0px;padding-right: 5px;
 }
 .nameListAnnonces{
@@ -472,8 +482,52 @@ li {
     text-decoration: underline;
 }
 
+.error404 {
+    color:#F25C27;
+    font-size: 80px;
+    line-height: 100px;
+    padding-top: 50px;
 
+}
 
+.textError404 {
+    color:#F25C27;
+    font-size: 60px;
+    line-height: 80px;
+}
+
+#block404Right {
+    text-align: center;
+}
+
+.textLink404 {
+    padding-top: 50px;
+    font-size: 24px;
+    color:#F25C27;
+}
+
+.link404 {
+    font-size: 24px;
+}
+
+.linkProject404 {
+    padding-bottom: 20px;
+}
+
+.txt-1 ul {
+    margin-left: 0px;
+    list-style-type: none;
+    display: block;
+    padding-bottom: 32px;
+}
+
+.txt-1 ul > li {
+    float: left;
+}
+
+.txt-1 ul > li:not(:first-child) {
+    margin-left: 25px;
+}
 
 
 
@@ -554,7 +608,7 @@ li {
 }
 
 #contentConnect .row-1 {
-    min-height: 540px;
+    min-height: 534px;
 }
 
 .titleFormConnect {

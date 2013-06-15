@@ -6,8 +6,7 @@
  */
 class pageNotFoundController extends TzController {
 
-	// first method call when the website is launched
 	public function showAction () {
-		require ROOT.'/src/views/templates/pageNotFound.php';                                                     
+		require ROOT.'/src/views/templates/pageNotFound.php';
 	}
 }

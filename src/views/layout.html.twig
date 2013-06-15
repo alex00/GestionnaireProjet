@@ -66,10 +66,10 @@
             <div class="span6 offset3">
                 <div id="sub-menu">
                     <ul >
-                        <li id="DashboardSubMenu"><a href="/project/1">Dashboard</a></li>
-                        <li id="TicketSubMenu"><a href="/project/1/tickets">Tickets</a></li>
-                        <li id="ActivitySubMenu"><a href="/project/1/activity">Activity</a></li>
-                        <li id="RoadmapSubMenu"><a href="/project/1/roadmaps">Roadmaps</a></li>
+                        <li {% if subMenuCurrent == 'dashboard' %}class="current" {% endif %} id="DashboardSubMenu"><a href="/project/1">Dashboard</a></li>
+                        <li {% if subMenuCurrent == 'tickets' %}class="current" {% endif %} id="TicketSubMenu"><a href="/project/1/tickets">Tickets</a></li>
+                        <li {% if subMenuCurrent == 'activity' %}class="current" {% endif %} id="ActivitySubMenu"><a href="/project/1/activity">Activity</a></li>
+                        <li {% if subMenuCurrent == 'roadmaps' %}class="current" {% endif %} id="RoadmapSubMenu"><a href="/project/1/roadmaps">Roadmaps</a></li>
                     </ul>
                 </div>
             </div>
@@ -85,6 +85,9 @@
         <div class="row-1">
 
             <div class="container">
+                <div class="span12">
+                    {% include '/ariane/ariane.html.twig' with {'params' : paramsAriane }%}
+                </div>
                 {% block content %}
 
 
@@ -97,43 +100,21 @@
     <footer>
         <div class="container clearfix">
             <div class="row">
-                <article class="span6">
+                <article class="span10">
                     <h3>Shortly about us</h3>
                     <div class="wrapper">
-                        <figure class="img-indent"><img src="img/15.jpg " alt="" /></figure>
-                        <div class="inner-1 overflow extra">
-                            <div class="txt-1">Mauris scelerisque odio quis leo viverra ac porttitor sem blandit. Sed tincidunt mattis varius. Nunc sodales ipsum nisl, eget lacinia nibh.</div>
-                            Cras lacus tortor, tempus vitae porta nec, hendrerit id dolor. Nam volutpat gravida porta. Suspendisse turpis nibh, volutpat.
+                        <div class="inner-1 extra">
+                            <p>Students at Sup'internet, Kremlin-Bicêtre France.<br />This website is a school project.<br /> QM let you manage your project. </p>
+                            <div class="txt-1">
+                                <ul>
+                                    <li>Souleymane Diallo</li>
+                                    <li>Stéphane Aboulaghras</li>
+                                    <li>Alexandre François</li>
+                                    <li>Nils</li>
+                                    <li>Alexandre Ktifa</li>
+                                </ul>
+                            </div>
                         </div>
-                    </div>
-                </article>
-                <article class="span6">
-                    <h3>Some quick links</h3>
-                    <div class="wrapper">
-                        <ul class="list list-pad">
-                            <li><a href="#">Campaigns</a></li>
-                            <li><a href="#">Portraits</a></li>
-                            <li><a href="#">Fashion</a></li>
-                            <li><a href="#">Fine Art</a></li>
-                        </ul>
-                        <ul class="list list-pad">
-                            <li><a href="#">Campaigns</a></li>
-                            <li><a href="#">Portraits</a></li>
-                            <li><a href="#">Fashion</a></li>
-                            <li><a href="#">Fine Art</a></li>
-                        </ul>
-                        <ul class="list list-pad">
-                            <li><a href="#">Campaigns</a></li>
-                            <li><a href="#">Portraits</a></li>
-                            <li><a href="#">Fashion</a></li>
-                            <li><a href="#">Fine Art</a></li>
-                        </ul>
-                        <ul class="list">
-                            <li><a href="#">Advertising</a></li>
-                            <li><a href="#">Lifestyle</a></li>
-                            <li><a href="#">Love story</a></li>
-                            <li><a href="#">Landscapes</a></li>
-                        </ul>
                     </div>
                 </article>
             </div>

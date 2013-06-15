@@ -1,0 +1,15 @@
+{% if params['idProject']%}
+    <a class="linkRed" href="/project/{{params['idProject']}}">{{params['nameProject']}}</a>
+{% elseif params['category']%}
+    <a class="linkRed" href="/">Home</a>
+{% endif %}
+
+{% if params['category'] and params['detail'] %}
+    <img src="/img/lineStraight.png" alt="Ariane divider"/> <a href="/project/{{ params['idProject'] }}/{{ params['category'] }}" >{{ params['category'] }}</a>
+{% elseif params['category'] %}
+    > {{ params['category'] }}
+{% endif %}
+
+{% if params['detail'] %}
+    <img src="/img/lineStraight.png" alt="Ariane divider"/> <a href="/project/{{ params['idProject'] }}/{{ params['category'] }}" >{{ params['category'] }}</a>
+{% endif %}

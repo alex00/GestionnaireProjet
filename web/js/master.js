@@ -10,13 +10,6 @@ $(document).ready(function() {
         "bSort": false,
         "bAutoWidth": false
     } );
-    $("#DashboardSubMenu").addClass(" current");
 
 
-    $(".Collapsable").click(function () {
-
-        $(this).parent().children().toggle();
-        $(this).toggle();
-
-    });
 } );
