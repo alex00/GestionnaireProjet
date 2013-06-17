@@ -11,5 +11,15 @@ $(document).ready(function() {
         "bAutoWidth": false
     } );
 
+    $(".headerActions").click(function(){
+        $(this).modal({
+            backdrop: true,
+            keyboard: true,
+            show: true,
+            remote: '/js/modal.html.twig'
+        });
+        $(this).modal('show');
+    });
+
 
 } );

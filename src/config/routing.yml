@@ -6,31 +6,8 @@ home_show:
 	pattern:	/home
 	controller: home:index
 
-account_index:
-	pattern:	/account
-	controller: account:index
 
-ticket_show:
-	pattern:	/ticket/{id_project}
-	controller: ticket:show
-
-dashboard_show:
-	pattern:	/dashboard/{id_project}
-	controller: dashboard:show
-
-roadmap_show:
-	pattern:	/roadmap/{id_project}
-	controller: roadmap:show
-
-activity_show:
-	pattern:	/activity/{id_project}
-	controller: activity:show
-
-dashboard_index:
-    pattern:    /project/{id_project}
-    controller: dashboard:index
-    requirements:
-        id_project:   int
+# Tickets Controller
 
 ticket_index:
     pattern:    /project/{id_project}/tickets
@@ -38,17 +15,51 @@ ticket_index:
     requirements:
         id_project:   int
 
+ticket_detail:
+	pattern:	/project/{id_project}/ticket/{name_ticket}/{id_ticket}
+	controller: ticket:detail
+
+dashboard_index:
+    pattern:    /project/{id_project}
+    controller: dashboard:index
+    requirements:
+        id_project:   int
+
+# Activity Controller
+
 activity_index:
     pattern:    /project/{id_project}/activity
     controller: activity:index
     requirements:
         id_project:   int
 
+announce_detail:
+    pattern:    /project/{id_project}/announce/{name_announce}/{id_announce}
+    controller: activity:detail
+    requirements:
+        id_project:   int
+
+
+# Roadmap Controller
+
 roadmap_index:
     pattern:    /project/{id_project}/roadmaps
     controller: roadmap:index
     requirements:
         id_project:   int
+
+roadmap_detail:
+    pattern:    /project/{id_project}/roadmap/{name_roadmap}/{id_roadmap}
+    controller: roadmap:detail
+    requirements:
+        id_project:   int
+
+
+# Account Controller
+
+account_index:
+	pattern:	/account
+	controller: account:index
 
 account_connect:
 	pattern:	/connect
@@ -61,3 +72,7 @@ account_signup:
 account_deconnect:
 	pattern:	/deconnect
 	controller: account:deconnect
+
+account_member:
+	pattern:	/project/{id_project}/member/{name_member}/{id_member}
+	controller: account:memberDetail

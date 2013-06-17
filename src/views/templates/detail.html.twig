@@ -1,0 +1,77 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+    <div id="contentLeft" class="span7" >
+        <article class="span7 announceHome">
+        <h4>{{ entity['name']|capitalize }}</h4>
+            <p>{{ entity['description']|capitalize }}</p>
+
+
+            {% if subMenuCurrent == 'roadmaps' %}
+            <div class="progress progress-striped active advanceBar">
+                <div class="bar" style="width: 40%;"></div>
+            </div>
+            <div class="infoRoadMapBar">18 / 52 tâches</div>
+            <div class="clear-fix"></div>
+            <table class="roadmapTable table table-list " >
+                <thead>
+                <tr style="border: none;">
+                    <th style="width: 10%;border-top: none">ID</th><th class="notTooSmall" style="width: 30%;border-top: none">Titre</th><th style="width: 20%;border-top: none">Deadline</th><th style="width: 20%;border-top: none">Statut</th><th style="width: 20%;border-top: none">Importance</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>211</td><td class="notTooSmall">Première tache</td><td>16/02/5222</td><td><img src="img/assigned.png" title="Assigné" alt="Assigné"></td><td>Urgent</td>
+                </tr>
+                <tr>
+                    <td>211</td><td class="notTooSmall">Première tache</td><td>16/02/5222</td><td><img src="img/assigned.png" title="Assigné" alt="Assigné"></td><td>Urgent</td>
+                </tr>
+                <tr>
+                    <td>211</td><td class="notTooSmall">Première tache</td><td>16/02/5222</td><td><img src="img/assigned.png" title="Assigné" alt="Assigné"></td><td>Urgent</td>
+                </tr>
+                <tr>
+                    <td>211</td><td class="notTooSmall">Première tache</td><td>16/02/5222</td><td><img src="img/assigned.png" title="Assigné" alt="Assigné"></td><td>Urgent</td>
+                </tr>
+                <tr>
+                    <td>211</td><td class="notTooSmall">Première tache</td><td>16/02/5222</td><td><img src="img/assigned.png" title="Assigné" alt="Assigné"></td><td>Urgent</td>
+                </tr>
+                </tbody>
+            </table>
+                {% endif %}
+
+            {% if subMenuCurrent == 'tickets' %}
+
+            {% endif %}
+
+            <div class="dividerBlock span7"></div>
+            <h4>Comments : </h4>
+            <p class="pseudoComment pull-left"><a class="linkBlack" href="" >AlexKtf</a></p><p class="pull-left dateComment">&nbsp;- 16/48/4955 16:31</p>
+            <div class="clear"></div>
+            <p>psoefkposekfposkefôskefosopefsoefkospef</p>
+            <p class="pseudoComment pull-left"><a class="linkBlack" href="" >AlexKtf</a></p><p class="pull-left dateComment">&nbsp;- 16/48/4955 16:31</p>
+            <div class="clear"></div>
+            <p>psoefkposekfposkefôskefosopefsoefkospef</p>
+            <p class="pseudoComment pull-left"><a class="linkBlack" href="" >AlexKtf</a></p><p class="pull-left dateComment">&nbsp;- 16/48/4955 16:31</p>
+            <div class="clear"></div>
+            <p>psoefkposekfposkefôskefosopefsoefkospef</p>
+
+
+        </article>
+
+    </div>
+    <div id="contentRight" class="span4 offset1 pull-right" >
+        <article class="span4 ">
+            <h4>My Projects : </h4>
+            <ul class="homeProjectList">
+                <li><a href="/project/1">Pjroeferf45</a></li>
+            </ul>
+        </article>
+        <article class="span4 ">
+            <h4>Affiliated Projects : </h4>
+            <ul class="homeProjectList">
+                <li><a href="/project/1">Project 1 </a></li>
+                <li><a href="/project/1">Project 2 </a></li>
+            </ul>
+        </article>
+    </div>
+{% endblock %}

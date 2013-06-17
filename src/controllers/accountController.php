@@ -47,4 +47,21 @@ class accountController extends TzController {
         TzAuth::login($userArray);
         tzController::CallController("home", "index");
     }
+    public function memberDetailAction($params){
+
+        $id_project = intval($params['id_project']);
+
+        $arianeParams = array('idProject' => 1,
+            'nameProject' => 'Project 1',
+            'category' => 'members',
+            'idDetail' => '1',
+            'nameDetail' => $params['name_member']);
+
+        $member = array('id' => 1, 'name' => 'Deuxieme version de truc', 'description' => 'desdsescecsecsecscesecsecsece cs cse cs ec ');
+
+        $this->tzRender->run('/templates/detailMember', array('header' => 'headers/dashboardHeader.html.twig',
+            'subMenuCurrent' => 'dashboard',
+            'entity' => $member,
+            'paramsAriane' => $arianeParams));
+    }
 }

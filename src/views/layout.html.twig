@@ -21,6 +21,7 @@
     <script type="text/javascript" src="/js/bootstrap/bootstrap.js"></script>
     <script type="text/javascript" src="/js/bootstrap/bootstrap-dropdown.js" ></script>
     <script type="text/javascript" src="/js/bootstrap/bootstrap-collapse.js" ></script>
+    <script type="text/javascript" src="/js/bootstrap/bootstrap-modal.js" ></script>
     <link href='http://fonts.googleapis.com/css?family=Jockey+One' rel='stylesheet' type='text/css'>
 
     <script type="text/javascript" language="javascript" src="/js/master.js" ></script>
@@ -44,7 +45,15 @@
                     <ul class="nav">
                         <li class="home"><a href="/"><img src="/img/tm_home.png"></a></li>
                         <li class="divider-vertical"></li>
-                        <li><a href="/myprojects">My Projects</a></li>
+                        <li ><div class="btn-group" style="margin-top: 12px;margin-left: 15px;line-height: 24px;">
+                                <a class=" dropdown-toggle" data-toggle="dropdown" href="#">
+                                    <span style="padding-top:5px;font-size:36px" >+</span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="headerActions" data-toggle="modal">Project</a></li>
+                                </ul>
+                            </div>
+                        </li>
                     </ul>
                     <ul class=" nav pull-right">
                         <li ><a href="/account"> My Account</a></li>
@@ -76,7 +85,6 @@
         </div>
     </div>
     {%  endif %}
-
 
 
     <div class="container" id="toolBar">

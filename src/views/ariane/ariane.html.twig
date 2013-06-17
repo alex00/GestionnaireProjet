@@ -1,15 +1,17 @@
 {% if params['idProject']%}
-    <a class="linkRed" href="/project/{{params['idProject']}}">{{params['nameProject']}}</a>
+    <a class="linkRed" href="/project/{{params['idProject']}}">{{params['nameProject']|capitalize}}</a>
 {% elseif params['category']%}
     <a class="linkRed" href="/">Home</a>
+{% else %}
+    Home
 {% endif %}
 
-{% if params['category'] and params['detail'] %}
-    <img src="/img/lineStraight.png" alt="Ariane divider"/> <a href="/project/{{ params['idProject'] }}/{{ params['category'] }}" >{{ params['category'] }}</a>
+{% if params['category'] and params['category'] != 'members' and params['idDetail'] %}
+    <img src="/img/lineStraight.png" alt="Ariane divider"/> <a class="linkRed" href="/project/{{ params['idProject'] }}/{{ params['category'] }}" >{{ params['category']|capitalize }}</a>
 {% elseif params['category'] %}
-    > {{ params['category'] }}
+    <img src="/img/lineStraight.png" alt="Ariane divider"/> {{ params['category']|capitalize }}
 {% endif %}
 
-{% if params['detail'] %}
-    <img src="/img/lineStraight.png" alt="Ariane divider"/> <a href="/project/{{ params['idProject'] }}/{{ params['category'] }}" >{{ params['category'] }}</a>
+{% if params['idDetail'] %}
+    <img src="/img/lineStraight.png" alt="Ariane divider"/> {{ params['nameDetail']|capitalize }}
 {% endif %}
