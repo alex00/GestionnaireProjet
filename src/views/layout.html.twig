@@ -9,19 +9,15 @@
 
     <link type="text/css" rel="stylesheet" href="/css/bootstrap/bootstrap.css">
     <link type="text/css" rel="stylesheet" href="/css/bootstrap/responsive.css">
-    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
     <link rel="stylesheet" type="text/css" href="/css/original-style.css" >
     <link rel="stylesheet" type="text/css" href="/css/styles.css" >
 
     <script type="text/javascript" src="/js/jquery/jquery.js"></script>
-    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
     <script type="text/javascript" src="/js/jquery/jquery.cookie.js" ></script>
     <script type="text/javascript" src="/js/jquery/jquery.easing.1.3.js" ></script>
+    <script type="text/javascript" src="/js/jquery/jquery-validate.min.js" ></script>
     <script type="text/javascript" src="/js/jquery/jquery.dataTables.min.js" ></script>
     <script type="text/javascript" src="/js/bootstrap/bootstrap.js"></script>
-    <script type="text/javascript" src="/js/bootstrap/bootstrap-dropdown.js" ></script>
-    <script type="text/javascript" src="/js/bootstrap/bootstrap-collapse.js" ></script>
-    <script type="text/javascript" src="/js/bootstrap/bootstrap-modal.js" ></script>
     <link href='http://fonts.googleapis.com/css?family=Jockey+One' rel='stylesheet' type='text/css'>
 
     <script type="text/javascript" language="javascript" src="/js/master.js" ></script>
@@ -34,6 +30,7 @@
 
 {% endblock %}
 <body>
+<div id="modalHeader"></div>
 <header>
     <div id="panel">
         <div class="navbar navbar-inverse navbar-fixed-top" id="advanced">
@@ -42,18 +39,33 @@
                 <button type="button" class="btn btn-navbar " data-toggle="collapse" data-target=".nav-top-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
                 <a class="brand" href="/">ProjectManager</a>
                 <div class="nav-collapse collapse nav-top-collapse">
-                    <ul class="nav">
+                    <ul id ="toolBar" class="nav">
                         <li class="home"><a href="/"><img src="/img/tm_home.png"></a></li>
                         <li class="divider-vertical"></li>
-                        <li ><div class="btn-group" style="margin-top: 12px;margin-left: 15px;line-height: 24px;">
-                                <a class=" dropdown-toggle" data-toggle="dropdown" href="#">
-                                    <span style="padding-top:5px;font-size:36px" >+</span>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li><a class="headerActions" data-toggle="modal">Project</a></li>
-                                </ul>
+                        <li>
+                            <div class=" headerAdminBlock">
+                                <a href="#Actions" id="HeaderAction" onclick="javascript:toolBarController(this.id,{% if homeContext == true %}true{% else %}false{% endif %});" class="pull-left headerAdminButton" >+</a>
+                                <div class=" pull-left headerAdminLinks" >
+                                    {% if homeContext == true %}
+                                    <a id="addProjectLink" class="linkBlack pull-left" data-toggle="modal" href="#add-project" onclick="javascript:toolBarLinks(this.id);">Project</a>
+                                    {% else %}
+                                    <a id="addTicketLink" class="linkBlack pull-left" data-toggle="modal" href="#add-ticket" onclick="javascript:toolBarLinks(this.id);">Ticket</a>
+                                    <a id="addRoadmapLink" class="linkBlack pull-left" data-toggle="modal" href="#add-roadmap" onclick="javascript:toolBarLinks(this.id);">Roadmap</a>
+                                    <a id="addAnnounceLink" class="linkBlack pull-left" data-toggle="modal" href="#add-announce" onclick="javascript:toolBarLinks(this.id);">Announce</a>
+                                    <a id="addMemberLink" class="linkBlack pull-left" data-toggle="modal" href="#add-member" onclick="javascript:toolBarLinks(this.id);">Member</a>
+                                    {% endif %}
+                                </div>
+                             </div>
+                        </li>
+                        <li>
+                            <div id="HeaderSearchBlock" class=" headerAdminBlock">
+                                <a href="#Actions" id="HeaderSearch" class="pull-left headerAdminButton" >+</a>
+                                <form id="headerSearchBar" class="navbar-search pull-left">
+                                    <input type="text" class="search-query" placeholder="Search">
+                                </form>
                             </div>
                         </li>
+                        <li class="divider-vertical"></li>
                     </ul>
                     <ul class=" nav pull-right">
                         <li ><a href="/account"> My Account</a></li>
@@ -86,9 +98,6 @@
     </div>
     {%  endif %}
 
-
-    <div class="container" id="toolBar">
-    </div>
     <div id="content" class="content-extra">
         <div class="row-1">
 

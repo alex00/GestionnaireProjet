@@ -1,35 +1,63 @@
-<div id="formAddTask" class="row">
-    <div class="span5">
-        <div>
-            <p>Titre: </p>
-            <p><input type="text" name="titleProject" class="titleInput" id="titleProject" /></p>
-        </div>
-            <p>
-                <span>Assigné à : <select class="assignedSelect">
-                        <option>A</option>
-                        <option>B</option>
-                        <option>C</option>
-                    </select>
-                </span>
-            </p>
-            <p>
-                <span>Fin espéré : <input type="date" class="deadlineInput" name="vehicle" value="Car">  </span>
-                <span class="padLeft">Priorité : <select class="prioritySelect">
-                        <option>A</option>
-                        <option>B</option>
-                        <option>C</option>
-                    </select>
-                </span>
-            </p>
+<!-- first modal window -->
+<header class="modal-header">
+    <a href="#" class="close" data-dismiss="modal">x</a>
+    <h6>Add a Ticket</h6>
+</header>
 
-    </div>
-    <div class="span2">
-
-    </div>
-    <div class="span5" >
-        <div>
-            <p>Description: </p>
-            <p><textarea id="descProject" cols="500" rows="7"></textarea></p>
-        </div>
-    </div>
+<div class="modal-body">
+    <form id="addTicket" action="/new-project" method="post" name="newProject">
+        <table>
+            <tr>
+                <td><label for="nameTicket">Name :</label></td><td colspan="3"><input type="text" name="nameTicket" id="nameTicket"/></td>
+            </tr>
+            <tr>
+                <td><label for="descTicket">Description :</label></td><td colspan="3"><textarea name="descTicket" id="descTicket" rows="3"></textarea></td>
+            </tr>
+            <tr>
+                <td><label for="assignedTicket">Assigned to :</label></td>
+                <td>
+                    <select name="assignedTicket" id="assignedTicket">
+                        <option>AlexKtf</option>
+                        <option>AlexKtf</option>
+                        <option>AlexKtf</option>
+                    </select>
+                </td>
+                <td><label for="deadlineTicket">Deadline :</label></td>
+                <td><input type="date" name="deadlineTicket" id="deadlineTicket" /></td>
+            </tr>
+            <tr>
+                <td><label for="priorityTicket">Priority :</label></td>
+                <td>
+                    <select name="priorityTicket" id="priorityTicket">
+                        <option value="1">Low</option>
+                        <option value="2" selected="selected">Normal</option>
+                        <option value="3">High</option>
+                        <option value="4">Immediate</option>
+                    </select>
+                </td>
+                <td><label for="trackerTicket">Tracker :</label></td>
+                <td>
+                    <select name="trackerTicket" id="trackerTicket">
+                        <option value="1" selected="selected">Evolution</option>
+                        <option value="2">Bug</option>
+                        <option value="3">Support</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="roadmapTicket">Link to a roadmap :</label></td>
+                <td colspan="3">
+                    <select name="roadmapTicket" id="roadmapTicket">
+                        <option>AlexKtf</option>
+                        <option>AlexKtf</option>
+                        <option>AlexKtf</option>
+                    </select>
+                </td>
+            </tr>
+        </table>
+    </form>
 </div>
+
+<footer class="modal-footer">
+    <a href="#" class="btn btn-primary" id="okwin01" onclick="$('.modal-body > form').submit();">Create</a>
+</footer>
