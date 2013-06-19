@@ -1,0 +1,16 @@
+type=>2	message=>PDOStatement::execute(): SQLSTATE[42S22]: Column not found: 1054 Unknown column 'password' in 'where clause'	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/components/Auth/TzAuth.php	line=>31	date=>2013-06-13 22:43:06
+type=>2	message=>PDOStatement::execute(): SQLSTATE[42S22]: Column not found: 1054 Unknown column 'password' in 'where clause'	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/components/Auth/TzAuth.php	line=>31	date=>2013-06-13 22:50:20
+type=>8	message=>Undefined index: login	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/src/controllers/accountController.php	line=>34	date=>2013-06-13 22:50:37
+type=>8	message=>Undefined index: pass	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/src/controllers/accountController.php	line=>35	date=>2013-06-13 22:50:37
+type=>2	message=>PDOStatement::execute(): SQLSTATE[42S22]: Column not found: 1054 Unknown column 'password' in 'where clause'	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/components/Auth/TzAuth.php	line=>31	date=>2013-06-13 22:50:37
+type=>8	message=>Undefined index: login	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/src/controllers/accountController.php	line=>34	date=>2013-06-13 22:59:48
+type=>8	message=>Undefined index: pass	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/src/controllers/accountController.php	line=>35	date=>2013-06-13 22:59:48
+type=>8	message=>Undefined index: login	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/src/controllers/accountController.php	line=>8	date=>2013-06-13 23:00:20
+type=>8	message=>Undefined index: pass	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/src/controllers/accountController.php	line=>9	date=>2013-06-13 23:00:20
+type=>8	message=>Undefined index: mail	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/src/controllers/accountController.php	line=>10	date=>2013-06-13 23:00:20
+type=>8	message=>Undefined index: login	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/src/controllers/accountController.php	line=>42	date=>2013-06-17 00:02:42
+type=>8	message=>Undefined index: pass	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/src/controllers/accountController.php	line=>43	date=>2013-06-17 00:02:42
+type=>2	message=>Missing argument 1 for usersEntity::find(), called in /Users/Alex/NetBeansProjects/GestionnaireProjet/src/controllers/homeController.php on line 13 and defined	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/src/entities/usersEntity.class.php	line=>272	date=>2013-06-17 15:24:58
+type=>8	message=>Undefined variable: id	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/src/entities/usersEntity.class.php	line=>274	date=>2013-06-17 15:24:58
+type=>2	message=>PDOStatement::execute(): SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/src/entities/usersEntity.class.php	line=>276	date=>2013-06-17 15:24:58
+type=>none	message=>Result is null	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/src/entities/usersEntity.class.php	line=>290	date=>2013-06-17 15:24:58

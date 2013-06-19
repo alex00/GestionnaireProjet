@@ -1,18 +1,20 @@
-<?php 
+<?php
 
 class accountController extends TzController {
-	 public function indexAction () {
 
+    public function indexAction() {
 
-         $arianeParams = array('category' => 'My account');
+        $userEntity = tzSQL::getEntity('Users');
+        $user = $userEntity->find($_SESSION['User']['id']);
+        var_dump($user);
+        $arianeParams = array('category' => 'My account', 'user' => $user);
 
-         $this->tzRender->run('/templates/account', array('header' => 'headers/accountHeader.html.twig',
-             'subMenu' => 'true',
-             'paramsAriane' => $arianeParams));
+        $this->tzRender->run('/templates/account', array('header' => 'headers/accountHeader.html.twig',
+            'subMenu' => 'true',
+            'paramsAriane' => $arianeParams));
+    }
 
-	}
-
-    public function signupAction () {
+    public function signupAction() {
         $login = htmlspecialchars($_POST["login"]);
         $pass = htmlspecialchars($_POST["pass"]);
         $mail = htmlspecialchars($_POST["mail"]);
@@ -29,22 +31,25 @@ class accountController extends TzController {
         $login = $usersEntity->getUser_login();
 
         $userArray = array('password' => $pass,
-            'user_login'    => $login);
+            'user_login' => $login);
         TzAuth::login($userArray);
         tzController::CallController("home", "index");
     }
-    public function deconnectAction(){
+
+    public function deconnectAction() {
         TzAuth::logout();
 
         tzController::CallController("home", "index");
     }
-    public function connectAction(){
+
+    public function connectAction() {
         $login = htmlspecialchars($_POST["login"]);
         $pass = htmlspecialchars($_POST["pass"]);
 
         $userArray = array('password' => $pass,
-            'user_login'    => $login);
+            'user_login' => $login);
         TzAuth::login($userArray);
         tzController::CallController("home", "index");
     }
+
 }
