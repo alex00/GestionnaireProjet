@@ -12,7 +12,7 @@ home_newProject:
 # Account Controller
 
 account_index:
-	pattern:	/account/{user}
+	pattern:	/account/{login}
 	controller: account:index
 	requirements:
             only_connected: true

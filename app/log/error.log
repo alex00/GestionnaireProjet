@@ -30,3 +30,19 @@ type=>8	message=>Undefined variable: user	file=>/Users/Alex/NetBeansProjects/Ges
 type=>8	message=>Undefined variable: user	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/src/controllers/accountController.php	line=>14	date=>2013-06-19 17:05:53
 type=>8	message=>Undefined variable: user	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/src/controllers/accountController.php	line=>9	date=>2013-06-19 17:06:05
 type=>8	message=>Undefined variable: user	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/src/controllers/accountController.php	line=>14	date=>2013-06-19 17:06:05
+type=>none	message=>Colonne introuvable: est-elle presente dans la base de donnée ?	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/src/entities/UsersEntity.class.php	line=>355	date=>2013-06-19 17:41:29
+type=>none	message=>Colonne introuvable: est-elle presente dans la base de donnée ?	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/src/entities/UsersEntity.class.php	line=>355	date=>2013-06-19 17:41:36
+type=>none	message=>Colonne introuvable: est-elle presente dans la base de donnée ?	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/src/entities/UsersEntity.class.php	line=>355	date=>2013-06-19 17:50:04
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/src/entities/UsersEntity.class.php	line=>359	date=>2013-06-19 17:52:00
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/src/entities/UsersEntity.class.php	line=>359	date=>2013-06-19 17:53:53
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/src/entities/UsersEntity.class.php	line=>359	date=>2013-06-19 17:54:02
+type=>8	message=>Undefined variable: pseudo	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/src/controllers/accountController.php	line=>9	date=>2013-06-19 17:54:02
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/src/entities/UsersEntity.class.php	line=>359	date=>2013-06-19 17:54:16
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/src/entities/UsersEntity.class.php	line=>359	date=>2013-06-19 17:54:49
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/src/entities/UsersEntity.class.php	line=>359	date=>2013-06-19 17:55:12
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/src/entities/UsersEntity.class.php	line=>359	date=>2013-06-19 17:55:16
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/src/entities/UsersEntity.class.php	line=>359	date=>2013-06-19 17:58:50
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/src/entities/UsersEntity.class.php	line=>359	date=>2013-06-19 17:59:16
+type=>none	message=>Colonne introuvable: est-elle presente dans la base de donnée ?	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/src/entities/UsersEntity.class.php	line=>355	date=>2013-06-19 18:00:29
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/src/entities/UsersEntity.class.php	line=>359	date=>2013-06-19 18:00:38
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/src/entities/UsersEntity.class.php	line=>359	date=>2013-06-19 18:01:49

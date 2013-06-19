@@ -4,15 +4,27 @@ class accountController extends TzController {
 
     public function indexAction($params) {
 
-        $pseudo = $params['pseudo'];
-       
+        $login = $params['login'];
         
-        $arianeParams = array('category' => 'My account', 'user' => $user);
+        $usersEntity = tzSQL::getEntity('users');
+        $user = $usersEntity->findManyBy('user_login_code', $login);
+        $user = $user[0];
+ 
+        $projectsEntity = TzSQL::getEntity('projects');
+        $projects = $projectsEntity->get('user_login_code', $login);
+        
+        $nbe_project_create = 0;
+        $nbe_project_affilied = 0;
+        
+        $arianeParams = array('category' => 'My account');
 
         $this->tzRender->run('/templates/account', array('header' => 'headers/accountHeader.html.twig',
             'subMenu' => 'true',
             'paramsAriane' => $arianeParams,
-            'user' => $user));
+            'user' => $user,
+            'nbe_project_create' => $nbe_project_create,
+            'nbe_project_affilied' => $nbe_project_affilied,
+            'projects' => $projects));
     }
 
     public function signupAction() {

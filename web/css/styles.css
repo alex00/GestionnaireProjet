@@ -568,6 +568,137 @@ border-color: #F25C27;
 box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px #F25C27;
 }
 
+
+#linkParams {
+    margin-right: 80px;
+    margin-top: 8px;
+}
+
+#linkParams ul {
+    min-width: 100px;
+    text-align: right;
+    margin-top: 13px;
+}
+
+#linkParams:hover {
+    cursor: pointer;
+}
+
+#linkParams b{
+    margin-top: 11px;
+    margin-left: -14px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/**** modal styles ***********/
+
+.modal-header {
+
+    background: url(../img/bg-content.jpg) 50% 50%;
+}
+.modal-header h6 {
+
+   font-size: 26px;
+}
+.modal-header .close {
+    color: #fff;
+}
+
+.modal-body table{
+    width: 90%;
+}
+
+.modal-body table textarea{
+    margin-left: 10px;
+    resize: none;
+    width: 95%;
+}
+.modal-body #nameProject {
+    width: 95%;
+}
+
+.modal-body #memberProject {
+    width: 90%;
+}
+
+.modal-body table tr td:first-child {
+    width: 25%;
+}
+
+.modal-body .addMember {
+    margin-top: 0px;
+    line-height: 32px;
+    font-size: 32px;
+}
+
+.modal-body #addTicket select, .modal-body #addTicket input[type='date'] {
+    margin-left: 10px;
+}
+
+.modal-body #addTicket input[type='text'],.modal-body #addTicket textarea {
+    width: 89%;
+}
+
+#modalHeaders {
+    width: 560px;
+    margin-top: -250px ;
+    margin-left:  -340px ;
+}
+
+#modalHeadersLarge {
+    width: 950px;
+    margin-top: -280px ;
+    margin-left:  -500px ;
+}
+
+#modalHeaders #addTicket .modal-body {
+    max-height: 525px;
+}
+
+
+
+
+
+
+
+.headerAdminLinks a {
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+.headerAdminLinks a:first-child {
+    margin-left: 30px;
+}
+
+#headerSearchBar input[type="text"] {
+    border-radius: 6px;
+    margin-top: -14px;
+    margin-left: 20px;
+    line-height: 16px;
+}
+
+#headerSearchBar input[type="text"]:focus {
+border-color: #F25C27;
+-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px #F25C27;
+-moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px #F25C27;
+box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px #F25C27;
+}
+
 .modal-header {
 
     background: url(../img/bg-content.jpg) 50% 50%;

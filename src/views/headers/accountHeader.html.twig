@@ -5,7 +5,7 @@
             <h2>My Account</h2>
             <div id="otherInfos">
                 <p class="nameHeaderHome">
-                     a
+                     {{ user.getUser_login() }}
                 </p>
                 <p class="projectHeaderHome pull-left">
                     <span class="numberProjectHeaderHome" style="padding-left: 0px;padding-right: 10px;">0</span> created project
@@ -14,7 +14,7 @@
                     <span class="numberProjectHeaderHome" style="padding-left: 0px;padding-right: 10px;">0</span> affiliated project
                 </p>
                 <div style="clear: both"></div>
-                <p class="pull-left" style="padding: 0 0 0 27px">Mail : alexktg@sfjsef.FR</p>
+                <p class="pull-left" style="padding: 0 0 0 27px">Mail : {{ user.getUser_mail() }}</p>
                 <p class="pull-left" style="border-left: none"></p>
             </div>
         </div>
