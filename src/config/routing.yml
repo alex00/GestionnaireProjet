@@ -33,7 +33,10 @@ account_forbidden:
 account_member:
 	pattern:	/{project}/member/{member}/
 	controller: account:memberDetail
-
+    requirements:
+        project:   string
+        member:   string
+        only_connected: true
 
 # Tickets Controller
 
@@ -42,10 +45,14 @@ ticket_index:
     controller: ticket:index
     requirements:
         project:   string
+        only_connected: true
 
 ticket_detail:
 	pattern:	/{project}/ticket/{ticket}/
 	controller: ticket:detail
+	    project:   string
+	    ticket:   string
+        only_connected: true
 
 dashboard_index:
     pattern:    /{project}/
@@ -68,7 +75,8 @@ announce_detail:
     controller: activity:detail
     requirements:
         project:   string
-
+        announce:   string
+        only_connected: true
 
 # Roadmap Controller
 
@@ -77,10 +85,13 @@ roadmap_index:
     controller: roadmap:index
     requirements:
         project:   string
+        only_connected: true
 
 roadmap_detail:
     pattern:    /{project}/roadmap/{roadmap}/
     controller: roadmap:detail
     requirements:
         project:   string
+        roadmap:   string
+        only_connected: true
 

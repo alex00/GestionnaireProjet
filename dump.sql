@@ -307,8 +307,7 @@ CREATE TABLE `users` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `users_receive_tickets`
---
+------------------------------------------------
 DROP TABLE IF EXISTS `users_receive_tickets`;
 CREATE TABLE `users_receive_tickets` (
   `id` int(11) NOT NULL,
