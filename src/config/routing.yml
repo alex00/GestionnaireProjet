@@ -5,6 +5,9 @@ default_index:
 home_index:
 	pattern:	/home
 	controller: home:index
+home_newProject:
+    pattern:    /new-project
+    controller: home:newProject
 
 # Account Controller
 

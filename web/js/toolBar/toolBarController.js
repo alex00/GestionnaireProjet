@@ -1,123 +1,89 @@
-function toolBarController(id){
+
+function toolBarController(id, homeContext) {
+
     var toolBarAdmin = toolBar.getInstance();
 
-    if (toolBarAdmin.doing)
-        return false;
 
-    var infos = toolBarAdmin.getParams(id);
+    if (toolBarAdmin.doing || !toolBarAdmin.locate[id])
+        return false;
 
     toolBarAdmin.doing = true;
     toolBarAdmin.current_button = id;
 
-    if (!infos.submit)
-        var buttons = false;
+    var parent = $("#"+id).parent();
+    var links = $(parent).children(".headerAdminLinks");
+
+    if( homeContext == true)
+        var size = 'sizeSmall';
     else
-        var buttons = true;
+        var size = 'sizeLarge';
 
-    if (toolBarAdmin.current_button == 'cancelToolBar'){
-        animateClose(toolBarAdmin);
-        return true;
-    }
+    if (toolBarAdmin.locate[id].position == 0) {
 
-    if (toolBarAdmin.current_button == 'submitToolBar'){
-        alert(toolBarAdmin.last_button);
-        return true;
-    }
+        $(parent).animate({
+            'min-width': '+='+toolBarAdmin.locate[id][size]
+        }, 1000, function () {
 
-    if (toolBarAdmin.position == 1){
-        if (toolBarAdmin.current_button == toolBarAdmin.last_button){
-            animateClose(toolBarAdmin);
-        }
-        else{
-            animateRepresent(toolBarAdmin, infos, buttons);
-        }
+            links.css('display', 'block').animate({'opacity': 10}, 800);
+            toolBarAdmin.doing = false;
+            toolBarAdmin.locate[id].position = 1;
+        });
 
     }
     else {
-        animateOpen(toolBarAdmin, infos, buttons);
+        $(links).animate({
+            'opacity': 0
+        }, 800, function () {
+            $(links).css("display","none");
+            $(parent).animate({
+                'min-width': '-='+toolBarAdmin.locate[id][size]}, 1000, function(){
+                toolBarAdmin.doing = false;
+                toolBarAdmin.locate[id].position = 0;
+                })
+        });
     }
 
-    return true;
 
-}
-
-function animateOpen (toolBarAdmin, infos, buttons) {
+};
 
 
-    $('#toolBar').animate({
-        'height': infos.height
-    }, 1500, function(){
-        if (buttons === true){
+function toolBarLinks(id) {
+    var toolBarAdmin = toolBar.getInstance();
 
-            $("#submitSeperateTopAndContent").css("visibility",'visible');
-            $("#submitSeperateTopAndContent").animate({
-                'opacity': '10'
-            }, 1500);
-        }
-        $("#toolBar").load(infos.template);
-        $("#toolBar ").animate({
-            'opacity': '10'
-        }, 1500, function(){
-            toolBarAdmin.doing = false;
-            toolBarAdmin.position = 1;
-            toolBarAdmin.last_button = toolBarAdmin.current_button;
-        });
+    if (!toolBarAdmin.infosToolBar.template[id])
+        return false;
+    else
+        var url = toolBarAdmin.infosToolBar.template[id];
+
+    toolBarAdmin.memberRow = 0;
+
+
+    $.get(url, function(data) {
+
+        if (toolBarAdmin.infosToolBar.template[id] == '/js/toolBar/addTicket.html.twig')
+            $('<div id="modalHeadersLarge" class="modal hide fade">' + data + '</div>').modal();
+        else
+            $('<div id="modalHeaders" class="modal hide fade">' + data + '</div>').modal();
+
     });
-}
-
-function animateRepresent (toolBarAdmin, infos, buttons){
-    if (buttons === true){
-        $("#submitSeperateTopAndContent").animate({
-            'opacity': '10'
-        }, 1500);
-    }
-    else {
-        $("#submitSeperateTopAndContent").animate({
-            'opacity': '0'
-        }, 1500);
-
-    }
-
-    $("#toolBar ").animate({
-        'opacity': '0',
-        'height': infos.height
-    },1000, function(){
-        $("#toolBar").load(infos.template);
+};
 
 
-        }).animate({
-            'opacity': '10'
-        }, 1500, function(){
-            toolBarAdmin.doing = false;
-            toolBarAdmin.last_button = toolBarAdmin.current_button;
-        });
+
+/*
+function toolBarAddMember(id) {
+    var toolBarAdmin = toolBar.getInstance();
+
+    if (toolBarAdmin.memberRow > 3)
+        return false;
+
+    var row = '<tr id="lastRowAddProject"><td></td><td colspan="2"><input type="text" name="membersProject[]" id="memberProject"/></td><td class="addMember"><span id="arrowMemberAddProject" onclick="javascript:toolBarAddMember(\'lastRowAddProject\');">+</span></td></tr>';
+    $("#arrowMemberAddProject").remove();
+    $("#"+id).after(row).attr('id','');
+    toolBarAdmin.memberRow++;
+
+    if (toolBarAdmin.memberRow == 4)
+        $("#arrowMemberAddProject").remove();
 
 
-}
-
-function animateClose (toolBarAdmin){
-    $("#submitSeperateTopAndContent ").animate({
-        'opacity': '0'
-    }, 1000);
-    $('#toolBar').animate({
-        'opacity': '0'
-    }, 1000, function(){
-        $("#submitSeperateTopAndContent").css("visibility",'hidden');
-        $('#toolBar').empty();
-    }).animate({
-            'height': '0'
-        }, 1500, function(){
-            toolBarAdmin.position = 0;
-            toolBarAdmin.doing = false;
-        });
-}
-
-function plusMailMember (){
-
-    $("#plusMailMember").remove();
-    var html = '<p id="newMemberMail" ><input type="email" name="mailInvitMember" /><button id="plusMailMember" class="btn"><i class="icon-plus"></i></button></p>';
-
-    $("#lastMailMember").after(html).attr("id","mailMember");
-    $("#newMemberMail").attr("id","lastMailMember");
-
-}
+}*/

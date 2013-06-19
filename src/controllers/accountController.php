@@ -63,6 +63,7 @@ class accountController extends TzController {
         $this->tzRender->run('/templates/detailMember', array('header' => 'headers/dashboardHeader.html.twig',
             'subMenuCurrent' => 'dashboard',
             'entity' => $member,
+            'homeContext' => true,
             'paramsAriane' => $arianeParams));
     }
     public function forbiddenAction(){
