@@ -5,7 +5,7 @@ class accountController extends TzController {
     public function indexAction($params) {
 
         $pseudo = $params['pseudo'];
-        $user = new usersEntity
+       
         
         $arianeParams = array('category' => 'My account', 'user' => $user);
 
