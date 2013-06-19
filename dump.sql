@@ -16,24 +16,7 @@ SET foreign_key_checks = 0;
 --
 
 -- --------------------------------------------------------
---
--- Structure de la table `acl_groups`
---
 
-DROP TABLE IF EXISTS `acl_groups`;
-CREATE TABLE IF NOT EXISTS `acl_groups` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(70) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
-
---
--- Contenu de la table `acl_groups`
---
-
-INSERT INTO `acl_groups` (`id`, `name`) VALUES
-(1, 'admin'),
-(2, 'user');
 --
 -- Structure de la table `announcement`
 --
@@ -60,10 +43,10 @@ CREATE TABLE `comments` (
   `comment_description` text NOT NULL,
   `comment_date_create` datetime NOT NULL,
   `ticket_id` int(11) NOT NULL,
-  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
   PRIMARY KEY (`comment_id`),
   KEY `fk_comments_tickets1_idx` (`ticket_id`),
-  KEY `fk_comments_users1_idx` (`id`)
+  KEY `fk_comments_users1_idx` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -300,21 +283,21 @@ CREATE TABLE `users` (
   `user_login` varchar(45) NOT NULL,
   `user_login_code` varchar(45) NOT NULL,
   `user_date_create` datetime NOT NULL,
-  `acl_group_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
 --
-------------------------------------------------
+-- Structure de la table `users_receive_tickets`
+--
 DROP TABLE IF EXISTS `users_receive_tickets`;
 CREATE TABLE `users_receive_tickets` (
-  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
   `ticket_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`,`ticket_id`),
+  PRIMARY KEY (`user_id`,`ticket_id`),
   KEY `fk_user_has_action_action1_idx` (`ticket_id`),
-  KEY `fk_user_has_action_user1_idx` (`id`)
+  KEY `fk_user_has_action_user1_idx` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -324,12 +307,12 @@ CREATE TABLE `users_receive_tickets` (
 --
 DROP TABLE IF EXISTS `user_project`;
 CREATE TABLE `user_project` (
-  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
   `project_id` int(11) NOT NULL,
   `rights_key` int(11) NOT NULL,
-  PRIMARY KEY (`id`,`project_id`,`rights_key`),
+  PRIMARY KEY (`user_id`,`project_id`,`rights_key`),
   KEY `fk_user_has_project_project1_idx` (`project_id`),
-  KEY `fk_user_has_project_idx` (`id`),
+  KEY `fk_user_has_project_idx` (`user_id`),
   KEY `fk_user_project_rights1_idx` (`rights_key`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -340,12 +323,12 @@ CREATE TABLE `user_project` (
 --
 DROP TABLE IF EXISTS `user_service_project`;
 CREATE TABLE `user_service_project` (
-  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
   `project_id` int(11) NOT NULL,
   `service_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`,`project_id`,`service_id`),
+  PRIMARY KEY (`user_id`,`project_id`,`service_id`),
   KEY `fk_users_has_projects_projects1_idx` (`project_id`),
-  KEY `fk_users_has_projects_users1_idx` (`id`),
+  KEY `fk_users_has_projects_users1_idx` (`user_id`),
   KEY `fk_user_service_project_services1_idx` (`service_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -364,7 +347,7 @@ ALTER TABLE `announcement`
 --
 ALTER TABLE `comments`
   ADD CONSTRAINT `fk_comments_tickets1` FOREIGN KEY (`ticket_id`) REFERENCES `tickets` (`ticket_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_comments_users1` FOREIGN KEY (`id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_comments_users1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `notifications`
@@ -394,14 +377,14 @@ ALTER TABLE `ticket_files`
 --
 ALTER TABLE `users_receive_tickets`
   ADD CONSTRAINT `fk_user_has_action_action1` FOREIGN KEY (`ticket_id`) REFERENCES `tickets` (`ticket_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_user_has_action_user1` FOREIGN KEY (`id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_user_has_action_user1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `user_project`
 --
 ALTER TABLE `user_project`
   ADD CONSTRAINT `fk_user_has_project_project1` FOREIGN KEY (`project_id`) REFERENCES `projects` (`project_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_user_has_project_user` FOREIGN KEY (`id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_user_has_project_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_user_project_rights1` FOREIGN KEY (`rights_key`) REFERENCES `rights_project` (`right_key`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
@@ -409,5 +392,5 @@ ALTER TABLE `user_project`
 --
 ALTER TABLE `user_service_project`
   ADD CONSTRAINT `fk_users_has_projects_projects1` FOREIGN KEY (`project_id`) REFERENCES `projects` (`project_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_users_has_projects_users1` FOREIGN KEY (`id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_users_has_projects_users1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_user_service_project_services1` FOREIGN KEY (`service_id`) REFERENCES `services` (`service_id`) ON DELETE CASCADE ON UPDATE CASCADE;
