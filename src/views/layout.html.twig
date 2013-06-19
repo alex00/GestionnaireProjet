@@ -18,6 +18,7 @@
     <script type="text/javascript" src="/js/jquery/jquery-validate.min.js" ></script>
     <script type="text/javascript" src="/js/jquery/jquery.dataTables.min.js" ></script>
     <script type="text/javascript" src="/js/bootstrap/bootstrap.js"></script>
+    <script type="text/javascript" src="/js/bootstrap/bootstrap-dropdown.js"></script>
     <link href='http://fonts.googleapis.com/css?family=Jockey+One' rel='stylesheet' type='text/css'>
 
     <script type="text/javascript" language="javascript" src="/js/master.js" ></script>
@@ -67,10 +68,19 @@
                         </li>
                         <li class="divider-vertical"></li>
                     </ul>
-                    <ul class=" nav pull-right">
-                        <li ><a href="/account"> My Account</a></li>
-                        <li class="divider-vertical"></li>
-                        <li><a href="/deconnect">Deconnexion</a></li>
+                    <ul id="linkParams" class=" nav pull-right">
+                        <li><div class="dropdown">
+                                <a class="dropdown-toggle" id="dLabel" role="button" data-toggle="dropdown" data-target="#" >
+                                    Params <i class="icon-cog"></i>
+                                    <b class="caret"></b>
+                                </a>
+                                <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                                    <a href="/my-account">My acount</a>
+                                    <a href="/my-account">Settings</a>
+                                    <a href="/Deconnexion">Deconnexion</a>
+                                </ul>
+                            </div>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -84,7 +94,7 @@
     {%  if subMenu == false %}
     <div class="row-fluid" id="subMenuBar">
         <div class="container">
-            <div class="span6 offset3">
+            <div class="span7 offset3">
                 <div id="sub-menu">
                     <ul >
                         <li {% if subMenuCurrent == 'dashboard' %}class="current" {% endif %} id="DashboardSubMenu"><a href="/project/1">Dashboard</a></li>
