@@ -19,12 +19,15 @@ class TzACL {
             self::$authorization['connect'] = false;
         }
         if(TzAuth::isUserLoggedIn()){
-            $idGroup = TzAuth::readUser('acl_group_id');
-            if(isset(self::$groupList[$idGroup])){
-                self::$userGroup = self::$groupList[$idGroup];
-            } else {
-                DebugTool::$error->catchError(array("Missing group. Please update groups.yml", __FILE__,__LINE__),true);
+            if(!empty(self::$groupList)){
+                $idGroup = TzAuth::readUser('acl_group_id');
+                if(isset(self::$groupList[$idGroup])){
+                    self::$userGroup = self::$groupList[$idGroup];
+                } else {
+                    DebugTool::$error->catchError(array("Missing group. Please update groups.yml", __FILE__,__LINE__),true);
+                }
             }
+
         }
 
         if(!empty($requirements['allow_groups'])){

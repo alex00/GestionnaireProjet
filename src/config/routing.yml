@@ -1,65 +1,18 @@
 
-default_show:
+default_index:
 	pattern:	 / 
 	controller: home:index
-home_show:
+home_index:
 	pattern:	/home
 	controller: home:index
-
-
-# Tickets Controller
-
-ticket_index:
-    pattern:    /project/{id_project}/tickets
-    controller: ticket:index
-    requirements:
-        id_project:   int
-
-ticket_detail:
-	pattern:	/project/{id_project}/ticket/{name_ticket}/{id_ticket}
-	controller: ticket:detail
-
-dashboard_index:
-    pattern:    /project/{id_project}
-    controller: dashboard:index
-    requirements:
-        id_project:   int
-
-# Activity Controller
-
-activity_index:
-    pattern:    /project/{id_project}/activity
-    controller: activity:index
-    requirements:
-        id_project:   int
-
-announce_detail:
-    pattern:    /project/{id_project}/announce/{name_announce}/{id_announce}
-    controller: activity:detail
-    requirements:
-        id_project:   int
-
-
-# Roadmap Controller
-
-roadmap_index:
-    pattern:    /project/{id_project}/roadmaps
-    controller: roadmap:index
-    requirements:
-        id_project:   int
-
-roadmap_detail:
-    pattern:    /project/{id_project}/roadmap/{name_roadmap}/{id_roadmap}
-    controller: roadmap:detail
-    requirements:
-        id_project:   int
-
 
 # Account Controller
 
 account_index:
 	pattern:	/account
 	controller: account:index
+	requirements:
+            only_connected: true
 
 account_connect:
 	pattern:	/connect
@@ -73,6 +26,61 @@ account_deconnect:
 	pattern:	/deconnect
 	controller: account:deconnect
 
+account_forbidden:
+    pattern:    /forbidden
+    controller: account:forbidden
+
 account_member:
-	pattern:	/project/{id_project}/member/{name_member}/{id_member}
+	pattern:	/{project}/member/{member}/
 	controller: account:memberDetail
+
+
+# Tickets Controller
+
+ticket_index:
+    pattern:    /{project}/tickets/
+    controller: ticket:index
+    requirements:
+        project:   string
+
+ticket_detail:
+	pattern:	/{project}/ticket/{ticket}/
+	controller: ticket:detail
+
+dashboard_index:
+    pattern:    /{project}/
+    controller: dashboard:index
+    requirements:
+        project:   string
+        only_connected: true
+
+# Activity Controller
+
+activity_index:
+    pattern:    /{project}/activity
+    controller: activity:index
+    requirements:
+        project:   string
+        only_connected: true
+
+announce_detail:
+    pattern:    /{project}/announce/{announce}/
+    controller: activity:detail
+    requirements:
+        project:   string
+
+
+# Roadmap Controller
+
+roadmap_index:
+    pattern:    /{project}/roadmaps
+    controller: roadmap:index
+    requirements:
+        project:   string
+
+roadmap_detail:
+    pattern:    /{project}/roadmap/{roadmap}/
+    controller: roadmap:detail
+    requirements:
+        project:   string
+

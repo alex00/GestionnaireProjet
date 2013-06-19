@@ -3,7 +3,7 @@
 class dashboardController extends TzController {
 	 public function indexAction ($params) {
 
-		 $id_project = intval($params['id_project']);
+		 $project_name = intval($params['project']);
 
          $arianeParams = array('idProject' => 1,
                                 'nameProject' => 'Project 1',

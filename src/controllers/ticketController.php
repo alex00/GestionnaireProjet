@@ -3,7 +3,7 @@
 class ticketController extends TzController {
 	 public function indexAction ($params) {
 
-         $id_project = intval($params['id_project']);
+         $project_name = intval($params['project']);
 
          $arianeParams = array('idProject' => 1,
              'nameProject' => 'Project 1',
@@ -16,13 +16,13 @@ class ticketController extends TzController {
 
     public function detailAction ($params) {
 
-        $id_project = intval($params['id_project']);
+        $project_name = intval($params['project']);
 
         $arianeParams = array('idProject' => 1,
             'nameProject' => 'Project 1',
             'category' => 'tickets',
             'idDetail' => '1',
-            'nameDetail' => $params['name_ticket']);
+            'nameDetail' => $params['ticket']);
 
         $ticket = array('id' => 1, 'name' => 'Deuxieme version de truc', 'description' => 'desdsescecsecsecscesecsecsece cs cse cs ec ');
 

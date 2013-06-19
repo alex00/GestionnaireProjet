@@ -44,18 +44,19 @@ class accountController extends TzController {
 
         $userArray = array('password' => $pass,
             'user_login'    => $login);
+
         TzAuth::login($userArray);
         tzController::CallController("home", "index");
     }
     public function memberDetailAction($params){
 
-        $id_project = intval($params['id_project']);
+        $project_name = intval($params['project']);
 
         $arianeParams = array('idProject' => 1,
             'nameProject' => 'Project 1',
             'category' => 'members',
             'idDetail' => '1',
-            'nameDetail' => $params['name_member']);
+            'nameDetail' => $params['member']);
 
         $member = array('id' => 1, 'name' => 'Deuxieme version de truc', 'description' => 'desdsescecsecsecscesecsecsece cs cse cs ec ');
 
@@ -63,5 +64,8 @@ class accountController extends TzController {
             'subMenuCurrent' => 'dashboard',
             'entity' => $member,
             'paramsAriane' => $arianeParams));
+    }
+    public function forbiddenAction(){
+        echo 'forbidden';
     }
 }

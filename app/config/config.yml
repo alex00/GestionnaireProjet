@@ -7,7 +7,7 @@ template:    twig
 # database configuration
 database:
     user:		root
-    password:		root
+    password:
     dbname:		gestionnaire_projet
     host:		localhost
     engine:		mysql
@@ -20,3 +20,9 @@ environnement:    dev
 
 # Permit to check if a project is already started
 existingproject:    true
+
+#Salt MDP
+salt: $ù$ded
+
+#Root to forbidden page
+redirect_non_authorized: /forbidden

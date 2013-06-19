@@ -2,8 +2,7 @@
 
 class activityController extends TzController {
     public function indexAction ($params) {
-
-        $id_project = intval($params['id_project']);
+        $project_name = intval($params['project']);
 
 
         $arianeParams = array('idProject' => 1,
@@ -17,13 +16,13 @@ class activityController extends TzController {
 
     public function detailAction ($params) {
 
-        $id_project = intval($params['id_project']);
+        $project_name = intval($params['project']);
 
         $arianeParams = array('idProject' => 1,
             'nameProject' => 'Project 1',
             'category' => 'activity',
             'idDetail' => '1',
-            'nameDetail' => $params['name_announce']);
+            'nameDetail' => $params['announce']);
 
         $this->tzRender->run('/templates/detail', array('header' => 'headers/activityHeader.html.twig',
             'subMenuCurrent' => 'activity',

@@ -3,7 +3,7 @@
 
 				
 
-		class prioritysEntity {
+		class prioritiesEntity {
 					
 			private $priority_id;
 			
@@ -73,7 +73,7 @@
 
 				if(!empty($this->priority_id)){
 
-					$sql = "DELETE FROM prioritys WHERE priority_id = ".intval($this->priority_id).";";
+					$sql = "DELETE FROM priorities WHERE priority_id = ".intval($this->priority_id).";";
 
 					$result = TzSQL::getPDO()->prepare($sql);
 					$result->execute();
@@ -91,7 +91,7 @@
 
 			public function Update(){
 
-				$sql = 'UPDATE `prioritys` SET `priority_id` = "'.$this->priority_id.'", `priority_code` = "'.$this->priority_code.'", `priority_name` = "'.$this->priority_name.'", `priority_color` = "'.$this->priority_color.'" WHERE priority_id = '.intval($this->priority_id);
+				$sql = 'UPDATE `priorities` SET `priority_id` = "'.$this->priority_id.'", `priority_code` = "'.$this->priority_code.'", `priority_name` = "'.$this->priority_name.'", `priority_color` = "'.$this->priority_color.'" WHERE priority_id = '.intval($this->priority_id);
 
 				$result = TzSQL::getPDO()->prepare($sql);
 				$result->execute();
@@ -116,7 +116,7 @@
 
 				$this->priority_id = '';
 
-				$sql = 'INSERT INTO prioritys (`priority_id`,`priority_code`,`priority_name`,`priority_color`) VALUES ("'.$this->priority_id.'","'.$this->priority_code.'","'.$this->priority_name.'","'.$this->priority_color.'")';
+				$sql = 'INSERT INTO priorities (`priority_id`,`priority_code`,`priority_name`,`priority_color`) VALUES ("'.$this->priority_id.'","'.$this->priority_code.'","'.$this->priority_name.'","'.$this->priority_color.'")';
 
 				$result = TzSQL::getPDO()->prepare($sql);
 				$result->execute();
@@ -136,7 +136,7 @@
 			/********************** FindAll ***********************/
 			public function findAll(){
 
-				$sql = 'SELECT * FROM prioritys';
+				$sql = 'SELECT * FROM priorities';
 				$result = TzSQL::getPDO()->prepare($sql);
 				$result->execute();
 				$formatResult = $result->fetchAll(PDO::FETCH_ASSOC);
@@ -144,7 +144,7 @@
 
 				foreach ($formatResult as $key => $data) {
 
-					$tmpInstance = new prioritysEntity();
+					$tmpInstance = new prioritiesEntity();
 
 					foreach ($data as $k => $value) {
 
@@ -190,7 +190,7 @@
 						return false;
 				}
 
-				$sql =  'SELECT * FROM prioritys WHERE '.$param.' = "'.$value.'"';
+				$sql =  'SELECT * FROM priorities WHERE '.$param.' = "'.$value.'"';
 				$data = TzSQL::getPDO()->prepare($sql);
 				$data->execute();
 				$result =  $data->fetch(PDO::FETCH_OBJ);
@@ -214,7 +214,7 @@
 			/********************** Find(id) ***********************/
 			public function find($id){
 
-				$sql = 'SELECT * FROM prioritys WHERE priority_id = ' . $id;
+				$sql = 'SELECT * FROM priorities WHERE priority_id = ' . $id;
 				$result = TzSQL::getPDO()->prepare($sql);
 				$result->execute();
 				$formatResult = $result->fetch(PDO::FETCH_OBJ);
@@ -260,7 +260,7 @@
 						return false;
 				}
 
-				$sql =  'SELECT * FROM prioritys WHERE '.$param.' = "'.$value.'"';
+				$sql =  'SELECT * FROM priorities WHERE '.$param.' = "'.$value.'"';
 				$data = TzSQL::getPDO()->prepare($sql);
 				$data->execute();
 				$formatResult = $data->fetchAll(PDO::FETCH_ASSOC);
@@ -270,7 +270,7 @@
 
 					foreach ($formatResult as $key => $data) {
 
-						$tmpInstance = new prioritysEntity();
+						$tmpInstance = new prioritiesEntity();
 
 						foreach ($data as $k => $value) {
 
