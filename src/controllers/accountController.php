@@ -2,16 +2,17 @@
 
 class accountController extends TzController {
 
-    public function indexAction() {
+    public function indexAction($params) {
 
-        $userEntity = tzSQL::getEntity('Users');
-        $user = $userEntity->find($_SESSION['User']['id']);
-        var_dump($user);
+        $pseudo = $params['pseudo'];
+        $user = new usersEntity
+        
         $arianeParams = array('category' => 'My account', 'user' => $user);
 
         $this->tzRender->run('/templates/account', array('header' => 'headers/accountHeader.html.twig',
             'subMenu' => 'true',
-            'paramsAriane' => $arianeParams));
+            'paramsAriane' => $arianeParams,
+            'user' => $user));
     }
 
     public function signupAction() {
@@ -47,9 +48,30 @@ class accountController extends TzController {
         $pass = htmlspecialchars($_POST["pass"]);
 
         $userArray = array('password' => $pass,
-            'user_login' => $login);
+            'user_login'    => $login);
+
         TzAuth::login($userArray);
         tzController::CallController("home", "index");
     }
+    public function memberDetailAction($params){
 
+        $project_name = intval($params['project']);
+
+        $arianeParams = array('idProject' => 1,
+            'nameProject' => 'Project 1',
+            'category' => 'members',
+            'idDetail' => '1',
+            'nameDetail' => $params['member']);
+
+        $member = array('id' => 1, 'name' => 'Deuxieme version de truc', 'description' => 'desdsescecsecsecscesecsecsece cs cse cs ec ');
+
+        $this->tzRender->run('/templates/detailMember', array('header' => 'headers/dashboardHeader.html.twig',
+            'subMenuCurrent' => 'dashboard',
+            'entity' => $member,
+            'homeContext' => true,
+            'paramsAriane' => $arianeParams));
+    }
+    public function forbiddenAction(){
+        echo 'forbidden';
+    }
 }

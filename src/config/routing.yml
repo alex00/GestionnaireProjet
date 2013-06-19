@@ -1,54 +1,22 @@
 
-default_show:
+default_index:
 	pattern:	 / 
 	controller: home:index
-home_show:
+home_index:
 	pattern:	/home
 	controller: home:index
+home_newProject:
+    pattern:    /new-project
+    controller: home:newProject
+
+# Account Controller
 
 account_index:
-	pattern:	/account
+	pattern:	/account/{user}
 	controller: account:index
-
-ticket_show:
-	pattern:	/ticket/{id_project}
-	controller: ticket:show
-
-dashboard_show:
-	pattern:	/dashboard/{id_project}
-	controller: dashboard:show
-
-roadmap_show:
-	pattern:	/roadmap/{id_project}
-	controller: roadmap:show
-
-activity_show:
-	pattern:	/activity/{id_project}
-	controller: activity:show
-
-dashboard_index:
-    pattern:    /project/{id_project}
-    controller: dashboard:index
-    requirements:
-        id_project:   int
-
-ticket_index:
-    pattern:    /project/{id_project}/tickets
-    controller: ticket:index
-    requirements:
-        id_project:   int
-
-activity_index:
-    pattern:    /project/{id_project}/activity
-    controller: activity:index
-    requirements:
-        id_project:   int
-
-roadmap_index:
-    pattern:    /project/{id_project}/roadmaps
-    controller: roadmap:index
-    requirements:
-        id_project:   int
+	requirements:
+            only_connected: true
+            user:   string
 
 account_connect:
 	pattern:	/connect
@@ -61,3 +29,62 @@ account_signup:
 account_deconnect:
 	pattern:	/deconnect
 	controller: account:deconnect
+
+account_forbidden:
+    pattern:    /forbidden
+    controller: account:forbidden
+
+account_member:
+	pattern:	/{project}/member/{member}/
+	controller: account:memberDetail
+
+
+# Tickets Controller
+
+ticket_index:
+    pattern:    /{project}/tickets/
+    controller: ticket:index
+    requirements:
+        project:   string
+
+ticket_detail:
+	pattern:	/{project}/ticket/{ticket}/
+	controller: ticket:detail
+
+dashboard_index:
+    pattern:    /{project}/
+    controller: dashboard:index
+    requirements:
+        project:   string
+        only_connected: true
+
+# Activity Controller
+
+activity_index:
+    pattern:    /{project}/activity
+    controller: activity:index
+    requirements:
+        project:   string
+        only_connected: true
+
+announce_detail:
+    pattern:    /{project}/announce/{announce}/
+    controller: activity:detail
+    requirements:
+        project:   string
+
+
+# Roadmap Controller
+
+roadmap_index:
+    pattern:    /{project}/roadmaps
+    controller: roadmap:index
+    requirements:
+        project:   string
+
+roadmap_detail:
+    pattern:    /{project}/roadmap/{roadmap}/
+    controller: roadmap:detail
+    requirements:
+        project:   string
+

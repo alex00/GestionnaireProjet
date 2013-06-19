@@ -3,23 +3,11 @@
 
 				
 
-		class usersEntity {
+		class acl_groupsEntity {
 					
 			private $id;
 			
-			private $user_mail;
-			
-			private $password;
-			
-			private $user_img_url;
-			
-			private $user_login;
-			
-			private $user_login_code;
-			
-			private $user_date_create;
-			
-			private $acl_group_id;
+			private $name;
 			
 
 
@@ -32,44 +20,8 @@
 
 			
 
-			public function getUser_mail(){
-				return $this->user_mail;
-			}
-
-			
-
-			public function getPassword(){
-				return $this->password;
-			}
-
-			
-
-			public function getUser_img_url(){
-				return $this->user_img_url;
-			}
-
-			
-
-			public function getUser_login(){
-				return $this->user_login;
-			}
-
-			
-
-			public function getUser_login_code(){
-				return $this->user_login_code;
-			}
-
-			
-
-			public function getUser_date_create(){
-				return $this->user_date_create;
-			}
-
-			
-
-			public function getAcl_group_id(){
-				return $this->acl_group_id;
+			public function getName(){
+				return $this->name;
 			}
 
 			
@@ -81,44 +33,8 @@
 
 					
 
-			public function setUser_mail($val){
-				$this->user_mail =  $val;
-			}
-
-					
-
-			public function setPassword($val){
-				$this->password =  $val;
-			}
-
-					
-
-			public function setUser_img_url($val){
-				$this->user_img_url =  $val;
-			}
-
-					
-
-			public function setUser_login($val){
-				$this->user_login =  $val;
-			}
-
-					
-
-			public function setUser_login_code($val){
-				$this->user_login_code =  $val;
-			}
-
-					
-
-			public function setUser_date_create($val){
-				$this->user_date_create =  $val;
-			}
-
-					
-
-			public function setAcl_group_id($val){
-				$this->acl_group_id =  $val;
+			public function setName($val){
+				$this->name =  $val;
 			}
 
 					
@@ -129,7 +45,7 @@
 
 				if(!empty($this->id)){
 
-					$sql = "DELETE FROM users WHERE id = ".intval($this->id).";";
+					$sql = "DELETE FROM acl_groups WHERE id = ".intval($this->id).";";
 
 					$result = TzSQL::getPDO()->prepare($sql);
 					$result->execute();
@@ -147,7 +63,7 @@
 
 			public function Update(){
 
-				$sql = 'UPDATE `users` SET `id` = "'.$this->id.'", `user_mail` = "'.$this->user_mail.'", `password` = "'.$this->password.'", `user_img_url` = "'.$this->user_img_url.'", `user_login` = "'.$this->user_login.'", `user_login_code` = "'.$this->user_login_code.'", `user_date_create` = "'.$this->user_date_create.'", `acl_group_id` = "'.$this->acl_group_id.'" WHERE id = '.intval($this->id);
+				$sql = 'UPDATE `acl_groups` SET `id` = "'.$this->id.'", `name` = "'.$this->name.'" WHERE id = '.intval($this->id);
 
 				$result = TzSQL::getPDO()->prepare($sql);
 				$result->execute();
@@ -172,7 +88,7 @@
 
 				$this->id = '';
 
-				$sql = 'INSERT INTO users (`id`,`user_mail`,`password`,`user_img_url`,`user_login`,`user_login_code`,`user_date_create`,`acl_group_id`) VALUES ("'.$this->id.'","'.$this->user_mail.'","'.$this->password.'","'.$this->user_img_url.'","'.$this->user_login.'","'.$this->user_login_code.'","'.$this->user_date_create.'","'.$this->acl_group_id.'")';
+				$sql = 'INSERT INTO acl_groups (`id`,`name`) VALUES ("'.$this->id.'","'.$this->name.'")';
 
 				$result = TzSQL::getPDO()->prepare($sql);
 				$result->execute();
@@ -192,7 +108,7 @@
 			/********************** FindAll ***********************/
 			public function findAll(){
 
-				$sql = 'SELECT * FROM users';
+				$sql = 'SELECT * FROM acl_groups';
 				$result = TzSQL::getPDO()->prepare($sql);
 				$result->execute();
 				$formatResult = $result->fetchAll(PDO::FETCH_ASSOC);
@@ -200,7 +116,7 @@
 
 				foreach ($formatResult as $key => $data) {
 
-					$tmpInstance = new usersEntity();
+					$tmpInstance = new acl_groupsEntity();
 
 					foreach ($data as $k => $value) {
 
@@ -229,32 +145,8 @@
 						$param = 'id';
 						break;
 						
-					case $param == 'user_mail':
-						$param = 'user_mail';
-						break;
-						
-					case $param == 'password':
-						$param = 'password';
-						break;
-						
-					case $param == 'user_img_url':
-						$param = 'user_img_url';
-						break;
-						
-					case $param == 'user_login':
-						$param = 'user_login';
-						break;
-						
-					case $param == 'user_login_code':
-						$param = 'user_login_code';
-						break;
-						
-					case $param == 'user_date_create':
-						$param = 'user_date_create';
-						break;
-						
-					case $param == 'acl_group_id':
-						$param = 'acl_group_id';
+					case $param == 'name':
+						$param = 'name';
 						break;
 						
 					default:
@@ -262,20 +154,14 @@
 						return false;
 				}
 
-				$sql =  'SELECT * FROM users WHERE '.$param.' = "'.$value.'"';
+				$sql =  'SELECT * FROM acl_groups WHERE '.$param.' = "'.$value.'"';
 				$data = TzSQL::getPDO()->prepare($sql);
 				$data->execute();
 				$result =  $data->fetch(PDO::FETCH_OBJ);
 
 				if(!empty($result)){
 					$this->id = $result->id;
-					$this->user_mail = $result->user_mail;
-					$this->password = $result->password;
-					$this->user_img_url = $result->user_img_url;
-					$this->user_login = $result->user_login;
-					$this->user_login_code = $result->user_login_code;
-					$this->user_date_create = $result->user_date_create;
-					$this->acl_group_id = $result->acl_group_id;
+					$this->name = $result->name;
 					
 					return true;
 				}
@@ -290,19 +176,13 @@
 			/********************** Find(id) ***********************/
 			public function find($id){
 
-				$sql = 'SELECT * FROM users WHERE id = ' . $id;
+				$sql = 'SELECT * FROM acl_groups WHERE id = ' . $id;
 				$result = TzSQL::getPDO()->prepare($sql);
 				$result->execute();
 				$formatResult = $result->fetch(PDO::FETCH_OBJ);
 				if(!empty($formatResult)){
 					$this->id = $formatResult->id;
-					$this->user_mail = $formatResult->user_mail;
-					$this->password = $formatResult->password;
-					$this->user_img_url = $formatResult->user_img_url;
-					$this->user_login = $formatResult->user_login;
-					$this->user_login_code = $formatResult->user_login_code;
-					$this->user_date_create = $formatResult->user_date_create;
-					$this->acl_group_id = $formatResult->acl_group_id;
+					$this->name = $formatResult->name;
 				
 					return true;
 				}
@@ -323,32 +203,8 @@
 						$param = 'id';
 						break;
 						
-					case $param == 'user_mail':
-						$param = 'user_mail';
-						break;
-						
-					case $param == 'password':
-						$param = 'password';
-						break;
-						
-					case $param == 'user_img_url':
-						$param = 'user_img_url';
-						break;
-						
-					case $param == 'user_login':
-						$param = 'user_login';
-						break;
-						
-					case $param == 'user_login_code':
-						$param = 'user_login_code';
-						break;
-						
-					case $param == 'user_date_create':
-						$param = 'user_date_create';
-						break;
-						
-					case $param == 'acl_group_id':
-						$param = 'acl_group_id';
+					case $param == 'name':
+						$param = 'name';
 						break;
 						
 					default:
@@ -356,7 +212,7 @@
 						return false;
 				}
 
-				$sql =  'SELECT * FROM users WHERE '.$param.' = "'.$value.'"';
+				$sql =  'SELECT * FROM acl_groups WHERE '.$param.' = "'.$value.'"';
 				$data = TzSQL::getPDO()->prepare($sql);
 				$data->execute();
 				$formatResult = $data->fetchAll(PDO::FETCH_ASSOC);
@@ -366,7 +222,7 @@
 
 					foreach ($formatResult as $key => $data) {
 
-						$tmpInstance = new usersEntity();
+						$tmpInstance = new acl_groupsEntity();
 
 						foreach ($data as $k => $value) {
 

@@ -16,7 +16,24 @@ SET foreign_key_checks = 0;
 --
 
 -- --------------------------------------------------------
+--
+-- Structure de la table `acl_groups`
+--
 
+DROP TABLE IF EXISTS `acl_groups`;
+CREATE TABLE IF NOT EXISTS `acl_groups` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(70) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+
+--
+-- Contenu de la table `acl_groups`
+--
+
+INSERT INTO `acl_groups` (`id`, `name`) VALUES
+(1, 'admin'),
+(2, 'user');
 --
 -- Structure de la table `announcement`
 --
@@ -283,6 +300,7 @@ CREATE TABLE `users` (
   `user_login` varchar(45) NOT NULL,
   `user_login_code` varchar(45) NOT NULL,
   `user_date_create` datetime NOT NULL,
+  `acl_group_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
