@@ -5,21 +5,18 @@
 </header>
 
 <div class="modal-body">
-    <form id="addProject" action="/new-project" method="post" name="newProject">
+    <form id="addRoadmap" action="" method="post" name="newRoadmap">
         <table>
             <tr>
-                <td><label for="nameProject">Name :</label></td><td colspan="3"><input type="text" name="nameProject" id="nameProject"/></td>
+                <td><label for="nameRoadmap">Name :</label></td><td colspan="3"><input type="text" name="nameRoadmap" id="nameRoadmap"/></td>
             </tr>
             <tr>
-                <td><label for="descProject">Description :</label><td colspan="3"><textarea name="descProject" id="descProject" rows="3"></textarea></td>
-            </tr>
-            <tr id="lastRowAddProject">
-                <td><label for="descProject">Members :</label><td colspan="2"><input type="text" name="membersProject[]" id="memberProject"/></td><td class="addMember"><span id="arrowMemberAddProject" onclick="javascript:toolBarAddMember('lastRowAddProject');">+</span></td>
+                <td><label for="descRoadmap">Description :</label><td colspan="3"><textarea name="descRoadmap" id="descRoadmap" rows="5"></textarea></td>
             </tr>
         </table>
     </form>
 </div>
 
 <footer class="modal-footer">
-    <a href="#" class="btn btn-primary" id="okwin01" onclick="$('.modal-body > form').submit();">Create</a>
+    <a href="#" class="btn btn-primary" id="okwin01" onclick="toolBarSubmit('roadmap', '[project_name]','[project_code]')">Create</a>
 </footer>

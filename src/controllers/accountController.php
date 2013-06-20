@@ -46,7 +46,7 @@ class accountController extends TzController {
         $userArray = array('password' => $pass,
             'user_login' => $login);
         TzAuth::login($userArray);
-        tzController::CallController("home", "index");
+        header('Location: /');
     }
 
     public function deconnectAction() {
@@ -63,7 +63,7 @@ class accountController extends TzController {
             'user_login'    => $login);
 
         TzAuth::login($userArray);
-        tzController::CallController("home", "index");
+        header('Location: /');
     }
     public function memberDetailAction($params){
 

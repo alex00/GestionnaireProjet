@@ -2,7 +2,7 @@ var toolBar = (function() {
     var constructeur = function() {
 
         // quelques propriétés
-        this.locate = {HeaderAction: {sizeSmall: 120,sizeLarge: 361, position: 0}};
+        this.locate = {HeaderAction: {sizeSmall: 120,sizeLarge: 485, position: 0}};
         this.doing = false;
         this.template_folder = "/js/toolBar/";
 
@@ -12,8 +12,24 @@ var toolBar = (function() {
                                       addTicketLink: this.template_folder+'addTicket.html.twig',
                                       addRoadmapLink: this.template_folder+'addRoadmap.html.twig',
                                       addMemberLink: this.template_folder+'addMember.html.twig',
+                                      addServiceLink: this.template_folder+'addService.html.twig',
                                       addAnnounceLink: this.template_folder+'addAnnounce.html.twig'
-                                    }
+                                    },
+                              submit:
+                                    { project: '/new-project',
+                                      ticket: '/new-ticket',
+                                      roadmap: '/new-roadmap',
+                                      membre: '/new-member',
+                                      service: '/new-service',
+                                      announce: '/new-announce'
+                                    },
+                              messageSuccess:
+                                    { ticket: '<img src="/img/check.png" title="Added" alt="Added" /> Ticket Added',
+                                      roadmap: '<img src="/img/check.png" title="Added" alt="Added" /> Roadmap Added',
+                                      membre: '<img src="/img/check.png" title="Added" alt="Added" /> Member(s) Added',
+                                      service: '<img src="/img/check.png" title="Added" alt="Added" /> Service Added',
+                                      announce: '<img src="/img/check.png" title="Added" alt="Added" /> Announce Added'
+                                }
                             }
 
 

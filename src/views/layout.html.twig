@@ -31,7 +31,7 @@
 
 {% endblock %}
 <body>
-<div id="modalHeader"></div>
+
 <header>
     <div id="panel">
         <div class="navbar navbar-inverse navbar-fixed-top" id="advanced">
@@ -45,22 +45,23 @@
                         <li class="divider-vertical"></li>
                         <li>
                             <div class=" headerAdminBlock">
-                                <a href="#Actions" id="HeaderAction" onclick="javascript:toolBarController(this.id,{% if homeContext == true %}true{% else %}false{% endif %});" class="pull-left headerAdminButton" >+</a>
+                                <a data-target="#" id="HeaderAction" onclick="javascript:toolBarController(this.id,{% if homeContext == true %}true{% else %}false{% endif %});" class="pull-left headerAdminButton" >+</a>
                                 <div class=" pull-left headerAdminLinks" >
                                     {% if homeContext == true %}
-                                    <a id="addProjectLink" class="linkBlack pull-left" data-toggle="modal" href="#add-project" onclick="javascript:toolBarLinks(this.id);">Project</a>
+                                        <a id="addProjectLink" class="linkBlack pull-left" data-toggle="modal" href="#add-project" onclick="javascript:toolBarLinks(this.id,null,null);">Project</a>
                                     {% else %}
-                                    <a id="addTicketLink" class="linkBlack pull-left" data-toggle="modal" href="#add-ticket" onclick="javascript:toolBarLinks(this.id);">Ticket</a>
-                                    <a id="addRoadmapLink" class="linkBlack pull-left" data-toggle="modal" href="#add-roadmap" onclick="javascript:toolBarLinks(this.id);">Roadmap</a>
-                                    <a id="addAnnounceLink" class="linkBlack pull-left" data-toggle="modal" href="#add-announce" onclick="javascript:toolBarLinks(this.id);">Announce</a>
-                                    <a id="addMemberLink" class="linkBlack pull-left" data-toggle="modal" href="#add-member" onclick="javascript:toolBarLinks(this.id);">Member</a>
+                                        <a id="addTicketLink" class="linkBlack pull-left" data-toggle="modal" href="#add-ticket">Ticket</a>
+                                        <a id="addRoadmapLink" class="linkBlack pull-left" data-toggle="modal" href="#add-roadmap" onclick="javascript:toolBarLinks(this.id,'{{ paramsAriane.idProject }}','{{ paramsAriane.codeProject }}');">Roadmap</a>
+                                        <a id="addAnnounceLink" class="linkBlack pull-left" data-toggle="modal" href="#add-announce" onclick="javascript:toolBarLinks(this.id,'{{ paramsAriane.idProject }}','{{ paramsAriane.codeProject }}');">Announce</a>
+                                        <a id="addMemberLink" class="linkBlack pull-left" data-toggle="modal" href="#add-member" onclick="javascript:toolBarLinks(this.id,'{{ paramsAriane.idProject }}','{{ paramsAriane.codeProject }}');">Member</a>
+                                        <a id="addServiceLink" class="linkBlack pull-left" data-toggle="modal" href="#add-member" onclick="javascript:toolBarLinks(this.id,'{{ paramsAriane.idProject }}','{{ paramsAriane.codeProject }}');">Service</a>
                                     {% endif %}
                                 </div>
                              </div>
                         </li>
                         <li>
                             <div id="HeaderSearchBlock" class=" headerAdminBlock">
-                                <a href="#Actions" id="HeaderSearch" class="pull-left headerAdminButton" >+</a>
+                                <a data-target="#" id="HeaderSearch" class="pull-left headerAdminButton" >+</a>
                                 <form id="headerSearchBar" class="navbar-search pull-left">
                                     <input type="text" class="search-query" placeholder="Search">
                                 </form>
@@ -68,16 +69,19 @@
                         </li>
                         <li class="divider-vertical"></li>
                     </ul>
+                    <div id="headerAlert" class="span2 pull-left">
+
+                    </div>
                     <ul id="linkParams" class=" nav pull-right">
                         <li><div class="dropdown">
                                 <a class="dropdown-toggle" id="dLabel" role="button" data-toggle="dropdown" data-target="#" >
-                                    Params <i class="icon-cog"></i>
+                                    Params
                                     <b class="caret"></b>
                                 </a>
                                 <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
                                     <a href="/my-account">My acount</a>
                                     <a href="/my-account">Settings</a>
-                                    <a href="/Deconnexion">Deconnexion</a>
+                                    <a href="/deconnect">Deconnexion</a>
                                 </ul>
                             </div>
                         </li>

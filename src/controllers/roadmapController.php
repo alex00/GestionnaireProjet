@@ -31,4 +31,22 @@ class roadmapController extends TzController {
             'entity' => $roadmap,
             'paramsAriane' => $arianeParams));
     }
+
+
+    public function newRoadmapAction ($params) {
+
+        $roadmap = tzSQL::getEntity('roadmaps');
+
+        $roadmap->setRoadmap_title($params['name']);
+        $code = trim(str_replace(" ","-",$params['name']));
+        $roadmap->setRoadmap_code(strtolower(($code)));
+        $roadmap->setRoadmap_date_create(date('Y-m-d'));
+        $roadmap->setRoadmap_date_update(date('Y-m-d'));
+        $roadmap->setRoadmap_description($params['desc']);
+
+        $roadmap->setProject_id($params['id']);
+
+        $roadmap->Insert();
+
+    }
 }

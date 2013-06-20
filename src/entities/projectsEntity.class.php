@@ -13,8 +13,6 @@
 			
 			private $project_date_update;
 			
-			private $project_img_url;
-			
 			private $project_code;
 			
 			private $project_description;
@@ -44,12 +42,6 @@
 
 			public function getProject_date_update(){
 				return $this->project_date_update;
-			}
-
-			
-
-			public function getProject_img_url(){
-				return $this->project_img_url;
 			}
 
 			
@@ -91,12 +83,6 @@
 
 					
 
-			public function setProject_img_url($val){
-				$this->project_img_url =  $val;
-			}
-
-					
-
 			public function setProject_code($val){
 				$this->project_code =  $val;
 			}
@@ -133,7 +119,7 @@
 
 			public function Update(){
 
-				$sql = 'UPDATE `projects` SET `project_id` = "'.$this->project_id.'", `project_name` = "'.$this->project_name.'", `project_date_create` = "'.$this->project_date_create.'", `project_date_update` = "'.$this->project_date_update.'", `project_img_url` = "'.$this->project_img_url.'", `project_code` = "'.$this->project_code.'", `project_description` = "'.$this->project_description.'" WHERE project_id = '.intval($this->project_id);
+				$sql = 'UPDATE `projects` SET `project_id` = "'.$this->project_id.'", `project_name` = "'.$this->project_name.'", `project_date_create` = "'.$this->project_date_create.'", `project_date_update` = "'.$this->project_date_update.'", `project_code` = "'.$this->project_code.'", `project_description` = "'.$this->project_description.'" WHERE project_id = '.intval($this->project_id);
 
 				$result = TzSQL::getPDO()->prepare($sql);
 				$result->execute();
@@ -158,7 +144,7 @@
 
 				$this->project_id = '';
 
-				$sql = 'INSERT INTO projects (`project_id`,`project_name`,`project_date_create`,`project_date_update`,`project_img_url`,`project_code`,`project_description`) VALUES ("'.$this->project_id.'","'.$this->project_name.'","'.$this->project_date_create.'","'.$this->project_date_update.'","'.$this->project_img_url.'","'.$this->project_code.'","'.$this->project_description.'")';
+				$sql = 'INSERT INTO projects (`project_id`,`project_name`,`project_date_create`,`project_date_update`,`project_code`,`project_description`) VALUES ("'.$this->project_id.'","'.$this->project_name.'","'.$this->project_date_create.'","'.$this->project_date_update.'","'.$this->project_code.'","'.$this->project_description.'")';
 
 				$result = TzSQL::getPDO()->prepare($sql);
 				$result->execute();
@@ -227,10 +213,6 @@
 						$param = 'project_date_update';
 						break;
 						
-					case $param == 'project_img_url':
-						$param = 'project_img_url';
-						break;
-						
 					case $param == 'project_code':
 						$param = 'project_code';
 						break;
@@ -254,7 +236,6 @@
 					$this->project_name = $result->project_name;
 					$this->project_date_create = $result->project_date_create;
 					$this->project_date_update = $result->project_date_update;
-					$this->project_img_url = $result->project_img_url;
 					$this->project_code = $result->project_code;
 					$this->project_description = $result->project_description;
 					
@@ -280,7 +261,6 @@
 					$this->project_name = $formatResult->project_name;
 					$this->project_date_create = $formatResult->project_date_create;
 					$this->project_date_update = $formatResult->project_date_update;
-					$this->project_img_url = $formatResult->project_img_url;
 					$this->project_code = $formatResult->project_code;
 					$this->project_description = $formatResult->project_description;
 				
@@ -313,10 +293,6 @@
 						
 					case $param == 'project_date_update':
 						$param = 'project_date_update';
-						break;
-						
-					case $param == 'project_img_url':
-						$param = 'project_img_url';
 						break;
 						
 					case $param == 'project_code':

@@ -5,18 +5,14 @@ default_index:
 home_index:
 	pattern:	/home
 	controller: home:index
-home_newProject:
-    pattern:    /new-project
-    controller: home:newProject
 
 # Account Controller
 
 account_index:
-	pattern:	/account/{login}
+	pattern:	/my-account
 	controller: account:index
 	requirements:
             only_connected: true
-            user:   string
 
 account_connect:
 	pattern:	/connect
@@ -58,6 +54,8 @@ ticket_detail:
 	    ticket:   string
         only_connected: true
 
+# Dashboard Controller
+
 dashboard_index:
     pattern:    /{project}/
     controller: dashboard:index
@@ -82,6 +80,41 @@ announce_detail:
         announce:   string
         only_connected: true
 
+activity_newProject:
+    pattern:    /new-project/{name}/{desc}
+    controller: activity:newProject
+    requirements:
+        project:   string
+        name: string
+        desc: string
+        id: int
+        only_connected: true
+        ajax: true
+
+activity_newAnnounce:
+    pattern:    /{project}/new-announce/{name}/{desc}/{id}
+    controller: activity:newAnnounce
+    requirements:
+        project:   string
+        only_connected: true
+        ajax: true
+
+activity_newService:
+    pattern:    /{project}/new-service/{name}/{id}
+    controller: activity:newService
+    requirements:
+        project:   string
+        only_connected: true
+        ajax: true
+
+activity_newMember:
+    pattern:    /{project}/new-member/{mail1}/{mail2}/{mail3}/{mail4}/{mail5}/{id}
+    controller: activity:newMember
+    requirements:
+        project:   string
+        only_connected: true
+        ajax: true
+
 # Roadmap Controller
 
 roadmap_index:
@@ -98,3 +131,12 @@ roadmap_detail:
         project:   string
         roadmap:   string
         only_connected: true
+
+roadmap_newRoadmap:
+    pattern:    /{project}/new-roadmap/{name}/{desc}/{id}
+    controller: roadmap:newRoadmap
+    requirements:
+        project:   string
+        only_connected: true
+        ajax: true
+

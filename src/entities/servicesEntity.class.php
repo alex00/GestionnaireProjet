@@ -71,9 +71,9 @@
 
 			public function Delete(){
 
-				if(!empty($this->project_id)){
+				if(!empty($this->service_id)){
 
-					$sql = "DELETE FROM services WHERE project_id = ".intval($this->project_id).";";
+					$sql = "DELETE FROM services WHERE service_id = ".intval($this->service_id).";";
 
 					$result = TzSQL::getPDO()->prepare($sql);
 					$result->execute();
@@ -91,12 +91,12 @@
 
 			public function Update(){
 
-				$sql = 'UPDATE `services` SET `service_id` = "'.$this->service_id.'", `project_id` = "'.$this->project_id.'", `service_name` = "'.$this->service_name.'", `service_code` = "'.$this->service_code.'" WHERE project_id = '.intval($this->project_id);
+				$sql = 'UPDATE `services` SET `service_id` = "'.$this->service_id.'", `project_id` = "'.$this->project_id.'", `service_name` = "'.$this->service_name.'", `service_code` = "'.$this->service_code.'" WHERE service_id = '.intval($this->service_id);
 
 				$result = TzSQL::getPDO()->prepare($sql);
 				$result->execute();
 
-				if(!empty($this->project_id)){
+				if(!empty($this->service_id)){
 					if($result)
 						return true;
 					else{
@@ -114,7 +114,7 @@
 
 			public function Insert(){
 
-				$this->project_id = '';
+				$this->service_id = '';
 
 				$sql = 'INSERT INTO services (`service_id`,`project_id`,`service_name`,`service_code`) VALUES ("'.$this->service_id.'","'.$this->project_id.'","'.$this->service_name.'","'.$this->service_code.'")';
 
@@ -123,7 +123,7 @@
 
 				if($result){
 					$lastid = TzSQL::getPDO()->lastInsertId();
-					$this->project_id = $lastid;
+					$this->service_id = $lastid;
 					return true;
 				}
 				else{
@@ -214,7 +214,7 @@
 			/********************** Find(id) ***********************/
 			public function find($id){
 
-				$sql = 'SELECT * FROM services WHERE project_id = ' . $id;
+				$sql = 'SELECT * FROM services WHERE service_id = ' . $id;
 				$result = TzSQL::getPDO()->prepare($sql);
 				$result->execute();
 				$formatResult = $result->fetch(PDO::FETCH_OBJ);

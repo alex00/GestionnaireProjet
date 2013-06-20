@@ -5,7 +5,7 @@
 </header>
 
 <div class="modal-body">
-    <form id="addTicket" action="/new-project" method="post" name="newProject">
+    <form id="addTicket" action="/new-ticket" method="post" name="newTicket">
         <table>
             <tr>
                 <td><label for="nameTicket">Name :</label></td><td colspan="3"><input type="text" name="nameTicket" id="nameTicket"/></td>
@@ -16,11 +16,7 @@
             <tr>
                 <td><label for="assignedTicket">Assigned to :</label></td>
                 <td>
-                    <select name="assignedTicket" id="assignedTicket">
-                        <option>AlexKtf</option>
-                        <option>AlexKtf</option>
-                        <option>AlexKtf</option>
-                    </select>
+                    [SelectMember]
                 </td>
                 <td><label for="deadlineTicket">Deadline :</label></td>
                 <td><input type="date" name="deadlineTicket" id="deadlineTicket" /></td>
@@ -46,12 +42,7 @@
             </tr>
             <tr>
                 <td><label for="roadmapTicket">Link to a roadmap :</label></td>
-                <td colspan="3">
-                    <select name="roadmapTicket" id="roadmapTicket">
-                        <option>AlexKtf</option>
-                        <option>AlexKtf</option>
-                        <option>AlexKtf</option>
-                    </select>
+                <td colspan="3" id="selectRoadmap">
                 </td>
             </tr>
         </table>

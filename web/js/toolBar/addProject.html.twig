@@ -5,7 +5,7 @@
 </header>
 
 <div class="modal-body">
-    <form id="addProject" action="/new-project" method="post" name="newProject">
+    <form id="addProject" action="" method="post" name="newProject">
         <table>
             <tr>
                 <td><label for="nameProject">Name :</label></td><td colspan="3"><input type="text" name="nameProject" id="nameProject"/></td><td></td>
@@ -13,15 +13,10 @@
             <tr>
                 <td><label for="descProject">Description :</label></td><td colspan="3"><textarea name="descProject" id="descProject" rows="3"></textarea></td><td></td>
             </tr>
-            <tr id="lastRowAddProject">
-                <td><label for="descProject">Members :</label></td>
-                <td colspan="3"><input type="text" name="membersProject[]" id="memberProject"/></td>
-                <td></td>
-            </tr>
         </table>
     </form>
 </div>
 
 <footer class="modal-footer">
-    <a href="#" class="btn btn-primary" id="okwin01" onclick="$('.modal-body > form').submit();">Create</a>
+    <a href="#" class="btn btn-primary" id="okwin01" onclick="toolBarSubmit('project', null, null)">Add</a>
 </footer>

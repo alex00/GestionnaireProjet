@@ -5,21 +5,27 @@
 </header>
 
 <div class="modal-body">
-    <form id="addProject" action="/new-project" method="post" name="newProject">
+    <form id="addMember" action="" method="post" name="newMember">
         <table>
             <tr>
-                <td><label for="nameProject">Name :</label></td><td colspan="3"><input type="text" name="nameProject" id="nameProject"/></td>
+                <td><label for="mailMember1">Mail :</label></td><td colspan="3"><input type="text" name="mailMember1" id="mailMember1"/></td>
             </tr>
             <tr>
-                <td><label for="descProject">Description :</label><td colspan="3"><textarea name="descProject" id="descProject" rows="3"></textarea></td>
+                <td><label for="mailMember2"></label></td><td colspan="3"><input type="text" name="mailMember2" id="mailMember2"/></td>
             </tr>
-            <tr id="lastRowAddProject">
-                <td><label for="descProject">Members :</label><td colspan="2"><input type="text" name="membersProject[]" id="memberProject"/></td><td class="addMember"><span id="arrowMemberAddProject" onclick="javascript:toolBarAddMember('lastRowAddProject');">+</span></td>
+            <tr>
+                <td><label for="mailMember3"></label></td><td colspan="3"><input type="text" name="mailMember3" id="mailMember3"/></td>
+            </tr>
+            <tr>
+                <td><label for="mailMember4"></label></td><td colspan="3"><input type="text" name="mailMember4" id="mailMember4"/></td>
+            </tr>
+            <tr>
+                <td><label for="mailMember5"></label></td><td colspan="3"><input type="text" name="mailMember5" id="mailMember5"/></td>
             </tr>
         </table>
     </form>
 </div>
 
 <footer class="modal-footer">
-    <a href="#" class="btn btn-primary" id="okwin01" onclick="$('.modal-body > form').submit();">Create</a>
+    <a href="#" class="btn btn-primary" id="okwin01" onclick="toolBarSubmit('membre', '[project_name]','[project_code]')">Add</a>
 </footer>
