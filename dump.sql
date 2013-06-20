@@ -167,7 +167,6 @@ CREATE TABLE IF NOT EXISTS `projects` (
   `project_name` varchar(100) NOT NULL,
   `project_date_create` datetime NOT NULL,
   `project_date_update` datetime NOT NULL,
-  `project_img_url` varchar(255) NOT NULL,
   `project_code` varchar(100) NOT NULL,
   `project_description` text,
   PRIMARY KEY (`project_id`)
