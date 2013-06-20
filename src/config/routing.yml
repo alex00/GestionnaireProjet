@@ -108,7 +108,7 @@ activity_newService:
         ajax: true
 
 activity_newMember:
-    pattern:    /{project}/new-member/{mail1}/{mail2}/{mail3}/{mail4}/{mail5}/{id}
+    pattern:    /{project}/new-member/{login1}/{login2}/{login3}/{login4}/{login5}/{id}
     controller: activity:newMember
     requirements:
         project:   string

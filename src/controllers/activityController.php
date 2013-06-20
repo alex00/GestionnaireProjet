@@ -43,7 +43,19 @@ class activityController extends TzController {
 
         $project->Insert();
 
+        /*$newProject = tzSQL::getEntity('projects');
+        $newProject->findOneBy('project_name',$params['name']);
+
+*/
+        $service = tzSQL::getEntity('services');
+
+        $service->setProject_id(1);
+        $service->setService_name('no-affiliated');
+        $service->setService_code('no-affiliated');
+        $service->Insert();
+
         echo $code;
+
         return true;
     }
 
@@ -68,21 +80,23 @@ class activityController extends TzController {
 
 
     public function newMemberAction ($params) {
-        $mails[] = $params['mail1'];
-        $mails[] = $params['mail2'];
-        $mails[] = $params['mail3'];
-        $mails[] = $params['mail4'];
-        $mails[] = $params['mail5'];
+        $logins[] = $params['login1'];
+        $logins[] = $params['login2'];
+        $logins[] = $params['login3'];
+        $logins[] = $params['login4'];
+        $logins[] = $params['login5'];
 
         $service = tzSQL::getEntity('services');
-        foreach($mails as $mail){
+        foreach($logins as $login){
 
-            if ($mail == 'null')
+            if ($login == 'null')
                 continue;
-
-            $service->setService_name($mail);
-            $code = trim(str_replace(" ","-",$mail));
+            $service->setService_name($login);
+            $code = trim(str_replace(" ","-",$login));
             $service->setService_code(strtolower(($code)));
+
+            $service->setProject_id($params['id']);
+
             $service->Insert();
         }
     }

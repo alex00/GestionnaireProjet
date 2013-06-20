@@ -105,19 +105,19 @@ function toolBarSubmit (id, id_project,  name_project) {
             url += '/'+name+'/'+id_project;
         break;
         case 'membre':
-            var mail1 = $("#mailMember1").val();
+            var mail1 = $("#loginMember1").val();
             if (mail1 == '')
                 mail1 = null;
-            var mail2 = $("#mailMember2").val();
+            var mail2 = $("#loginMember2").val();
             if (mail2 == '')
                 mail2 = null;
-            var mail3 = $("#mailMember3").val();
+            var mail3 = $("#loginMember3").val();
             if (mail3 == '')
                 mail3 = null;
-            var mail4 = $("#mailMember4").val();
+            var mail4 = $("#loginMember4").val();
             if (mail4 == '')
                 mail4 = null;
-            var mail5 = $("#mailMember5").val();
+            var mail5 = $("#loginMember5").val();
             if (mail5 == '')
                 mail5 = null;
             url += '/'+mail1+'/'+mail2+'/'+mail3+'/'+mail4+'/'+mail5+'/'+id_project;
@@ -126,9 +126,7 @@ function toolBarSubmit (id, id_project,  name_project) {
 
     $.post(url).done(function(data){
 
-        if (id == 'project'){
-            window.location.replace('/'+data);
-        }
+
         $("#modalHeaders").modal('hide');
 
         if (id != 'ticket'){
