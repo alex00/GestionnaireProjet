@@ -385,24 +385,6 @@
 
 				}
 			}
-                        
-//                        public function getNbeProjetCreated(){
-//                            $sql =  'SELECT project_id FROM user_project WHERE rights_key = "creator"';
-//                            $data = TzSQL::getPDO()->prepare($sql);
-//                            $data->execute();
-//                            $formatResult = $data->fetchAll(PDO::FETCH_ASSOC);
-//                            
-//                            return count($formatResult);
-//                        }
-//                        
-//                        public function getNbeProjetAffilied(){
-//                            $sql =  'SELECT project_id FROM user_project WHERE rights_key = "creator"';
-//                            $data = TzSQL::getPDO()->prepare($sql);
-//                            $data->execute();
-//                            $formatResult = $data->fetchAll(PDO::FETCH_ASSOC);
-//                            
-//                            return count($formatResult);
-//                        }
 
 					
 

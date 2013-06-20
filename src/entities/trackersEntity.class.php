@@ -9,8 +9,6 @@
 			
 			private $tracker_name;
 			
-			private $tracker_code;
-			
 
 
 			/********************** GETTER ***********************/
@@ -27,12 +25,6 @@
 			}
 
 			
-
-			public function getTracker_code(){
-				return $this->tracker_code;
-			}
-
-			
 			/********************** SETTER ***********************/
 
 			public function setTracker_id($val){
@@ -43,12 +35,6 @@
 
 			public function setTracker_name($val){
 				$this->tracker_name =  $val;
-			}
-
-					
-
-			public function setTracker_code($val){
-				$this->tracker_code =  $val;
 			}
 
 					
@@ -77,7 +63,7 @@
 
 			public function Update(){
 
-				$sql = 'UPDATE `trackers` SET `tracker_id` = "'.$this->tracker_id.'", `tracker_name` = "'.$this->tracker_name.'", `tracker_code` = "'.$this->tracker_code.'" WHERE tracker_id = '.intval($this->tracker_id);
+				$sql = 'UPDATE `trackers` SET `tracker_id` = "'.$this->tracker_id.'", `tracker_name` = "'.$this->tracker_name.'" WHERE tracker_id = '.intval($this->tracker_id);
 
 				$result = TzSQL::getPDO()->prepare($sql);
 				$result->execute();
@@ -102,7 +88,7 @@
 
 				$this->tracker_id = '';
 
-				$sql = 'INSERT INTO trackers (`tracker_id`,`tracker_name`,`tracker_code`) VALUES ("'.$this->tracker_id.'","'.$this->tracker_name.'","'.$this->tracker_code.'")';
+				$sql = 'INSERT INTO trackers (`tracker_id`,`tracker_name`) VALUES ("'.$this->tracker_id.'","'.$this->tracker_name.'")';
 
 				$result = TzSQL::getPDO()->prepare($sql);
 				$result->execute();
@@ -163,10 +149,6 @@
 						$param = 'tracker_name';
 						break;
 						
-					case $param == 'tracker_code':
-						$param = 'tracker_code';
-						break;
-						
 					default:
 						DebugTool::$error->catchError(array('Colonne introuvable: est-elle presente dans la base de donnée ?', __FILE__,__LINE__, true));
 						return false;
@@ -180,7 +162,6 @@
 				if(!empty($result)){
 					$this->tracker_id = $result->tracker_id;
 					$this->tracker_name = $result->tracker_name;
-					$this->tracker_code = $result->tracker_code;
 					
 					return true;
 				}
@@ -202,7 +183,6 @@
 				if(!empty($formatResult)){
 					$this->tracker_id = $formatResult->tracker_id;
 					$this->tracker_name = $formatResult->tracker_name;
-					$this->tracker_code = $formatResult->tracker_code;
 				
 					return true;
 				}
@@ -225,10 +205,6 @@
 						
 					case $param == 'tracker_name':
 						$param = 'tracker_name';
-						break;
-						
-					case $param == 'tracker_code':
-						$param = 'tracker_code';
 						break;
 						
 					default:

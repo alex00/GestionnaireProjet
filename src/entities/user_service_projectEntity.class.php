@@ -5,7 +5,7 @@
 
 		class user_service_projectEntity {
 					
-			private $id;
+			private $user_id;
 			
 			private $project_id;
 			
@@ -16,8 +16,8 @@
 			/********************** GETTER ***********************/
 			
 
-			public function getId(){
-				return $this->id;
+			public function getUser_id(){
+				return $this->user_id;
 			}
 
 			
@@ -35,8 +35,8 @@
 			
 			/********************** SETTER ***********************/
 
-			public function setId($val){
-				$this->id =  $val;
+			public function setUser_id($val){
+				$this->user_id =  $val;
 			}
 
 					
@@ -77,7 +77,7 @@
 
 			public function Update(){
 
-				$sql = 'UPDATE `user_service_project` SET `id` = "'.$this->id.'", `project_id` = "'.$this->project_id.'", `service_id` = "'.$this->service_id.'" WHERE service_id = '.intval($this->service_id);
+				$sql = 'UPDATE `user_service_project` SET `user_id` = "'.$this->user_id.'", `project_id` = "'.$this->project_id.'", `service_id` = "'.$this->service_id.'" WHERE service_id = '.intval($this->service_id);
 
 				$result = TzSQL::getPDO()->prepare($sql);
 				$result->execute();
@@ -102,7 +102,7 @@
 
 				$this->service_id = '';
 
-				$sql = 'INSERT INTO user_service_project (`id`,`project_id`,`service_id`) VALUES ("'.$this->id.'","'.$this->project_id.'","'.$this->service_id.'")';
+				$sql = 'INSERT INTO user_service_project (`user_id`,`project_id`,`service_id`) VALUES ("'.$this->user_id.'","'.$this->project_id.'","'.$this->service_id.'")';
 
 				$result = TzSQL::getPDO()->prepare($sql);
 				$result->execute();
@@ -155,8 +155,8 @@
 
 				switch ($param){
 					
-					case $param == 'id':
-						$param = 'id';
+					case $param == 'user_id':
+						$param = 'user_id';
 						break;
 						
 					case $param == 'project_id':
@@ -178,7 +178,7 @@
 				$result =  $data->fetch(PDO::FETCH_OBJ);
 
 				if(!empty($result)){
-					$this->id = $result->id;
+					$this->user_id = $result->user_id;
 					$this->project_id = $result->project_id;
 					$this->service_id = $result->service_id;
 					
@@ -200,7 +200,7 @@
 				$result->execute();
 				$formatResult = $result->fetch(PDO::FETCH_OBJ);
 				if(!empty($formatResult)){
-					$this->id = $formatResult->id;
+					$this->user_id = $formatResult->user_id;
 					$this->project_id = $formatResult->project_id;
 					$this->service_id = $formatResult->service_id;
 				
@@ -219,8 +219,8 @@
 
 				switch ($param){
 					
-					case $param == 'id':
-						$param = 'id';
+					case $param == 'user_id':
+						$param = 'user_id';
 						break;
 						
 					case $param == 'project_id':

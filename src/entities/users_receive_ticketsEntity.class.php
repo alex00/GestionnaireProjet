@@ -5,7 +5,7 @@
 
 		class users_receive_ticketsEntity {
 					
-			private $id;
+			private $user_id;
 			
 			private $ticket_id;
 			
@@ -14,8 +14,8 @@
 			/********************** GETTER ***********************/
 			
 
-			public function getId(){
-				return $this->id;
+			public function getUser_id(){
+				return $this->user_id;
 			}
 
 			
@@ -27,8 +27,8 @@
 			
 			/********************** SETTER ***********************/
 
-			public function setId($val){
-				$this->id =  $val;
+			public function setUser_id($val){
+				$this->user_id =  $val;
 			}
 
 					
@@ -63,7 +63,7 @@
 
 			public function Update(){
 
-				$sql = 'UPDATE `users_receive_tickets` SET `id` = "'.$this->id.'", `ticket_id` = "'.$this->ticket_id.'" WHERE ticket_id = '.intval($this->ticket_id);
+				$sql = 'UPDATE `users_receive_tickets` SET `user_id` = "'.$this->user_id.'", `ticket_id` = "'.$this->ticket_id.'" WHERE ticket_id = '.intval($this->ticket_id);
 
 				$result = TzSQL::getPDO()->prepare($sql);
 				$result->execute();
@@ -88,7 +88,7 @@
 
 				$this->ticket_id = '';
 
-				$sql = 'INSERT INTO users_receive_tickets (`id`,`ticket_id`) VALUES ("'.$this->id.'","'.$this->ticket_id.'")';
+				$sql = 'INSERT INTO users_receive_tickets (`user_id`,`ticket_id`) VALUES ("'.$this->user_id.'","'.$this->ticket_id.'")';
 
 				$result = TzSQL::getPDO()->prepare($sql);
 				$result->execute();
@@ -141,8 +141,8 @@
 
 				switch ($param){
 					
-					case $param == 'id':
-						$param = 'id';
+					case $param == 'user_id':
+						$param = 'user_id';
 						break;
 						
 					case $param == 'ticket_id':
@@ -160,7 +160,7 @@
 				$result =  $data->fetch(PDO::FETCH_OBJ);
 
 				if(!empty($result)){
-					$this->id = $result->id;
+					$this->user_id = $result->user_id;
 					$this->ticket_id = $result->ticket_id;
 					
 					return true;
@@ -181,7 +181,7 @@
 				$result->execute();
 				$formatResult = $result->fetch(PDO::FETCH_OBJ);
 				if(!empty($formatResult)){
-					$this->id = $formatResult->id;
+					$this->user_id = $formatResult->user_id;
 					$this->ticket_id = $formatResult->ticket_id;
 				
 					return true;
@@ -199,8 +199,8 @@
 
 				switch ($param){
 					
-					case $param == 'id':
-						$param = 'id';
+					case $param == 'user_id':
+						$param = 'user_id';
 						break;
 						
 					case $param == 'ticket_id':

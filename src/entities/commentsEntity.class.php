@@ -13,7 +13,7 @@
 			
 			private $ticket_id;
 			
-			private $id;
+			private $user_id;
 			
 
 
@@ -44,8 +44,8 @@
 
 			
 
-			public function getId(){
-				return $this->id;
+			public function getUser_id(){
+				return $this->user_id;
 			}
 
 			
@@ -75,8 +75,8 @@
 
 					
 
-			public function setId($val){
-				$this->id =  $val;
+			public function setUser_id($val){
+				$this->user_id =  $val;
 			}
 
 					
@@ -105,7 +105,7 @@
 
 			public function Update(){
 
-				$sql = 'UPDATE `comments` SET `comment_id` = "'.$this->comment_id.'", `comment_description` = "'.$this->comment_description.'", `comment_date_create` = "'.$this->comment_date_create.'", `ticket_id` = "'.$this->ticket_id.'", `id` = "'.$this->id.'" WHERE comment_id = '.intval($this->comment_id);
+				$sql = 'UPDATE `comments` SET `comment_id` = "'.$this->comment_id.'", `comment_description` = "'.$this->comment_description.'", `comment_date_create` = "'.$this->comment_date_create.'", `ticket_id` = "'.$this->ticket_id.'", `user_id` = "'.$this->user_id.'" WHERE comment_id = '.intval($this->comment_id);
 
 				$result = TzSQL::getPDO()->prepare($sql);
 				$result->execute();
@@ -130,7 +130,7 @@
 
 				$this->comment_id = '';
 
-				$sql = 'INSERT INTO comments (`comment_id`,`comment_description`,`comment_date_create`,`ticket_id`,`id`) VALUES ("'.$this->comment_id.'","'.$this->comment_description.'","'.$this->comment_date_create.'","'.$this->ticket_id.'","'.$this->id.'")';
+				$sql = 'INSERT INTO comments (`comment_id`,`comment_description`,`comment_date_create`,`ticket_id`,`user_id`) VALUES ("'.$this->comment_id.'","'.$this->comment_description.'","'.$this->comment_date_create.'","'.$this->ticket_id.'","'.$this->user_id.'")';
 
 				$result = TzSQL::getPDO()->prepare($sql);
 				$result->execute();
@@ -199,8 +199,8 @@
 						$param = 'ticket_id';
 						break;
 						
-					case $param == 'id':
-						$param = 'id';
+					case $param == 'user_id':
+						$param = 'user_id';
 						break;
 						
 					default:
@@ -218,7 +218,7 @@
 					$this->comment_description = $result->comment_description;
 					$this->comment_date_create = $result->comment_date_create;
 					$this->ticket_id = $result->ticket_id;
-					$this->id = $result->id;
+					$this->user_id = $result->user_id;
 					
 					return true;
 				}
@@ -242,7 +242,7 @@
 					$this->comment_description = $formatResult->comment_description;
 					$this->comment_date_create = $formatResult->comment_date_create;
 					$this->ticket_id = $formatResult->ticket_id;
-					$this->id = $formatResult->id;
+					$this->user_id = $formatResult->user_id;
 				
 					return true;
 				}
@@ -275,8 +275,8 @@
 						$param = 'ticket_id';
 						break;
 						
-					case $param == 'id':
-						$param = 'id';
+					case $param == 'user_id':
+						$param = 'user_id';
 						break;
 						
 					default:

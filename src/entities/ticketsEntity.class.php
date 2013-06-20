@@ -21,17 +21,13 @@
 			
 			private $ticket_description;
 			
-			private $ticket_parent_id;
-			
 			private $project_id;
 			
 			private $priority_id;
 			
-			private $status_id;
+			private $statut_id;
 			
 			private $tracker_id;
-			
-			private $roadmap_id;
 			
 
 
@@ -86,12 +82,6 @@
 
 			
 
-			public function getTicket_parent_id(){
-				return $this->ticket_parent_id;
-			}
-
-			
-
 			public function getProject_id(){
 				return $this->project_id;
 			}
@@ -104,20 +94,14 @@
 
 			
 
-			public function getStatus_id(){
-				return $this->status_id;
+			public function getStatut_id(){
+				return $this->statut_id;
 			}
 
 			
 
 			public function getTracker_id(){
 				return $this->tracker_id;
-			}
-
-			
-
-			public function getRoadmap_id(){
-				return $this->roadmap_id;
 			}
 
 			
@@ -171,12 +155,6 @@
 
 					
 
-			public function setTicket_parent_id($val){
-				$this->ticket_parent_id =  $val;
-			}
-
-					
-
 			public function setProject_id($val){
 				$this->project_id =  $val;
 			}
@@ -189,20 +167,14 @@
 
 					
 
-			public function setStatus_id($val){
-				$this->status_id =  $val;
+			public function setStatut_id($val){
+				$this->statut_id =  $val;
 			}
 
 					
 
 			public function setTracker_id($val){
 				$this->tracker_id =  $val;
-			}
-
-					
-
-			public function setRoadmap_id($val){
-				$this->roadmap_id =  $val;
 			}
 
 					
@@ -231,7 +203,7 @@
 
 			public function Update(){
 
-				$sql = 'UPDATE `tickets` SET `ticket_id` = "'.$this->ticket_id.'", `ticket_name` = "'.$this->ticket_name.'", `ticket_date_create` = "'.$this->ticket_date_create.'", `ticket_date_update` = "'.$this->ticket_date_update.'", `ticket_deadline` = "'.$this->ticket_deadline.'", `ticket_spend_time` = "'.$this->ticket_spend_time.'", `ticket_progress` = "'.$this->ticket_progress.'", `ticket_description` = "'.$this->ticket_description.'", `ticket_parent_id` = "'.$this->ticket_parent_id.'", `project_id` = "'.$this->project_id.'", `priority_id` = "'.$this->priority_id.'", `status_id` = "'.$this->status_id.'", `tracker_id` = "'.$this->tracker_id.'", `roadmap_id` = "'.$this->roadmap_id.'" WHERE ticket_id = '.intval($this->ticket_id);
+				$sql = 'UPDATE `tickets` SET `ticket_id` = "'.$this->ticket_id.'", `ticket_name` = "'.$this->ticket_name.'", `ticket_date_create` = "'.$this->ticket_date_create.'", `ticket_date_update` = "'.$this->ticket_date_update.'", `ticket_deadline` = "'.$this->ticket_deadline.'", `ticket_spend_time` = "'.$this->ticket_spend_time.'", `ticket_progress` = "'.$this->ticket_progress.'", `ticket_description` = "'.$this->ticket_description.'", `project_id` = "'.$this->project_id.'", `priority_id` = "'.$this->priority_id.'", `statut_id` = "'.$this->statut_id.'", `tracker_id` = "'.$this->tracker_id.'" WHERE ticket_id = '.intval($this->ticket_id);
 
 				$result = TzSQL::getPDO()->prepare($sql);
 				$result->execute();
@@ -256,7 +228,7 @@
 
 				$this->ticket_id = '';
 
-				$sql = 'INSERT INTO tickets (`ticket_id`,`ticket_name`,`ticket_date_create`,`ticket_date_update`,`ticket_deadline`,`ticket_spend_time`,`ticket_progress`,`ticket_description`,`ticket_parent_id`,`project_id`,`priority_id`,`status_id`,`tracker_id`,`roadmap_id`) VALUES ("'.$this->ticket_id.'","'.$this->ticket_name.'","'.$this->ticket_date_create.'","'.$this->ticket_date_update.'","'.$this->ticket_deadline.'","'.$this->ticket_spend_time.'","'.$this->ticket_progress.'","'.$this->ticket_description.'","'.$this->ticket_parent_id.'","'.$this->project_id.'","'.$this->priority_id.'","'.$this->status_id.'","'.$this->tracker_id.'","'.$this->roadmap_id.'")';
+				$sql = 'INSERT INTO tickets (`ticket_id`,`ticket_name`,`ticket_date_create`,`ticket_date_update`,`ticket_deadline`,`ticket_spend_time`,`ticket_progress`,`ticket_description`,`project_id`,`priority_id`,`statut_id`,`tracker_id`) VALUES ("'.$this->ticket_id.'","'.$this->ticket_name.'","'.$this->ticket_date_create.'","'.$this->ticket_date_update.'","'.$this->ticket_deadline.'","'.$this->ticket_spend_time.'","'.$this->ticket_progress.'","'.$this->ticket_description.'","'.$this->project_id.'","'.$this->priority_id.'","'.$this->statut_id.'","'.$this->tracker_id.'")';
 
 				$result = TzSQL::getPDO()->prepare($sql);
 				$result->execute();
@@ -341,10 +313,6 @@
 						$param = 'ticket_description';
 						break;
 						
-					case $param == 'ticket_parent_id':
-						$param = 'ticket_parent_id';
-						break;
-						
 					case $param == 'project_id':
 						$param = 'project_id';
 						break;
@@ -353,16 +321,12 @@
 						$param = 'priority_id';
 						break;
 						
-					case $param == 'status_id':
-						$param = 'status_id';
+					case $param == 'statut_id':
+						$param = 'statut_id';
 						break;
 						
 					case $param == 'tracker_id':
 						$param = 'tracker_id';
-						break;
-						
-					case $param == 'roadmap_id':
-						$param = 'roadmap_id';
 						break;
 						
 					default:
@@ -384,12 +348,10 @@
 					$this->ticket_spend_time = $result->ticket_spend_time;
 					$this->ticket_progress = $result->ticket_progress;
 					$this->ticket_description = $result->ticket_description;
-					$this->ticket_parent_id = $result->ticket_parent_id;
 					$this->project_id = $result->project_id;
 					$this->priority_id = $result->priority_id;
-					$this->status_id = $result->status_id;
+					$this->statut_id = $result->statut_id;
 					$this->tracker_id = $result->tracker_id;
-					$this->roadmap_id = $result->roadmap_id;
 					
 					return true;
 				}
@@ -417,12 +379,10 @@
 					$this->ticket_spend_time = $formatResult->ticket_spend_time;
 					$this->ticket_progress = $formatResult->ticket_progress;
 					$this->ticket_description = $formatResult->ticket_description;
-					$this->ticket_parent_id = $formatResult->ticket_parent_id;
 					$this->project_id = $formatResult->project_id;
 					$this->priority_id = $formatResult->priority_id;
-					$this->status_id = $formatResult->status_id;
+					$this->statut_id = $formatResult->statut_id;
 					$this->tracker_id = $formatResult->tracker_id;
-					$this->roadmap_id = $formatResult->roadmap_id;
 				
 					return true;
 				}
@@ -471,10 +431,6 @@
 						$param = 'ticket_description';
 						break;
 						
-					case $param == 'ticket_parent_id':
-						$param = 'ticket_parent_id';
-						break;
-						
 					case $param == 'project_id':
 						$param = 'project_id';
 						break;
@@ -483,16 +439,12 @@
 						$param = 'priority_id';
 						break;
 						
-					case $param == 'status_id':
-						$param = 'status_id';
+					case $param == 'statut_id':
+						$param = 'statut_id';
 						break;
 						
 					case $param == 'tracker_id':
 						$param = 'tracker_id';
-						break;
-						
-					case $param == 'roadmap_id':
-						$param = 'roadmap_id';
 						break;
 						
 					default:

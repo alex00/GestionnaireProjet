@@ -7,11 +7,7 @@
 					
 			private $priority_id;
 			
-			private $priority_code;
-			
 			private $priority_name;
-			
-			private $priority_color;
 			
 
 
@@ -24,20 +20,8 @@
 
 			
 
-			public function getPriority_code(){
-				return $this->priority_code;
-			}
-
-			
-
 			public function getPriority_name(){
 				return $this->priority_name;
-			}
-
-			
-
-			public function getPriority_color(){
-				return $this->priority_color;
 			}
 
 			
@@ -49,20 +33,8 @@
 
 					
 
-			public function setPriority_code($val){
-				$this->priority_code =  $val;
-			}
-
-					
-
 			public function setPriority_name($val){
 				$this->priority_name =  $val;
-			}
-
-					
-
-			public function setPriority_color($val){
-				$this->priority_color =  $val;
 			}
 
 					
@@ -91,7 +63,7 @@
 
 			public function Update(){
 
-				$sql = 'UPDATE `priorities` SET `priority_id` = "'.$this->priority_id.'", `priority_code` = "'.$this->priority_code.'", `priority_name` = "'.$this->priority_name.'", `priority_color` = "'.$this->priority_color.'" WHERE priority_id = '.intval($this->priority_id);
+				$sql = 'UPDATE `priorities` SET `priority_id` = "'.$this->priority_id.'", `priority_name` = "'.$this->priority_name.'" WHERE priority_id = '.intval($this->priority_id);
 
 				$result = TzSQL::getPDO()->prepare($sql);
 				$result->execute();
@@ -116,7 +88,7 @@
 
 				$this->priority_id = '';
 
-				$sql = 'INSERT INTO priorities (`priority_id`,`priority_code`,`priority_name`,`priority_color`) VALUES ("'.$this->priority_id.'","'.$this->priority_code.'","'.$this->priority_name.'","'.$this->priority_color.'")';
+				$sql = 'INSERT INTO priorities (`priority_id`,`priority_name`) VALUES ("'.$this->priority_id.'","'.$this->priority_name.'")';
 
 				$result = TzSQL::getPDO()->prepare($sql);
 				$result->execute();
@@ -173,16 +145,8 @@
 						$param = 'priority_id';
 						break;
 						
-					case $param == 'priority_code':
-						$param = 'priority_code';
-						break;
-						
 					case $param == 'priority_name':
 						$param = 'priority_name';
-						break;
-						
-					case $param == 'priority_color':
-						$param = 'priority_color';
 						break;
 						
 					default:
@@ -197,9 +161,7 @@
 
 				if(!empty($result)){
 					$this->priority_id = $result->priority_id;
-					$this->priority_code = $result->priority_code;
 					$this->priority_name = $result->priority_name;
-					$this->priority_color = $result->priority_color;
 					
 					return true;
 				}
@@ -220,9 +182,7 @@
 				$formatResult = $result->fetch(PDO::FETCH_OBJ);
 				if(!empty($formatResult)){
 					$this->priority_id = $formatResult->priority_id;
-					$this->priority_code = $formatResult->priority_code;
 					$this->priority_name = $formatResult->priority_name;
-					$this->priority_color = $formatResult->priority_color;
 				
 					return true;
 				}
@@ -243,16 +203,8 @@
 						$param = 'priority_id';
 						break;
 						
-					case $param == 'priority_code':
-						$param = 'priority_code';
-						break;
-						
 					case $param == 'priority_name':
 						$param = 'priority_name';
-						break;
-						
-					case $param == 'priority_color':
-						$param = 'priority_color';
 						break;
 						
 					default:

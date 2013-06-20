@@ -17,6 +17,8 @@
 			
 			private $roadmap_description;
 			
+			private $project_id;
+			
 
 
 			/********************** GETTER ***********************/
@@ -54,6 +56,12 @@
 
 			public function getRoadmap_description(){
 				return $this->roadmap_description;
+			}
+
+			
+
+			public function getProject_id(){
+				return $this->project_id;
 			}
 
 			
@@ -95,6 +103,12 @@
 
 					
 
+			public function setProject_id($val){
+				$this->project_id =  $val;
+			}
+
+					
+
 			/********************** Delete ***********************/
 
 			public function Delete(){
@@ -119,7 +133,7 @@
 
 			public function Update(){
 
-				$sql = 'UPDATE `roadmap` SET `roadmap_id` = "'.$this->roadmap_id.'", `roadmap_name` = "'.$this->roadmap_name.'", `roadmap_code` = "'.$this->roadmap_code.'", `roadmap_date_create` = "'.$this->roadmap_date_create.'", `roadmap_date_update` = "'.$this->roadmap_date_update.'", `roadmap_description` = "'.$this->roadmap_description.'" WHERE roadmap_id = '.intval($this->roadmap_id);
+				$sql = 'UPDATE `roadmap` SET `roadmap_id` = "'.$this->roadmap_id.'", `roadmap_name` = "'.$this->roadmap_name.'", `roadmap_code` = "'.$this->roadmap_code.'", `roadmap_date_create` = "'.$this->roadmap_date_create.'", `roadmap_date_update` = "'.$this->roadmap_date_update.'", `roadmap_description` = "'.$this->roadmap_description.'", `project_id` = "'.$this->project_id.'" WHERE roadmap_id = '.intval($this->roadmap_id);
 
 				$result = TzSQL::getPDO()->prepare($sql);
 				$result->execute();
@@ -144,7 +158,7 @@
 
 				$this->roadmap_id = '';
 
-				$sql = 'INSERT INTO roadmap (`roadmap_id`,`roadmap_name`,`roadmap_code`,`roadmap_date_create`,`roadmap_date_update`,`roadmap_description`) VALUES ("'.$this->roadmap_id.'","'.$this->roadmap_name.'","'.$this->roadmap_code.'","'.$this->roadmap_date_create.'","'.$this->roadmap_date_update.'","'.$this->roadmap_description.'")';
+				$sql = 'INSERT INTO roadmap (`roadmap_id`,`roadmap_name`,`roadmap_code`,`roadmap_date_create`,`roadmap_date_update`,`roadmap_description`,`project_id`) VALUES ("'.$this->roadmap_id.'","'.$this->roadmap_name.'","'.$this->roadmap_code.'","'.$this->roadmap_date_create.'","'.$this->roadmap_date_update.'","'.$this->roadmap_description.'","'.$this->project_id.'")';
 
 				$result = TzSQL::getPDO()->prepare($sql);
 				$result->execute();
@@ -221,6 +235,10 @@
 						$param = 'roadmap_description';
 						break;
 						
+					case $param == 'project_id':
+						$param = 'project_id';
+						break;
+						
 					default:
 						DebugTool::$error->catchError(array('Colonne introuvable: est-elle presente dans la base de donnée ?', __FILE__,__LINE__, true));
 						return false;
@@ -238,6 +256,7 @@
 					$this->roadmap_date_create = $result->roadmap_date_create;
 					$this->roadmap_date_update = $result->roadmap_date_update;
 					$this->roadmap_description = $result->roadmap_description;
+					$this->project_id = $result->project_id;
 					
 					return true;
 				}
@@ -263,6 +282,7 @@
 					$this->roadmap_date_create = $formatResult->roadmap_date_create;
 					$this->roadmap_date_update = $formatResult->roadmap_date_update;
 					$this->roadmap_description = $formatResult->roadmap_description;
+					$this->project_id = $formatResult->project_id;
 				
 					return true;
 				}
@@ -301,6 +321,10 @@
 						
 					case $param == 'roadmap_description':
 						$param = 'roadmap_description';
+						break;
+						
+					case $param == 'project_id':
+						$param = 'project_id';
 						break;
 						
 					default:

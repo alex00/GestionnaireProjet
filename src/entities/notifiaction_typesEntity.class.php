@@ -7,7 +7,7 @@
 					
 			private $type_id;
 			
-			private $type_code;
+			private $type_name;
 			
 			private $type_description;
 			
@@ -22,8 +22,8 @@
 
 			
 
-			public function getType_code(){
-				return $this->type_code;
+			public function getType_name(){
+				return $this->type_name;
 			}
 
 			
@@ -41,8 +41,8 @@
 
 					
 
-			public function setType_code($val){
-				$this->type_code =  $val;
+			public function setType_name($val){
+				$this->type_name =  $val;
 			}
 
 					
@@ -77,7 +77,7 @@
 
 			public function Update(){
 
-				$sql = 'UPDATE `notifiaction_types` SET `type_id` = "'.$this->type_id.'", `type_code` = "'.$this->type_code.'", `type_description` = "'.$this->type_description.'" WHERE type_id = '.intval($this->type_id);
+				$sql = 'UPDATE `notifiaction_types` SET `type_id` = "'.$this->type_id.'", `type_name` = "'.$this->type_name.'", `type_description` = "'.$this->type_description.'" WHERE type_id = '.intval($this->type_id);
 
 				$result = TzSQL::getPDO()->prepare($sql);
 				$result->execute();
@@ -102,7 +102,7 @@
 
 				$this->type_id = '';
 
-				$sql = 'INSERT INTO notifiaction_types (`type_id`,`type_code`,`type_description`) VALUES ("'.$this->type_id.'","'.$this->type_code.'","'.$this->type_description.'")';
+				$sql = 'INSERT INTO notifiaction_types (`type_id`,`type_name`,`type_description`) VALUES ("'.$this->type_id.'","'.$this->type_name.'","'.$this->type_description.'")';
 
 				$result = TzSQL::getPDO()->prepare($sql);
 				$result->execute();
@@ -159,8 +159,8 @@
 						$param = 'type_id';
 						break;
 						
-					case $param == 'type_code':
-						$param = 'type_code';
+					case $param == 'type_name':
+						$param = 'type_name';
 						break;
 						
 					case $param == 'type_description':
@@ -179,7 +179,7 @@
 
 				if(!empty($result)){
 					$this->type_id = $result->type_id;
-					$this->type_code = $result->type_code;
+					$this->type_name = $result->type_name;
 					$this->type_description = $result->type_description;
 					
 					return true;
@@ -201,7 +201,7 @@
 				$formatResult = $result->fetch(PDO::FETCH_OBJ);
 				if(!empty($formatResult)){
 					$this->type_id = $formatResult->type_id;
-					$this->type_code = $formatResult->type_code;
+					$this->type_name = $formatResult->type_name;
 					$this->type_description = $formatResult->type_description;
 				
 					return true;
@@ -223,8 +223,8 @@
 						$param = 'type_id';
 						break;
 						
-					case $param == 'type_code':
-						$param = 'type_code';
+					case $param == 'type_name':
+						$param = 'type_name';
 						break;
 						
 					case $param == 'type_description':

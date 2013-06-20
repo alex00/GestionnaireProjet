@@ -9,8 +9,6 @@
 			
 			private $status_name;
 			
-			private $status_code;
-			
 
 
 			/********************** GETTER ***********************/
@@ -27,12 +25,6 @@
 			}
 
 			
-
-			public function getStatus_code(){
-				return $this->status_code;
-			}
-
-			
 			/********************** SETTER ***********************/
 
 			public function setStatus_id($val){
@@ -43,12 +35,6 @@
 
 			public function setStatus_name($val){
 				$this->status_name =  $val;
-			}
-
-					
-
-			public function setStatus_code($val){
-				$this->status_code =  $val;
 			}
 
 					
@@ -77,7 +63,7 @@
 
 			public function Update(){
 
-				$sql = 'UPDATE `status` SET `status_id` = "'.$this->status_id.'", `status_name` = "'.$this->status_name.'", `status_code` = "'.$this->status_code.'" WHERE status_id = '.intval($this->status_id);
+				$sql = 'UPDATE `status` SET `status_id` = "'.$this->status_id.'", `status_name` = "'.$this->status_name.'" WHERE status_id = '.intval($this->status_id);
 
 				$result = TzSQL::getPDO()->prepare($sql);
 				$result->execute();
@@ -102,7 +88,7 @@
 
 				$this->status_id = '';
 
-				$sql = 'INSERT INTO status (`status_id`,`status_name`,`status_code`) VALUES ("'.$this->status_id.'","'.$this->status_name.'","'.$this->status_code.'")';
+				$sql = 'INSERT INTO status (`status_id`,`status_name`) VALUES ("'.$this->status_id.'","'.$this->status_name.'")';
 
 				$result = TzSQL::getPDO()->prepare($sql);
 				$result->execute();
@@ -163,10 +149,6 @@
 						$param = 'status_name';
 						break;
 						
-					case $param == 'status_code':
-						$param = 'status_code';
-						break;
-						
 					default:
 						DebugTool::$error->catchError(array('Colonne introuvable: est-elle presente dans la base de donnée ?', __FILE__,__LINE__, true));
 						return false;
@@ -180,7 +162,6 @@
 				if(!empty($result)){
 					$this->status_id = $result->status_id;
 					$this->status_name = $result->status_name;
-					$this->status_code = $result->status_code;
 					
 					return true;
 				}
@@ -202,7 +183,6 @@
 				if(!empty($formatResult)){
 					$this->status_id = $formatResult->status_id;
 					$this->status_name = $formatResult->status_name;
-					$this->status_code = $formatResult->status_code;
 				
 					return true;
 				}
@@ -225,10 +205,6 @@
 						
 					case $param == 'status_name':
 						$param = 'status_name';
-						break;
-						
-					case $param == 'status_code':
-						$param = 'status_code';
 						break;
 						
 					default:
