@@ -113,6 +113,8 @@
     `user_creator_id` int(11) NOT NULL,
     `announce_id` int(11) NOT NULL,
     `roadmap_id` int(11) NOT NULL,
+    `user_dest_id` int(11) NOT NULL,
+    `service_id` int(11) NOT NULL,
     `type_id` int(11) NOT NULL,
     PRIMARY KEY (`notification_id`),
     KEY `fk_notifications_notifiaction_types1_idx` (`type_id`)
@@ -243,6 +245,7 @@
   CREATE TABLE IF NOT EXISTS `tickets` (
     `ticket_id` int(11) NOT NULL AUTO_INCREMENT,
     `ticket_name` varchar(70) NOT NULL,
+    `ticket_code` varchar(70) NOT NULL,
     `ticket_date_create` datetime NOT NULL,
     `ticket_date_update` datetime NOT NULL,
     `ticket_deadline` datetime NOT NULL,
@@ -253,26 +256,14 @@
     `priority_id` int(11) NOT NULL,
     `statut_id` int(11) NOT NULL,
     `tracker_id` int(11) NOT NULL,
+    `roadmap_id` int(11) NOT NULL,
     PRIMARY KEY (`ticket_id`),
     KEY `fk_action_project1_idx` (`project_id`),
+    KEY `fk_roadmap_tickets_idx` (`roadmap_id`),
     KEY `fk_tickets_prioritys1_idx` (`priority_id`),
     KEY `fk_tickets_status1_idx` (`statut_id`),
     KEY `fk_tickets_trackers1_idx` (`tracker_id`)
   ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
-
-  -- --------------------------------------------------------
-
-  --
-  -- Structure de la table `tickets_image`
-  --
-
-  DROP TABLE IF EXISTS `tickets_image`;
-  CREATE TABLE IF NOT EXISTS `tickets_image` (
-    `action_id` int(11) NOT NULL,
-    `action_image_url` varchar(45) NOT NULL,
-    `img_position` varchar(45) NOT NULL,
-    PRIMARY KEY (`action_id`)
-  ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
   -- --------------------------------------------------------
 
@@ -322,7 +313,6 @@
     `id` int(11) NOT NULL AUTO_INCREMENT,
     `user_mail` varchar(45) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
     `password` varchar(45) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
-    `user_img_url` varchar(255) NOT NULL,
     `user_login` varchar(45) NOT NULL,
     `user_login_code` varchar(45) NOT NULL,
     `user_date_create` datetime NOT NULL,
@@ -414,11 +404,6 @@
     ADD CONSTRAINT `fk_tickets_status1` FOREIGN KEY (`statut_id`) REFERENCES `status` (`status_id`) ON DELETE CASCADE ON UPDATE CASCADE,
     ADD CONSTRAINT `fk_tickets_trackers1` FOREIGN KEY (`tracker_id`) REFERENCES `trackers` (`tracker_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
-  --
-  -- Contraintes pour la table `tickets_image`
-  --
-  ALTER TABLE `tickets_image`
-    ADD CONSTRAINT `fk_action_image_action1` FOREIGN KEY (`action_id`) REFERENCES `tickets` (`ticket_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
   --
   -- Contraintes pour la table `ticket_files`
