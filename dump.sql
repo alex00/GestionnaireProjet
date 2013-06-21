@@ -204,11 +204,9 @@
   DROP TABLE IF EXISTS `services`;
   CREATE TABLE IF NOT EXISTS `services` (
     `service_id` int(11) NOT NULL AUTO_INCREMENT,
-    `project_id` int(11) NOT NULL,
     `service_name` varchar(100) NOT NULL,
     `service_code` varchar(100) NOT NULL,
-    PRIMARY KEY (`service_id`),
-    KEY `fk_services_projects1` (`project_id`)
+    PRIMARY KEY (`service_id`)
   ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
   -- --------------------------------------------------------
@@ -360,8 +358,11 @@
   CREATE TABLE IF NOT EXISTS `user_service` (
     `user_id` int(11) NOT NULL,
     `service_id` int(11) NOT NULL,
-    PRIMARY KEY (`user_id`,`service_id`),
+    `project_id` int(11) NOT NULL,
+    `rightKey` int(1) NOT NULL,
+    PRIMARY KEY (`user_id`,`service_id`,`project_id`),
     KEY `fk_users_has_projects_users1_idx` (`user_id`),
+    KEY `fk_project_services_userse_id` (`project_id`),
     KEY `fk_user_service_project_services1_idx` (`service_id`)
   ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -388,12 +389,6 @@
   ALTER TABLE `notifications_settings`
     ADD CONSTRAINT `fk_notifiaction_types_has_users_notifiaction_types1` FOREIGN KEY (`notifiaction_id`) REFERENCES `notifiaction_types` (`type_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
     ADD CONSTRAINT `fk_notifiaction_types_has_users_users1` FOREIGN KEY (`users_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
-  --
-  -- Contraintes pour la table `services`
-  --
-  ALTER TABLE `services`
-    ADD CONSTRAINT `fk_services_projects1` FOREIGN KEY (`project_id`) REFERENCES `projects` (`project_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
   --
   -- Contraintes pour la table `tickets`
@@ -430,6 +425,7 @@
   --
   ALTER TABLE `user_service`
     ADD CONSTRAINT `fk_users_has_projects_users1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+    ADD CONSTRAINT `fk_project_services_userse_id` FOREIGN KEY (`project_id`) REFERENCES `projects` (`project_id`) ON DELETE CASCADE ON UPDATE CASCADE,
     ADD CONSTRAINT `fk_user_service_project_services1` FOREIGN KEY (`service_id`) REFERENCES `services` (`service_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
   /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
