@@ -39,6 +39,7 @@ class accountController extends TzController {
         $usersEntity->setuser_login($login);
         $usersEntity->setpassword($password);
         $usersEntity->setuser_mail($mail);
+        $usersEntity->setAcl_group_id(3);
         $usersEntity->insert();
         $password = $usersEntity->getPassword();
         $login = $usersEntity->getUser_login();
@@ -63,6 +64,7 @@ class accountController extends TzController {
             'user_login'    => $login);
 
         TzAuth::login($userArray);
+
         header('Location: /');
     }
     public function memberDetailAction($params){

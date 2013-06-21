@@ -50,7 +50,7 @@
                                     {% if homeContext == true %}
                                         <a id="addProjectLink" class="linkBlack pull-left" data-toggle="modal" href="#add-project" onclick="javascript:toolBarLinks(this.id,null,null);">Project</a>
                                     {% else %}
-                                        <a id="addTicketLink" class="linkBlack pull-left" data-toggle="modal" href="#add-ticket">Ticket</a>
+                                        <a id="addTicketLink" class="linkBlack pull-left" data-toggle="modal" data-target="#modalHeadersLarge">Ticket</a>
                                         <a id="addRoadmapLink" class="linkBlack pull-left" data-toggle="modal" href="#add-roadmap" onclick="javascript:toolBarLinks(this.id,'{{ paramsAriane.idProject }}','{{ paramsAriane.codeProject }}');">Roadmap</a>
                                         <a id="addAnnounceLink" class="linkBlack pull-left" data-toggle="modal" href="#add-announce" onclick="javascript:toolBarLinks(this.id,'{{ paramsAriane.idProject }}','{{ paramsAriane.codeProject }}');">Announce</a>
                                         <a id="addMemberLink" class="linkBlack pull-left" data-toggle="modal" href="#add-member" onclick="javascript:toolBarLinks(this.id,'{{ paramsAriane.idProject }}','{{ paramsAriane.codeProject }}');">Member</a>
@@ -101,10 +101,10 @@
             <div class="span7 offset3">
                 <div id="sub-menu">
                     <ul >
-                        <li {% if subMenuCurrent == 'dashboard' %}class="current" {% endif %} id="DashboardSubMenu"><a href="/project/1">Dashboard</a></li>
-                        <li {% if subMenuCurrent == 'tickets' %}class="current" {% endif %} id="TicketSubMenu"><a href="/project/1/tickets">Tickets</a></li>
-                        <li {% if subMenuCurrent == 'activity' %}class="current" {% endif %} id="ActivitySubMenu"><a href="/project/1/activity">Activity</a></li>
-                        <li {% if subMenuCurrent == 'roadmaps' %}class="current" {% endif %} id="RoadmapSubMenu"><a href="/project/1/roadmaps">Roadmaps</a></li>
+                        <li {% if subMenuCurrent == 'dashboard' %}class="current" {% endif %} id="DashboardSubMenu"><a href="/{{ currentProjectCode }}">Dashboard</a></li>
+                        <li {% if subMenuCurrent == 'tickets' %}class="current" {% endif %} id="TicketSubMenu"><a href="/{{ currentProjectCode }}/tickets">Tickets</a></li>
+                        <li {% if subMenuCurrent == 'activity' %}class="current" {% endif %} id="ActivitySubMenu"><a href="/{{ currentProjectCode }}/activity">Activity</a></li>
+                        <li {% if subMenuCurrent == 'roadmaps' %}class="current" {% endif %} id="RoadmapSubMenu"><a href="/{{ currentProjectCode }}/roadmaps">Roadmaps</a></li>
                     </ul>
                 </div>
             </div>
@@ -153,5 +153,77 @@
     </footer>
 </div>
 {% endblock %}
+
+<div id="modalHeadersLarge" class="modal hide fade">
+    <!-- first modal window -->
+    <header class="modal-header">
+        <a href="#" class="close" data-dismiss="modal">x</a>
+        <h6>Add a Ticket</h6>
+    </header>
+
+    <div class="modal-body">
+        <form id="addTicket" action="/new-ticket" method="post" name="newTicket">
+            <table>
+                <tr>
+                    <td><label for="nameTicket">Name :</label></td><td colspan="3"><input type="text" name="nameTicket" id="nameTicket"/></td>
+                </tr>
+                <tr>
+                    <td><label for="descTicket">Description :</label></td><td colspan="3"><textarea name="descTicket" id="descTicket" rows="3"></textarea></td>
+                </tr>
+                <tr>
+                    <td><label for="assignedTicket">Assigned to :</label></td>
+                    <td>
+                        <select name="assignedTicket" id="assignedTicket">
+                            {% for members in modalTicket.services %}
+                                {% if members.name != 'not-affiliated' %}
+                                <option class="selectModalTicketService" value="{{ members.id_service }}">{{ members.name }}</option>
+                                {% endif %}
+                                {% for userTicket in members.members %}
+                                    <option value="{{ userTicket.id }}">{{ userTicket.login }}</option>
+                                {% endfor %}
+                            {% endfor %}
+                        </select>
+                    </td>
+                    <td><label for="deadlineTicket">Deadline :</label></td>
+                    <td><input type="date" name="deadlineTicket" id="deadlineTicket" /></td>
+                </tr>
+                <tr>
+                    <td><label for="priorityTicket">Priority :</label></td>
+                    <td>
+                        <select name="priorityTicket" id="priorityTicket">
+                            <option value="1">Low</option>
+                            <option value="2" selected="selected">Normal</option>
+                            <option value="3">High</option>
+                            <option value="4">Immediate</option>
+                        </select>
+                    </td>
+                    <td><label for="trackerTicket">Tracker :</label></td>
+                    <td>
+                        <select name="trackerTicket" id="trackerTicket">
+                            <option value="1" selected="selected">Evolution</option>
+                            <option value="2">Bug</option>
+                            <option value="3">Support</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="roadmapTicket">Link to a roadmap :</label></td>
+                    <td colspan="3" id="selectRoadmap">
+                        <select name="roadmapTicket" id="roadmapTicket">
+                            <option selected="select" value="0">No roadmap linked</option>
+                            {% for roadmap in ticketModal.roadmaps %}
+                                <option value="{{ roadmap.id }}">{{ roadmap.title }}</option>
+                            {% endfor %}
+                        </select>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+
+    <footer class="modal-footer">
+        <a href="#" class="btn btn-primary" id="okwin01" onclick="toolBarSubmit('ticket',1,'{{ currentProjectCode }}')">Add</a>
+    </footer>
+</div>
 </body>
 </html>

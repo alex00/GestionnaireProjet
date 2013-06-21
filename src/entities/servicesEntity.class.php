@@ -7,8 +7,6 @@
 					
 			private $service_id;
 			
-			private $project_id;
-			
 			private $service_name;
 			
 			private $service_code;
@@ -20,12 +18,6 @@
 
 			public function getService_id(){
 				return $this->service_id;
-			}
-
-			
-
-			public function getProject_id(){
-				return $this->project_id;
 			}
 
 			
@@ -45,12 +37,6 @@
 
 			public function setService_id($val){
 				$this->service_id =  $val;
-			}
-
-					
-
-			public function setProject_id($val){
-				$this->project_id =  $val;
 			}
 
 					
@@ -91,7 +77,7 @@
 
 			public function Update(){
 
-				$sql = 'UPDATE `services` SET `service_id` = "'.$this->service_id.'", `project_id` = "'.$this->project_id.'", `service_name` = "'.$this->service_name.'", `service_code` = "'.$this->service_code.'" WHERE service_id = '.intval($this->service_id);
+				$sql = 'UPDATE `services` SET `service_id` = "'.$this->service_id.'", `service_name` = "'.$this->service_name.'", `service_code` = "'.$this->service_code.'" WHERE service_id = '.intval($this->service_id);
 
 				$result = TzSQL::getPDO()->prepare($sql);
 				$result->execute();
@@ -116,7 +102,7 @@
 
 				$this->service_id = '';
 
-				$sql = 'INSERT INTO services (`service_id`,`project_id`,`service_name`,`service_code`) VALUES ("'.$this->service_id.'","'.$this->project_id.'","'.$this->service_name.'","'.$this->service_code.'")';
+				$sql = 'INSERT INTO services (`service_id`,`service_name`,`service_code`) VALUES ("'.$this->service_id.'","'.$this->service_name.'","'.$this->service_code.'")';
 
 				$result = TzSQL::getPDO()->prepare($sql);
 				$result->execute();
@@ -173,10 +159,6 @@
 						$param = 'service_id';
 						break;
 						
-					case $param == 'project_id':
-						$param = 'project_id';
-						break;
-						
 					case $param == 'service_name':
 						$param = 'service_name';
 						break;
@@ -197,7 +179,6 @@
 
 				if(!empty($result)){
 					$this->service_id = $result->service_id;
-					$this->project_id = $result->project_id;
 					$this->service_name = $result->service_name;
 					$this->service_code = $result->service_code;
 					
@@ -220,7 +201,6 @@
 				$formatResult = $result->fetch(PDO::FETCH_OBJ);
 				if(!empty($formatResult)){
 					$this->service_id = $formatResult->service_id;
-					$this->project_id = $formatResult->project_id;
 					$this->service_name = $formatResult->service_name;
 					$this->service_code = $formatResult->service_code;
 				
@@ -241,10 +221,6 @@
 					
 					case $param == 'service_id':
 						$param = 'service_id';
-						break;
-						
-					case $param == 'project_id':
-						$param = 'project_id';
 						break;
 						
 					case $param == 'service_name':

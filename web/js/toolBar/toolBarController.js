@@ -86,7 +86,23 @@ function toolBarSubmit (id, id_project,  name_project) {
 
             url += '/'+name+'/'+desc;
 
-            break;
+        break;
+
+        case 'ticket':
+            var name = $("#nameTicket").val();
+            var desc = $("#descTicket").val();
+            var assigned = $("#assignedTicket").val();
+            var deadline = $("#deadlineTicket").val();
+            deadline = deadline.replace('/','-');
+            var priority = $("#priorityTicket").val();
+            var tracker = $("#trackerTicket").val();
+            var roadmap = $("#roadmapTicket").val();
+
+            if (roadmap == '')
+                roadmap = 0;
+
+        break;
+
         case 'roadmap':
             var name = $("#nameRoadmap").val();
             var desc = $("#descRoadmap").val();
@@ -124,18 +140,30 @@ function toolBarSubmit (id, id_project,  name_project) {
         break;
     }
 
-    $.post(url).done(function(data){
+    if (id == 'ticket'){
+        $.post(url,{name: name, desc: desc, assigned: assigned, deadline: deadline, priority: priority, tracker: tracker, roadmap: roadmap, id: id_project }).success(function(){
 
+            $("#modalHeadersLarge").modal('hide');
+            toolBarAlert(id);
+        });
+    }
+    else{
+        $.post(url).success(function(code){
 
-        $("#modalHeaders").modal('hide');
+            if (id == 'project'){
+                alert(code);
+                console.log(code);
+                window.location.href = '/'+code;
+                return;
+            }
+            $("#modalHeaders").modal('hide');
 
-        if (id != 'ticket'){
-            $("#modalHeaders").on('hidden',function(){
-                $(this).remove();
-            });
-        }
-        toolBarAlert(id);
-    })
+                $("#modalHeaders").on('hidden',function(){
+                    $(this).remove();
+                });
+            toolBarAlert(id);
+        });
+    }
 
 }
 
@@ -158,7 +186,7 @@ function toolBarAlert(id){
                     }, 800, function () {
                     $("#headerAlert").html('');
                 });
-            },3000);
+            },5000);
         });
 
 }

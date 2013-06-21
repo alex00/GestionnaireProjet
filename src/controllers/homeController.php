@@ -2,7 +2,7 @@
 
 class homeController extends TzController {
     public function indexAction () {
-        
+
         if(TzAuth::isUserLoggedIn()){
             $userEntity = tzSQL::getEntity('users');
             $user = $userEntity->find($_SESSION['User']['id']);

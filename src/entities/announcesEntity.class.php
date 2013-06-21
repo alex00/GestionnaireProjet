@@ -3,17 +3,19 @@
 
 				
 
-		class announcementEntity {
+		class announcesEntity {
 					
-			private $idannouncement;
+			private $announce_id;
 			
-			private $announcement_title;
+			private $announce_title;
 			
-			private $announcement_description;
+			private $announce_code;
 			
-			private $announcement_date_create;
+			private $announce_date_create;
 			
-			private $announcement_date_update;
+			private $announce_date_update;
+			
+			private $announce_description;
 			
 			private $project_id;
 			
@@ -22,32 +24,38 @@
 			/********************** GETTER ***********************/
 			
 
-			public function getIdannouncement(){
-				return $this->idannouncement;
+			public function getAnnounce_id(){
+				return $this->announce_id;
 			}
 
 			
 
-			public function getAnnouncement_title(){
-				return $this->announcement_title;
+			public function getAnnounce_title(){
+				return $this->announce_title;
 			}
 
 			
 
-			public function getAnnouncement_description(){
-				return $this->announcement_description;
+			public function getAnnounce_code(){
+				return $this->announce_code;
 			}
 
 			
 
-			public function getAnnouncement_date_create(){
-				return $this->announcement_date_create;
+			public function getAnnounce_date_create(){
+				return $this->announce_date_create;
 			}
 
 			
 
-			public function getAnnouncement_date_update(){
-				return $this->announcement_date_update;
+			public function getAnnounce_date_update(){
+				return $this->announce_date_update;
+			}
+
+			
+
+			public function getAnnounce_description(){
+				return $this->announce_description;
 			}
 
 			
@@ -59,32 +67,38 @@
 			
 			/********************** SETTER ***********************/
 
-			public function setIdannouncement($val){
-				$this->idannouncement =  $val;
+			public function setAnnounce_id($val){
+				$this->announce_id =  $val;
 			}
 
 					
 
-			public function setAnnouncement_title($val){
-				$this->announcement_title =  $val;
+			public function setAnnounce_title($val){
+				$this->announce_title =  $val;
 			}
 
 					
 
-			public function setAnnouncement_description($val){
-				$this->announcement_description =  $val;
+			public function setAnnounce_code($val){
+				$this->announce_code =  $val;
 			}
 
 					
 
-			public function setAnnouncement_date_create($val){
-				$this->announcement_date_create =  $val;
+			public function setAnnounce_date_create($val){
+				$this->announce_date_create =  $val;
 			}
 
 					
 
-			public function setAnnouncement_date_update($val){
-				$this->announcement_date_update =  $val;
+			public function setAnnounce_date_update($val){
+				$this->announce_date_update =  $val;
+			}
+
+					
+
+			public function setAnnounce_description($val){
+				$this->announce_description =  $val;
 			}
 
 					
@@ -99,9 +113,9 @@
 
 			public function Delete(){
 
-				if(!empty($this->idannouncement)){
+				if(!empty($this->announce_id)){
 
-					$sql = "DELETE FROM announcement WHERE idannouncement = ".intval($this->idannouncement).";";
+					$sql = "DELETE FROM announces WHERE announce_id = ".intval($this->announce_id).";";
 
 					$result = TzSQL::getPDO()->prepare($sql);
 					$result->execute();
@@ -119,12 +133,12 @@
 
 			public function Update(){
 
-				$sql = 'UPDATE `announcement` SET `idannouncement` = "'.$this->idannouncement.'", `announcement_title` = "'.$this->announcement_title.'", `announcement_description` = "'.$this->announcement_description.'", `announcement_date_create` = "'.$this->announcement_date_create.'", `announcement_date_update` = "'.$this->announcement_date_update.'", `project_id` = "'.$this->project_id.'" WHERE idannouncement = '.intval($this->idannouncement);
+				$sql = 'UPDATE `announces` SET `announce_id` = "'.$this->announce_id.'", `announce_title` = "'.$this->announce_title.'", `announce_code` = "'.$this->announce_code.'", `announce_date_create` = "'.$this->announce_date_create.'", `announce_date_update` = "'.$this->announce_date_update.'", `announce_description` = "'.$this->announce_description.'", `project_id` = "'.$this->project_id.'" WHERE announce_id = '.intval($this->announce_id);
 
 				$result = TzSQL::getPDO()->prepare($sql);
 				$result->execute();
 
-				if(!empty($this->idannouncement)){
+				if(!empty($this->announce_id)){
 					if($result)
 						return true;
 					else{
@@ -142,16 +156,16 @@
 
 			public function Insert(){
 
-				$this->idannouncement = '';
+				$this->announce_id = '';
 
-				$sql = 'INSERT INTO announcement (`idannouncement`,`announcement_title`,`announcement_description`,`announcement_date_create`,`announcement_date_update`,`project_id`) VALUES ("'.$this->idannouncement.'","'.$this->announcement_title.'","'.$this->announcement_description.'","'.$this->announcement_date_create.'","'.$this->announcement_date_update.'","'.$this->project_id.'")';
+				$sql = 'INSERT INTO announces (`announce_id`,`announce_title`,`announce_code`,`announce_date_create`,`announce_date_update`,`announce_description`,`project_id`) VALUES ("'.$this->announce_id.'","'.$this->announce_title.'","'.$this->announce_code.'","'.$this->announce_date_create.'","'.$this->announce_date_update.'","'.$this->announce_description.'","'.$this->project_id.'")';
 
 				$result = TzSQL::getPDO()->prepare($sql);
 				$result->execute();
 
 				if($result){
 					$lastid = TzSQL::getPDO()->lastInsertId();
-					$this->idannouncement = $lastid;
+					$this->announce_id = $lastid;
 					return true;
 				}
 				else{
@@ -164,7 +178,7 @@
 			/********************** FindAll ***********************/
 			public function findAll(){
 
-				$sql = 'SELECT * FROM announcement';
+				$sql = 'SELECT * FROM announces';
 				$result = TzSQL::getPDO()->prepare($sql);
 				$result->execute();
 				$formatResult = $result->fetchAll(PDO::FETCH_ASSOC);
@@ -172,7 +186,7 @@
 
 				foreach ($formatResult as $key => $data) {
 
-					$tmpInstance = new announcementEntity();
+					$tmpInstance = new announcesEntity();
 
 					foreach ($data as $k => $value) {
 
@@ -197,24 +211,28 @@
 
 				switch ($param){
 					
-					case $param == 'idannouncement':
-						$param = 'idannouncement';
+					case $param == 'announce_id':
+						$param = 'announce_id';
 						break;
 						
-					case $param == 'announcement_title':
-						$param = 'announcement_title';
+					case $param == 'announce_title':
+						$param = 'announce_title';
 						break;
 						
-					case $param == 'announcement_description':
-						$param = 'announcement_description';
+					case $param == 'announce_code':
+						$param = 'announce_code';
 						break;
 						
-					case $param == 'announcement_date_create':
-						$param = 'announcement_date_create';
+					case $param == 'announce_date_create':
+						$param = 'announce_date_create';
 						break;
 						
-					case $param == 'announcement_date_update':
-						$param = 'announcement_date_update';
+					case $param == 'announce_date_update':
+						$param = 'announce_date_update';
+						break;
+						
+					case $param == 'announce_description':
+						$param = 'announce_description';
 						break;
 						
 					case $param == 'project_id':
@@ -226,17 +244,18 @@
 						return false;
 				}
 
-				$sql =  'SELECT * FROM announcement WHERE '.$param.' = "'.$value.'"';
+				$sql =  'SELECT * FROM announces WHERE '.$param.' = "'.$value.'"';
 				$data = TzSQL::getPDO()->prepare($sql);
 				$data->execute();
 				$result =  $data->fetch(PDO::FETCH_OBJ);
 
 				if(!empty($result)){
-					$this->idannouncement = $result->idannouncement;
-					$this->announcement_title = $result->announcement_title;
-					$this->announcement_description = $result->announcement_description;
-					$this->announcement_date_create = $result->announcement_date_create;
-					$this->announcement_date_update = $result->announcement_date_update;
+					$this->announce_id = $result->announce_id;
+					$this->announce_title = $result->announce_title;
+					$this->announce_code = $result->announce_code;
+					$this->announce_date_create = $result->announce_date_create;
+					$this->announce_date_update = $result->announce_date_update;
+					$this->announce_description = $result->announce_description;
 					$this->project_id = $result->project_id;
 					
 					return true;
@@ -252,16 +271,17 @@
 			/********************** Find(id) ***********************/
 			public function find($id){
 
-				$sql = 'SELECT * FROM announcement WHERE idannouncement = ' . $id;
+				$sql = 'SELECT * FROM announces WHERE announce_id = ' . $id;
 				$result = TzSQL::getPDO()->prepare($sql);
 				$result->execute();
 				$formatResult = $result->fetch(PDO::FETCH_OBJ);
 				if(!empty($formatResult)){
-					$this->idannouncement = $formatResult->idannouncement;
-					$this->announcement_title = $formatResult->announcement_title;
-					$this->announcement_description = $formatResult->announcement_description;
-					$this->announcement_date_create = $formatResult->announcement_date_create;
-					$this->announcement_date_update = $formatResult->announcement_date_update;
+					$this->announce_id = $formatResult->announce_id;
+					$this->announce_title = $formatResult->announce_title;
+					$this->announce_code = $formatResult->announce_code;
+					$this->announce_date_create = $formatResult->announce_date_create;
+					$this->announce_date_update = $formatResult->announce_date_update;
+					$this->announce_description = $formatResult->announce_description;
 					$this->project_id = $formatResult->project_id;
 				
 					return true;
@@ -279,24 +299,28 @@
 
 				switch ($param){
 					
-					case $param == 'idannouncement':
-						$param = 'idannouncement';
+					case $param == 'announce_id':
+						$param = 'announce_id';
 						break;
 						
-					case $param == 'announcement_title':
-						$param = 'announcement_title';
+					case $param == 'announce_title':
+						$param = 'announce_title';
 						break;
 						
-					case $param == 'announcement_description':
-						$param = 'announcement_description';
+					case $param == 'announce_code':
+						$param = 'announce_code';
 						break;
 						
-					case $param == 'announcement_date_create':
-						$param = 'announcement_date_create';
+					case $param == 'announce_date_create':
+						$param = 'announce_date_create';
 						break;
 						
-					case $param == 'announcement_date_update':
-						$param = 'announcement_date_update';
+					case $param == 'announce_date_update':
+						$param = 'announce_date_update';
+						break;
+						
+					case $param == 'announce_description':
+						$param = 'announce_description';
 						break;
 						
 					case $param == 'project_id':
@@ -308,7 +332,7 @@
 						return false;
 				}
 
-				$sql =  'SELECT * FROM announcement WHERE '.$param.' = "'.$value.'"';
+				$sql =  'SELECT * FROM announces WHERE '.$param.' = "'.$value.'"';
 				$data = TzSQL::getPDO()->prepare($sql);
 				$data->execute();
 				$formatResult = $data->fetchAll(PDO::FETCH_ASSOC);
@@ -318,7 +342,7 @@
 
 					foreach ($formatResult as $key => $data) {
 
-						$tmpInstance = new announcementEntity();
+						$tmpInstance = new announcesEntity();
 
 						foreach ($data as $k => $value) {
 

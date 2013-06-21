@@ -3,7 +3,7 @@
 class roadmapController extends TzController {
     public function indexAction ($params) {
 
-        $project_name = intval($params['project']);
+        $project_name = $params['project'];
 
         $arianeParams = array('idProject' => 1,
             'nameProject' => 'Project 1',
@@ -16,7 +16,7 @@ class roadmapController extends TzController {
 
     public function detailAction ($params) {
 
-        $project_name = intval($params['project']);
+        $project_name = $params['project'];
 
         $arianeParams = array('idProject' => 1,
             'nameProject' => 'Project 1',
@@ -47,6 +47,8 @@ class roadmapController extends TzController {
         $roadmap->setProject_id($params['id']);
 
         $roadmap->Insert();
+
+        return true;
 
     }
 }

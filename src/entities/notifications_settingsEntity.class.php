@@ -3,52 +3,52 @@
 
 				
 
-		class logsEntity {
+		class notifications_settingsEntity {
 					
-			private $logs_key;
+			private $notifiaction_id;
 			
-			private $logs_value;
+			private $users_id;
 			
-			private $logs_date;
+			private $notifications_settings;
 			
 
 
 			/********************** GETTER ***********************/
 			
 
-			public function getLogs_key(){
-				return $this->logs_key;
+			public function getNotifiaction_id(){
+				return $this->notifiaction_id;
 			}
 
 			
 
-			public function getLogs_value(){
-				return $this->logs_value;
+			public function getUsers_id(){
+				return $this->users_id;
 			}
 
 			
 
-			public function getLogs_date(){
-				return $this->logs_date;
+			public function getNotifications_settings(){
+				return $this->notifications_settings;
 			}
 
 			
 			/********************** SETTER ***********************/
 
-			public function setLogs_key($val){
-				$this->logs_key =  $val;
+			public function setNotifiaction_id($val){
+				$this->notifiaction_id =  $val;
 			}
 
 					
 
-			public function setLogs_value($val){
-				$this->logs_value =  $val;
+			public function setUsers_id($val){
+				$this->users_id =  $val;
 			}
 
 					
 
-			public function setLogs_date($val){
-				$this->logs_date =  $val;
+			public function setNotifications_settings($val){
+				$this->notifications_settings =  $val;
 			}
 
 					
@@ -57,9 +57,9 @@
 
 			public function Delete(){
 
-				if(!empty($this->logs_key)){
+				if(!empty($this->users_id)){
 
-					$sql = "DELETE FROM logs WHERE logs_key = ".intval($this->logs_key).";";
+					$sql = "DELETE FROM notifications_settings WHERE users_id = ".intval($this->users_id).";";
 
 					$result = TzSQL::getPDO()->prepare($sql);
 					$result->execute();
@@ -77,12 +77,12 @@
 
 			public function Update(){
 
-				$sql = 'UPDATE `logs` SET `logs_key` = "'.$this->logs_key.'", `logs_value` = "'.$this->logs_value.'", `logs_date` = "'.$this->logs_date.'" WHERE logs_key = '.intval($this->logs_key);
+				$sql = 'UPDATE `notifications_settings` SET `notifiaction_id` = "'.$this->notifiaction_id.'", `users_id` = "'.$this->users_id.'", `notifications_settings` = "'.$this->notifications_settings.'" WHERE users_id = '.intval($this->users_id);
 
 				$result = TzSQL::getPDO()->prepare($sql);
 				$result->execute();
 
-				if(!empty($this->logs_key)){
+				if(!empty($this->users_id)){
 					if($result)
 						return true;
 					else{
@@ -100,16 +100,16 @@
 
 			public function Insert(){
 
-				$this->logs_key = '';
+				$this->users_id = '';
 
-				$sql = 'INSERT INTO logs (`logs_key`,`logs_value`,`logs_date`) VALUES ("'.$this->logs_key.'","'.$this->logs_value.'","'.$this->logs_date.'")';
+				$sql = 'INSERT INTO notifications_settings (`notifiaction_id`,`users_id`,`notifications_settings`) VALUES ("'.$this->notifiaction_id.'","'.$this->users_id.'","'.$this->notifications_settings.'")';
 
 				$result = TzSQL::getPDO()->prepare($sql);
 				$result->execute();
 
 				if($result){
 					$lastid = TzSQL::getPDO()->lastInsertId();
-					$this->logs_key = $lastid;
+					$this->users_id = $lastid;
 					return true;
 				}
 				else{
@@ -122,7 +122,7 @@
 			/********************** FindAll ***********************/
 			public function findAll(){
 
-				$sql = 'SELECT * FROM logs';
+				$sql = 'SELECT * FROM notifications_settings';
 				$result = TzSQL::getPDO()->prepare($sql);
 				$result->execute();
 				$formatResult = $result->fetchAll(PDO::FETCH_ASSOC);
@@ -130,7 +130,7 @@
 
 				foreach ($formatResult as $key => $data) {
 
-					$tmpInstance = new logsEntity();
+					$tmpInstance = new notifications_settingsEntity();
 
 					foreach ($data as $k => $value) {
 
@@ -155,16 +155,16 @@
 
 				switch ($param){
 					
-					case $param == 'logs_key':
-						$param = 'logs_key';
+					case $param == 'notifiaction_id':
+						$param = 'notifiaction_id';
 						break;
 						
-					case $param == 'logs_value':
-						$param = 'logs_value';
+					case $param == 'users_id':
+						$param = 'users_id';
 						break;
 						
-					case $param == 'logs_date':
-						$param = 'logs_date';
+					case $param == 'notifications_settings':
+						$param = 'notifications_settings';
 						break;
 						
 					default:
@@ -172,15 +172,15 @@
 						return false;
 				}
 
-				$sql =  'SELECT * FROM logs WHERE '.$param.' = "'.$value.'"';
+				$sql =  'SELECT * FROM notifications_settings WHERE '.$param.' = "'.$value.'"';
 				$data = TzSQL::getPDO()->prepare($sql);
 				$data->execute();
 				$result =  $data->fetch(PDO::FETCH_OBJ);
 
 				if(!empty($result)){
-					$this->logs_key = $result->logs_key;
-					$this->logs_value = $result->logs_value;
-					$this->logs_date = $result->logs_date;
+					$this->notifiaction_id = $result->notifiaction_id;
+					$this->users_id = $result->users_id;
+					$this->notifications_settings = $result->notifications_settings;
 					
 					return true;
 				}
@@ -195,14 +195,14 @@
 			/********************** Find(id) ***********************/
 			public function find($id){
 
-				$sql = 'SELECT * FROM logs WHERE logs_key = ' . $id;
+				$sql = 'SELECT * FROM notifications_settings WHERE users_id = ' . $id;
 				$result = TzSQL::getPDO()->prepare($sql);
 				$result->execute();
 				$formatResult = $result->fetch(PDO::FETCH_OBJ);
 				if(!empty($formatResult)){
-					$this->logs_key = $formatResult->logs_key;
-					$this->logs_value = $formatResult->logs_value;
-					$this->logs_date = $formatResult->logs_date;
+					$this->notifiaction_id = $formatResult->notifiaction_id;
+					$this->users_id = $formatResult->users_id;
+					$this->notifications_settings = $formatResult->notifications_settings;
 				
 					return true;
 				}
@@ -219,16 +219,16 @@
 
 				switch ($param){
 					
-					case $param == 'logs_key':
-						$param = 'logs_key';
+					case $param == 'notifiaction_id':
+						$param = 'notifiaction_id';
 						break;
 						
-					case $param == 'logs_value':
-						$param = 'logs_value';
+					case $param == 'users_id':
+						$param = 'users_id';
 						break;
 						
-					case $param == 'logs_date':
-						$param = 'logs_date';
+					case $param == 'notifications_settings':
+						$param = 'notifications_settings';
 						break;
 						
 					default:
@@ -236,7 +236,7 @@
 						return false;
 				}
 
-				$sql =  'SELECT * FROM logs WHERE '.$param.' = "'.$value.'"';
+				$sql =  'SELECT * FROM notifications_settings WHERE '.$param.' = "'.$value.'"';
 				$data = TzSQL::getPDO()->prepare($sql);
 				$data->execute();
 				$formatResult = $data->fetchAll(PDO::FETCH_ASSOC);
@@ -246,7 +246,7 @@
 
 					foreach ($formatResult as $key => $data) {
 
-						$tmpInstance = new logsEntity();
+						$tmpInstance = new notifications_settingsEntity();
 
 						foreach ($data as $k => $value) {
 

@@ -115,6 +115,13 @@ activity_newMember:
         only_connected: true
         ajax: true
 
+activity_newTicket:
+    pattern:    /{project}/new-ticket
+    controller: activity:newTicket
+    requirements:
+        only_connected: true
+        ajax: true
+
 # Roadmap Controller
 
 roadmap_index:

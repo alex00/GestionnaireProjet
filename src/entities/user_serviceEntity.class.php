@@ -3,38 +3,66 @@
 
 				
 
-		class rights_projectEntity {
+		class user_serviceEntity {
 					
-			private $right_key;
+			private $user_id;
 			
-			private $right_value;
+			private $service_id;
+			
+			private $project_id;
+			
+			private $rightKey;
 			
 
 
 			/********************** GETTER ***********************/
 			
 
-			public function getRight_key(){
-				return $this->right_key;
+			public function getUser_id(){
+				return $this->user_id;
 			}
 
 			
 
-			public function getRight_value(){
-				return $this->right_value;
+			public function getService_id(){
+				return $this->service_id;
+			}
+
+			
+
+			public function getProject_id(){
+				return $this->project_id;
+			}
+
+			
+
+			public function getRightKey(){
+				return $this->rightKey;
 			}
 
 			
 			/********************** SETTER ***********************/
 
-			public function setRight_key($val){
-				$this->right_key =  $val;
+			public function setUser_id($val){
+				$this->user_id =  $val;
 			}
 
 					
 
-			public function setRight_value($val){
-				$this->right_value =  $val;
+			public function setService_id($val){
+				$this->service_id =  $val;
+			}
+
+					
+
+			public function setProject_id($val){
+				$this->project_id =  $val;
+			}
+
+					
+
+			public function setRightKey($val){
+				$this->rightKey =  $val;
 			}
 
 					
@@ -43,9 +71,9 @@
 
 			public function Delete(){
 
-				if(!empty($this->right_key)){
+				if(!empty($this->project_id)){
 
-					$sql = "DELETE FROM rights_project WHERE right_key = ".intval($this->right_key).";";
+					$sql = "DELETE FROM user_service WHERE project_id = ".intval($this->project_id).";";
 
 					$result = TzSQL::getPDO()->prepare($sql);
 					$result->execute();
@@ -63,12 +91,12 @@
 
 			public function Update(){
 
-				$sql = 'UPDATE `rights_project` SET `right_key` = "'.$this->right_key.'", `right_value` = "'.$this->right_value.'" WHERE right_key = '.intval($this->right_key);
+				$sql = 'UPDATE `user_service` SET `user_id` = "'.$this->user_id.'", `service_id` = "'.$this->service_id.'", `project_id` = "'.$this->project_id.'", `rightKey` = "'.$this->rightKey.'" WHERE project_id = '.intval($this->project_id);
 
 				$result = TzSQL::getPDO()->prepare($sql);
 				$result->execute();
 
-				if(!empty($this->right_key)){
+				if(!empty($this->project_id)){
 					if($result)
 						return true;
 					else{
@@ -86,16 +114,16 @@
 
 			public function Insert(){
 
-				$this->right_key = '';
+				$this->project_id = '';
 
-				$sql = 'INSERT INTO rights_project (`right_key`,`right_value`) VALUES ("'.$this->right_key.'","'.$this->right_value.'")';
+				$sql = 'INSERT INTO user_service (`user_id`,`service_id`,`project_id`,`rightKey`) VALUES ("'.$this->user_id.'","'.$this->service_id.'","'.$this->project_id.'","'.$this->rightKey.'")';
 
 				$result = TzSQL::getPDO()->prepare($sql);
 				$result->execute();
 
 				if($result){
 					$lastid = TzSQL::getPDO()->lastInsertId();
-					$this->right_key = $lastid;
+					$this->project_id = $lastid;
 					return true;
 				}
 				else{
@@ -108,7 +136,7 @@
 			/********************** FindAll ***********************/
 			public function findAll(){
 
-				$sql = 'SELECT * FROM rights_project';
+				$sql = 'SELECT * FROM user_service';
 				$result = TzSQL::getPDO()->prepare($sql);
 				$result->execute();
 				$formatResult = $result->fetchAll(PDO::FETCH_ASSOC);
@@ -116,7 +144,7 @@
 
 				foreach ($formatResult as $key => $data) {
 
-					$tmpInstance = new rights_projectEntity();
+					$tmpInstance = new user_serviceEntity();
 
 					foreach ($data as $k => $value) {
 
@@ -141,12 +169,20 @@
 
 				switch ($param){
 					
-					case $param == 'right_key':
-						$param = 'right_key';
+					case $param == 'user_id':
+						$param = 'user_id';
 						break;
 						
-					case $param == 'right_value':
-						$param = 'right_value';
+					case $param == 'service_id':
+						$param = 'service_id';
+						break;
+						
+					case $param == 'project_id':
+						$param = 'project_id';
+						break;
+						
+					case $param == 'rightKey':
+						$param = 'rightKey';
 						break;
 						
 					default:
@@ -154,14 +190,16 @@
 						return false;
 				}
 
-				$sql =  'SELECT * FROM rights_project WHERE '.$param.' = "'.$value.'"';
+				$sql =  'SELECT * FROM user_service WHERE '.$param.' = "'.$value.'"';
 				$data = TzSQL::getPDO()->prepare($sql);
 				$data->execute();
 				$result =  $data->fetch(PDO::FETCH_OBJ);
 
 				if(!empty($result)){
-					$this->right_key = $result->right_key;
-					$this->right_value = $result->right_value;
+					$this->user_id = $result->user_id;
+					$this->service_id = $result->service_id;
+					$this->project_id = $result->project_id;
+					$this->rightKey = $result->rightKey;
 					
 					return true;
 				}
@@ -176,13 +214,15 @@
 			/********************** Find(id) ***********************/
 			public function find($id){
 
-				$sql = 'SELECT * FROM rights_project WHERE right_key = ' . $id;
+				$sql = 'SELECT * FROM user_service WHERE project_id = ' . $id;
 				$result = TzSQL::getPDO()->prepare($sql);
 				$result->execute();
 				$formatResult = $result->fetch(PDO::FETCH_OBJ);
 				if(!empty($formatResult)){
-					$this->right_key = $formatResult->right_key;
-					$this->right_value = $formatResult->right_value;
+					$this->user_id = $formatResult->user_id;
+					$this->service_id = $formatResult->service_id;
+					$this->project_id = $formatResult->project_id;
+					$this->rightKey = $formatResult->rightKey;
 				
 					return true;
 				}
@@ -199,12 +239,20 @@
 
 				switch ($param){
 					
-					case $param == 'right_key':
-						$param = 'right_key';
+					case $param == 'user_id':
+						$param = 'user_id';
 						break;
 						
-					case $param == 'right_value':
-						$param = 'right_value';
+					case $param == 'service_id':
+						$param = 'service_id';
+						break;
+						
+					case $param == 'project_id':
+						$param = 'project_id';
+						break;
+						
+					case $param == 'rightKey':
+						$param = 'rightKey';
 						break;
 						
 					default:
@@ -212,7 +260,7 @@
 						return false;
 				}
 
-				$sql =  'SELECT * FROM rights_project WHERE '.$param.' = "'.$value.'"';
+				$sql =  'SELECT * FROM user_service WHERE '.$param.' = "'.$value.'"';
 				$data = TzSQL::getPDO()->prepare($sql);
 				$data->execute();
 				$formatResult = $data->fetchAll(PDO::FETCH_ASSOC);
@@ -222,7 +270,7 @@
 
 					foreach ($formatResult as $key => $data) {
 
-						$tmpInstance = new rights_projectEntity();
+						$tmpInstance = new user_serviceEntity();
 
 						foreach ($data as $k => $value) {
 

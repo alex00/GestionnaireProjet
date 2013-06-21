@@ -3,17 +3,23 @@
 
 				
 
-		class user_service_projectEntity {
+		class user_notificationEntity {
 					
+			private $notification_id;
+			
 			private $user_id;
 			
-			private $project_id;
-			
-			private $service_id;
+			private $notification_view;
 			
 
 
 			/********************** GETTER ***********************/
+			
+
+			public function getNotification_id(){
+				return $this->notification_id;
+			}
+
 			
 
 			public function getUser_id(){
@@ -22,18 +28,18 @@
 
 			
 
-			public function getProject_id(){
-				return $this->project_id;
-			}
-
-			
-
-			public function getService_id(){
-				return $this->service_id;
+			public function getNotification_view(){
+				return $this->notification_view;
 			}
 
 			
 			/********************** SETTER ***********************/
+
+			public function setNotification_id($val){
+				$this->notification_id =  $val;
+			}
+
+					
 
 			public function setUser_id($val){
 				$this->user_id =  $val;
@@ -41,14 +47,8 @@
 
 					
 
-			public function setProject_id($val){
-				$this->project_id =  $val;
-			}
-
-					
-
-			public function setService_id($val){
-				$this->service_id =  $val;
+			public function setNotification_view($val){
+				$this->notification_view =  $val;
 			}
 
 					
@@ -57,9 +57,9 @@
 
 			public function Delete(){
 
-				if(!empty($this->service_id)){
+				if(!empty($this->user_id)){
 
-					$sql = "DELETE FROM user_service_project WHERE service_id = ".intval($this->service_id).";";
+					$sql = "DELETE FROM user_notification WHERE user_id = ".intval($this->user_id).";";
 
 					$result = TzSQL::getPDO()->prepare($sql);
 					$result->execute();
@@ -77,12 +77,12 @@
 
 			public function Update(){
 
-				$sql = 'UPDATE `user_service_project` SET `user_id` = "'.$this->user_id.'", `project_id` = "'.$this->project_id.'", `service_id` = "'.$this->service_id.'" WHERE service_id = '.intval($this->service_id);
+				$sql = 'UPDATE `user_notification` SET `notification_id` = "'.$this->notification_id.'", `user_id` = "'.$this->user_id.'", `notification_view` = "'.$this->notification_view.'" WHERE user_id = '.intval($this->user_id);
 
 				$result = TzSQL::getPDO()->prepare($sql);
 				$result->execute();
 
-				if(!empty($this->service_id)){
+				if(!empty($this->user_id)){
 					if($result)
 						return true;
 					else{
@@ -100,16 +100,16 @@
 
 			public function Insert(){
 
-				$this->service_id = '';
+				$this->user_id = '';
 
-				$sql = 'INSERT INTO user_service_project (`user_id`,`project_id`,`service_id`) VALUES ("'.$this->user_id.'","'.$this->project_id.'","'.$this->service_id.'")';
+				$sql = 'INSERT INTO user_notification (`notification_id`,`user_id`,`notification_view`) VALUES ("'.$this->notification_id.'","'.$this->user_id.'","'.$this->notification_view.'")';
 
 				$result = TzSQL::getPDO()->prepare($sql);
 				$result->execute();
 
 				if($result){
 					$lastid = TzSQL::getPDO()->lastInsertId();
-					$this->service_id = $lastid;
+					$this->user_id = $lastid;
 					return true;
 				}
 				else{
@@ -122,7 +122,7 @@
 			/********************** FindAll ***********************/
 			public function findAll(){
 
-				$sql = 'SELECT * FROM user_service_project';
+				$sql = 'SELECT * FROM user_notification';
 				$result = TzSQL::getPDO()->prepare($sql);
 				$result->execute();
 				$formatResult = $result->fetchAll(PDO::FETCH_ASSOC);
@@ -130,7 +130,7 @@
 
 				foreach ($formatResult as $key => $data) {
 
-					$tmpInstance = new user_service_projectEntity();
+					$tmpInstance = new user_notificationEntity();
 
 					foreach ($data as $k => $value) {
 
@@ -155,16 +155,16 @@
 
 				switch ($param){
 					
+					case $param == 'notification_id':
+						$param = 'notification_id';
+						break;
+						
 					case $param == 'user_id':
 						$param = 'user_id';
 						break;
 						
-					case $param == 'project_id':
-						$param = 'project_id';
-						break;
-						
-					case $param == 'service_id':
-						$param = 'service_id';
+					case $param == 'notification_view':
+						$param = 'notification_view';
 						break;
 						
 					default:
@@ -172,15 +172,15 @@
 						return false;
 				}
 
-				$sql =  'SELECT * FROM user_service_project WHERE '.$param.' = "'.$value.'"';
+				$sql =  'SELECT * FROM user_notification WHERE '.$param.' = "'.$value.'"';
 				$data = TzSQL::getPDO()->prepare($sql);
 				$data->execute();
 				$result =  $data->fetch(PDO::FETCH_OBJ);
 
 				if(!empty($result)){
+					$this->notification_id = $result->notification_id;
 					$this->user_id = $result->user_id;
-					$this->project_id = $result->project_id;
-					$this->service_id = $result->service_id;
+					$this->notification_view = $result->notification_view;
 					
 					return true;
 				}
@@ -195,14 +195,14 @@
 			/********************** Find(id) ***********************/
 			public function find($id){
 
-				$sql = 'SELECT * FROM user_service_project WHERE service_id = ' . $id;
+				$sql = 'SELECT * FROM user_notification WHERE user_id = ' . $id;
 				$result = TzSQL::getPDO()->prepare($sql);
 				$result->execute();
 				$formatResult = $result->fetch(PDO::FETCH_OBJ);
 				if(!empty($formatResult)){
+					$this->notification_id = $formatResult->notification_id;
 					$this->user_id = $formatResult->user_id;
-					$this->project_id = $formatResult->project_id;
-					$this->service_id = $formatResult->service_id;
+					$this->notification_view = $formatResult->notification_view;
 				
 					return true;
 				}
@@ -219,16 +219,16 @@
 
 				switch ($param){
 					
+					case $param == 'notification_id':
+						$param = 'notification_id';
+						break;
+						
 					case $param == 'user_id':
 						$param = 'user_id';
 						break;
 						
-					case $param == 'project_id':
-						$param = 'project_id';
-						break;
-						
-					case $param == 'service_id':
-						$param = 'service_id';
+					case $param == 'notification_view':
+						$param = 'notification_view';
 						break;
 						
 					default:
@@ -236,7 +236,7 @@
 						return false;
 				}
 
-				$sql =  'SELECT * FROM user_service_project WHERE '.$param.' = "'.$value.'"';
+				$sql =  'SELECT * FROM user_notification WHERE '.$param.' = "'.$value.'"';
 				$data = TzSQL::getPDO()->prepare($sql);
 				$data->execute();
 				$formatResult = $data->fetchAll(PDO::FETCH_ASSOC);
@@ -246,7 +246,7 @@
 
 					foreach ($formatResult as $key => $data) {
 
-						$tmpInstance = new user_service_projectEntity();
+						$tmpInstance = new user_notificationEntity();
 
 						foreach ($data as $k => $value) {
 

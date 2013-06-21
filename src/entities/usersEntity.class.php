@@ -11,8 +11,6 @@
 			
 			private $password;
 			
-			private $user_img_url;
-			
 			private $user_login;
 			
 			private $user_login_code;
@@ -40,12 +38,6 @@
 
 			public function getPassword(){
 				return $this->password;
-			}
-
-			
-
-			public function getUser_img_url(){
-				return $this->user_img_url;
 			}
 
 			
@@ -89,12 +81,6 @@
 
 			public function setPassword($val){
 				$this->password =  $val;
-			}
-
-					
-
-			public function setUser_img_url($val){
-				$this->user_img_url =  $val;
 			}
 
 					
@@ -147,7 +133,7 @@
 
 			public function Update(){
 
-				$sql = 'UPDATE `users` SET `id` = "'.$this->id.'", `user_mail` = "'.$this->user_mail.'", `password` = "'.$this->password.'", `user_img_url` = "'.$this->user_img_url.'", `user_login` = "'.$this->user_login.'", `user_login_code` = "'.$this->user_login_code.'", `user_date_create` = "'.$this->user_date_create.'", `acl_group_id` = "'.$this->acl_group_id.'" WHERE id = '.intval($this->id);
+				$sql = 'UPDATE `users` SET `id` = "'.$this->id.'", `user_mail` = "'.$this->user_mail.'", `password` = "'.$this->password.'", `user_login` = "'.$this->user_login.'", `user_login_code` = "'.$this->user_login_code.'", `user_date_create` = "'.$this->user_date_create.'", `acl_group_id` = "'.$this->acl_group_id.'" WHERE id = '.intval($this->id);
 
 				$result = TzSQL::getPDO()->prepare($sql);
 				$result->execute();
@@ -172,7 +158,7 @@
 
 				$this->id = '';
 
-				$sql = 'INSERT INTO users (`id`,`user_mail`,`password`,`user_img_url`,`user_login`,`user_login_code`,`user_date_create`,`acl_group_id`) VALUES ("'.$this->id.'","'.$this->user_mail.'","'.$this->password.'","'.$this->user_img_url.'","'.$this->user_login.'","'.$this->user_login_code.'","'.$this->user_date_create.'","'.$this->acl_group_id.'")';
+				$sql = 'INSERT INTO users (`id`,`user_mail`,`password`,`user_login`,`user_login_code`,`user_date_create`,`acl_group_id`) VALUES ("'.$this->id.'","'.$this->user_mail.'","'.$this->password.'","'.$this->user_login.'","'.$this->user_login_code.'","'.$this->user_date_create.'","'.$this->acl_group_id.'")';
 
 				$result = TzSQL::getPDO()->prepare($sql);
 				$result->execute();
@@ -237,10 +223,6 @@
 						$param = 'password';
 						break;
 						
-					case $param == 'user_img_url':
-						$param = 'user_img_url';
-						break;
-						
 					case $param == 'user_login':
 						$param = 'user_login';
 						break;
@@ -271,7 +253,6 @@
 					$this->id = $result->id;
 					$this->user_mail = $result->user_mail;
 					$this->password = $result->password;
-					$this->user_img_url = $result->user_img_url;
 					$this->user_login = $result->user_login;
 					$this->user_login_code = $result->user_login_code;
 					$this->user_date_create = $result->user_date_create;
@@ -298,7 +279,6 @@
 					$this->id = $formatResult->id;
 					$this->user_mail = $formatResult->user_mail;
 					$this->password = $formatResult->password;
-					$this->user_img_url = $formatResult->user_img_url;
 					$this->user_login = $formatResult->user_login;
 					$this->user_login_code = $formatResult->user_login_code;
 					$this->user_date_create = $formatResult->user_date_create;
@@ -329,10 +309,6 @@
 						
 					case $param == 'password':
 						$param = 'password';
-						break;
-						
-					case $param == 'user_img_url':
-						$param = 'user_img_url';
 						break;
 						
 					case $param == 'user_login':

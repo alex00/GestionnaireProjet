@@ -1,5 +1,5 @@
 {% if params['idProject']%}
-    <a class="linkRed" href="/project/{{params['idProject']}}">{{params['nameProject']|capitalize}}</a>
+    <a class="linkRed" href="/{{ params['codeProject'] }}">{{params['nameProject']|capitalize}}</a>
 {% elseif params['category']%}
     <a class="linkRed" href="/">Home</a>
 {% else %}

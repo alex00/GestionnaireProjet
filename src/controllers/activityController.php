@@ -1,6 +1,8 @@
 <?php 
 
 class activityController extends TzController {
+
+
     public function indexAction ($params) {
         $project_name = intval($params['project']);
 
@@ -38,21 +40,31 @@ class activityController extends TzController {
         $project->setProject_description($params['desc']);
         $project->setProject_date_create(date('Y-m-d'));
         $project->setProject_date_update(date('Y-m-d'));
-        $code = trim(str_replace(" ","-",$params['name']));
+        $code = trim(str_replace(" ","-",strtolower($params['name'])));
         $project->setProject_code($code);
 
         $project->Insert();
 
-        /*$newProject = tzSQL::getEntity('projects');
-        $newProject->findOneBy('project_name',$params['name']);
 
-*/
         $service = tzSQL::getEntity('services');
 
-        $service->setProject_id(1);
-        $service->setService_name('no-affiliated');
-        $service->setService_code('no-affiliated');
+        $service->setService_name('not-affiliated');
+        $service->setService_code('not-affiliated');
+
         $service->Insert();
+
+        $linkService = tzSQL::getEntity('user_service');
+
+
+        $user = TzAuth::readUser();
+
+        $linkService->setUser_id($user['id']);
+        $linkService->setService_id($service->getService_id());
+        $linkService->setProject_id($project->getProject_id());
+        $linkService->setRightKey(1);
+
+        // a modifier - constraint fail
+        //$linkService->Insert();
 
         echo $code;
 
@@ -76,6 +88,16 @@ class activityController extends TzController {
 
         $announce->Insert();
 
+        $user = tzAuth::readSession('User');
+
+        $paramsNotif = array('announce_id' => $announce->getAnnounce_id(),
+                             'user_creator_id' => $user['id'],
+                             'project_id' => $announce->getProject_id());
+
+        //self::addNotif('newAnnounce', $paramsNotif);
+
+
+        return true;
     }
 
 
@@ -91,14 +113,11 @@ class activityController extends TzController {
 
             if ($login == 'null')
                 continue;
-            $service->setService_name($login);
-            $code = trim(str_replace(" ","-",$login));
-            $service->setService_code(strtolower(($code)));
 
-            $service->setProject_id($params['id']);
-
-            $service->Insert();
+            //Add notif
         }
+
+        return true;
     }
 
 
@@ -113,6 +132,45 @@ class activityController extends TzController {
         $service->setProject_id($params['id']);
 
         $service->Insert();
+        //Add notif
+
+        return true;
+
+    }
+
+
+    public function newTicketAction () {
+
+        $tickets = tzSQL::getEntity('tickets');
+
+        $tickets->setTicket_name($_POST['name']);
+        $code = trim(str_replace(" ","-",$_POST['name']));
+        $tickets->setTicket_code(strtolower($code));
+        $tickets->setTicket_date_create(date('Y-m-d'));
+        $tickets->setTicket_date_update(date('Y-m-d'));
+        $tickets->setTicket_deadline($_POST['deadline']);
+        $tickets->setTicket_spend_time(0);
+        $tickets->setTicket_progress(0);
+        $tickets->setTicket_description($_POST['desc']);
+
+        $tickets->setProject_id($_POST['id']);
+        $tickets->setPriority_id($_POST['priority']);
+        $tickets->setStatut_id(1);
+        $tickets->setTracker_id($_POST['tracker']);
+        $tickets->setRoadmap_id($_POST['roadmap']);
+
+        $tickets->Insert();
+
+        $receiver = tzSQL::getEntity('users_receive_tickets');
+
+        $receiver->setUser_id($_POST['assigned']);
+        $receiver->setTicket_id($tickets->getTicket_id());
+        // a modifier - constraint fail
+
+        $receiver->Insert();
+
+        //Add notif
+        return true;
 
     }
 }
