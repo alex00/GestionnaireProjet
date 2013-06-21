@@ -1,5 +1,8 @@
 <?php 
 
+use Components\Auth\TzAuth;
+use Components\Controller\TzController;
+
 class roadmapController extends TzController {
     public function indexAction ($params) {
 

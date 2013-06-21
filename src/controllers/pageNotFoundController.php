@@ -4,6 +4,9 @@
  * when no parameters are passed.
  * You can change is behavior, do what you want.
  */
+use Components\Auth\TzAuth;
+use Components\Controller\TzController;
+
 class pageNotFoundController extends TzController {
 
 	public function showAction () {

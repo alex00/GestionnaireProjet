@@ -1,4 +1,6 @@
 <?php 
+use Components\Auth\TzAuth;
+use Components\Controller\TzController;
 
 class activityController extends TzController {
 

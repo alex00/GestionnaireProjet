@@ -7,7 +7,7 @@ template:    twig
 # database configuration
 database:
     user:		root
-    password:
+    password:	sdiallo88	
     dbname:		projectmanager
     host:		localhost
     engine:		mysql
@@ -16,7 +16,7 @@ database:
 language:    fr
 
 # environnement (dev | prod)
-environnement:    dev
+environnement:    prod
 
 # Permit to check if a project is already started
 existingproject:    true

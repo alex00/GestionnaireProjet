@@ -1,4 +1,6 @@
 <?php
+use Components\Auth\TzAuth;
+use Components\Controller\TzController;
 
 class homeController extends TzController {
     public function indexAction () {

@@ -1,5 +1,9 @@
 <?php 
 
+
+use Components\Auth\TzAuth;
+use Components\Controller\TzController;
+
 class ticketController extends TzController {
 	 public function indexAction ($params) {
 
