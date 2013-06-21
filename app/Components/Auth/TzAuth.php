@@ -64,7 +64,7 @@ class TzAuth {
         }
     }
 
-    private static function addUserSession($data, $value = null){
+    public static function addUserSession($data, $value = null){
         if(is_null($value)){
             foreach ($data as $field => $value) {
                 $_SESSION['User'][$field] = $value;

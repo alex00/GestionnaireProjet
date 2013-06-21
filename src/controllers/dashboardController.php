@@ -1,6 +1,7 @@
 <?php 
 use Components\Auth\TzAuth;
 use Components\Controller\TzController;
+use src\helpers\guardian;
 
 class dashboardController extends TzController {
 
@@ -43,10 +44,10 @@ class dashboardController extends TzController {
 
 		 $project_code = $params['project'];
 
-         $project = Guardian::guardEntry($project_code);
+         //$project = Guardian::guardEntry($project_code);
 
-         if (!$project)
-            return(tzController::CallController("pageNotFound", "show"));
+         //if (!$project)
+         //   return(tzController::CallController("pageNotFound", "show"));
 
          $modalTicket = $this->getModalTickets();
 
