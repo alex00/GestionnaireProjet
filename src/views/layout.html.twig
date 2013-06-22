@@ -26,15 +26,15 @@
     <script type="text/javascript" language="javascript" src="/js/toolBar/toolBar.js" ></script>
     <script type="text/javascript" language="javascript" src="/js/toolBar/toolBarController.js" ></script>
 
-
 </head>
 
 {% endblock %}
 <body>
+<input type="hidden" value="{% if alert is defined and alert == true %}{{ alert }}{% else %}false{% endif %}" name="alert" id="alertHeader"/>
 {% if SESSION.User is defined %}
+    {% set User = SESSION.User %}
     {% set currentProject = SESSION.User.currentProject %}
 {% endif %}
-
 <header>
     <div id="panel">
         <div class="navbar navbar-inverse navbar-fixed-top" id="advanced">
@@ -48,16 +48,22 @@
                         <li class="divider-vertical"></li>
                         <li>
                             <div class=" headerAdminBlock">
-                                <a data-target="#" id="HeaderAction" onclick="javascript:toolBarController(this.id,{% if homeContext == true %}true{% else %}false{% endif %});" class="pull-left headerAdminButton" >+</a>
+                                <a data-target="#" id="HeaderAction" onclick="javascript:toolBarController(this.id,{% if homeContext == true %}'home'{% else %}{{ User.acl_group_id }}{% endif %});" class="pull-left headerAdminButton" >+</a>
                                 <div class=" pull-left headerAdminLinks" >
                                     {% if homeContext == true %}
                                         <a id="addProjectLink" class="linkBlack pull-left" data-toggle="modal" href="#add-project" onclick="javascript:toolBarLinks(this.id,null,null);">Project</a>
                                     {% else %}
-                                        <a id="addTicketLink" class="linkBlack pull-left" data-toggle="modal" data-target="#modalHeadersLarge">Ticket</a>
-                                        <a id="addRoadmapLink" class="linkBlack pull-left" data-toggle="modal" href="#add-roadmap" onclick="javascript:toolBarLinks(this.id,'{{ currentProject.project_id }}','{{ currentProject.project_code }}');">Roadmap</a>
-                                        <a id="addAnnounceLink" class="linkBlack pull-left" data-toggle="modal" href="#add-announce" onclick="javascript:toolBarLinks(this.id,'{{ currentProject.project_id }}','{{ currentProject.project_code }}');">Announce</a>
-                                        <a id="addMemberLink" class="linkBlack pull-left" data-toggle="modal" href="#add-member" onclick="javascript:toolBarLinks(this.id,'{{ currentProject.project_id }}','{{ currentProject.project_code }}');">Member</a>
-                                        <a id="addServiceLink" class="linkBlack pull-left" data-toggle="modal" href="#add-SERVICE" onclick="javascript:toolBarLinks(this.id,'{{ currentProject.project_id }}','{{ currentProject.project_code }}');">Service</a>
+
+                                        {% if User.acl_group_id <= 3 %}
+                                            <a id="addTicketLink" class="linkBlack pull-left" data-toggle="modal" data-target="#modalHeadersLarge">Ticket</a>
+                                        {% endif %}
+
+                                        {% if User.acl_group_id == 2 or User.acl_group_id == 1 %}
+                                            <a id="addRoadmapLink" class="linkBlack pull-left" data-toggle="modal" href="#add-roadmap" onclick="javascript:toolBarLinks(this.id,'{{ currentProject.project_id }}','{{ currentProject.project_code }}');">Roadmap</a>
+                                            <a id="addServiceLink" class="linkBlack pull-left" data-toggle="modal" href="#add-SERVICE" onclick="javascript:toolBarLinks(this.id,'{{ currentProject.project_id }}','{{ currentProject.project_code }}');">Service</a>
+                                            <a id="addMemberLink" class="linkBlack pull-left" data-toggle="modal" href="#add-member" onclick="javascript:toolBarLinks(this.id,'{{ currentProject.project_id }}','{{ currentProject.project_code }}');">Member</a>
+                                            <a id="addAnnounceLink" class="linkBlack pull-left" data-toggle="modal" href="#add-announce" onclick="javascript:toolBarLinks(this.id,'{{ currentProject.project_id }}','{{ currentProject.project_code }}');">Announce</a>
+                                        {% endif %}
                                     {% endif %}
                                 </div>
                              </div>
@@ -231,6 +237,8 @@
 </div>
         {% if currentPage == 'dashboard' %}
             <input type='hidden' name="modalReferer" id="modalReferer" value="{{ currentProject.project_code }}" />
+        {% elseif detailContext %}
+            <input type='hidden' name="modalReferer" id="modalReferer" value="{{ currentProject.project_code }}/{{ currentPage }}/{{ detailType }}/{{ detailCode }}" />
         {% else %}
             <input type='hidden' name="modalReferer" id="modalReferer" value="{{ currentProject.project_code }}/{{ currentPage }}" />
         {% endif %}

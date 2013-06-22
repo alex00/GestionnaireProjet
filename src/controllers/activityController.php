@@ -8,16 +8,29 @@ class activityController extends TzController {
 
 
     public function indexAction ($params) {
-        $project_name = intval($params['project']);
+        $project_code = $params['project'];
 
+        $project = Guardian::guardEntryProject($project_code);
+        if (!$project)
+            return(tzController::CallController("pageNotFound", "show"));
 
-        $arianeParams = array('idProject' => 1,
-            'nameProject' => 'Project 1',
+        $modalTicket = Guardian::guardModalTicket();
+
+        $user = TzAuth::readUser();
+
+        $arianeParams = array('idProject' => $user['currentProject']->getProject_id(),
+            'nameProject' => $user['currentProject']->getProject_name(),
+            'codeProject' => $user['currentProject']->getProject_code(),
             'category' => 'Activity');
 
+        $alert = Guardian::guardAlert();
+
         $this->tzRender->run('/templates/activity', array('header' => 'headers/activityHeader.html.twig',
-                                                                        'subMenuCurrent' => 'activity',
-                                                                        'paramsAriane' => $arianeParams));
+            'modalTicket' => $modalTicket,
+            'alert' => $alert,
+            'currentPage' => 'activity',
+            'subMenuCurrent' => 'activity',
+            'paramsAriane' => $arianeParams));
     }
 
     public function detailAction ($params) {
@@ -141,6 +154,8 @@ class activityController extends TzController {
         $service->Insert();
         //Add notif
 
+        TzAuth::addUserSession(array('alert' => 'service'));
+
         return true;
 
     }
@@ -176,6 +191,7 @@ class activityController extends TzController {
         $receiver->Insert();
 
         //Add notif
+        TzAuth::addUserSession(array('alert' => 'ticket'));
         return true;
 
     }

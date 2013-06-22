@@ -6,17 +6,31 @@ use Components\SQLEntities\TzSQL;
 use src\helpers\Guardian;
 
 class roadmapController extends TzController {
+
     public function indexAction ($params) {
 
-        $project_name = $params['project'];
+        $project_code = $params['project'];
+        $project = Guardian::guardEntryProject($project_code);
+        if (!$project)
+            return(tzController::CallController("pageNotFound", "show"));
 
-        $arianeParams = array('idProject' => 1,
-            'nameProject' => 'Project 1',
+        $modalTicket = Guardian::guardModalTicket();
+
+        $user = TzAuth::readUser();
+
+        $arianeParams = array('idProject' => $user['currentProject']->getProject_id(),
+            'nameProject' => $user['currentProject']->getProject_name(),
+            'codeProject' => $user['currentProject']->getProject_code(),
             'category' => 'Roadmaps');
 
+        $alert = Guardian::guardAlert();
+
         $this->tzRender->run('/templates/roadmap', array('header' => 'headers/roadmapHeader.html.twig',
-                                                                     'subMenuCurrent' => 'roadmaps',
-                                                                     'paramsAriane' => $arianeParams));
+            'modalTicket' => $modalTicket,
+            'alert' => $alert,
+            'currentPage' => 'roadmaps',
+            'subMenuCurrent' => 'roadmaps',
+            'paramsAriane' => $arianeParams));
     }
 
     public function detailAction ($params) {

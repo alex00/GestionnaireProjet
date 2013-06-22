@@ -2,7 +2,19 @@ var toolBar = (function() {
     var constructeur = function() {
 
         // quelques propriétés
-        this.locate = {HeaderAction: {sizeSmall: 120,sizeLarge: 485, position: 0}};
+        this.locate = {HeaderAction: { right: { 1:
+                                                {sizeSmall: 120,
+                                                 sizeLarge: 485},
+                                                2:
+                                                {sizeSmall: 120,
+                                                 sizeLarge: 485},
+                                                3:
+                                                {sizeSmall: 120,
+                                                sizeLarge: 120}
+                                                },
+                                       position: 0}
+                        };
+
         this.doing = false;
         this.template_folder = "/js/toolBar/";
         this.alerting = false;

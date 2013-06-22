@@ -4,19 +4,30 @@
 use Components\Auth\TzAuth;
 use Components\Controller\TzController;
 use Components\SQLEntities\TzSQL;
+use src\helpers\Guardian;
 
 class ticketController extends TzController {
 	 public function indexAction ($params) {
 
-         $project_name = intval($params['project']);
+         $project_code = $params['project'];
 
-         $arianeParams = array('idProject' => 1,
-             'nameProject' => 'Project 1',
-             'category' => 'tickets');
+         $project = Guardian::guardEntryProject($project_code);
+         if (!$project)
+             return(tzController::CallController("pageNotFound", "show"));
+         $modalTicket = Guardian::guardModalTicket();
+
+         $user = TzAuth::readUser();
+
+         $arianeParams = array('idProject' => $user['currentProject']->getProject_id(),
+             'nameProject' => $user['currentProject']->getProject_name(),
+             'codeProject' => $user['currentProject']->getProject_code(),
+             'category' => 'Tickets');
 
          $this->tzRender->run('/templates/ticket', array('header' => 'headers/ticketHeader.html.twig',
-                                                                     'subMenuCurrent' => 'tickets',
-                                                                     'paramsAriane' => $arianeParams));
+                                                         'modalTicket' => $modalTicket,
+                                                         'currentPage' => 'tickets',
+                                                         'subMenuCurrent' => 'tickets',
+                                                         'paramsAriane' => $arianeParams));
 	}
 
     public function detailAction ($params) {

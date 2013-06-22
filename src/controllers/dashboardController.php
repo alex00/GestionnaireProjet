@@ -6,7 +6,6 @@ use src\helpers\Guardian;
 
 class dashboardController extends TzController {
 
-
 	 public function indexAction ($params) {
 
 		 $project_code = $params['project'];
@@ -22,8 +21,11 @@ class dashboardController extends TzController {
                                  'codeProject' => $user['currentProject']->getProject_code(),
                                 'category' => 'Dashboard');
 
+         $alert = Guardian::guardAlert();
+
          $this->tzRender->run('/templates/dashboard', array('header' => 'headers/dashboardHeader.html.twig',
                                                             'modalTicket' => $modalTicket,
+                                                            'alert' => $alert,
                                                             'currentPage' => 'dashboard',
                                                             'subMenuCurrent' => 'dashboard',
                                                             'paramsAriane' => $arianeParams));

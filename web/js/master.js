@@ -11,5 +11,11 @@ $(document).ready(function() {
         "bAutoWidth": false
     } );
 
+    var alertHeader = $("#alertHeader").val();
+
+
+    if (alertHeader != false){
+        toolBarAlert(alertHeader);
+    }
 
 } );

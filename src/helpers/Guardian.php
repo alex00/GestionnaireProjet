@@ -55,6 +55,19 @@ class Guardian  {
         }
     }
 
+    public static function guardAlert(){
+
+        $user = TzAuth::readUser();
+
+        if (!isset($user['alert']))
+            return false;
+
+        TzAuth::addUserSession(array('alert' => false));
+
+        return true;
+
+    }
+
     public static function guardAddNotif($type, $params){
 
         if (!is_array($params))

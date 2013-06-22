@@ -1,5 +1,5 @@
 
-function toolBarController(id, homeContext) {
+function toolBarController(id, contextRight ) {
 
     var toolBarAdmin = toolBar.getInstance();
 
@@ -13,15 +13,15 @@ function toolBarController(id, homeContext) {
     var parent = $("#"+id).parent();
     var links = $(parent).children(".headerAdminLinks");
 
-    if( homeContext == true)
-        var size = 'sizeSmall';
-    else
-        var size = 'sizeLarge';
+    if( contextRight == 'home')
+        var size = 120;
+    else if (contextRight == 1 || contextRight == 2 || contextRight == 3)
+        var size = toolBarAdmin.locate[id]['right'][contextRight]['sizeLarge'];
 
     if (toolBarAdmin.locate[id].position == 0) {
 
         $(parent).animate({
-            'min-width': '+='+toolBarAdmin.locate[id][size]
+            'min-width': '+='+size
         }, 1000, function () {
 
             links.css('display', 'block').animate({'opacity': 10}, 800);
@@ -36,7 +36,7 @@ function toolBarController(id, homeContext) {
         }, 800, function () {
             $(links).css("display","none");
             $(parent).animate({
-                'min-width': '-='+toolBarAdmin.locate[id][size]}, 1000, function(){
+                'min-width': '-='+size}, 1000, function(){
                 toolBarAdmin.doing = false;
                 toolBarAdmin.locate[id].position = 0;
                 })
@@ -145,12 +145,8 @@ function toolBarSubmit (id, id_project,  name_project) {
 
             var code = $("#modalReferer").val();
 
-            if (id == 'project')
-                code = name.toLowerCase().replace(/ /g,"-");
-
             toolBarAdmin.alerting = true;
             toolBarAdmin.alert_type = id;
-
 
             window.location.href = '/'+code;
             return;

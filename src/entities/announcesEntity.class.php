@@ -1,4 +1,5 @@
 <?php
+
 		use Components\SQLEntities\TzSQL;
 		use Components\DebugTools\DebugTool;
 
