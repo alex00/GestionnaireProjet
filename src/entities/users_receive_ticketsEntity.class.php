@@ -309,7 +309,55 @@
 				}
 			}
 
-					
+            public function countAssignedTickets($user_id){
+
+                $sql = 'SELECT COUNT( users_receive_tickets.ticket_id) as nb_assigned FROM  `users_receive_tickets` LEFT JOIN tickets ON users_receive_tickets.ticket_id = tickets.ticket_id WHERE users_receive_tickets.user_id ='.$user_id.' AND tickets.statut_id =1';
+
+                $result = TzSQL::getPDO()->prepare($sql);
+                $result->execute();
+                $nb = $result->fetch(PDO::FETCH_OBJ);
+
+                return $nb->nb_assigned;
+            }
+            public function countInProgressTickets($user_id){
+                $sql = 'SELECT COUNT( users_receive_tickets.ticket_id) as nb_inprogress FROM  `users_receive_tickets` LEFT JOIN tickets ON users_receive_tickets.ticket_id = tickets.ticket_id WHERE users_receive_tickets.user_id ='.$user_id.' AND tickets.statut_id =2';
+
+                $result = TzSQL::getPDO()->prepare($sql);
+                $result->execute();
+                $nb = $result->fetch(PDO::FETCH_OBJ);
+
+                return $nb->nb_inprogress;
+            }
+
+            public function countResolvedTickets($user_id){
+                $sql = 'SELECT COUNT( users_receive_tickets.ticket_id) as nb_resolved FROM  `users_receive_tickets` LEFT JOIN tickets ON users_receive_tickets.ticket_id = tickets.ticket_id WHERE users_receive_tickets.user_id ='.$user_id.' AND tickets.statut_id =3';
+
+                $result = TzSQL::getPDO()->prepare($sql);
+                $result->execute();
+                $nb = $result->fetch(PDO::FETCH_OBJ);
+
+                return $nb->nb_resolved;
+            }
+
+            public function countClosedTickets($user_id){
+                $sql = 'SELECT COUNT( users_receive_tickets.ticket_id) as nb_closed FROM  `users_receive_tickets` LEFT JOIN tickets ON users_receive_tickets.ticket_id = tickets.ticket_id WHERE users_receive_tickets.user_id ='.$user_id.' AND tickets.statut_id =4';
+
+                $result = TzSQL::getPDO()->prepare($sql);
+                $result->execute();
+                $nb = $result->fetch(PDO::FETCH_OBJ);
+
+                return $nb->nb_closed;
+            }
+
+            public function countCanceledTickets($user_id){
+                $sql = 'SELECT COUNT( users_receive_tickets.ticket_id) as nb_canceled FROM  `users_receive_tickets` LEFT JOIN tickets ON users_receive_tickets.ticket_id = tickets.ticket_id WHERE users_receive_tickets.user_id ='.$user_id.' AND tickets.statut_id =5';
+
+                $result = TzSQL::getPDO()->prepare($sql);
+                $result->execute();
+                $nb = $result->fetch(PDO::FETCH_OBJ);
+
+                return $nb->nb_canceled;
+            }
 
 		}
 

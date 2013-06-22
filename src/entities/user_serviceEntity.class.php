@@ -367,8 +367,26 @@
 				}
 			}
 
-					
+            public function countCreatedProjects($user_id){
 
+                $sql = 'SELECT COUNT(`project_id`) AS nb_project FROM user_service WHERE user_id ='.$user_id.' AND rightKey = 1';
+
+                $result = TzSQL::getPDO()->prepare($sql);
+                $result->execute();
+                $nb = $result->fetch(PDO::FETCH_OBJ);
+
+                return $nb->nb_project;
+            }
+
+            public function countAffiliatedProjects($user_id){
+
+                $sql = 'SELECT COUNT(`project_id`) AS nb_project FROM user_service WHERE user_id ='.$user_id.' AND rightKey != 1';
+
+                $result = TzSQL::getPDO()->prepare($sql);
+                $result->execute();
+                $nb = $result->fetch(PDO::FETCH_OBJ);
+                return $nb->nb_project;
+            }
 		}
 
 	?>
