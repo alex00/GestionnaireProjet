@@ -5,14 +5,14 @@
             <h2>Dashboard</h2>
             <div id="otherInfos">
                 <p class="nameHeaderHome" style="color:#a0a0a0;">
-                    Project Sefiolsjef
+                    {{ currentProject.project_name }}
                 </p>
                 <p class="projectHeaderHome">
-                    Dsoiefiej hs ef ew iwjsp fjpo opwsj fojwso fjosjefow fjwsp fosj eojws fws ef..Dsoiefiej hs ef ew iwjsp fjpo opwsj fojwso fjosjefow fjwsp fosj eojws fws ef..Dsoiefiej hs ef ew iwjsp fjpo opwsj fojwso fjosjefow fjwsp fosj eojws fws ef..
+                    {{ currentProject.project_name }}
                 </p>
                 <ul class="tasksHeaderHome">
-                    <li>Administrators : <a class="linkBlack" href="/">AlexKtf</a>, <a class="linkBlack" href="/">sefsejf</a>, <a class="linkBlack" href="/">SouleyD</a></li>
-                    <li>Creation : 19/01/1933</li>
+                    <li>Creator : <a class="linkBlack" href="/user/{{ currentProject.creator_code }}">{{ currentProject.creator_login|capitalize }}</a></li>
+                    <li>Creation : {{ currentProject.project_date_create }}</li>
                     <li>Expected end : 19/05/1995 </li>
                     <li>Members : 45</li>
                 </ul>

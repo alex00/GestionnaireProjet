@@ -1,7 +1,6 @@
-
-	<?php
-
-				
+<?php
+		use Components\SQLEntities\TzSQL;
+		use Components\DebugTools\DebugTool;
 
 		class notifications_settingsEntity {
 					
@@ -11,6 +10,13 @@
 			
 			private $notifications_settings;
 			
+            private $relations = array('users'=>array('users_id'=>'id'),'notifiaction_types'=>array('notifiaction_id'=>'type_id'),);
+        
+            private $users;
+            
+            private $notifiaction_types;
+            
+
 
 
 			/********************** GETTER ***********************/
@@ -120,7 +126,7 @@
 					
 
 			/********************** FindAll ***********************/
-			public function findAll(){
+			public function findAll($recursif = 'yes'){
 
 				$sql = 'SELECT * FROM notifications_settings';
 				$result = TzSQL::getPDO()->prepare($sql);
@@ -136,6 +142,16 @@
 
 						$method = 'set'.ucfirst($k);
 						$tmpInstance->$method($value);
+
+						if($recursif == null){
+                            foreach($this->relations as $relationId => $relationLinks){
+                                if(array_key_exists($k, $relationLinks)){
+                                    $entity = tzSQL::getEntity($relationId);
+                                    $content =  $entity->findManyBy($relationLinks[$k],$value, 'no');
+                                    $tmpInstance->$relationId = $content;
+                                }
+                            }
+                        }
 					}
 					array_push($entitiesArray, $tmpInstance);
 				}
@@ -179,8 +195,16 @@
 
 				if(!empty($result)){
 					$this->notifiaction_id = $result->notifiaction_id;
-					$this->users_id = $result->users_id;
-					$this->notifications_settings = $result->notifications_settings;
+					
+                    $entityNotifiaction_id = tzSQL::getEntity('notifiaction_types');
+                    $contentNotifiaction_id =  $entityNotifiaction_id->findManyBy('type_id',$result->notifiaction_id, 'no');
+                    $this->notifiaction_types = $contentNotifiaction_id;
+                $this->users_id = $result->users_id;
+					
+                    $entityUsers_id = tzSQL::getEntity('users');
+                    $contentUsers_id =  $entityUsers_id->findManyBy('id',$result->users_id, 'no');
+                    $this->users = $contentUsers_id;
+                $this->notifications_settings = $result->notifications_settings;
 					
 					return true;
 				}
@@ -201,8 +225,16 @@
 				$formatResult = $result->fetch(PDO::FETCH_OBJ);
 				if(!empty($formatResult)){
 					$this->notifiaction_id = $formatResult->notifiaction_id;
-					$this->users_id = $formatResult->users_id;
-					$this->notifications_settings = $formatResult->notifications_settings;
+				
+                    $entityNotifiaction_id = tzSQL::getEntity('notifiaction_types');
+                    $contentNotifiaction_id =  $entityNotifiaction_id->findManyBy('type_id',$formatResult->notifiaction_id, 'no');
+                    $this->notifiaction_types = $contentNotifiaction_id;
+                	$this->users_id = $formatResult->users_id;
+				
+                    $entityUsers_id = tzSQL::getEntity('users');
+                    $contentUsers_id =  $entityUsers_id->findManyBy('id',$formatResult->users_id, 'no');
+                    $this->users = $contentUsers_id;
+                	$this->notifications_settings = $formatResult->notifications_settings;
 				
 					return true;
 				}
@@ -214,7 +246,7 @@
 			
 
 			/************* FindManyBy(column, value) ***************/
-			public function findManyBy($param,$value){
+			public function findManyBy($param,$value,$recursif = 'yes'){
 
 
 				switch ($param){
@@ -252,6 +284,17 @@
 
 							$method = 'set'.ucfirst($k);
 							$tmpInstance->$method($value);
+
+                            if($recursif == 'yes'){
+                                foreach($this->relations as $relationId => $relationLinks){
+                                    if(array_key_exists($k, $relationLinks)){
+                                        $entity = tzSQL::getEntity($relationId);
+                                        $content =  $entity->findManyBy($relationLinks[$k],$value, 'no');
+                                        $tmpInstance->$relationId = $content;
+                                    }
+                                }
+                            }
+
 						}
 						array_push($entitiesArray, $tmpInstance);
 					}

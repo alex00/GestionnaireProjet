@@ -1,7 +1,6 @@
-
-	<?php
-
-				
+<?php
+		use Components\SQLEntities\TzSQL;
+		use Components\DebugTools\DebugTool;
 
 		class notificationsEntity {
 					
@@ -23,6 +22,11 @@
 			
 			private $type_id;
 			
+            private $relations = array('notifiaction_types'=>array('type_id'=>'type_id'),);
+        
+            private $notifiaction_types;
+            
+
 
 
 			/********************** GETTER ***********************/
@@ -204,7 +208,7 @@
 					
 
 			/********************** FindAll ***********************/
-			public function findAll(){
+			public function findAll($recursif = 'yes'){
 
 				$sql = 'SELECT * FROM notifications';
 				$result = TzSQL::getPDO()->prepare($sql);
@@ -220,6 +224,16 @@
 
 						$method = 'set'.ucfirst($k);
 						$tmpInstance->$method($value);
+
+						if($recursif == null){
+                            foreach($this->relations as $relationId => $relationLinks){
+                                if(array_key_exists($k, $relationLinks)){
+                                    $entity = tzSQL::getEntity($relationId);
+                                    $content =  $entity->findManyBy($relationLinks[$k],$value, 'no');
+                                    $tmpInstance->$relationId = $content;
+                                }
+                            }
+                        }
 					}
 					array_push($entitiesArray, $tmpInstance);
 				}
@@ -296,6 +310,10 @@
 					$this->service_id = $result->service_id;
 					$this->type_id = $result->type_id;
 					
+                    $entityType_id = tzSQL::getEntity('notifiaction_types');
+                    $contentType_id =  $entityType_id->findManyBy('type_id',$result->type_id, 'no');
+                    $this->notifiaction_types = $contentType_id;
+                
 					return true;
 				}
 				else{
@@ -324,6 +342,10 @@
 					$this->service_id = $formatResult->service_id;
 					$this->type_id = $formatResult->type_id;
 				
+                    $entityType_id = tzSQL::getEntity('notifiaction_types');
+                    $contentType_id =  $entityType_id->findManyBy('type_id',$formatResult->type_id, 'no');
+                    $this->notifiaction_types = $contentType_id;
+                
 					return true;
 				}
 				else{
@@ -334,7 +356,7 @@
 			
 
 			/************* FindManyBy(column, value) ***************/
-			public function findManyBy($param,$value){
+			public function findManyBy($param,$value,$recursif = 'yes'){
 
 
 				switch ($param){
@@ -396,6 +418,17 @@
 
 							$method = 'set'.ucfirst($k);
 							$tmpInstance->$method($value);
+
+                            if($recursif == 'yes'){
+                                foreach($this->relations as $relationId => $relationLinks){
+                                    if(array_key_exists($k, $relationLinks)){
+                                        $entity = tzSQL::getEntity($relationId);
+                                        $content =  $entity->findManyBy($relationLinks[$k],$value, 'no');
+                                        $tmpInstance->$relationId = $content;
+                                    }
+                                }
+                            }
+
 						}
 						array_push($entitiesArray, $tmpInstance);
 					}

@@ -14,7 +14,7 @@
  * Includes a template.
  *
  * <pre>
- *   {% include 'header.html' %}
+ *   {% include 'headers.html' %}
  *     Body
  *   {% include 'footer.html' %}
  * </pre>

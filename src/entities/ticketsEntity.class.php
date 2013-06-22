@@ -1,7 +1,6 @@
-
-	<?php
-
-				
+<?php
+		use Components\SQLEntities\TzSQL;
+		use Components\DebugTools\DebugTool;
 
 		class ticketsEntity {
 					
@@ -33,6 +32,17 @@
 			
 			private $roadmap_id;
 			
+            private $relations = array('trackers'=>array('tracker_id'=>'tracker_id'),'projects'=>array('project_id'=>'project_id'),'status'=>array('statut_id'=>'status_id'),'priorities'=>array('priority_id'=>'priority_id'),);
+        
+            private $trackers;
+            
+            private $projects;
+            
+            private $status;
+            
+            private $priorities;
+            
+
 
 
 			/********************** GETTER ***********************/
@@ -274,7 +284,7 @@
 					
 
 			/********************** FindAll ***********************/
-			public function findAll(){
+			public function findAll($recursif = 'yes'){
 
 				$sql = 'SELECT * FROM tickets';
 				$result = TzSQL::getPDO()->prepare($sql);
@@ -290,6 +300,16 @@
 
 						$method = 'set'.ucfirst($k);
 						$tmpInstance->$method($value);
+
+						if($recursif == null){
+                            foreach($this->relations as $relationId => $relationLinks){
+                                if(array_key_exists($k, $relationLinks)){
+                                    $entity = tzSQL::getEntity($relationId);
+                                    $content =  $entity->findManyBy($relationLinks[$k],$value, 'no');
+                                    $tmpInstance->$relationId = $content;
+                                }
+                            }
+                        }
 					}
 					array_push($entitiesArray, $tmpInstance);
 				}
@@ -386,10 +406,26 @@
 					$this->ticket_progress = $result->ticket_progress;
 					$this->ticket_description = $result->ticket_description;
 					$this->project_id = $result->project_id;
-					$this->priority_id = $result->priority_id;
-					$this->statut_id = $result->statut_id;
-					$this->tracker_id = $result->tracker_id;
-					$this->roadmap_id = $result->roadmap_id;
+					
+                    $entityProject_id = tzSQL::getEntity('projects');
+                    $contentProject_id =  $entityProject_id->findManyBy('project_id',$result->project_id, 'no');
+                    $this->projects = $contentProject_id;
+                $this->priority_id = $result->priority_id;
+					
+                    $entityPriority_id = tzSQL::getEntity('priorities');
+                    $contentPriority_id =  $entityPriority_id->findManyBy('priority_id',$result->priority_id, 'no');
+                    $this->priorities = $contentPriority_id;
+                $this->statut_id = $result->statut_id;
+					
+                    $entityStatut_id = tzSQL::getEntity('status');
+                    $contentStatut_id =  $entityStatut_id->findManyBy('status_id',$result->statut_id, 'no');
+                    $this->status = $contentStatut_id;
+                $this->tracker_id = $result->tracker_id;
+					
+                    $entityTracker_id = tzSQL::getEntity('trackers');
+                    $contentTracker_id =  $entityTracker_id->findManyBy('tracker_id',$result->tracker_id, 'no');
+                    $this->trackers = $contentTracker_id;
+                $this->roadmap_id = $result->roadmap_id;
 					
 					return true;
 				}
@@ -419,10 +455,26 @@
 					$this->ticket_progress = $formatResult->ticket_progress;
 					$this->ticket_description = $formatResult->ticket_description;
 					$this->project_id = $formatResult->project_id;
-					$this->priority_id = $formatResult->priority_id;
-					$this->statut_id = $formatResult->statut_id;
-					$this->tracker_id = $formatResult->tracker_id;
-					$this->roadmap_id = $formatResult->roadmap_id;
+				
+                    $entityProject_id = tzSQL::getEntity('projects');
+                    $contentProject_id =  $entityProject_id->findManyBy('project_id',$formatResult->project_id, 'no');
+                    $this->projects = $contentProject_id;
+                	$this->priority_id = $formatResult->priority_id;
+				
+                    $entityPriority_id = tzSQL::getEntity('priorities');
+                    $contentPriority_id =  $entityPriority_id->findManyBy('priority_id',$formatResult->priority_id, 'no');
+                    $this->priorities = $contentPriority_id;
+                	$this->statut_id = $formatResult->statut_id;
+				
+                    $entityStatut_id = tzSQL::getEntity('status');
+                    $contentStatut_id =  $entityStatut_id->findManyBy('status_id',$formatResult->statut_id, 'no');
+                    $this->status = $contentStatut_id;
+                	$this->tracker_id = $formatResult->tracker_id;
+				
+                    $entityTracker_id = tzSQL::getEntity('trackers');
+                    $contentTracker_id =  $entityTracker_id->findManyBy('tracker_id',$formatResult->tracker_id, 'no');
+                    $this->trackers = $contentTracker_id;
+                	$this->roadmap_id = $formatResult->roadmap_id;
 				
 					return true;
 				}
@@ -434,7 +486,7 @@
 			
 
 			/************* FindManyBy(column, value) ***************/
-			public function findManyBy($param,$value){
+			public function findManyBy($param,$value,$recursif = 'yes'){
 
 
 				switch ($param){
@@ -516,6 +568,17 @@
 
 							$method = 'set'.ucfirst($k);
 							$tmpInstance->$method($value);
+
+                            if($recursif == 'yes'){
+                                foreach($this->relations as $relationId => $relationLinks){
+                                    if(array_key_exists($k, $relationLinks)){
+                                        $entity = tzSQL::getEntity($relationId);
+                                        $content =  $entity->findManyBy($relationLinks[$k],$value, 'no');
+                                        $tmpInstance->$relationId = $content;
+                                    }
+                                }
+                            }
+
 						}
 						array_push($entitiesArray, $tmpInstance);
 					}

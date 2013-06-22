@@ -1,6 +1,8 @@
 <?php 
 use Components\Auth\TzAuth;
 use Components\Controller\TzController;
+use Components\SQLEntities\TzSQL;
+use src\helpers\Guardian;
 
 class activityController extends TzController {
 
@@ -42,7 +44,7 @@ class activityController extends TzController {
         $project->setProject_description($params['desc']);
         $project->setProject_date_create(date('Y-m-d'));
         $project->setProject_date_update(date('Y-m-d'));
-        $code = trim(str_replace(" ","-",strtolower($params['name'])));
+        $code = Guardian::guardUrl($params['name']);
         $project->setProject_code($code);
 
         $project->Insert();
@@ -52,12 +54,14 @@ class activityController extends TzController {
 
         $service->setService_name('not-affiliated');
         $service->setService_code('not-affiliated');
+        $service->setProject_id($project->getProject_id());
 
         $service->Insert();
 
+
+
+
         $linkService = tzSQL::getEntity('user_service');
-
-
         $user = TzAuth::readUser();
 
         $linkService->setUser_id($user['id']);
@@ -65,10 +69,10 @@ class activityController extends TzController {
         $linkService->setProject_id($project->getProject_id());
         $linkService->setRightKey(1);
 
-        // a modifier - constraint fail
-        //$linkService->Insert();
+        $linkService->Insert();
 
-        echo $code;
+        //$params = array('project_id' => $project->getProject_id());
+        //Guardian::guardAddNotif('newProject',$params);
 
         return true;
     }
@@ -80,8 +84,8 @@ class activityController extends TzController {
         $announce = tzSQL::getEntity('announces');
 
         $announce->setAnnounce_title($params['name']);
-        $code = trim(str_replace(" ","-",$params['name']));
-        $announce->setAnnounce_code(strtolower(($code)));
+        $code = Guardian::guardUrl($params['name']);
+        $announce->setAnnounce_code($code);
         $announce->setAnnounce_date_create(date('Y-m-d'));
         $announce->setAnnounce_date_update(date('Y-m-d'));
         $announce->setAnnounce_description($params['desc']);
@@ -110,7 +114,6 @@ class activityController extends TzController {
         $logins[] = $params['login4'];
         $logins[] = $params['login5'];
 
-        $service = tzSQL::getEntity('services');
         foreach($logins as $login){
 
             if ($login == 'null')
@@ -128,10 +131,8 @@ class activityController extends TzController {
         $service = tzSQL::getEntity('services');
 
         $service->setService_name($params['name']);
-        $code = trim(str_replace(" ","-",$params['name']));
-        $service->setService_code(strtolower(($code)));
-
-        $service->setProject_id($params['id']);
+        $code = Guardian::guardUrl($params['name']);
+        $service->setService_code($code);
 
         $service->Insert();
         //Add notif
@@ -146,8 +147,8 @@ class activityController extends TzController {
         $tickets = tzSQL::getEntity('tickets');
 
         $tickets->setTicket_name($_POST['name']);
-        $code = trim(str_replace(" ","-",$_POST['name']));
-        $tickets->setTicket_code(strtolower($code));
+        $code = Guardian::guardUrl($_POST['name']);
+        $tickets->setTicket_code($code);
         $tickets->setTicket_date_create(date('Y-m-d'));
         $tickets->setTicket_date_update(date('Y-m-d'));
         $tickets->setTicket_deadline($_POST['deadline']);

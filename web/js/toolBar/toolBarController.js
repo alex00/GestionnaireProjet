@@ -148,20 +148,18 @@ function toolBarSubmit (id, id_project,  name_project) {
         });
     }
     else{
-        $.post(url).success(function(code){
+        $.post(url).success(function(){
 
-            if (id == 'project'){
-                alert(code);
-                console.log(code);
+                var code = $("#modalReferer").val();
+
+                if (id == 'project')
+                    code = name.toLowerCase().replace(' ','-');
+
+                toolBarAdmin.alerting = true;
+                toolBarAdmin.alert_type = id;
                 window.location.href = '/'+code;
                 return;
-            }
-            $("#modalHeaders").modal('hide');
 
-                $("#modalHeaders").on('hidden',function(){
-                    $(this).remove();
-                });
-            toolBarAlert(id);
         });
     }
 
@@ -186,6 +184,8 @@ function toolBarAlert(id){
                     }, 800, function () {
                     $("#headerAlert").html('');
                 });
+                toolBarAdmin.alerting = false;
+                toolBarAdmin.alert_type = false;
             },5000);
         });
 

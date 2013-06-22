@@ -1,7 +1,6 @@
-
-	<?php
-
-				
+<?php
+		use Components\SQLEntities\TzSQL;
+		use Components\DebugTools\DebugTool;
 
 		class ticket_filesEntity {
 					
@@ -11,6 +10,11 @@
 			
 			private $ticket_id;
 			
+            private $relations = array('tickets'=>array('ticket_id'=>'ticket_id'),);
+        
+            private $tickets;
+            
+
 
 
 			/********************** GETTER ***********************/
@@ -120,7 +124,7 @@
 					
 
 			/********************** FindAll ***********************/
-			public function findAll(){
+			public function findAll($recursif = 'yes'){
 
 				$sql = 'SELECT * FROM ticket_files';
 				$result = TzSQL::getPDO()->prepare($sql);
@@ -136,6 +140,16 @@
 
 						$method = 'set'.ucfirst($k);
 						$tmpInstance->$method($value);
+
+						if($recursif == null){
+                            foreach($this->relations as $relationId => $relationLinks){
+                                if(array_key_exists($k, $relationLinks)){
+                                    $entity = tzSQL::getEntity($relationId);
+                                    $content =  $entity->findManyBy($relationLinks[$k],$value, 'no');
+                                    $tmpInstance->$relationId = $content;
+                                }
+                            }
+                        }
 					}
 					array_push($entitiesArray, $tmpInstance);
 				}
@@ -182,6 +196,10 @@
 					$this->file_url = $result->file_url;
 					$this->ticket_id = $result->ticket_id;
 					
+                    $entityTicket_id = tzSQL::getEntity('tickets');
+                    $contentTicket_id =  $entityTicket_id->findManyBy('ticket_id',$result->ticket_id, 'no');
+                    $this->tickets = $contentTicket_id;
+                
 					return true;
 				}
 				else{
@@ -204,6 +222,10 @@
 					$this->file_url = $formatResult->file_url;
 					$this->ticket_id = $formatResult->ticket_id;
 				
+                    $entityTicket_id = tzSQL::getEntity('tickets');
+                    $contentTicket_id =  $entityTicket_id->findManyBy('ticket_id',$formatResult->ticket_id, 'no');
+                    $this->tickets = $contentTicket_id;
+                
 					return true;
 				}
 				else{
@@ -214,7 +236,7 @@
 			
 
 			/************* FindManyBy(column, value) ***************/
-			public function findManyBy($param,$value){
+			public function findManyBy($param,$value,$recursif = 'yes'){
 
 
 				switch ($param){
@@ -252,6 +274,17 @@
 
 							$method = 'set'.ucfirst($k);
 							$tmpInstance->$method($value);
+
+                            if($recursif == 'yes'){
+                                foreach($this->relations as $relationId => $relationLinks){
+                                    if(array_key_exists($k, $relationLinks)){
+                                        $entity = tzSQL::getEntity($relationId);
+                                        $content =  $entity->findManyBy($relationLinks[$k],$value, 'no');
+                                        $tmpInstance->$relationId = $content;
+                                    }
+                                }
+                            }
+
 						}
 						array_push($entitiesArray, $tmpInstance);
 					}

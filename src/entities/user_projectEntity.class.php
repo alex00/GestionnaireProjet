@@ -1,6 +1,7 @@
 
 	<?php
 
+    use Components\SQLEntities\TzSQL;
 				
 
 		class user_projectEntity {

@@ -31,6 +31,9 @@
 
 {% endblock %}
 <body>
+{% if SESSION.User is defined %}
+    {% set currentProject = SESSION.User.currentProject %}
+{% endif %}
 
 <header>
     <div id="panel">
@@ -51,10 +54,10 @@
                                         <a id="addProjectLink" class="linkBlack pull-left" data-toggle="modal" href="#add-project" onclick="javascript:toolBarLinks(this.id,null,null);">Project</a>
                                     {% else %}
                                         <a id="addTicketLink" class="linkBlack pull-left" data-toggle="modal" data-target="#modalHeadersLarge">Ticket</a>
-                                        <a id="addRoadmapLink" class="linkBlack pull-left" data-toggle="modal" href="#add-roadmap" onclick="javascript:toolBarLinks(this.id,'{{ paramsAriane.idProject }}','{{ paramsAriane.codeProject }}');">Roadmap</a>
-                                        <a id="addAnnounceLink" class="linkBlack pull-left" data-toggle="modal" href="#add-announce" onclick="javascript:toolBarLinks(this.id,'{{ paramsAriane.idProject }}','{{ paramsAriane.codeProject }}');">Announce</a>
-                                        <a id="addMemberLink" class="linkBlack pull-left" data-toggle="modal" href="#add-member" onclick="javascript:toolBarLinks(this.id,'{{ paramsAriane.idProject }}','{{ paramsAriane.codeProject }}');">Member</a>
-                                        <a id="addServiceLink" class="linkBlack pull-left" data-toggle="modal" href="#add-SERVICE" onclick="javascript:toolBarLinks(this.id,'{{ paramsAriane.idProject }}','{{ paramsAriane.codeProject }}');">Service</a>
+                                        <a id="addRoadmapLink" class="linkBlack pull-left" data-toggle="modal" href="#add-roadmap" onclick="javascript:toolBarLinks(this.id,'{{ currentProject.project_id }}','{{ currentProject.project_code }}');">Roadmap</a>
+                                        <a id="addAnnounceLink" class="linkBlack pull-left" data-toggle="modal" href="#add-announce" onclick="javascript:toolBarLinks(this.id,'{{ currentProject.project_id }}','{{ currentProject.project_code }}');">Announce</a>
+                                        <a id="addMemberLink" class="linkBlack pull-left" data-toggle="modal" href="#add-member" onclick="javascript:toolBarLinks(this.id,'{{ currentProject.project_id }}','{{ currentProject.project_code }}');">Member</a>
+                                        <a id="addServiceLink" class="linkBlack pull-left" data-toggle="modal" href="#add-SERVICE" onclick="javascript:toolBarLinks(this.id,'{{ currentProject.project_id }}','{{ currentProject.project_code }}');">Service</a>
                                     {% endif %}
                                 </div>
                              </div>
@@ -101,10 +104,10 @@
             <div class="span7 offset3">
                 <div id="sub-menu">
                     <ul >
-                        <li {% if subMenuCurrent == 'dashboard' %}class="current" {% endif %} id="DashboardSubMenu"><a href="/{{ currentProjectCode }}">Dashboard</a></li>
-                        <li {% if subMenuCurrent == 'tickets' %}class="current" {% endif %} id="TicketSubMenu"><a href="/{{ currentProjectCode }}/tickets">Tickets</a></li>
-                        <li {% if subMenuCurrent == 'activity' %}class="current" {% endif %} id="ActivitySubMenu"><a href="/{{ currentProjectCode }}/activity">Activity</a></li>
-                        <li {% if subMenuCurrent == 'roadmaps' %}class="current" {% endif %} id="RoadmapSubMenu"><a href="/{{ currentProjectCode }}/roadmaps">Roadmaps</a></li>
+                        <li {% if subMenuCurrent == 'dashboard' %}class="current" {% endif %} id="DashboardSubMenu"><a href="/{{ currentProject.project_code }}">Dashboard</a></li>
+                        <li {% if subMenuCurrent == 'tickets' %}class="current" {% endif %} id="TicketSubMenu"><a href="/{{ currentProject.project_code }}/tickets">Tickets</a></li>
+                        <li {% if subMenuCurrent == 'activity' %}class="current" {% endif %} id="ActivitySubMenu"><a href="/{{ currentProject.project_code }}/activity">Activity</a></li>
+                        <li {% if subMenuCurrent == 'roadmaps' %}class="current" {% endif %} id="RoadmapSubMenu"><a href="/{{ currentProject.project_code }}/roadmaps">Roadmaps</a></li>
                     </ul>
                 </div>
             </div>
@@ -154,6 +157,7 @@
 </div>
 {% endblock %}
 
+{% if homeContext == false %}
 <div id="modalHeadersLarge" class="modal hide fade">
     <!-- first modal window -->
     <header class="modal-header">
@@ -211,7 +215,7 @@
                     <td colspan="3" id="selectRoadmap">
                         <select name="roadmapTicket" id="roadmapTicket">
                             <option selected="select" value="0">No roadmap linked</option>
-                            {% for roadmap in ticketModal.roadmaps %}
+                            {% for roadmap in modalTicket.roadmaps %}
                                 <option value="{{ roadmap.id }}">{{ roadmap.title }}</option>
                             {% endfor %}
                         </select>
@@ -222,8 +226,14 @@
     </div>
 
     <footer class="modal-footer">
-        <a href="#" class="btn btn-primary" id="okwin01" onclick="toolBarSubmit('ticket',1,'{{ currentProjectCode }}')">Add</a>
+        <a href="#" class="btn btn-primary" id="okwin01" onclick="toolBarSubmit('ticket','{{ currentProject.project_id }}}','{{ currentProject.project_code }}')">Add</a>
     </footer>
 </div>
+        {% if currentPage == 'dashboard' %}
+            <input type='hidden' name="modalReferer" id="modalReferer" value="{{ currentProject.project_code }}" />
+        {% else %}
+            <input type='hidden' name="modalReferer" id="modalReferer" value="{{ currentProject.project_code }}/{{ currentPage }}" />
+        {% endif %}
+{% endif %}
 </body>
 </html>

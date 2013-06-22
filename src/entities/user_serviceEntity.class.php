@@ -1,10 +1,11 @@
-
-	<?php
-
-				
+<?php
+		use Components\SQLEntities\TzSQL;
+		use Components\DebugTools\DebugTool;
 
 		class user_serviceEntity {
 					
+			private $id;
+			
 			private $user_id;
 			
 			private $service_id;
@@ -13,9 +14,24 @@
 			
 			private $rightKey;
 			
+            private $relations = array('users'=>array('user_id'=>'id'),'services'=>array('service_id'=>'service_id'),'projects'=>array('project_id'=>'project_id'),);
+        
+            private $users;
+            
+            private $services;
+            
+            private $projects;
+            
+
 
 
 			/********************** GETTER ***********************/
+			
+
+			public function getId(){
+				return $this->id;
+			}
+
 			
 
 			public function getUser_id(){
@@ -42,6 +58,12 @@
 
 			
 			/********************** SETTER ***********************/
+
+			public function setId($val){
+				$this->id =  $val;
+			}
+
+					
 
 			public function setUser_id($val){
 				$this->user_id =  $val;
@@ -71,9 +93,9 @@
 
 			public function Delete(){
 
-				if(!empty($this->project_id)){
+				if(!empty($this->id)){
 
-					$sql = "DELETE FROM user_service WHERE project_id = ".intval($this->project_id).";";
+					$sql = "DELETE FROM user_service WHERE id = ".intval($this->id).";";
 
 					$result = TzSQL::getPDO()->prepare($sql);
 					$result->execute();
@@ -91,12 +113,12 @@
 
 			public function Update(){
 
-				$sql = 'UPDATE `user_service` SET `user_id` = "'.$this->user_id.'", `service_id` = "'.$this->service_id.'", `project_id` = "'.$this->project_id.'", `rightKey` = "'.$this->rightKey.'" WHERE project_id = '.intval($this->project_id);
+				$sql = 'UPDATE `user_service` SET `id` = "'.$this->id.'", `user_id` = "'.$this->user_id.'", `service_id` = "'.$this->service_id.'", `project_id` = "'.$this->project_id.'", `rightKey` = "'.$this->rightKey.'" WHERE id = '.intval($this->id);
 
 				$result = TzSQL::getPDO()->prepare($sql);
 				$result->execute();
 
-				if(!empty($this->project_id)){
+				if(!empty($this->id)){
 					if($result)
 						return true;
 					else{
@@ -114,16 +136,16 @@
 
 			public function Insert(){
 
-				$this->project_id = '';
+				$this->id = '';
 
-				$sql = 'INSERT INTO user_service (`user_id`,`service_id`,`project_id`,`rightKey`) VALUES ("'.$this->user_id.'","'.$this->service_id.'","'.$this->project_id.'","'.$this->rightKey.'")';
+				$sql = 'INSERT INTO user_service (`id`,`user_id`,`service_id`,`project_id`,`rightKey`) VALUES ("'.$this->id.'","'.$this->user_id.'","'.$this->service_id.'","'.$this->project_id.'","'.$this->rightKey.'")';
 
 				$result = TzSQL::getPDO()->prepare($sql);
 				$result->execute();
 
 				if($result){
 					$lastid = TzSQL::getPDO()->lastInsertId();
-					$this->project_id = $lastid;
+					$this->id = $lastid;
 					return true;
 				}
 				else{
@@ -134,7 +156,7 @@
 					
 
 			/********************** FindAll ***********************/
-			public function findAll(){
+			public function findAll($recursif = 'yes'){
 
 				$sql = 'SELECT * FROM user_service';
 				$result = TzSQL::getPDO()->prepare($sql);
@@ -150,6 +172,16 @@
 
 						$method = 'set'.ucfirst($k);
 						$tmpInstance->$method($value);
+
+						if($recursif == null){
+                            foreach($this->relations as $relationId => $relationLinks){
+                                if(array_key_exists($k, $relationLinks)){
+                                    $entity = tzSQL::getEntity($relationId);
+                                    $content =  $entity->findManyBy($relationLinks[$k],$value, 'no');
+                                    $tmpInstance->$relationId = $content;
+                                }
+                            }
+                        }
 					}
 					array_push($entitiesArray, $tmpInstance);
 				}
@@ -169,6 +201,10 @@
 
 				switch ($param){
 					
+					case $param == 'id':
+						$param = 'id';
+						break;
+						
 					case $param == 'user_id':
 						$param = 'user_id';
 						break;
@@ -196,10 +232,23 @@
 				$result =  $data->fetch(PDO::FETCH_OBJ);
 
 				if(!empty($result)){
+					$this->id = $result->id;
 					$this->user_id = $result->user_id;
-					$this->service_id = $result->service_id;
-					$this->project_id = $result->project_id;
-					$this->rightKey = $result->rightKey;
+					
+                    $entityUser_id = tzSQL::getEntity('users');
+                    $contentUser_id =  $entityUser_id->findManyBy('id',$result->user_id, 'no');
+                    $this->users = $contentUser_id;
+                $this->service_id = $result->service_id;
+					
+                    $entityService_id = tzSQL::getEntity('services');
+                    $contentService_id =  $entityService_id->findManyBy('service_id',$result->service_id, 'no');
+                    $this->services = $contentService_id;
+                $this->project_id = $result->project_id;
+					
+                    $entityProject_id = tzSQL::getEntity('projects');
+                    $contentProject_id =  $entityProject_id->findManyBy('project_id',$result->project_id, 'no');
+                    $this->projects = $contentProject_id;
+                $this->rightKey = $result->rightKey;
 					
 					return true;
 				}
@@ -214,15 +263,28 @@
 			/********************** Find(id) ***********************/
 			public function find($id){
 
-				$sql = 'SELECT * FROM user_service WHERE project_id = ' . $id;
+				$sql = 'SELECT * FROM user_service WHERE id = ' . $id;
 				$result = TzSQL::getPDO()->prepare($sql);
 				$result->execute();
 				$formatResult = $result->fetch(PDO::FETCH_OBJ);
 				if(!empty($formatResult)){
+					$this->id = $formatResult->id;
 					$this->user_id = $formatResult->user_id;
-					$this->service_id = $formatResult->service_id;
-					$this->project_id = $formatResult->project_id;
-					$this->rightKey = $formatResult->rightKey;
+				
+                    $entityUser_id = tzSQL::getEntity('users');
+                    $contentUser_id =  $entityUser_id->findManyBy('id',$formatResult->user_id, 'no');
+                    $this->users = $contentUser_id;
+                	$this->service_id = $formatResult->service_id;
+				
+                    $entityService_id = tzSQL::getEntity('services');
+                    $contentService_id =  $entityService_id->findManyBy('service_id',$formatResult->service_id, 'no');
+                    $this->services = $contentService_id;
+                	$this->project_id = $formatResult->project_id;
+				
+                    $entityProject_id = tzSQL::getEntity('projects');
+                    $contentProject_id =  $entityProject_id->findManyBy('project_id',$formatResult->project_id, 'no');
+                    $this->projects = $contentProject_id;
+                	$this->rightKey = $formatResult->rightKey;
 				
 					return true;
 				}
@@ -234,11 +296,15 @@
 			
 
 			/************* FindManyBy(column, value) ***************/
-			public function findManyBy($param,$value){
+			public function findManyBy($param,$value,$recursif = 'yes'){
 
 
 				switch ($param){
 					
+					case $param == 'id':
+						$param = 'id';
+						break;
+						
 					case $param == 'user_id':
 						$param = 'user_id';
 						break;
@@ -276,6 +342,17 @@
 
 							$method = 'set'.ucfirst($k);
 							$tmpInstance->$method($value);
+
+                            if($recursif == 'yes'){
+                                foreach($this->relations as $relationId => $relationLinks){
+                                    if(array_key_exists($k, $relationLinks)){
+                                        $entity = tzSQL::getEntity($relationId);
+                                        $content =  $entity->findManyBy($relationLinks[$k],$value, 'no');
+                                        $tmpInstance->$relationId = $content;
+                                    }
+                                }
+                            }
+
 						}
 						array_push($entitiesArray, $tmpInstance);
 					}

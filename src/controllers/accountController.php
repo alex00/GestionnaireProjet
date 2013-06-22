@@ -1,6 +1,8 @@
 <?php
 use Components\Auth\TzAuth;
 use Components\Controller\TzController;
+use Components\SQLEntities\TzSQL;
+use src\helpers\Guardian;
 
 class accountController extends TzController {
 
@@ -39,6 +41,8 @@ class accountController extends TzController {
         $usersEntity = tzSQL::getEntity('users');
 
         $usersEntity->setuser_login($login);
+        $code = Guardian::guardUrl($login);
+        $usersEntity->setUser_login_code($code);
         $usersEntity->setpassword($password);
         $usersEntity->setuser_mail($mail);
         $usersEntity->setAcl_group_id(3);

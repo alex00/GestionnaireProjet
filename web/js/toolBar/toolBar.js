@@ -5,6 +5,8 @@ var toolBar = (function() {
         this.locate = {HeaderAction: {sizeSmall: 120,sizeLarge: 485, position: 0}};
         this.doing = false;
         this.template_folder = "/js/toolBar/";
+        this.alerting = false;
+        this.alert_type = false;
 
 
         this.infosToolBar = { template:

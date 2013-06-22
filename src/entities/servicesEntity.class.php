@@ -1,7 +1,6 @@
-
-	<?php
-
-				
+<?php
+		use Components\SQLEntities\TzSQL;
+		use Components\DebugTools\DebugTool;
 
 		class servicesEntity {
 					
@@ -11,6 +10,11 @@
 			
 			private $service_code;
 			
+			private $project_id;
+			
+            private $relations = array();
+        
+
 
 
 			/********************** GETTER ***********************/
@@ -33,6 +37,12 @@
 			}
 
 			
+
+			public function getProject_id(){
+				return $this->project_id;
+			}
+
+			
 			/********************** SETTER ***********************/
 
 			public function setService_id($val){
@@ -49,6 +59,12 @@
 
 			public function setService_code($val){
 				$this->service_code =  $val;
+			}
+
+					
+
+			public function setProject_id($val){
+				$this->project_id =  $val;
 			}
 
 					
@@ -77,7 +93,7 @@
 
 			public function Update(){
 
-				$sql = 'UPDATE `services` SET `service_id` = "'.$this->service_id.'", `service_name` = "'.$this->service_name.'", `service_code` = "'.$this->service_code.'" WHERE service_id = '.intval($this->service_id);
+				$sql = 'UPDATE `services` SET `service_id` = "'.$this->service_id.'", `service_name` = "'.$this->service_name.'", `service_code` = "'.$this->service_code.'", `project_id` = "'.$this->project_id.'" WHERE service_id = '.intval($this->service_id);
 
 				$result = TzSQL::getPDO()->prepare($sql);
 				$result->execute();
@@ -102,7 +118,7 @@
 
 				$this->service_id = '';
 
-				$sql = 'INSERT INTO services (`service_id`,`service_name`,`service_code`) VALUES ("'.$this->service_id.'","'.$this->service_name.'","'.$this->service_code.'")';
+				$sql = 'INSERT INTO services (`service_id`,`service_name`,`service_code`,`project_id`) VALUES ("'.$this->service_id.'","'.$this->service_name.'","'.$this->service_code.'","'.$this->project_id.'")';
 
 				$result = TzSQL::getPDO()->prepare($sql);
 				$result->execute();
@@ -120,7 +136,7 @@
 					
 
 			/********************** FindAll ***********************/
-			public function findAll(){
+			public function findAll($recursif = 'yes'){
 
 				$sql = 'SELECT * FROM services';
 				$result = TzSQL::getPDO()->prepare($sql);
@@ -136,6 +152,16 @@
 
 						$method = 'set'.ucfirst($k);
 						$tmpInstance->$method($value);
+
+						if($recursif == null){
+                            foreach($this->relations as $relationId => $relationLinks){
+                                if(array_key_exists($k, $relationLinks)){
+                                    $entity = tzSQL::getEntity($relationId);
+                                    $content =  $entity->findManyBy($relationLinks[$k],$value, 'no');
+                                    $tmpInstance->$relationId = $content;
+                                }
+                            }
+                        }
 					}
 					array_push($entitiesArray, $tmpInstance);
 				}
@@ -167,6 +193,10 @@
 						$param = 'service_code';
 						break;
 						
+					case $param == 'project_id':
+						$param = 'project_id';
+						break;
+						
 					default:
 						DebugTool::$error->catchError(array('Colonne introuvable: est-elle presente dans la base de donnée ?', __FILE__,__LINE__, true));
 						return false;
@@ -181,6 +211,7 @@
 					$this->service_id = $result->service_id;
 					$this->service_name = $result->service_name;
 					$this->service_code = $result->service_code;
+					$this->project_id = $result->project_id;
 					
 					return true;
 				}
@@ -203,6 +234,7 @@
 					$this->service_id = $formatResult->service_id;
 					$this->service_name = $formatResult->service_name;
 					$this->service_code = $formatResult->service_code;
+					$this->project_id = $formatResult->project_id;
 				
 					return true;
 				}
@@ -214,7 +246,7 @@
 			
 
 			/************* FindManyBy(column, value) ***************/
-			public function findManyBy($param,$value){
+			public function findManyBy($param,$value,$recursif = 'yes'){
 
 
 				switch ($param){
@@ -229,6 +261,10 @@
 						
 					case $param == 'service_code':
 						$param = 'service_code';
+						break;
+						
+					case $param == 'project_id':
+						$param = 'project_id';
 						break;
 						
 					default:
@@ -252,6 +288,17 @@
 
 							$method = 'set'.ucfirst($k);
 							$tmpInstance->$method($value);
+
+                            if($recursif == 'yes'){
+                                foreach($this->relations as $relationId => $relationLinks){
+                                    if(array_key_exists($k, $relationLinks)){
+                                        $entity = tzSQL::getEntity($relationId);
+                                        $content =  $entity->findManyBy($relationLinks[$k],$value, 'no');
+                                        $tmpInstance->$relationId = $content;
+                                    }
+                                }
+                            }
+
 						}
 						array_push($entitiesArray, $tmpInstance);
 					}

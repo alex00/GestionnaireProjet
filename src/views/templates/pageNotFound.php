@@ -1,5 +1,7 @@
 <?php
 
+use Components\Auth\TzAuth;
+
 if(TzAuth::isUserLoggedIn()){
     $connect = true;
 }

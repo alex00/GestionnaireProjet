@@ -2,6 +2,8 @@
 
 use Components\Auth\TzAuth;
 use Components\Controller\TzController;
+use Components\SQLEntities\TzSQL;
+use src\helpers\Guardian;
 
 class roadmapController extends TzController {
     public function indexAction ($params) {
@@ -41,8 +43,8 @@ class roadmapController extends TzController {
         $roadmap = tzSQL::getEntity('roadmaps');
 
         $roadmap->setRoadmap_title($params['name']);
-        $code = trim(str_replace(" ","-",$params['name']));
-        $roadmap->setRoadmap_code(strtolower(($code)));
+        $code = Guardian::guardUrl($params['name']);
+        $roadmap->setRoadmap_code($code);
         $roadmap->setRoadmap_date_create(date('Y-m-d'));
         $roadmap->setRoadmap_date_update(date('Y-m-d'));
         $roadmap->setRoadmap_description($params['desc']);

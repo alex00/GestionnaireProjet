@@ -3,6 +3,7 @@
 
 use Components\Auth\TzAuth;
 use Components\Controller\TzController;
+use Components\SQLEntities\TzSQL;
 
 class ticketController extends TzController {
 	 public function indexAction ($params) {
