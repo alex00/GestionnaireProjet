@@ -32,15 +32,15 @@
 			
 			private $roadmap_id;
 			
-            private $relations = array('trackers'=>array('tracker_id'=>'tracker_id'),'projects'=>array('project_id'=>'project_id'),'status'=>array('statut_id'=>'status_id'),'priorities'=>array('priority_id'=>'priority_id'),);
+            private $relations = array('projects'=>array('project_id'=>'project_id'),'status'=>array('statut_id'=>'status_id'),'priorities'=>array('priority_id'=>'priority_id'),'trackers'=>array('tracker_id'=>'tracker_id'),);
         
-            private $trackers;
-            
             private $projects;
             
             private $status;
             
             private $priorities;
+            
+            private $trackers;
             
 
 

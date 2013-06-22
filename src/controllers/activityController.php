@@ -114,10 +114,14 @@ class activityController extends TzController {
         $logins[] = $params['login4'];
         $logins[] = $params['login5'];
 
+        $users = tzSQL::getEntity('users');
+
         foreach($logins as $login){
 
-            if ($login == 'null')
-                continue;
+            $pos = strpos($login, '@');
+            if (!$pos){
+                //add mailer
+            }
 
             //Add notif
         }
@@ -129,10 +133,10 @@ class activityController extends TzController {
     public function newServiceAction ($params) {
 
         $service = tzSQL::getEntity('services');
-
         $service->setService_name($params['name']);
         $code = Guardian::guardUrl($params['name']);
         $service->setService_code($code);
+        $service->setProject_id($params['id']);
 
         $service->Insert();
         //Add notif
@@ -168,7 +172,6 @@ class activityController extends TzController {
 
         $receiver->setUser_id($_POST['assigned']);
         $receiver->setTicket_id($tickets->getTicket_id());
-        // a modifier - constraint fail
 
         $receiver->Insert();
 

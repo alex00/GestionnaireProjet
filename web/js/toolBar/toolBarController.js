@@ -143,8 +143,17 @@ function toolBarSubmit (id, id_project,  name_project) {
     if (id == 'ticket'){
         $.post(url,{name: name, desc: desc, assigned: assigned, deadline: deadline, priority: priority, tracker: tracker, roadmap: roadmap, id: id_project }).success(function(){
 
-            $("#modalHeadersLarge").modal('hide');
-            toolBarAlert(id);
+            var code = $("#modalReferer").val();
+
+            if (id == 'project')
+                code = name.toLowerCase().replace(/ /g,"-");
+
+            toolBarAdmin.alerting = true;
+            toolBarAdmin.alert_type = id;
+
+
+            window.location.href = '/'+code;
+            return;
         });
     }
     else{

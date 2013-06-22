@@ -137,10 +137,11 @@ class TzKernel
 
 		// We create the controller instance and call the requested actions
 		if (class_exists(self::$tzRoute["className"])) {
+
 	        $controller = new self::$tzRoute["className"]();
 	        $route = self::$tzRoute;
 
-	        if (method_exists($controller, self::$tzRoute["action"])) {
+            if (method_exists($controller, self::$tzRoute["action"])) {
 	        	if(!empty(self::$tzRoute['params'])){
 	        		$controller->$route["action"](self::$tzParam['params']);
 	        	} else {

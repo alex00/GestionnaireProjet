@@ -4,6 +4,8 @@
 
 		class users_receive_ticketsEntity {
 					
+			private $id;
+			
 			private $user_id;
 			
 			private $ticket_id;
@@ -20,6 +22,12 @@
 			/********************** GETTER ***********************/
 			
 
+			public function getId(){
+				return $this->id;
+			}
+
+			
+
 			public function getUser_id(){
 				return $this->user_id;
 			}
@@ -32,6 +40,12 @@
 
 			
 			/********************** SETTER ***********************/
+
+			public function setId($val){
+				$this->id =  $val;
+			}
+
+					
 
 			public function setUser_id($val){
 				$this->user_id =  $val;
@@ -49,9 +63,9 @@
 
 			public function Delete(){
 
-				if(!empty($this->ticket_id)){
+				if(!empty($this->id)){
 
-					$sql = "DELETE FROM users_receive_tickets WHERE ticket_id = ".intval($this->ticket_id).";";
+					$sql = "DELETE FROM users_receive_tickets WHERE id = ".intval($this->id).";";
 
 					$result = TzSQL::getPDO()->prepare($sql);
 					$result->execute();
@@ -69,12 +83,12 @@
 
 			public function Update(){
 
-				$sql = 'UPDATE `users_receive_tickets` SET `user_id` = "'.$this->user_id.'", `ticket_id` = "'.$this->ticket_id.'" WHERE ticket_id = '.intval($this->ticket_id);
+				$sql = 'UPDATE `users_receive_tickets` SET `id` = "'.$this->id.'", `user_id` = "'.$this->user_id.'", `ticket_id` = "'.$this->ticket_id.'" WHERE id = '.intval($this->id);
 
 				$result = TzSQL::getPDO()->prepare($sql);
 				$result->execute();
 
-				if(!empty($this->ticket_id)){
+				if(!empty($this->id)){
 					if($result)
 						return true;
 					else{
@@ -92,16 +106,16 @@
 
 			public function Insert(){
 
-				$this->ticket_id = '';
+				$this->id = '';
 
-				$sql = 'INSERT INTO users_receive_tickets (`user_id`,`ticket_id`) VALUES ("'.$this->user_id.'","'.$this->ticket_id.'")';
+				$sql = 'INSERT INTO users_receive_tickets (`id`,`user_id`,`ticket_id`) VALUES ("'.$this->id.'","'.$this->user_id.'","'.$this->ticket_id.'")';
 
 				$result = TzSQL::getPDO()->prepare($sql);
 				$result->execute();
 
 				if($result){
 					$lastid = TzSQL::getPDO()->lastInsertId();
-					$this->ticket_id = $lastid;
+					$this->id = $lastid;
 					return true;
 				}
 				else{
@@ -157,6 +171,10 @@
 
 				switch ($param){
 					
+					case $param == 'id':
+						$param = 'id';
+						break;
+						
 					case $param == 'user_id':
 						$param = 'user_id';
 						break;
@@ -176,6 +194,7 @@
 				$result =  $data->fetch(PDO::FETCH_OBJ);
 
 				if(!empty($result)){
+					$this->id = $result->id;
 					$this->user_id = $result->user_id;
 					
                     $entityUser_id = tzSQL::getEntity('users');
@@ -200,11 +219,12 @@
 			/********************** Find(id) ***********************/
 			public function find($id){
 
-				$sql = 'SELECT * FROM users_receive_tickets WHERE ticket_id = ' . $id;
+				$sql = 'SELECT * FROM users_receive_tickets WHERE id = ' . $id;
 				$result = TzSQL::getPDO()->prepare($sql);
 				$result->execute();
 				$formatResult = $result->fetch(PDO::FETCH_OBJ);
 				if(!empty($formatResult)){
+					$this->id = $formatResult->id;
 					$this->user_id = $formatResult->user_id;
 				
                     $entityUser_id = tzSQL::getEntity('users');
@@ -231,6 +251,10 @@
 
 				switch ($param){
 					
+					case $param == 'id':
+						$param = 'id';
+						break;
+						
 					case $param == 'user_id':
 						$param = 'user_id';
 						break;

@@ -28,7 +28,7 @@ var toolBar = (function() {
                               messageSuccess:
                                     { ticket: '<img src="/img/check.png" title="Added" alt="Added" /> Ticket Added',
                                       roadmap: '<img src="/img/check.png" title="Added" alt="Added" /> Roadmap Added',
-                                      membre: '<img src="/img/check.png" title="Added" alt="Added" /> Member(s) Added',
+                                      membre: '<img src="/img/check.png" title="Added" alt="Added" /> Invitation Sended',
                                       service: '<img src="/img/check.png" title="Added" alt="Added" /> Service Added',
                                       announce: '<img src="/img/check.png" title="Added" alt="Added" /> Announce Added'
                                 }

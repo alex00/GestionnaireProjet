@@ -328,9 +328,10 @@
 
   DROP TABLE IF EXISTS `users_receive_tickets`;
   CREATE TABLE IF NOT EXISTS `users_receive_tickets` (
+    `id` int(11) NOT NULL AUTO_INCREMENT,
     `user_id` int(11) NOT NULL,
     `ticket_id` int(11) NOT NULL,
-    PRIMARY KEY (`user_id`,`ticket_id`),
+    PRIMARY KEY (`id`),
     KEY `fk_user_has_action_action1_idx` (`ticket_id`),
     KEY `fk_user_has_action_user1_idx` (`user_id`)
   ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

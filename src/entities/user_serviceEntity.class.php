@@ -14,13 +14,13 @@
 			
 			private $rightKey;
 			
-            private $relations = array('users'=>array('user_id'=>'id'),'services'=>array('service_id'=>'service_id'),'projects'=>array('project_id'=>'project_id'),);
+            private $relations = array('users'=>array('user_id'=>'id'),'projects'=>array('project_id'=>'project_id'),'services'=>array('service_id'=>'service_id'),);
         
             private $users;
             
-            private $services;
-            
             private $projects;
+            
+            private $services;
             
 
 

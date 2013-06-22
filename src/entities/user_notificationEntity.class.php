@@ -10,11 +10,11 @@
 			
 			private $notification_view;
 			
-            private $relations = array('users'=>array('user_id'=>'id'),'notifications'=>array('notification_id'=>'notification_id'),);
+            private $relations = array('notifications'=>array('notification_id'=>'notification_id'),'users'=>array('user_id'=>'id'),);
         
-            private $users;
-            
             private $notifications;
+            
+            private $users;
             
 
 

@@ -10,14 +10,10 @@ class dashboardController extends TzController {
 	 public function indexAction ($params) {
 
 		 $project_code = $params['project'];
-
          $project = Guardian::guardEntryProject($project_code);
-
          if (!$project)
             return(tzController::CallController("pageNotFound", "show"));
-
          $modalTicket = Guardian::guardModalTicket();
-
 
          $user = TzAuth::readUser();
 
