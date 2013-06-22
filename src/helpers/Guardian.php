@@ -47,7 +47,7 @@ class Guardian  {
 
             }
 
-            return $projects;
+            return true;
 
         }
         else {

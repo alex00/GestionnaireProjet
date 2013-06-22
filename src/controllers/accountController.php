@@ -25,7 +25,7 @@ class accountController extends TzController {
         $this->tzRender->run('/templates/account', array('header' => 'headers/accountHeader.html.twig',
             'subMenu' => 'true',
             'paramsAriane' => $arianeParams,
-            'user' => $user,
+
             'nbe_project_create' => $nbe_project_create,
             'nbe_project_affilied' => $nbe_project_affilied,
             'projects' => $projects));

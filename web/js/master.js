@@ -12,10 +12,4 @@ $(document).ready(function() {
     } );
 
 
-    var toolBarAdmin = toolBar.getInstance();
-
-    if (toolBarAdmin.alerting){
-        toolBarAlert(toolBarAdmin.alert_type);
-    }
-
 } );

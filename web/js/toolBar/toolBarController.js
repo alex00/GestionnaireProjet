@@ -153,10 +153,12 @@ function toolBarSubmit (id, id_project,  name_project) {
                 var code = $("#modalReferer").val();
 
                 if (id == 'project')
-                    code = name.toLowerCase().replace(' ','-');
+                    code = name.toLowerCase().replace(/ /g,"-");
 
                 toolBarAdmin.alerting = true;
                 toolBarAdmin.alert_type = id;
+
+
                 window.location.href = '/'+code;
                 return;
 
