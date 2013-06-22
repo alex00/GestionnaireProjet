@@ -2,6 +2,7 @@
 
 namespace Components\Controller;
 use Components\Kernel\TzKernel;
+use src\helpers\Guardian;
 
 class TzController {
 

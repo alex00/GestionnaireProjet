@@ -7,7 +7,6 @@ use src\helpers\Guardian;
 class dashboardController extends TzController {
 
 	 public function indexAction ($params) {
-
 		 $project_code = $params['project'];
 
          $project = Guardian::guardEntryProject($project_code);
