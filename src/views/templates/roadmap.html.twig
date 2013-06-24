@@ -2,79 +2,70 @@
 
 {% block content %}
     <div id="contentLeft" class="span7" >
+        <article id="memberByService" class="roadMap">
+            <h4>Members :</h4>
+
+            {% if members is defined %}
+
+                <div id="tabs">
+                    <ul id="servicesTabs">
+                        {% for service in members %}
+                                <li  style="float: left"><a href="#{{ service.infoService.service_code }}">{{ service.infoService.service_name }}</a></li>
+                        {% endfor %}
+                    </ul>
+                        {% for service in members %}
+
+                            {% set current_service = service.infoService.service_code %}
+                            <div class="tabListUser" id="{{ service.infoService.service_code }}">
+                                {% set turn = loop.index0 %}
+                                {% if service.infoUsers == 'none' %}
+                                    {% if service.infoService.service_code == 'not-affiliated' %}
+                                        All the members are affiliated to a service
+                                    {% else %}
+                                        No members in this service
+                                    {% endif %}
+                                {% else %}
+                                    {% for user in service.infoUsers %}
+                                        {% if user.right == 1 %}
+                                            {% set right = 'Creator' %}
+                                        {% elseif user.right == 2 %}
+                                            {% set right = 'Admin' %}
+                                        {% elseif user.right == 3 %}
+                                            {% set right = 'User' %}
+                                        {% endif %}
+                                        <div class="blockUser span3" onmouseover="javascript:changeModal({{ user.id }},'{{ user.user_login }}','{{ right }}',{{ turn }}, '{{ current_service }}');">
+                                            <a class="linkBlack" href="/user/{{ user.user_login_code }}" >{{ user.user_login }}</a>
+                                            <img class="imgListUserStraight" src="/img/lineStraight.png" title="Right" alt="Right" />
+                                            <span class="rightListUser">
+                                                {{ right }}
+                                            </span>
+
+                                            <a class="changeServiceLink linkBlack pull-right" onclick="" data-toggle="modal" data-target="#modalHeaders"><img src="/img/changeService.png" alt="Change right and service" title="Change right and service" /></a>
+                                        </div>
+                                    {% endfor %}
+                                {% endif %}
+                            </div>
+                        {% endfor %}
+                </div>
+
+                <div style="clear: both"></div>
+
+            {% endif %}
+        </article>
+        <div class="span7 dividerBlock"></div>
         <article class="roadMap">
-            <h4>Deuxième version :</h4>
+            <h4>Announces :</h4>
             <p>
                 Cette version blablalblalb alblalblalb blbalbllbalb blablalblab blablalblab blalbalbalbl lb la lla l bal al lblalb all ablbal l
             </p>
 
-            <div class="progress progress-striped active advanceBar">
-                <div class="bar" style="width: 40%;"></div>
-            </div>
-            <div class="infoRoadMapBar">18 / 52 tâches</div>
-            <div class="clear-fix"></div>
-            <table class="roadmapTable table table-list " >
-                <thead>
-                <tr style="border: none;">
-                    <th style="width: 10%;border-top: none">ID</th><th class="notTooSmall" style="width: 30%;border-top: none">Titre</th><th style="width: 20%;border-top: none">Deadline</th><th style="width: 20%;border-top: none">Statut</th><th style="width: 20%;border-top: none">Importance</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>211</td><td class="notTooSmall">Première tache</td><td>16/02/5222</td><td><img src="img/assigned.png" title="Assigné" alt="Assigné"></td><td>Urgent</td>
-                </tr>
-                <tr>
-                    <td>211</td><td class="notTooSmall">Première tache</td><td>16/02/5222</td><td><img src="img/assigned.png" title="Assigné" alt="Assigné"></td><td>Urgent</td>
-                </tr>
-                <tr>
-                    <td>211</td><td class="notTooSmall">Première tache</td><td>16/02/5222</td><td><img src="img/assigned.png" title="Assigné" alt="Assigné"></td><td>Urgent</td>
-                </tr>
-                <tr>
-                    <td>211</td><td class="notTooSmall">Première tache</td><td>16/02/5222</td><td><img src="img/assigned.png" title="Assigné" alt="Assigné"></td><td>Urgent</td>
-                </tr>
-                <tr>
-                    <td>211</td><td class="notTooSmall">Première tache</td><td>16/02/5222</td><td><img src="img/assigned.png" title="Assigné" alt="Assigné"></td><td>Urgent</td>
-                </tr>
-                </tbody>
-            </table>
         </article>
         <div class="span7 dividerBlock"></div>
         <article class="roadMap">
-            <h4>Première version :</h4>
+            <h4>Roadmaps :</h4>
             <p>
                 Cette version blablalblalb alblalblalb blbalbllbalb blablalblab blablalblab blalbalbalbl lb la lla l bal al lblalb all ablbal l
             </p>
-            <p>
-            <div class="progress progress-striped active advanceBar">
-                <div class="bar" style="width: 100%;"></div>
-            </div>
-            <div class="infoRoadMapBar">18 / 18 tâches</div>
-            </p>
-            <div class="clear-fix"></div>
-            <table class="roadmapTable table table-list " >
-                <thead>
-                <tr style="border: none;">
-                    <th style="width: 10%;border-top: none">ID</th><th class="notTooSmall" style="width: 30%;border-top: none">Titre</th><th style="width: 20%;border-top: none">Deadline</th><th style="width: 20%;border-top: none">Statut</th><th style="width: 20%;border-top: none">Importance</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>211</td><td class="notTooSmall">Première tache</td><td>16/02/5222</td><td><img src="img/assigned.png" title="Assigné" alt="Assigné"></td><td>Urgent</td>
-                </tr>
-                <tr>
-                    <td>211</td><td class="notTooSmall">Première tache</td><td>16/02/5222</td><td><img src="img/assigned.png" title="Assigné" alt="Assigné"></td><td>Urgent</td>
-                </tr>
-                <tr>
-                    <td>211</td><td class="notTooSmall">Première tache</td><td>16/02/5222</td><td><img src="img/assigned.png" title="Assigné" alt="Assigné"></td><td>Urgent</td>
-                </tr>
-                <tr>
-                    <td>211</td><td class="notTooSmall">Première tache</td><td>16/02/5222</td><td><img src="img/assigned.png" title="Assigné" alt="Assigné"></td><td>Urgent</td>
-                </tr>
-                <tr>
-                    <td>211</td><td class="notTooSmall">Première tache</td><td>16/02/5222</td><td><img src="img/assigned.png" title="Assigné" alt="Assigné"></td><td>Urgent</td>
-                </tr>
-                </tbody>
-            </table>
         </article>
     </div>
 
