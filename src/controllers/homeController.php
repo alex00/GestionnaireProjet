@@ -20,6 +20,11 @@ class homeController extends TzController {
             $nb_resolved = $users_receive_tickets->countResolvedTickets($user["id"]);
             $nb_closed = $users_receive_tickets->countClosedTickets($user["id"]);
             $nb_canceled = $users_receive_tickets->countCanceledTickets($user["id"]);
+            
+            $list_project_affiliated = $user_serviceEntity->listProjectAffiliated($user['id']);
+            $list_project_created = $user_serviceEntity->listProjectCreated($user['id']);
+            
+
 
             $this->tzRender->run('/templates/home', array('header' => "headers/homeHeader.html.twig",
                                                           'subMenu' => true,
@@ -31,7 +36,8 @@ class homeController extends TzController {
                                                           'nb_resolved' => $nb_resolved,
                                                           'nb_closed' => $nb_closed,
                                                           'nb_canceled' => $nb_canceled,
-
+                                                          'list_project_affiliated' => $list_project_affiliated,
+                                                          'list_project_created' => $list_project_created,
                                                           'homeContext' => true,
                                                           'paramsAriane' => array()));
         }

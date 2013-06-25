@@ -396,7 +396,7 @@
                 return $nb->nb_project;
             }
             
-            public function listProjectAffiliated(){
+            public function listProjectAffiliated($user_id){
                 $sql =  'SELECT * 
                             FROM projects
                             LEFT JOIN user_service ON user_service.project_id = projects.project_id
@@ -404,7 +404,7 @@
                             AND user_service.rightKey <>1
                             ';
                     $data = TzSQL::getPDO()->prepare($sql);
-                    $data->bindValue('user_id', $this->getId(), PDO::PARAM_INT);
+                    $data->bindValue('user_id', $user_id, PDO::PARAM_INT);
                     $data->execute();
                     $formatResult = $data->fetchAll(PDO::FETCH_ASSOC);
                     $entitiesArray = array();
@@ -416,7 +416,7 @@
                     return $entitiesArray;
             }
             
-            public function listProjectCreated(){
+            public function listProjectCreated($user_id){
                 $sql =  'SELECT * 
                             FROM projects
                             LEFT JOIN user_service ON user_service.project_id = projects.project_id
@@ -424,7 +424,7 @@
                             AND user_service.rightKey = 1
                             ';
                     $data = TzSQL::getPDO()->prepare($sql);
-                    $data->bindValue('user_id', $this->getId(), PDO::PARAM_INT);
+                    $data->bindValue('user_id', $user_id, PDO::PARAM_INT);
                     $data->execute();
                     $formatResult = $data->fetchAll(PDO::FETCH_ASSOC);
                     $entitiesArray = array();
