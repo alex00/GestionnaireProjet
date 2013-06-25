@@ -30,13 +30,16 @@ account_forbidden:
     pattern:    /forbidden
     controller: account:forbidden
 
-account_member:
-	pattern:	/{project}/member/{member}/
-	controller: account:memberDetail
+
+organization_changeMemberInfos:
+    pattern:    /change-member-informations
+    controller: organization:changeMemberInfos
     requirements:
-        project:   string
-        member:   string
         only_connected: true
+        ajax: true
+        exclude_groups : visitor|user
+
+
 
 # Tickets Controller
 
@@ -53,6 +56,7 @@ ticket_detail:
 	    project:   string
 	    ticket:   string
         only_connected: true
+        exclude_groups : visitor
 
 # Dashboard Controller
 
@@ -79,6 +83,7 @@ announce_detail:
         project:   string
         announce:   string
         only_connected: true
+        exclude_groups : visitor
 
 activity_newProject:
     pattern:    /new-project/{name}/{desc}
@@ -98,6 +103,7 @@ activity_newAnnounce:
         project:   string
         only_connected: true
         ajax: true
+        exclude_groups : visitor|user
 
 activity_newService:
     pattern:    /{project}/new-service/{name}/{id}
@@ -106,6 +112,7 @@ activity_newService:
         project:   string
         only_connected: true
         ajax: true
+        exclude_groups : visitor|user
 
 activity_newMember:
     pattern:    /{project}/new-member/{login1}/{login2}/{login3}/{login4}/{login5}/{id}
@@ -114,6 +121,7 @@ activity_newMember:
         project:   string
         only_connected: true
         ajax: true
+        exclude_groups : visitor|user
 
 activity_newTicket:
     pattern:    /{project}/new-ticket
@@ -121,29 +129,32 @@ activity_newTicket:
     requirements:
         only_connected: true
         ajax: true
+        exclude_groups : visitor|user
 
-# Roadmap Controller
+# Organization Controller
 
-roadmap_index:
-    pattern:    /{project}/roadmaps
-    controller: roadmap:index
+organization_index:
+    pattern:    /{project}/organization
+    controller: organization:index
     requirements:
         project:   string
         only_connected: true
 
-roadmap_detail:
+organization_detail:
     pattern:    /{project}/roadmap/{roadmap}/
-    controller: roadmap:detail
+    controller: organization:detail
     requirements:
         project:   string
         roadmap:   string
         only_connected: true
+        exclude_groups : visitor
 
-roadmap_newRoadmap:
+organization_newRoadmap:
     pattern:    /{project}/new-roadmap/{name}/{desc}/{id}
-    controller: roadmap:newRoadmap
+    controller: organization:newRoadmap
     requirements:
         project:   string
         only_connected: true
         ajax: true
+        exclude_groups : visitor|user
 

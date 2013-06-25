@@ -615,170 +615,6 @@ box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px #F25C27;
 
 
 
-
-
-
-
-
-
-
-/**** modal styles ***********/
-
-.modal-header {
-
-    background: url(../img/bg-content.jpg) 50% 50%;
-}
-.modal-header h6 {
-
-   font-size: 26px;
-}
-.modal-header .close {
-    color: #fff;
-}
-
-.modal-body table{
-    width: 90%;
-}
-
-.modal-body table textarea{
-    margin-left: 10px;
-    resize: none;
-    width: 95%;
-}
-.modal-body #nameProject {
-    width: 95%;
-}
-
-.modal-body #memberProject {
-    width: 90%;
-}
-
-.modal-body table tr td:first-child {
-    width: 25%;
-}
-
-.modal-body .addMember {
-    margin-top: 0px;
-    line-height: 32px;
-    font-size: 32px;
-}
-
-.modal-body #addTicket select, .modal-body #addTicket input[type='date'] {
-    margin-left: 10px;
-}
-
-.modal-body #addTicket input[type='text'],.modal-body #addTicket textarea {
-    width: 89%;
-}
-
-#modalHeaders {
-    width: 560px;
-    margin-top: -250px ;
-    margin-left:  -340px ;
-}
-
-#modalHeadersLarge {
-    width: 950px;
-    margin-top: -280px ;
-    margin-left:  -500px ;
-}
-
-#modalHeaders #addTicket .modal-body {
-    max-height: 525px;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/**** modal styles ***********/
-
-.modal-header {
-
-    background: url(../img/bg-content.jpg) 50% 50%;
-}
-.modal-header h6 {
-
-   font-size: 26px;
-}
-.modal-header .close {
-    color: #fff;
-}
-
-.modal-body table{
-    width: 90%;
-}
-
-.modal-body table textarea{
-    margin-left: 10px;
-    resize: none;
-    width: 95%;
-}
-.modal-body #nameProject {
-    width: 95%;
-}
-
-.modal-body #memberProject {
-    width: 90%;
-}
-
-.modal-body table tr td:first-child {
-    width: 25%;
-}
-
-.modal-body .addMember {
-    margin-top: 0px;
-    line-height: 32px;
-    font-size: 32px;
-}
-
-.modal-body #addTicket select, .modal-body #addTicket input[type='date'] {
-    margin-left: 10px;
-}
-
-.modal-body #addTicket input[type='text'],.modal-body #addTicket textarea {
-    width: 89%;
-}
-
-#modalHeaders {
-    width: 560px;
-    margin-top: -250px ;
-    margin-left:  -340px ;
-}
-
-#modalHeadersLarge {
-    width: 950px;
-    margin-top: -280px ;
-    margin-left:  -500px ;
-}
-
-#modalHeaders #addTicket .modal-body {
-    max-height: 525px;
-}
-
-
-
-
-
-
-
 .headerAdminLinks a {
     margin-left: 15px;
     margin-right: 15px;
@@ -796,10 +632,180 @@ box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px #F25C27;
 }
 
 #headerSearchBar input[type="text"]:focus {
-border-color: #F25C27;
--webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px #F25C27;
--moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px #F25C27;
-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px #F25C27;
+    border-color: #F25C27;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px #F25C27;
+    -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px #F25C27;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px #F25C27;
+}
+
+
+
+
+/*************** Organization page ****************************/
+
+
+.ui-widget-header {
+    background: none !important;
+    border: none !important;
+}
+
+
+.ui-widget-content {
+    background: none !important;
+    border: none !important;
+}
+
+.ui-state-active {
+    border: 1px solid #F25C27 !important;
+}
+
+.ui-state-hover {
+    border: 1px solid #F25C27 !important;
+}
+.ui-state-focus {
+    border: 1px solid #F25C27 !important;
+}
+
+.ui-state-default a, .ui-state-default a:link, .ui-state-hover a, .ui-state-hover a:hover {
+    color: #707070 !important;
+
+}
+
+#servicesTabs {
+    outline: none !important;
+    margin-bottom: 25px;
+}
+
+#servicesTabs li a {
+
+    outline: none !important;
+}
+
+#servicesTabs li {
+    outline: none !important;
+    padding-left: 5px;
+    padding-right: 5px;
+    border-radius: 0px !important;
+    margin-right: 10px;
+    font-weight: normal !important;
+}
+
+#choiceService {
+    margin-bottom: 25px;
+}
+
+#choiceService a {
+    margin-top: 5px;
+    margin-right: 70px;
+}
+
+
+
+.tabListUser ul {
+    margin-left: 10px;
+    list-style-type: none;
+}
+
+.imgListUserDown {
+    margin-right: 5px;
+    margin-top: -12px;
+}
+
+.imgListUserStraight {
+    margin-right: 10px;
+    margin-top: -2px;
+    margin-left: 10px;
+
+}
+
+.rightListUser {
+    color: #F25C27;
+}
+
+.blockUser {
+    margin-left:10px;
+    line-height: 36px;
+}
+.blockUser > .changeServiceLink {
+display: none;
+}
+
+
+.blockUser:hover > .changeServiceLink{
+
+    display: block;
+}
+
+.changeServiceLink:hover {
+    cursor: pointer;
+}
+
+
+
+
+/**** modal styles ***********/
+
+.modal-header {
+
+    background: url(../img/bg-content.jpg) 50% 50%;
+}
+.modal-header h6 {
+
+   font-size: 26px;
+}
+.modal-header .close {
+    color: #fff;
+}
+
+.modal-body table{
+    width: 90%;
+}
+
+.modal-body table textarea{
+    margin-left: 10px;
+    resize: none;
+    width: 95%;
+}
+.modal-body #nameProject {
+    width: 95%;
+}
+
+.modal-body #memberProject {
+    width: 90%;
+}
+
+.modal-body table tr td:first-child {
+    width: 25%;
+}
+
+.modal-body .addMember {
+    margin-top: 0px;
+    line-height: 32px;
+    font-size: 32px;
+}
+
+.modal-body #addTicket select, .modal-body #addTicket input[type='date'] {
+    margin-left: 10px;
+}
+
+.modal-body #addTicket input[type='text'],.modal-body #addTicket textarea {
+    width: 89%;
+}
+
+#modalHeaders {
+    width: 560px;
+    margin-top: -250px ;
+    margin-left:  -340px ;
+}
+
+#modalHeadersLarge {
+    width: 950px;
+    margin-top: -280px ;
+    margin-left:  -500px ;
+}
+
+#modalHeaders #addTicket .modal-body {
+    max-height: 525px;
 }
 
 .modal-header {
@@ -865,6 +871,78 @@ box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px #F25C27;
     max-height: 525px;
 }
 
+
+.modal-header {
+
+    background: url(../img/bg-content.jpg) 50% 50%;
+}
+.modal-header h6 {
+
+   font-size: 26px;
+}
+.modal-header .close {
+    color: #fff;
+}
+
+.modal-body table{
+    width: 90%;
+}
+
+.modal-body table textarea{
+    margin-left: 10px;
+    resize: none;
+    width: 95%;
+}
+.modal-body #nameProject {
+    width: 95%;
+}
+
+.modal-body #memberProject {
+    width: 90%;
+}
+
+.modal-body table tr td:first-child {
+    width: 25%;
+}
+
+.modal-body .addMember {
+    margin-top: 0px;
+    line-height: 32px;
+    font-size: 32px;
+}
+
+.modal-body #addTicket select, .modal-body #addTicket input[type='date'] {
+    margin-left: 10px;
+}
+
+.modal-body #addTicket input[type='text'],.modal-body #addTicket textarea {
+    width: 89%;
+}
+
+#modalHeaders {
+    width: 560px;
+    margin-top: -250px ;
+    margin-left:  -340px ;
+}
+
+#modalHeadersLarge {
+    width: 950px;
+    margin-top: -280px ;
+    margin-left:  -500px ;
+}
+
+#modalHeaders #addTicket .modal-body {
+    max-height: 525px;
+}
+
+#nameUserChangeMember {
+    margin-top: 20px;
+    font-size: 26px;
+}
+
+#changeMember select[disabled] {
+    background: none;
+}
 
 
 

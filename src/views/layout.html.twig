@@ -13,6 +13,7 @@
     <link rel="stylesheet" type="text/css" href="/css/styles.css" >
 
     <script type="text/javascript" src="/js/jquery/jquery.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
     <script type="text/javascript" src="/js/jquery/jquery.cookie.js" ></script>
     <script type="text/javascript" src="/js/jquery/jquery.easing.1.3.js" ></script>
     <script type="text/javascript" src="/js/jquery/jquery-validate.min.js" ></script>
@@ -25,6 +26,9 @@
 
     <script type="text/javascript" language="javascript" src="/js/toolBar/toolBar.js" ></script>
     <script type="text/javascript" language="javascript" src="/js/toolBar/toolBarController.js" ></script>
+    <style>
+        #sortable1 li, #sortable2 li { margin: 0 5px 5px 5px; padding: 5px; font-size: 1.2em; width: 120px; }
+    </style>
 
 </head>
 
@@ -113,7 +117,7 @@
                         <li {% if subMenuCurrent == 'dashboard' %}class="current" {% endif %} id="DashboardSubMenu"><a href="/{{ currentProject.project_code }}">Dashboard</a></li>
                         <li {% if subMenuCurrent == 'tickets' %}class="current" {% endif %} id="TicketSubMenu"><a href="/{{ currentProject.project_code }}/tickets">Tickets</a></li>
                         <li {% if subMenuCurrent == 'activity' %}class="current" {% endif %} id="ActivitySubMenu"><a href="/{{ currentProject.project_code }}/activity">Activity</a></li>
-                        <li {% if subMenuCurrent == 'roadmaps' %}class="current" {% endif %} id="RoadmapSubMenu"><a href="/{{ currentProject.project_code }}/roadmaps">Roadmaps</a></li>
+                        <li {% if subMenuCurrent == 'organization' %}class="current" {% endif %} id="RoadmapSubMenu"><a href="/{{ currentProject.project_code }}/organization">Organization</a></li>
                     </ul>
                 </div>
             </div>
@@ -164,15 +168,62 @@
 {% endblock %}
 
 {% if homeContext == false %}
+
+    {% if modalChangeMember is defined %}
+        <input type="hidden" name="memberTab" id="memberTab" value="{{ memberTab }}" />
+        <div id="modalHeaders" class="modal hide fade">
+
+            <header class="modal-header">
+                <a href="#" class="close" data-dismiss="modal">x</a>
+                <h6>Modify a member</h6>
+            </header>
+
+            <div class="modal-body">
+                <p id="nameUserChangeMember">
+
+                </p>
+                <form id="changeMember" action="" method="post" name="changeMember">
+                    <table>
+                        <tr>
+                            <td><label for="roleChangeMember">Role :</label></td>
+                            <td colspan="3">
+                                <select id="roleChangeMember">
+                                    <option id="creatorRoleChangeMember" value="1">Creator</option>
+                                    <option id="adminRoleChangeMember"value="2">Admin</option>
+                                    <option id="userRoleChangeMember" value="3">User</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label for="serviceChangeMember">Service :</label></td>
+                            <td colspan="3">
+                                <select id="serviceChangeMember">
+                                    {% for service in modalChangeMember %}
+                                        <option id="serviceChange{{ service.service_code }}" value="{{ service.service_id }}">{{ service.service_name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+            <input type="hidden" name="idUserChangeMember" id="idUserChangeMember" value=""/>
+            <input type="hidden" name="idTabService" id="idTabService" value=""/>
+            <input type="hidden" name="idService" id="idService" value=""/>
+            <footer class="modal-footer">
+                <a href="#" class="btn btn-primary" id="okwin01" onclick="changeMemberInformations('{{ currentProject.project_code }}', {{ currentProject.project_id }})"  >Modify</a>
+            </footer>
+        </div>
+    {% endif %}
 <div id="modalHeadersLarge" class="modal hide fade">
-    <!-- first modal window -->
+
     <header class="modal-header">
         <a href="#" class="close" data-dismiss="modal">x</a>
         <h6>Add a Ticket</h6>
     </header>
 
     <div class="modal-body">
-        <form id="addTicket" action="/new-ticket" method="post" name="newTicket">
+        <form id="addTicket" action="" method="post" name="newTicket">
             <table>
                 <tr>
                     <td><label for="nameTicket">Name :</label></td><td colspan="3"><input type="text" name="nameTicket" id="nameTicket"/></td>
@@ -243,5 +294,6 @@
             <input type='hidden' name="modalReferer" id="modalReferer" value="{{ currentProject.project_code }}/{{ currentPage }}" />
         {% endif %}
 {% endif %}
+
 </body>
 </html>

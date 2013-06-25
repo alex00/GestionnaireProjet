@@ -56,6 +56,14 @@
 				return $this->rightKey;
 			}
 
+            public function getUsers_link(){
+                return $this->users;
+            }
+
+            public function getServices_link(){
+                return $this->services;
+            }
+
 			
 			/********************** SETTER ***********************/
 
@@ -253,7 +261,7 @@
 					return true;
 				}
 				else{
-					DebugTool::$error->catchError(array('Result is null', __FILE__,__LINE__, true));
+					//DebugTool::$error->catchError(array('Result is null', __FILE__,__LINE__, true));
 					return false;
 				}
 			}

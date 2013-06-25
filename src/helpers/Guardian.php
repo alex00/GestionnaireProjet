@@ -26,16 +26,14 @@ class Guardian  {
                     if ($line->getProject_id() == $exist[0]->getProject_id())
                         $right = $line->getRightKey();
                     else
-                        $right = $user['acl_group_id'];
+                        $right = 4;
                 }
             }
             else
-                $right = $user['acl_group_id'];
+                $right = 4;
 
-            TzAuth::addUserSession(array('currentProject' => $exist[0]));
 
             $user = TzAuth::readUser();
-
 
             if ($user['acl_group_id'] != $right){
                 TzAuth::addUserSession(array('acl_group_id' => $right));
@@ -46,6 +44,9 @@ class Guardian  {
                 $userEntity->Update();
 
             }
+
+            TzAuth::addUserSession(array('currentProject' => $exist[0]));
+
 
             return true;
 
@@ -106,6 +107,12 @@ class Guardian  {
         return $data;
     }
 
+
+
+
+
+    /******* Générateur de modal ******************/
+
     public  static function guardModalTicket() {
         $linkUser = tzSQL::getEntity('user_service');
         $user = TzAuth::readUser();
@@ -113,20 +120,22 @@ class Guardian  {
         $userByService = $linkUser->findManyBy('project_id', $user['currentProject']->getProject_id());
 
         $result = array();
-        foreach ($userByService as $users){
+        if ($userByService){
+            foreach ($userByService as $users){
 
-            $usersEntity = tzSQL::getEntity('users');
-            $serviceEntity = tzSQL::getEntity('services');
+                $usersEntity = tzSQL::getEntity('users');
+                $serviceEntity = tzSQL::getEntity('services');
 
-            $usersEntity->findOneBy('id',$users->getUser_id());
-            $serviceEntity->findOneBy('service_id',$users->getService_id());
+                $usersEntity->findOneBy('id',$users->getUser_id());
+                $serviceEntity->findOneBy('service_id',$users->getService_id());
 
-            if (!isset($result['services'][$users->getService_id()]['name']))
-                $result['services'][$users->getService_id()]['name'] = $serviceEntity->getService_name();
+                if (!isset($result['services'][$users->getService_id()]['name']))
+                    $result['services'][$users->getService_id()]['name'] = $serviceEntity->getService_name();
 
-            $result['services'][$users->getService_id()]['members'][$users->getUser_id()]['id'] = $users->getUser_id();
-            $result['services'][$users->getService_id()]['members'][$users->getUser_id()]['login'] = $usersEntity->getUser_login();
+                $result['services'][$users->getService_id()]['members'][$users->getUser_id()]['id'] = $users->getUser_id();
+                $result['services'][$users->getService_id()]['members'][$users->getUser_id()]['login'] = $usersEntity->getUser_login();
 
+            }
         }
 
         $roadmaps = tzSQL::getEntity('roadmaps');
@@ -143,4 +152,15 @@ class Guardian  {
         return $result;
     }
 
+
+
+    public  static function guardModalChangeMember() {
+
+        $services = TzSQL::getEntity('services');
+        $user = TzAuth::readUser();
+
+        $servicesProject = $services->findManyBy('project_id', $user['currentProject']->getProject_id());
+
+        return $servicesProject;
+    }
 }

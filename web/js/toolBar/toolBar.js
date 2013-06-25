@@ -17,9 +17,6 @@ var toolBar = (function() {
 
         this.doing = false;
         this.template_folder = "/js/toolBar/";
-        this.alerting = false;
-        this.alert_type = false;
-
 
         this.infosToolBar = { template:
                                     { addProjectLink: this.template_folder+'addProject.html.twig',
