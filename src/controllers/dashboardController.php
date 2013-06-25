@@ -15,10 +15,15 @@ class dashboardController extends TzController {
          $modalTicket = Guardian::guardModalTicket();
 
          $user = TzAuth::readUser();
+         $infosHeader = array();
+
+         $user_serviceEntity = tzSQL::getEntity('user_service');
+         $infosHeader['creator'] = $user_serviceEntity->findCreatedProjects($user["currentProject"]->getProject_id());
+         $infosHeader['nb_members'] = $user_serviceEntity->countMembersProject($user["id"]);
 
          $arianeParams = array('idProject' => $user['currentProject']->getProject_id(),
                                 'nameProject' => $user['currentProject']->getProject_name(),
-                                 'codeProject' => $user['currentProject']->getProject_code(),
+                                'codeProject' => $user['currentProject']->getProject_code(),
                                 'category' => 'Dashboard');
 
          $alert = Guardian::guardAlert();
@@ -27,6 +32,7 @@ class dashboardController extends TzController {
                                                             'modalTicket' => $modalTicket,
                                                             'alert' => $alert,
                                                             'currentPage' => 'dashboard',
+                                                            'infosHeader' => $infosHeader,
                                                             'subMenuCurrent' => 'dashboard',
                                                             'paramsAriane' => $arianeParams));
 

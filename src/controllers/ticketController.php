@@ -17,7 +17,22 @@ class ticketController extends TzController {
          $modalTicket = Guardian::guardModalTicket();
 
          $user = TzAuth::readUser();
+         $infosHeader = array();
 
+         $ticketsEntity = tzSQL::getEntity('tickets');
+
+         $infosHeader['nb_total'] = $ticketsEntity->countTicketsTotal($user['currentProject']->getProject_id());
+         $infosHeader['nb_assigned'] = $ticketsEntity->countAssignedTickets($user['currentProject']->getProject_id());
+         $infosHeader['nb_inprogress'] = $ticketsEntity->countInprogressTickets($user['currentProject']->getProject_id());
+         $infosHeader['nb_resolved'] = $ticketsEntity->countResolvedTickets($user['currentProject']->getProject_id());
+         $infosHeader['nb_closed'] = $ticketsEntity->countClosedTickets($user['currentProject']->getProject_id());
+         $infosHeader['nb_canceled'] = $ticketsEntity->countCanceledTickets($user['currentProject']->getProject_id());
+         $infosHeader['nb_evolution'] = $ticketsEntity->countEvolutionTickets($user['currentProject']->getProject_id());
+         $infosHeader['nb_bug'] = $ticketsEntity->countBugTickets($user['currentProject']->getProject_id());
+         $infosHeader['nb_support'] = $ticketsEntity->countSupportTickets($user['currentProject']->getProject_id());
+
+         $nb_finish = intval($infosHeader['nb_closed'] +  $infosHeader['nb_canceled']);
+         $infosHeader['progress'] = round(100 * $nb_finish/ $infosHeader['nb_total']);
          $arianeParams = array('idProject' => $user['currentProject']->getProject_id(),
              'nameProject' => $user['currentProject']->getProject_name(),
              'codeProject' => $user['currentProject']->getProject_code(),
@@ -25,6 +40,7 @@ class ticketController extends TzController {
 
          $this->tzRender->run('/templates/ticket', array('header' => 'headers/ticketHeader.html.twig',
                                                          'modalTicket' => $modalTicket,
+                                                         'infosHeader' => $infosHeader,
                                                          'currentPage' => 'tickets',
                                                          'subMenuCurrent' => 'tickets',
                                                          'paramsAriane' => $arianeParams));

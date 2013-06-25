@@ -8,19 +8,19 @@
                     {{ User.user_login }}
                 </p>
                 <p class="projectHeaderHome pull-left">
-                    <span class="numberProjectHeaderHome" style="padding-left: 0px;padding-right: 10px;">{{ nb_created_project }}<x></x></span> created project
+                    <span class="numberProjectHeaderHome" style="padding-left: 0px;padding-right: 10px;">{{ infosHeader.nb_created_project }}<x></x></span> created project
                 </p>
                 <p class="projectHeaderHome pull-left" style="border-left: none">
-                    <span class="numberProjectHeaderHome" style="padding-left: 0px;padding-right: 10px;">{{ nb_affiliated_project }}</span> affiliated project
+                    <span class="numberProjectHeaderHome" style="padding-left: 0px;padding-right: 10px;">{{ infosHeader.nb_affiliated_project }}</span> affiliated project
                 </p>
                 <div style="clear: both"></div>
                 <ul class="tasksHeaderHome">
                     <li>All my tasks : </li>
-                    <li><img src="/img/assigned.png" title="Assigned" alt="Assigned">  {{ nb_assigned  }}</li>
-                    <li><img src="/img/working.png" title="In Progress" alt="In Progress">  {{ nb_inprogress }}</li>
-                    <li><img src="/img/check.png" title="Resolved" alt="Resolved">  {{ nb_resolved }}</li>
-                    <li><img src="/img/closed.png" title="Closed" alt="Closed">  {{ nb_closed }}</li>
-                    <li><img src="/img/cancel.png" title="Canceled" alt="Canceled">  {{ nb_canceled }}</li>
+                    <li><img src="/img/assigned.png" title="Assigned" alt="Assigned">  {{ infosHeader.nb_assigned  }}</li>
+                    <li><img src="/img/working.png" title="In Progress" alt="In Progress">  {{ infosHeader.nb_inprogress }}</li>
+                    <li><img src="/img/check.png" title="Resolved" alt="Resolved">  {{ infosHeader.nb_resolved }}</li>
+                    <li><img src="/img/closed.png" title="Closed" alt="Closed">  {{ infosHeader.nb_closed }}</li>
+                    <li><img src="/img/cancel.png" title="Canceled" alt="Canceled">  {{ infosHeader.nb_canceled }}</li>
                 </ul>
             </div>
         </div>

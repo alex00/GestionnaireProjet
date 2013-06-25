@@ -5,30 +5,30 @@
             <h2>Tickets</h2>
             <div id="otherInfos">
                 <p class="nameHeaderHome">
-                    <span class="colorNumberHeader" >256</span> tickets
+                    <span class="colorNumberHeader" >{{ infosHeader.nb_total }}</span> tickets
                 </p>
                 <p class="projectHeaderHome pull-left">
-                    <span class="numberProjectHeaderHome">10</span> assigned
+                    <span class="numberProjectHeaderHome">{{ infosHeader.nb_assigned }}</span> assigned
                 </p>
                 <p class="projectHeaderHome pull-left" style="border-left: none">
-                    <span class="numberProjectHeaderHome">14</span> In progress
+                    <span class="numberProjectHeaderHome">{{ infosHeader.nb_inprogress }}</span> In progress
                 </p>
                 <p class="projectHeaderHome pull-left" style="border-left: none">
-                    <span class="numberProjectHeaderHome">14</span> Resolved
+                    <span class="numberProjectHeaderHome">{{ infosHeader.nb_resolved }}</span> Resolved
                 </p>
                 <p class="projectHeaderHome pull-left" style="border-left: none">
-                    <span class="numberProjectHeaderHome" >14</span> Closed
+                    <span class="numberProjectHeaderHome" >{{ infosHeader.nb_closed }}</span> Closed
                 </p>
                 <p class="projectHeaderHome pull-left" style="border-left: none">
-                    <span class="numberProjectHeaderHome" >14</span> Canceled
+                    <span class="numberProjectHeaderHome" >{{ infosHeader.nb_canceled }}</span> Canceled
                 </p>
                 <div style="clear: both"></div>
                 <ul class="tasksHeaderHome pull-left" style="padding-bottom: 10px">
-                    <li>Evolution : <span class="colorNumberHeader" >12</span></li>
-                    <li>Bug : <span class="colorNumberHeader" >12</span></li>
-                    <li>Assistance : <span class="colorNumberHeader" >12</span></li>
+                    <li>Evolution : <span class="colorNumberHeader" >{{ infosHeader.nb_evolution }}</span></li>
+                    <li>Bug : <span class="colorNumberHeader" >{{ infosHeader.nb_bug }}</span></li>
+                    <li>Assistance : <span class="colorNumberHeader" >{{ infosHeader.nb_support }}</span></li>
                 </ul>
-                <p class="progressHeaderHome pull-left"  style="margin-left:200px;padding-top: 3px;border-left: none">Progress : <span class="colorNumberHeader" >25%</span></p>
+                <p class="progressHeaderHome pull-left"  style="margin-left:200px;padding-top: 3px;border-left: none">Progress : <span class="colorNumberHeader" >{{ infosHeader.progress }}%</span></p>
                 <div style="clear: both"></div>
             </div>
         </div>

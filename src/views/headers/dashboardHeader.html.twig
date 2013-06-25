@@ -11,10 +11,9 @@
                     {{ currentProject.project_description }}
                 </p>
                 <ul class="tasksHeaderHome">
-                    <li>Creator : <a class="linkBlack" href="/user/{{ currentProject.creator_code }}">{{ currentProject.creator_login|capitalize }}</a></li>
-                    <li>Creation : {{ currentProject.project_date_create }}</li>
-                    <li>Expected end : 19/05/1995 </li>
-                    <li>Members : 45</li>
+                    <li>Creator : {{ infosHeader.creator|capitalize }}</li>
+                    <li>Creation : {{ currentProject.project_date_create|date("d F Y") }}</li>
+                    <li>Members : {{ infosHeader.nb_members }}</li>
                 </ul>
                 <div style="clear: both"></div>
             </div>

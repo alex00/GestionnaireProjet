@@ -593,9 +593,97 @@
 				}
 			}
 
-					
+            public function countTicketsTotal($project_id){
+                $sql = 'SELECT COUNT(*) AS nb_total FROM `tickets` WHERE `project_id` = '.$project_id;
 
-		}
+                $result = TzSQL::getPDO()->prepare($sql);
+                $result->execute();
+                $tickets = $result->fetch(PDO::FETCH_OBJ);
+
+                return $tickets->nb_total;
+            }
+
+            public function countAssignedTickets($project_id){
+                $sql = 'SELECT COUNT(*) AS nb_assigned FROM `tickets` WHERE `project_id` = '.$project_id.' AND statut_id = 1';
+
+                $result = TzSQL::getPDO()->prepare($sql);
+                $result->execute();
+                $tickets = $result->fetch(PDO::FETCH_OBJ);
+
+                return $tickets->nb_assigned;
+            }
+
+            public function countInprogressTickets($project_id){
+                $sql = 'SELECT COUNT(*) AS nb_inprogress FROM `tickets` WHERE `project_id` = '.$project_id.' AND statut_id = 2';
+
+                $result = TzSQL::getPDO()->prepare($sql);
+                $result->execute();
+                $tickets = $result->fetch(PDO::FETCH_OBJ);
+
+                return $tickets->nb_inprogress;
+            }
+
+            public function countResolvedTickets($project_id){
+                $sql = 'SELECT COUNT(*) AS nb_resolved FROM `tickets` WHERE `project_id` = '.$project_id.' AND statut_id = 3';
+
+                $result = TzSQL::getPDO()->prepare($sql);
+                $result->execute();
+                $tickets = $result->fetch(PDO::FETCH_OBJ);
+
+                return $tickets->nb_resolved;
+            }
+
+            public function countClosedTickets($project_id){
+                $sql = 'SELECT COUNT(*) AS nb_closed FROM `tickets` WHERE `project_id` = '.$project_id.' AND statut_id = 4';
+
+                $result = TzSQL::getPDO()->prepare($sql);
+                $result->execute();
+                $tickets = $result->fetch(PDO::FETCH_OBJ);
+
+                return $tickets->nb_closed;
+            }
+
+            public function countCanceledTickets($project_id){
+                $sql = 'SELECT COUNT(*) AS nb_canceled FROM `tickets` WHERE `project_id` = '.$project_id.' AND statut_id = 5';
+
+                $result = TzSQL::getPDO()->prepare($sql);
+                $result->execute();
+                $tickets = $result->fetch(PDO::FETCH_OBJ);
+
+                return $tickets->nb_canceled;
+            }
+
+            public function countEvolutionTickets($project_id){
+                $sql = 'SELECT COUNT(*) AS nb_evolution FROM `tickets` WHERE `project_id` = '.$project_id.' AND tracker_id = 1';
+
+                $result = TzSQL::getPDO()->prepare($sql);
+                $result->execute();
+                $tickets = $result->fetch(PDO::FETCH_OBJ);
+
+                return $tickets->nb_evolution;
+            }
+
+            public function countBugTickets($project_id){
+                $sql = 'SELECT COUNT(*) AS nb_evolution FROM `tickets` WHERE `project_id` = '.$project_id.' AND tracker_id = 2';
+
+                $result = TzSQL::getPDO()->prepare($sql);
+                $result->execute();
+                $tickets = $result->fetch(PDO::FETCH_OBJ);
+
+                return $tickets->nb_evolution;
+            }
+
+            public function countSupportTickets($project_id){
+                $sql = 'SELECT COUNT(*) AS nb_evolution FROM `tickets` WHERE `project_id` = '.$project_id.' AND tracker_id = 3';
+
+                $result = TzSQL::getPDO()->prepare($sql);
+                $result->execute();
+                $tickets = $result->fetch(PDO::FETCH_OBJ);
+
+                return $tickets->nb_evolution;
+            }
+
+        }
 
 	?>
 					
