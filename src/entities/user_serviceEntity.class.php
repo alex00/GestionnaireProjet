@@ -326,11 +326,11 @@
 						return false;
 				}
 
-				$sql =  'SELECT * FROM user_service WHERE '.$param.' = "'.$value.'"';
-				$data = TzSQL::getPDO()->prepare($sql);
-				$data->execute();
-				$formatResult = $data->fetchAll(PDO::FETCH_ASSOC);
-				$entitiesArray = array();
+				$sql = 'SELECT * FROM user_service WHERE ' . $param . ' = "' . $value . '"';
+        $data = TzSQL::getPDO()->prepare($sql);
+        $data->execute();
+        $formatResult = $data->fetchAll(PDO::FETCH_ASSOC);
+        $entitiesArray = array();
 
 				if(!empty($formatResult)){
 
@@ -376,7 +376,7 @@
                 $nb = $result->fetch(PDO::FETCH_OBJ);
 
                 return $nb->nb_project;
-            }
+            } 
 
             public function countAffiliatedProjects($user_id){
 
@@ -386,6 +386,32 @@
                 $result->execute();
                 $nb = $result->fetch(PDO::FETCH_OBJ);
                 return $nb->nb_project;
+            }
+            
+            public function listProjectAffiliated(){
+                $sql =  'SELECT 
+                            * 
+                         FROM 
+                            projects 
+                        LEFT JOIN
+                            user_service
+                        ON
+                            user_project.project_id = projects.project_id
+                        WHERE 
+                            user_service.user_id = :user_id
+                        AND
+                            user_service.rightKey <> 1';
+                    $data = TzSQL::getPDO()->prepare($sql);
+                    $data->bindValue('user_id', $this->getId(), PDO::PARAM_INT);
+                    $data->execute();
+                    $formatResult = $data->fetchAll(PDO::FETCH_ASSOC);
+                    $entitiesArray = array();
+                    
+                    foreach ($formatResult as $value) {
+                        array_push($entitiesArray, $value);
+                    }
+                    
+                    return $entitiesArray;
             }
 		}
 
