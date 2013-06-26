@@ -43,6 +43,15 @@ organization_changeMemberInfos:
 
 # Tickets Controller
 
+ticket_detail:
+	pattern:	/{project}/ticket/{ticket}/
+	controller: ticket:ticketDetail
+	requirements:
+	    project:   string
+	    ticket:   string
+        only_connected: true
+        exclude_groups: visitor
+
 ticket_index:
     pattern:    /{project}/tickets/
     controller: ticket:index
@@ -50,13 +59,6 @@ ticket_index:
         project:   string
         only_connected: true
 
-ticket_detail:
-	pattern:	/{project}/ticket/{ticket}/
-	controller: ticket:detail
-	    project:   string
-	    ticket:   string
-        only_connected: true
-        exclude_groups : visitor
 
 # Dashboard Controller
 
@@ -78,7 +80,7 @@ activity_index:
 
 announce_detail:
     pattern:    /{project}/announce/{announce}/
-    controller: activity:detail
+    controller: activity:announceDetail
     requirements:
         project:   string
         announce:   string
@@ -142,7 +144,7 @@ organization_index:
 
 organization_detail:
     pattern:    /{project}/roadmap/{roadmap}/
-    controller: organization:detail
+    controller: organization:roadmapDetail
     requirements:
         project:   string
         roadmap:   string
