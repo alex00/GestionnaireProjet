@@ -3,6 +3,8 @@
 use Components\Auth\TzAuth;
 use Components\Controller\TzController;
 use Components\SQLEntities\TzSQL;
+
+use src\entities;
 use src\helpers\Guardian;
 
 class organizationController extends TzController {
@@ -14,6 +16,8 @@ class organizationController extends TzController {
         if (!$project)
             return(tzController::CallController("pageNotFound", "show"));
 
+        # chargement des deux modaux dans le layout
+
         $modalTicket = Guardian::guardModalTicket();
         $modalChangeMember = Guardian::guardModalChangeMember();
 
@@ -24,6 +28,7 @@ class organizationController extends TzController {
             'codeProject' => $user['currentProject']->getProject_code(),
             'category' => 'Organization');
 
+        #check si on affiche une alert dans le header
         $alert = Guardian::guardAlert();
 
 
@@ -31,22 +36,18 @@ class organizationController extends TzController {
         $link = TzSQL::getEntity('user_service');
 
         $servicesProject = $services->findManyBy('project_id', $user['currentProject']->getProject_id());
-
+        # on recupère les services lié au project
         foreach ( $servicesProject as $service){
 
+            # on récupére les users lié a chaque service
             $p = $link->findManyBy('service_id', $service->getService_id());
-
-            $fes = TzSQL::getEntity('user_service');
 
             if ($p){
                 foreach ($p as $users){
-                    $userEntity = TzSQL::getEntity('users');
-                    $right = $fes->findManyBy('project_id',$user['currentProject']->getProject_id());
-                    foreach ($right as $r){
-                        if ($r->getService_id() == $service->getService_id() && $r->getUser_id() == $users->getUser_Id())
-                            $right = $r->getRightKey();
-                    }
 
+                    $userEntity = TzSQL::getEntity('users');
+                    $right = $users->getRightKey();
+                    # on enregistre chaque users dans le tableau final avec l'id du service pour index
                     $userEntity->findOneBy('id',$users->getUser_id());
 
                     if (!isset($projectServices[$service->getService_id()]['infoUsers'][$userEntity->getId()])){
@@ -61,13 +62,14 @@ class organizationController extends TzController {
 
             if (isset($projectServices[$service->getService_id()]['infoService']))
                 continue;
+            # on enregistre les infos du service avec son id comme index dans le tableau final
 
             $projectServices[$service->getService_id()]['infoService']['service_name'] = $service->getService_name();
             $projectServices[$service->getService_id()]['infoService']['service_code'] = $service->getService_code();
 
         }
 
-
+        # affichage ou non d'un service par défault
         if (isset($user['memberTab'])){
             $tab = $user['memberTab'];
             $_SESSION['User']['memberTab'] = FALSE;
@@ -75,10 +77,20 @@ class organizationController extends TzController {
         else
             $tab = 0;
 
+        $allAnnounces = tzSQL::getEntity('announces');
+        $announces = $allAnnounces->allAnnounces($user['currentProject']->getProject_id());
+
+
+        $allRoadmaps = tzSQL::getEntity('roadmaps');
+        $roadmaps = $allRoadmaps->allRoadmaps($user['currentProject']->getProject_id());
+
+
         $this->tzRender->run('/templates/roadmap', array('header' => 'headers/roadmapHeader.html.twig',
             'modalTicket' => $modalTicket,
             'alert' => $alert,
             'memberTab' => $tab,
+            'announces' => $announces,
+            'roadmaps' => $roadmaps,
             'members' => $projectServices,
             'modalChangeMember' => $modalChangeMember,
             'currentPage' => 'organization',
@@ -86,21 +98,58 @@ class organizationController extends TzController {
             'paramsAriane' => $arianeParams));
     }
 
-    public function detailAction ($params) {
+    public function roadmapDetailAction ($params) {
 
-        $project_name = $params['project'];
+        $project_code = $params['project'];
+        $roadmap_code = $params['roadmap'];
 
-        $arianeParams = array('idProject' => 1,
-            'nameProject' => 'Project 1',
-            'category' => 'roadmaps',
-            'idDetail' => '1',
-            'nameDetail' => $params['roadmap']);
+        $project = Guardian::guardEntryProject($project_code);
+        if (!$project)
+            return(tzController::CallController("pageNotFound", "show"));
 
-        $roadmap = array('id' => 1, 'name' => 'Deuxieme version de truc', 'description' => 'desdsescecsecsecscesecsecsece cs cse cs ec ');
+        $modalTicket = Guardian::guardModalTicket();
 
-        $this->tzRender->run('/templates/detail', array('header' => 'headers/roadmapHeader.html.twig',
-            'subMenuCurrent' => 'roadmaps',
-            'entity' => $roadmap,
+        #check si on affiche une alert dans le header
+        $alert = Guardian::guardAlert();
+
+        $user = TzAuth::readUser();
+
+        $roadmaps = TzSQL::getEntity('roadmaps');
+
+        $allRoadmaps = $roadmaps->findManyBy('roadmap_code', $roadmap_code);
+
+        if ($allRoadmaps){
+            foreach ($allRoadmaps as $roadmap){
+                if ($roadmap->getProject_id() == $user['currentProject']->getProject_id()){
+
+                    $detailRoadmap = $roadmap;
+                }
+            }
+        }
+        $roadmaps = TzSQL::getEntity('roadmaps');
+
+        $allTickets = $roadmaps->ticketsByRoadmap($user['currentProject']->getProject_id(), $detailRoadmap->getRoadmap_id());
+
+        $stats = $roadmaps->statsProgressRoadmap($user['currentProject']->getProject_id(), $detailRoadmap->getRoadmap_id());
+
+        $detailRoadmap->tickets = $allTickets;
+        $detailRoadmap->progress = $stats;
+
+
+        $arianeParams = array('idProject' => $user['currentProject']->getProject_id(),
+            'nameProject' => $user['currentProject']->getProject_name(),
+            'codeProject' => $user['currentProject']->getProject_code(),
+            'categoryName' => 'roadmaps',
+            'categoryLink' => 'organization',
+            'nameDetail' => $detailRoadmap->getRoadmap_title());
+
+
+        $this->tzRender->run('/templates/detailRoadmap', array('header' => 'headers/roadmapHeader.html.twig',
+            'subMenuCurrent' => 'organization',
+            'currentPage' => 'organization',
+            'alert' => $alert,
+            'entity' => $detailRoadmap,
+            'modalTicket' => $modalTicket,
             'paramsAriane' => $arianeParams));
     }
 
@@ -116,9 +165,12 @@ class organizationController extends TzController {
         $roadmap->setRoadmap_date_update(date('Y-m-d'));
         $roadmap->setRoadmap_description($params['desc']);
 
+        $roadmap->setCreator_id($_SESSION['User']['id']);
         $roadmap->setProject_id($params['id']);
 
         $roadmap->Insert();
+
+        TzAuth::addUserSession(array('alert' => 'roadmap'));
 
         return true;
 
@@ -131,21 +183,19 @@ class organizationController extends TzController {
 
         $link = tzSQL::getEntity('user_service');
 
-
         $result = $link->findManyBy('project_id', $_POST['project_id']);
 
         foreach ($result as $line){
 
-            if ($line->getService_id() == $_POST['service_id'] && $line->getUser_id() == $_POST['user_id']){
-
+            if ($line->getUser_id() == $_POST['user_id']){
                 $lineLink = tzSQL::getEntity('user_service');
 
                 $lineLink->find($line->getId());
-
             }
         }
 
         $lineLink->setService_id($_POST['service_id']);
+
         $lineLink->setRightKey($_POST['right']);
 
         $lineLink->Update();

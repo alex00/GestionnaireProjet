@@ -6,28 +6,46 @@
         <table id="tableMyTickets" class="table table-list">
             <thead>
             <tr>
-                <th style="width: 10%;border-top: none">ID</th><th class="notTooSmall" style="width: 40%;border-top: none">Titre</th><th style="width: 10%;border-top: none">Deadline</th><th style="width: 10%;border-top: none">Statut</th>
+                <th style="width: 10%;border-top: none">ID</th><th class="notTooSmall" style="border-top: none">Titre</th><th style="width: 20%;border-top: none">Deadline</th><th style="text-align: center;width: 8%;border-top: none">Statut</th>
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td>211</td><td class="notTooSmall" >Première tache</td><td>16/02/5222</td><td><img src="/img/assigned.png" title="Assigné" alt="Assigné"></td>
-            </tr>
-            <tr>
-                <td>211</td><td class="notTooSmall" >Première tache</td><td>16/02/5222</td><td><img src="/img/assigned.png" title="Assigné" alt="Assigné"></td>
-            </tr>
-            <tr>
-                <td>211</td><td class="notTooSmall" >Première tache</td><td>16/02/5222</td><td><img src="/img/assigned.png" title="Assigné" alt="Assigné"></td>
-            </tr>
-            <tr>
-                <td>211</td><td class="notTooSmall" >Première tache</td><td>16/02/5222</td><td><img src="/img/assigned.png" title="Assigné" alt="Assigné"></td>
-            </tr>
-            <tr>
-                <td>211</td><td class="notTooSmall" >Première tache</td><td>16/02/5222</td><td><img src="/img/assigned.png" title="Assigné" alt="Assigné"></td>
-            </tr>
-            <tr>
-                <td>211</td><td class="notTooSmall" >Première tache</td><td>16/02/5222</td><td><img src="/img/assigned.png" title="Assigné" alt="Assigné"></td>
-            </tr>
+            {% if myTickets is defined %}
+            {% for ticket in myTickets %}
+                <tr>
+                    <td>
+                        <a class="linkBlack" href="/{{ currentProject.project_code }}/ticket/{{ ticket.ticket_code }}" title="{{ ticket.ticket_name }}" >
+                        {{ ticket.ticket_id }}
+                        </a>
+                    </td>
+                    <td class="notTooSmall">
+                        {% if ticket.ticket_name|length > 60 %}
+                            <a class="linkBlack" href="/{{ currentProject.project_code }}/ticket/{{ ticket.ticket_code }}" title="{{ ticket.ticket_name }}" >
+                                {{ ticket.ticket_name|slice(0, 60)}}...
+                            </a>
+                        {% else %}
+                            <a class="linkBlack" href="/{{ currentProject.project_code }}/ticket/{{ ticket.ticket_code }}" title="{{ ticket.ticket_name }}" >
+                                {{ ticket.ticket_name }}
+                            </a>
+                        {% endif %}
+                    </td>
+                    <td>{{ ticket.ticket_deadline|date('m-d-Y')}}</td>
+                    <td style="text-align: center" >
+                        {%  if ticket.statut_id == 1 %}
+                            <img src="/img/assigned.png" title="Assigned" alt="Assigned" />
+                        {%  elseif ticket.statut_id == 2 %}
+                            <img src="/img/working.png" title="In Progress" alt="In Progress" />
+                        {%  elseif ticket.statut_id == 3 %}
+                            <img src="/img/check.png" title="Resolved" alt="Resolved" />
+                        {%  elseif ticket.statut_id == 4 %}
+                            <img src="/img/closed.png" title="Closed" alt="Closed" />
+                        {%  elseif ticket.statut_id == 5 %}
+                            <img src="/img/canceled.png" title="Canceled" alt="Canceled" />
+                        {%  endif  %}
+                    </td>
+                </tr>
+            {% endfor %}
+            {% endif %}
             </tbody>
         </table>
     </article>
@@ -58,28 +76,61 @@
         <table id="allTicketsProject" class="table table-list">
             <thead>
             <tr>
-                <th style="width: 10%;border-top: none">ID</th><th class="notTooSmall" style="width: 20%;border-top: none">Titre</th><th class="notTooSmall"  style="width: 50%;border-top: none">Description</th><th style="width: 10%;border-top: none">Deadline</th><th style="width: 10%;border-top: none">Statut</th><th style="width: 10%;border-top: none">Importance</th>
+                <th style="width: 8%;border-top: none">ID</th><th class="notTooSmall" style="width: 20%;border-top: none">Titre</th><th class="notTooSmall"  style="width: 50%;border-top: none">Description</th><th style="width: 10%;border-top: none">To</th><th style="width: 10%;border-top: none">Deadline</th><th style="width: 10%;border-top: none">Statut</th>
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td>211</td><td class="notTooSmall" >Première tache</td><td class="notTooSmall" >La tache consiste..</td><td>16/02/5222</td><td><img src="/img/assigned.png" title="Assigné" alt="Assigné"></td><td>Urgent</td>
-            </tr>
-            <tr>
-                <td>211</td><td class="notTooSmall" >Première tache</td><td class="notTooSmall" >La tache consiste..</td><td>16/02/5222</td><td><img src="/img/assigned.png" title="Assigné" alt="Assigné"></td><td>Urgent</td>
-            </tr>
-            <tr>
-                <td>211</td><td class="notTooSmall" >Première tache</td><td class="notTooSmall" >La tache consiste..</td><td>16/02/5222</td><td><img src="/img/assigned.png" title="Assigné" alt="Assigné"></td><td>Urgent</td>
-            </tr>
-            <tr>
-                <td>211</td><td class="notTooSmall" >Première tache</td><td class="notTooSmall" >La tache consiste..</td><td>16/02/5222</td><td><img src="/img/assigned.png" title="Assigné" alt="Assigné"></td><td>Urgent</td>
-            </tr>
-            <tr>
-                <td>211</td><td class="notTooSmall" >Première tache</td><td class="notTooSmall" >La tache consiste..</td><td>16/02/5222</td><td><img src="/img/assigned.png" title="Assigné" alt="Assigné"></td><td>Urgent</td>
-            </tr>
-            <tr>
-                <td>211</td><td class="notTooSmall" >Première tache</td><td class="notTooSmall" >La tache consiste..</td><td>16/02/5222</td><td><img src="/img/assigned.png" title="Assigné" alt="Assigné"></td><td>Urgent</td>
-            </tr>
+            {% if allTickets is defined %}
+            {% for ticketAll in allTickets %}
+                <tr>
+                    <td>
+                        <a class="linkBlack" href="/{{ currentProject.project_code }}/ticket/{{ ticketAll.ticket_code }}" title="{{ ticketAll.ticket_name }}" >
+                        {{ ticketAll.ticket_id }}
+                        </a>
+                    </td>
+                    <td class="notTooSmall">
+                        {% if ticketAll.ticket_name|length > 70 %}
+                            <a class="linkBlack" href="/{{ currentProject.project_code }}/ticket/{{ ticketAll.ticket_code }}" title="{{ ticketAll.ticket_name }}" >
+                            {{ ticketAll.ticket_name|slice(0, 70)}}...
+                            </a>
+                        {% else %}
+                            <a class="linkBlack" href="/{{ currentProject.project_code }}/ticket/{{ ticketAll.ticket_code }}" title="{{ ticketAll.ticket_name }}" >
+                            {{ ticketAll.ticket_name }}
+                            </a>
+                        {% endif %}
+                    </td>
+                    <td class="notTooSmall">
+
+                        {% if ticketAll.ticket_description|length > 120 %}
+                            <a class="linkBlack" href="/{{ currentProject.project_code }}/ticket/{{ ticketAll.ticket_code }}" title="{{ ticketAll.ticket_name }}" >
+                                {{ ticketAll.ticket_description|slice(0, 120)}}...
+                            </a>
+                        {% else %}
+                            <a class="linkBlack" href="/{{ currentProject.project_code }}/ticket/{{ ticketAll.ticket_code }}" title="{{ ticketAll.ticket_name }}" >
+                                {{ ticketAll.ticket_description }}
+                            </a>
+                        {% endif %}
+
+                    </td>
+                    <td><a href="/users/{{ ticketAll.user_login_code }}"  class="linkBlack">{{ ticketAll.user_login}}</a></td>
+                    <td>{{ ticketAll.ticket_deadline|date('m-d-Y')}}</td>
+                    <td style="text-align: center">
+                        {%  if ticketAll.statut_id == 1 %}
+                            <img src="/img/assigned.png" title="Assigned" alt="Assigned" />
+                        {%  elseif ticketAll.statut_id == 2 %}
+                            <img src="/img/working.png" title="In Progress" alt="In Progress" />
+                        {%  elseif ticketAll.statut_id == 3 %}
+                            <img src="/img/check.png" title="Resolved" alt="Resolved" />
+                        {%  elseif ticketAll.statut_id == 4 %}
+                            <img src="/img/closed.png" title="Closed" alt="Closed" />
+                        {%  elseif ticketAll.statut_id == 5 %}
+                            <img src="/img/canceled.png" title="Canceled" alt="Canceled" />
+                        {%  endif  %}
+                    </td>
+                </tr>
+                </a>
+            {% endfor %}
+            {% endif %}
             </tbody>
         </table>
     </article>

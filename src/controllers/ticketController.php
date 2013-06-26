@@ -19,6 +19,15 @@ class ticketController extends TzController {
          $user = TzAuth::readUser();
          $infosHeader = array();
 
+         $ticketEntity = tzSQL::getEntity('tickets');
+
+         $myTickets = $ticketEntity->myTickets($user['id'],$user['currentProject']->getProject_id());
+         $allTickets = $ticketEntity->allTickets($user['currentProject']->getProject_id());
+
+
+         #check si on affiche une alert dans le header
+         $alert = Guardian::guardAlert();
+
          $ticketsEntity = tzSQL::getEntity('tickets');
 
          $infosHeader['nb_total'] = $ticketsEntity->countTicketsTotal($user['currentProject']->getProject_id());
@@ -32,86 +41,70 @@ class ticketController extends TzController {
          $infosHeader['nb_support'] = $ticketsEntity->countSupportTickets($user['currentProject']->getProject_id());
 
          $nb_finish = intval($infosHeader['nb_closed'] +  $infosHeader['nb_canceled']);
-         $infosHeader['progress'] = round(100 * $nb_finish/ $infosHeader['nb_total']);
+         if ($infosHeader['nb_total'] == 0)
+             $infosHeader['progress'] = 0;
+         else
+            $infosHeader['progress'] = round(100 * $nb_finish/ $infosHeader['nb_total']);
+
          $arianeParams = array('idProject' => $user['currentProject']->getProject_id(),
+             'alert' => $alert,
              'nameProject' => $user['currentProject']->getProject_name(),
              'codeProject' => $user['currentProject']->getProject_code(),
              'category' => 'Tickets');
 
          $this->tzRender->run('/templates/ticket', array('header' => 'headers/ticketHeader.html.twig',
                                                          'modalTicket' => $modalTicket,
-                                                         'infosHeader' => $infosHeader,
                                                          'currentPage' => 'tickets',
+                                                         'myTickets' => $myTickets,
+                                                         'alert' => $alert,
+                                                         'allTickets' => $allTickets,
+                                                         'infosHeader' => $infosHeader,
                                                          'subMenuCurrent' => 'tickets',
                                                          'paramsAriane' => $arianeParams));
 	}
 
-    public function detailAction ($params) {
+    public function ticketDetailAction ($params) {
+        var_dump('lol');die;
 
-        $project_name = intval($params['project']);
+        $project_code = $params['project'];
+        $ticket_code = $params['ticket'];
 
-        $arianeParams = array('idProject' => 1,
-            'nameProject' => 'Project 1',
-            'category' => 'tickets',
-            'idDetail' => '1',
-            'nameDetail' => $params['ticket']);
+        $project = Guardian::guardEntryProject($project_code);
+        if (!$project)
+            return(tzController::CallController("pageNotFound", "show"));
 
-        $ticket = array('id' => 1, 'name' => 'Deuxieme version de truc', 'description' => 'desdsescecsecsecscesecsecsece cs cse cs ec ');
+        $modalTicket = Guardian::guardModalTicket();
+        $alert = Guardian::guardAlert();
 
-        $this->tzRender->run('/templates/detail', array('header' => 'headers/ticketHeader.html.twig',
-            'subMenuCurrent' => 'tickets',
-            'entity' => $ticket,
+        $user = TzAuth::readUser();
+
+        $tickets = TzSQL::getEntity('tickets');
+
+        $allTickets = $tickets->findManyBy('ticket_code', $ticket_code);
+
+        if ($allTickets){
+            foreach ($allTickets as $ticket){
+                if ($ticket->getProject_id() == $user['currentProject']->getProject_id()){
+
+                    $detailTicket = $ticket;
+                }
+            }
+        }
+
+        $arianeParams = array('idProject' => $user['currentProject']->getProject_id(),
+            'nameProject' => $user['currentProject']->getProject_name(),
+            'codeProject' => $user['currentProject']->getProject_code(),
+            'categoryName' => 'announces',
+            'categoryLink' => 'organization',
+            'nameDetail' => $detailTicket->getTicket_name());
+
+
+        $this->tzRender->run('/templates/detailAnnounce', array('header' => 'headers/roadmapHeader.html.twig',
+            'subMenuCurrent' => 'organization',
+            'alert' => $alert,
+            'modalTicket' => $modalTicket,
+            'entity' => $detailTicket,
             'paramsAriane' => $arianeParams));
     }
 
-    public function getModalDataAction($params){
-
-        switch ($params['id_action']){
-            case 'addTicketLink':
-                $linkEntity = tzSQL::getEntity('user_service_project');
-                $serviceEntity = tzSQL::getEntity('services');
-                $userEntity = tzSQL::getEntity('users');
-
-                $selectMember = "<select name='assignedTicket' id='assignedTicket'>";
-
-                /*$lineLink = $linkEntity->findManyBy('project_id', $params['id_project']);
-
-                foreach ($lineLink as $line){
-                    $serviceEntity->setService_Id($line['service_id']);
-                    $serviceEntity->Update();
-
-                    $selectMember .= '<option style="headerGroupSelect" value="'.$serviceEntity->getService_id.'" >'.$serviceEntity->getService_name.'</option>';
-                    $lineService = $linkEntity->findBy('service_id', $params['id_service']);
-                    foreach ($lineService as $lineSer){
-                        $userEntity->setId($lineSer['user_id']);
-                        $userEntity->Update();
-
-                        $selectMember .= '<option value="'.$userEntity->getId.'" >'.$serviceEntity->getUser_login.'</option>';
-                    }
-                }
-*/
-                $selectMember .= '</select>';
-
-
-                $roadmapEntity = tzSQL::getEntity('roadmap');
-                $selectRoadmap ="<select name='roadmapTicket' id='roadmapTicket'>";
-/*
-                $roadmaps = $roadmapEntity->findManyBy('project_id', $params['id_project']);
-
-                foreach ($roadmaps as $roadmap){
-                    $selectRoadmap .= "<option value='".$roadmap->roadmap_id."' s>".$roadmap->roadmap_name."</option>";
-                }*/
-
-                $selectRoadmap .= "</select>";
-
-                $tickets['selectMember'] = $selectMember;
-                $tickets['selectRoadmap'] = $selectRoadmap;
-
-                echo json_encode($selectRoadmap);
-
-            break;
-        }
-
-        return true;
-    }
 }

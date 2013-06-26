@@ -236,11 +236,11 @@
                     <td>
                         <select name="assignedTicket" id="assignedTicket">
                             {% for members in modalTicket.services %}
-                                {% if members.name != 'not-affiliated' %}
-                                <option class="selectModalTicketService" value="{{ members.id_service }}">{{ members.name }}</option>
+                                {% if members.name != 'Not affiliated' %}
+                                <option class="selectModalTicketService" disabled="disabled" value="{{ members.id_service }}">{{ members.name|upper }}</option>
                                 {% endif %}
                                 {% for userTicket in members.members %}
-                                    <option value="{{ userTicket.id }}">{{ userTicket.login }}</option>
+                                    <option {% if userTicket.id == User.id %}selected="selected"{% endif %} value="{{ userTicket.id }}">{{ userTicket.login }}</option>
                                 {% endfor %}
                             {% endfor %}
                         </select>

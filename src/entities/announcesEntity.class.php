@@ -1,116 +1,129 @@
 <?php
-
 		use Components\SQLEntities\TzSQL;
 		use Components\DebugTools\DebugTool;
 
 		class announcesEntity {
-					
+
 			private $announce_id;
-			
+
 			private $announce_title;
-			
+
 			private $announce_code;
-			
+
 			private $announce_date_create;
-			
+
 			private $announce_date_update;
-			
+
 			private $announce_description;
-			
+
+			private $creator_id;
+
 			private $project_id;
-			
+
             private $relations = array();
-        
+
 
 
 
 			/********************** GETTER ***********************/
-			
+
 
 			public function getAnnounce_id(){
 				return $this->announce_id;
 			}
 
-			
+
 
 			public function getAnnounce_title(){
 				return $this->announce_title;
 			}
 
-			
+
 
 			public function getAnnounce_code(){
 				return $this->announce_code;
 			}
 
-			
+
 
 			public function getAnnounce_date_create(){
 				return $this->announce_date_create;
 			}
 
-			
+
 
 			public function getAnnounce_date_update(){
 				return $this->announce_date_update;
 			}
 
-			
+
 
 			public function getAnnounce_description(){
 				return $this->announce_description;
 			}
 
-			
+
+
+			public function getCreator_id(){
+				return $this->creator_id;
+			}
+
+
 
 			public function getProject_id(){
 				return $this->project_id;
 			}
 
-			
+
 			/********************** SETTER ***********************/
 
 			public function setAnnounce_id($val){
 				$this->announce_id =  $val;
 			}
 
-					
+
 
 			public function setAnnounce_title($val){
 				$this->announce_title =  $val;
 			}
 
-					
+
 
 			public function setAnnounce_code($val){
 				$this->announce_code =  $val;
 			}
 
-					
+
 
 			public function setAnnounce_date_create($val){
 				$this->announce_date_create =  $val;
 			}
 
-					
+
 
 			public function setAnnounce_date_update($val){
 				$this->announce_date_update =  $val;
 			}
 
-					
+
 
 			public function setAnnounce_description($val){
 				$this->announce_description =  $val;
 			}
 
-					
+
+
+			public function setCreator_id($val){
+				$this->creator_id =  $val;
+			}
+
+
 
 			public function setProject_id($val){
 				$this->project_id =  $val;
 			}
 
-					
+
 
 			/********************** Delete ***********************/
 
@@ -130,13 +143,13 @@
 					return false;
 				}
 			}
-					
+
 
 			/********************** Update ***********************/
 
 			public function Update(){
 
-				$sql = 'UPDATE `announces` SET `announce_id` = "'.$this->announce_id.'", `announce_title` = "'.$this->announce_title.'", `announce_code` = "'.$this->announce_code.'", `announce_date_create` = "'.$this->announce_date_create.'", `announce_date_update` = "'.$this->announce_date_update.'", `announce_description` = "'.$this->announce_description.'", `project_id` = "'.$this->project_id.'" WHERE announce_id = '.intval($this->announce_id);
+				$sql = 'UPDATE `announces` SET `announce_id` = "'.$this->announce_id.'", `announce_title` = "'.$this->announce_title.'", `announce_code` = "'.$this->announce_code.'", `announce_date_create` = "'.$this->announce_date_create.'", `announce_date_update` = "'.$this->announce_date_update.'", `announce_description` = "'.$this->announce_description.'", `creator_id` = "'.$this->creator_id.'", `project_id` = "'.$this->project_id.'" WHERE announce_id = '.intval($this->announce_id);
 
 				$result = TzSQL::getPDO()->prepare($sql);
 				$result->execute();
@@ -161,7 +174,7 @@
 
 				$this->announce_id = '';
 
-				$sql = 'INSERT INTO announces (`announce_id`,`announce_title`,`announce_code`,`announce_date_create`,`announce_date_update`,`announce_description`,`project_id`) VALUES ("'.$this->announce_id.'","'.$this->announce_title.'","'.$this->announce_code.'","'.$this->announce_date_create.'","'.$this->announce_date_update.'","'.$this->announce_description.'","'.$this->project_id.'")';
+				$sql = 'INSERT INTO announces (`announce_id`,`announce_title`,`announce_code`,`announce_date_create`,`announce_date_update`,`announce_description`,`creator_id`,`project_id`) VALUES ("'.$this->announce_id.'","'.$this->announce_title.'","'.$this->announce_code.'","'.$this->announce_date_create.'","'.$this->announce_date_update.'","'.$this->announce_description.'","'.$this->creator_id.'","'.$this->project_id.'")';
 
 				$result = TzSQL::getPDO()->prepare($sql);
 				$result->execute();
@@ -176,7 +189,7 @@
 					return false;
 				}
 			}
-					
+
 
 			/********************** FindAll ***********************/
 			public function findAll($recursif = 'yes'){
@@ -214,7 +227,7 @@
 				else{
 					DebugTool::$error->catchError(array('No results', __FILE__,__LINE__, true));
 					return false;
-				}						
+				}
 
 			}
 
@@ -223,35 +236,39 @@
 
 
 				switch ($param){
-					
+
 					case $param == 'announce_id':
 						$param = 'announce_id';
 						break;
-						
+
 					case $param == 'announce_title':
 						$param = 'announce_title';
 						break;
-						
+
 					case $param == 'announce_code':
 						$param = 'announce_code';
 						break;
-						
+
 					case $param == 'announce_date_create':
 						$param = 'announce_date_create';
 						break;
-						
+
 					case $param == 'announce_date_update':
 						$param = 'announce_date_update';
 						break;
-						
+
 					case $param == 'announce_description':
 						$param = 'announce_description';
 						break;
-						
+
+					case $param == 'creator_id':
+						$param = 'creator_id';
+						break;
+
 					case $param == 'project_id':
 						$param = 'project_id';
 						break;
-						
+
 					default:
 						DebugTool::$error->catchError(array('Colonne introuvable: est-elle presente dans la base de donnée ?', __FILE__,__LINE__, true));
 						return false;
@@ -269,8 +286,9 @@
 					$this->announce_date_create = $result->announce_date_create;
 					$this->announce_date_update = $result->announce_date_update;
 					$this->announce_description = $result->announce_description;
+					$this->creator_id = $result->creator_id;
 					$this->project_id = $result->project_id;
-					
+
 					return true;
 				}
 				else{
@@ -279,7 +297,7 @@
 				}
 			}
 
-					
+
 
 			/********************** Find(id) ***********************/
 			public function find($id){
@@ -295,8 +313,9 @@
 					$this->announce_date_create = $formatResult->announce_date_create;
 					$this->announce_date_update = $formatResult->announce_date_update;
 					$this->announce_description = $formatResult->announce_description;
+					$this->creator_id = $formatResult->creator_id;
 					$this->project_id = $formatResult->project_id;
-				
+
 					return true;
 				}
 				else{
@@ -304,42 +323,46 @@
 					return false;
 				}
 			}
-			
+
 
 			/************* FindManyBy(column, value) ***************/
 			public function findManyBy($param,$value,$recursif = 'yes'){
 
 
 				switch ($param){
-					
+
 					case $param == 'announce_id':
 						$param = 'announce_id';
 						break;
-						
+
 					case $param == 'announce_title':
 						$param = 'announce_title';
 						break;
-						
+
 					case $param == 'announce_code':
 						$param = 'announce_code';
 						break;
-						
+
 					case $param == 'announce_date_create':
 						$param = 'announce_date_create';
 						break;
-						
+
 					case $param == 'announce_date_update':
 						$param = 'announce_date_update';
 						break;
-						
+
 					case $param == 'announce_description':
 						$param = 'announce_description';
 						break;
-						
+
+					case $param == 'creator_id':
+						$param = 'creator_id';
+						break;
+
 					case $param == 'project_id':
 						$param = 'project_id';
 						break;
-						
+
 					default:
 						DebugTool::$error->catchError(array('Colonne introuvable: est-elle presente dans la base de donnée ?', __FILE__,__LINE__, true));
 						return false;
@@ -386,7 +409,30 @@
 				}
 			}
 
-					
+
+
+
+
+            public function allAnnounces($project_id){
+                $sql = 'SELECT *
+                        FROM `announces`
+                        LEFT JOIN `users` ON `users`.`id` = `announces`.`creator_id`
+                        WHERE `announces`.`project_id` = '.$project_id.'
+                        ORDER BY `announces`.`announce_date_create` ASC';
+
+                $pdo = TzSQL::getPDO();
+
+                foreach  ($pdo->query($sql) as $row) {
+                    $allAnnounces[] = $row;
+
+                }
+
+                if (!isset($allAnnounces))
+                    return false;
+
+                return $allAnnounces;
+
+            }
 
 		}
 

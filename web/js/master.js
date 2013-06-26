@@ -16,14 +16,10 @@ $(document).ready(function() {
 
     $( "#tabs" ).tabs({active: memberTab});
 
-    if (alertHeader != false){
-        toolBarAlert(alertHeader);
-    }
-
-
     var alertHeader = $("#alertHeader").val();
 
-    if (alertHeader != false){
+    if (alertHeader != 'false'){
+
         toolBarAlert(alertHeader);
     }
 
@@ -40,19 +36,18 @@ function changeModal(id, login, right, tab, current_service){
 
     if (right == 'User'){
         $("#roleChangeMember").removeAttr('disabled');
-        $("#creatorRoleChangeMember").css('display','none');
+        $("#serviceChangeMember").removeAttr('disabled');
+
         $("#userRoleChangeMember").attr('selected','selected');
     }
     else if (right == 'Admin'){
 
         $("#roleChangeMember").removeAttr('disabled');
-
-        $("#creatorRoleChangeMember").css('display','none');
+        $("#serviceChangeMember").removeAttr('disabled');
 
         $("#adminRoleChangeMember").attr('selected','selected');
     }
     else if (right == 'Creator'){
-        $("#creatorRoleChangeMember").css('display','block');
         $("#creatorRoleChangeMember").attr('selected','selected');
         $("#roleChangeMember").attr('disabled','disabled');
 

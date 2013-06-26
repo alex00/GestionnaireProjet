@@ -18,6 +18,8 @@
 			
 			private $roadmap_description;
 			
+			private $creator_id;
+			
             private $relations = array();
         
 
@@ -67,6 +69,12 @@
 			}
 
 			
+
+			public function getCreator_id(){
+				return $this->creator_id;
+			}
+
+			
 			/********************** SETTER ***********************/
 
 			public function setRoadmap_id($val){
@@ -111,6 +119,12 @@
 
 					
 
+			public function setCreator_id($val){
+				$this->creator_id =  $val;
+			}
+
+					
+
 			/********************** Delete ***********************/
 
 			public function Delete(){
@@ -135,7 +149,7 @@
 
 			public function Update(){
 
-				$sql = 'UPDATE `roadmaps` SET `roadmap_id` = "'.$this->roadmap_id.'", `project_id` = "'.$this->project_id.'", `roadmap_title` = "'.$this->roadmap_title.'", `roadmap_code` = "'.$this->roadmap_code.'", `roadmap_date_create` = "'.$this->roadmap_date_create.'", `roadmap_date_update` = "'.$this->roadmap_date_update.'", `roadmap_description` = "'.$this->roadmap_description.'" WHERE roadmap_id = '.intval($this->roadmap_id);
+				$sql = 'UPDATE `roadmaps` SET `roadmap_id` = "'.$this->roadmap_id.'", `project_id` = "'.$this->project_id.'", `roadmap_title` = "'.$this->roadmap_title.'", `roadmap_code` = "'.$this->roadmap_code.'", `roadmap_date_create` = "'.$this->roadmap_date_create.'", `roadmap_date_update` = "'.$this->roadmap_date_update.'", `roadmap_description` = "'.$this->roadmap_description.'", `creator_id` = "'.$this->creator_id.'" WHERE roadmap_id = '.intval($this->roadmap_id);
 
 				$result = TzSQL::getPDO()->prepare($sql);
 				$result->execute();
@@ -160,7 +174,7 @@
 
 				$this->roadmap_id = '';
 
-				$sql = 'INSERT INTO roadmaps (`roadmap_id`,`project_id`,`roadmap_title`,`roadmap_code`,`roadmap_date_create`,`roadmap_date_update`,`roadmap_description`) VALUES ("'.$this->roadmap_id.'","'.$this->project_id.'","'.$this->roadmap_title.'","'.$this->roadmap_code.'","'.$this->roadmap_date_create.'","'.$this->roadmap_date_update.'","'.$this->roadmap_description.'")';
+				$sql = 'INSERT INTO roadmaps (`roadmap_id`,`project_id`,`roadmap_title`,`roadmap_code`,`roadmap_date_create`,`roadmap_date_update`,`roadmap_description`,`creator_id`) VALUES ("'.$this->roadmap_id.'","'.$this->project_id.'","'.$this->roadmap_title.'","'.$this->roadmap_code.'","'.$this->roadmap_date_create.'","'.$this->roadmap_date_update.'","'.$this->roadmap_description.'","'.$this->creator_id.'")';
 
 				$result = TzSQL::getPDO()->prepare($sql);
 				$result->execute();
@@ -251,6 +265,10 @@
 						$param = 'roadmap_description';
 						break;
 						
+					case $param == 'creator_id':
+						$param = 'creator_id';
+						break;
+						
 					default:
 						DebugTool::$error->catchError(array('Colonne introuvable: est-elle presente dans la base de donnée ?', __FILE__,__LINE__, true));
 						return false;
@@ -269,6 +287,7 @@
 					$this->roadmap_date_create = $result->roadmap_date_create;
 					$this->roadmap_date_update = $result->roadmap_date_update;
 					$this->roadmap_description = $result->roadmap_description;
+					$this->creator_id = $result->creator_id;
 					
 					return true;
 				}
@@ -295,6 +314,7 @@
 					$this->roadmap_date_create = $formatResult->roadmap_date_create;
 					$this->roadmap_date_update = $formatResult->roadmap_date_update;
 					$this->roadmap_description = $formatResult->roadmap_description;
+					$this->creator_id = $formatResult->creator_id;
 				
 					return true;
 				}
@@ -337,6 +357,10 @@
 						
 					case $param == 'roadmap_description':
 						$param = 'roadmap_description';
+						break;
+						
+					case $param == 'creator_id':
+						$param = 'creator_id';
 						break;
 						
 					default:
@@ -385,7 +409,87 @@
 				}
 			}
 
-					
+
+            public function allRoadmaps($project_id){
+                $sql = 'SELECT *
+                        FROM `roadmaps`
+                        LEFT JOIN `users` ON `users`.`id` = `roadmaps`.`creator_id`
+                        WHERE `roadmaps`.`project_id` = '.$project_id.'
+                        ORDER BY `roadmaps`.`roadmap_date_create` ASC';
+
+                $pdo = TzSQL::getPDO();
+
+                foreach  ($pdo->query($sql) as $row) {
+                    $allRoadmaps[] = $row;
+
+                }
+
+                if (!isset($allRoadmaps))
+                    return false;
+
+                return $allRoadmaps;
+
+            }
+
+
+
+            public function ticketsByRoadmap($project_id, $roadmap_id){
+                $sql = 'SELECT *
+                        FROM `tickets`
+                        LEFT JOIN `users_receive_tickets` ON `tickets`.`ticket_id` = `users_receive_tickets`.`ticket_id`
+                        LEFT JOIN `users` ON `users`.`id` = `users_receive_tickets`.`user_id`
+                        WHERE `tickets`.`project_id` = '.$project_id.'
+                        AND `tickets`.`roadmap_id` = '.$roadmap_id.'
+                        ORDER BY `tickets`.`ticket_date_create` ASC';
+
+                $pdo = TzSQL::getPDO();
+
+                foreach  ($pdo->query($sql) as $row) {
+                    $ticketsByRoadmap[] = $row;
+
+                }
+
+                if (!isset($ticketsByRoadmap))
+                    return false;
+
+
+                return $ticketsByRoadmap;
+
+            }
+
+            public function statsProgressRoadmap($project_id, $roadmap_id){
+                $sql = 'SELECT *
+                        FROM `tickets`
+                        WHERE `project_id` = '.$project_id.'
+                        AND `roadmap_id` = '.$roadmap_id;
+
+                $pdo = TzSQL::getPDO();
+                $count =  0;
+                $countFinish =  0;
+                foreach  ($pdo->query($sql) as $row) {
+                    if ($row['statut_id'] != 1 && $row['statut_id'] != 2 && $row['statut_id'] != 3 ){
+                        $countFinish++;
+                    }
+                    $count++;
+                }
+
+                $result['total'] = $count;
+                $result['finished'] = $countFinish;
+
+                if($countFinish == 0){
+                    $result['progress'] = 0;
+                    return $result;
+                }
+
+                $progress = round($countFinish * 100 / $count);
+
+                $result['progress'] = $progress;
+
+                return $result;
+
+
+
+            }
 
 		}
 

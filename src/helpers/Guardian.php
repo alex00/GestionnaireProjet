@@ -63,9 +63,10 @@ class Guardian  {
         if (!isset($user['alert']))
             return false;
 
+        $alert = $user['alert'];
         TzAuth::addUserSession(array('alert' => false));
 
-        return true;
+        return $alert;
 
     }
 

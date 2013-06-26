@@ -33,18 +33,46 @@ class activityController extends TzController {
             'paramsAriane' => $arianeParams));
     }
 
-    public function detailAction ($params) {
+    public function announceDetailAction ($params) {
 
-        $project_name = intval($params['project']);
+        $project_code = $params['project'];
+        $announce_code = $params['announce'];
 
-        $arianeParams = array('idProject' => 1,
-            'nameProject' => 'Project 1',
-            'category' => 'activity',
-            'idDetail' => '1',
-            'nameDetail' => $params['announce']);
+        $project = Guardian::guardEntryProject($project_code);
+        if (!$project)
+            return(tzController::CallController("pageNotFound", "show"));
 
-        $this->tzRender->run('/templates/detail', array('header' => 'headers/activityHeader.html.twig',
-            'subMenuCurrent' => 'activity',
+        $modalTicket = Guardian::guardModalTicket();
+        $alert = Guardian::guardAlert();
+
+        $user = TzAuth::readUser();
+
+        $announces = TzSQL::getEntity('announces');
+
+        $allAnnounces = $announces->findManyBy('announce_code', $announce_code);
+
+        if ($allAnnounces){
+            foreach ($allAnnounces as $announce){
+                if ($announce->getProject_id() == $user['currentProject']->getProject_id()){
+
+                    $detailAnnounce = $announce;
+                }
+            }
+        }
+
+        $arianeParams = array('idProject' => $user['currentProject']->getProject_id(),
+            'nameProject' => $user['currentProject']->getProject_name(),
+            'codeProject' => $user['currentProject']->getProject_code(),
+            'categoryName' => 'announces',
+            'categoryLink' => 'organization',
+            'nameDetail' => $detailAnnounce->getAnnounce_title());
+
+
+        $this->tzRender->run('/templates/detailAnnounce', array('header' => 'headers/roadmapHeader.html.twig',
+            'subMenuCurrent' => 'organization',
+            'entity' => $detailAnnounce,
+            'alert' => $alert,
+            'modalTicket' => $modalTicket,
             'paramsAriane' => $arianeParams));
     }
 
@@ -65,7 +93,7 @@ class activityController extends TzController {
 
         $service = tzSQL::getEntity('services');
 
-        $service->setService_name('not-affiliated');
+        $service->setService_name('Not affiliated');
         $service->setService_code('not-affiliated');
         $service->setProject_id($project->getProject_id());
 
@@ -105,6 +133,8 @@ class activityController extends TzController {
 
         $announce->setProject_id($params['id']);
 
+        $announce->setCreator_id($_SESSION['User']['id']);
+
         $announce->Insert();
 
         $user = tzAuth::readSession('User');
@@ -115,6 +145,7 @@ class activityController extends TzController {
 
         //self::addNotif('newAnnounce', $paramsNotif);
 
+        TzAuth::addUserSession(array('alert' => 'announce'));
 
         return true;
     }

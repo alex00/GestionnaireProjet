@@ -39,8 +39,9 @@
                                             <span class="rightListUser">
                                                 {{ right }}
                                             </span>
-
+                                            {% if User.acl_group_id != 3 and User.acl_group_id != 4 and right != 'Creator' and User.acl_group_id != user.right or users.id == User.user_id %}
                                             <a class="changeServiceLink linkBlack pull-right" onclick="" data-toggle="modal" data-target="#modalHeaders"><img src="/img/changeService.png" alt="Change right and service" title="Change right and service" /></a>
+                                            {% endif %}
                                         </div>
                                     {% endfor %}
                                 {% endif %}
@@ -55,17 +56,33 @@
         <div class="span7 dividerBlock"></div>
         <article class="roadMap">
             <h4>Announces :</h4>
-            <p>
-                Cette version blablalblalb alblalblalb blbalbllbalb blablalblab blablalblab blalbalbalbl lb la lla l bal al lblalb all ablbal l
-            </p>
+            {% for announce in announces %}
+            <div class="span7" style="margin-bottom: 10px">
+                <p class="nameListAnnonces">
+                    Posted by : <a class="linkBlack" href="/user/{{ announce.user_login_code }}" >{{ announce.user_login }}</a> - {{ announce.announce_date_create|date('m-d-Y') }} - Comments :
+                </p>
+                <p class="titleListAnnonces">
+                    <img src="/img/lineBack.png" title="Announce" alt="Announce">
+                    <a class="linkRed" href="/{{ currentProject.project_code }}/announce/{{ announce.announce_code }}">{{ announce.announce_title }}</a>
+                </p>
+            </div>
+            {% endfor %}
 
         </article>
         <div class="span7 dividerBlock"></div>
         <article class="roadMap">
             <h4>Roadmaps :</h4>
-            <p>
-                Cette version blablalblalb alblalblalb blbalbllbalb blablalblab blablalblab blalbalbalbl lb la lla l bal al lblalb all ablbal l
-            </p>
+            {% for roadmap in roadmaps %}
+                <div class="span7" style="margin-bottom: 10px">
+                    <p class="nameListAnnonces">
+                        Posted by : <a class="linkBlack" href="/user/{{ roadmap.user_login_code }}" >{{ roadmap.user_login }}</a> - {{ roadmap.roadmap_date_create|date('m-d-Y') }} - Comments :
+                    </p>
+                    <p class="titleListAnnonces">
+                        <img src="/img/lineBack.png" title="Announce" alt="Announce">
+                        <a class="linkRed" href="/{{ currentProject.project_code }}/roadmap/{{ roadmap.roadmap_code }}">{{ roadmap.roadmap_title }}</a>
+                    </p>
+                </div>
+            {% endfor %}
         </article>
     </div>
 

@@ -33,189 +33,189 @@
 			private $roadmap_id;
 			
             private $relations = array('projects'=>array('project_id'=>'project_id'),'status'=>array('statut_id'=>'status_id'),'priorities'=>array('priority_id'=>'priority_id'),'trackers'=>array('tracker_id'=>'tracker_id'),);
-        
+
             private $projects;
-            
+
             private $status;
-            
+
             private $priorities;
-            
+
             private $trackers;
-            
+
 
 
 
 			/********************** GETTER ***********************/
-			
+
 
 			public function getTicket_id(){
 				return $this->ticket_id;
 			}
 
-			
+
 
 			public function getTicket_name(){
 				return $this->ticket_name;
 			}
 
-			
+
 
 			public function getTicket_code(){
 				return $this->ticket_code;
 			}
 
-			
+
 
 			public function getTicket_date_create(){
 				return $this->ticket_date_create;
 			}
 
-			
+
 
 			public function getTicket_date_update(){
 				return $this->ticket_date_update;
 			}
 
-			
+
 
 			public function getTicket_deadline(){
 				return $this->ticket_deadline;
 			}
 
-			
+
 
 			public function getTicket_spend_time(){
 				return $this->ticket_spend_time;
 			}
 
-			
+
 
 			public function getTicket_progress(){
 				return $this->ticket_progress;
 			}
 
-			
+
 
 			public function getTicket_description(){
 				return $this->ticket_description;
 			}
 
-			
+
 
 			public function getProject_id(){
 				return $this->project_id;
 			}
 
-			
+
 
 			public function getPriority_id(){
 				return $this->priority_id;
 			}
 
-			
+
 
 			public function getStatut_id(){
 				return $this->statut_id;
 			}
 
-			
+
 
 			public function getTracker_id(){
 				return $this->tracker_id;
 			}
 
-			
+
 
 			public function getRoadmap_id(){
 				return $this->roadmap_id;
 			}
 
-			
+
 			/********************** SETTER ***********************/
 
 			public function setTicket_id($val){
 				$this->ticket_id =  $val;
 			}
 
-					
+
 
 			public function setTicket_name($val){
 				$this->ticket_name =  $val;
 			}
 
-					
+
 
 			public function setTicket_code($val){
 				$this->ticket_code =  $val;
 			}
 
-					
+
 
 			public function setTicket_date_create($val){
 				$this->ticket_date_create =  $val;
 			}
 
-					
+
 
 			public function setTicket_date_update($val){
 				$this->ticket_date_update =  $val;
 			}
 
-					
+
 
 			public function setTicket_deadline($val){
 				$this->ticket_deadline =  $val;
 			}
 
-					
+
 
 			public function setTicket_spend_time($val){
 				$this->ticket_spend_time =  $val;
 			}
 
-					
+
 
 			public function setTicket_progress($val){
 				$this->ticket_progress =  $val;
 			}
 
-					
+
 
 			public function setTicket_description($val){
 				$this->ticket_description =  $val;
 			}
 
-					
+
 
 			public function setProject_id($val){
 				$this->project_id =  $val;
 			}
 
-					
+
 
 			public function setPriority_id($val){
 				$this->priority_id =  $val;
 			}
 
-					
+
 
 			public function setStatut_id($val){
 				$this->statut_id =  $val;
 			}
 
-					
+
 
 			public function setTracker_id($val){
 				$this->tracker_id =  $val;
 			}
 
-					
+
 
 			public function setRoadmap_id($val){
 				$this->roadmap_id =  $val;
 			}
 
-					
+
 
 			/********************** Delete ***********************/
 
@@ -235,7 +235,7 @@
 					return false;
 				}
 			}
-					
+
 
 			/********************** Update ***********************/
 
@@ -281,7 +281,7 @@
 					return false;
 				}
 			}
-					
+
 
 			/********************** FindAll ***********************/
 			public function findAll($recursif = 'yes'){
@@ -319,7 +319,7 @@
 				else{
 					DebugTool::$error->catchError(array('No results', __FILE__,__LINE__, true));
 					return false;
-				}						
+				}
 
 			}
 
@@ -328,63 +328,63 @@
 
 
 				switch ($param){
-					
+
 					case $param == 'ticket_id':
 						$param = 'ticket_id';
 						break;
-						
+
 					case $param == 'ticket_name':
 						$param = 'ticket_name';
 						break;
-						
+
 					case $param == 'ticket_code':
 						$param = 'ticket_code';
 						break;
-						
+
 					case $param == 'ticket_date_create':
 						$param = 'ticket_date_create';
 						break;
-						
+
 					case $param == 'ticket_date_update':
 						$param = 'ticket_date_update';
 						break;
-						
+
 					case $param == 'ticket_deadline':
 						$param = 'ticket_deadline';
 						break;
-						
+
 					case $param == 'ticket_spend_time':
 						$param = 'ticket_spend_time';
 						break;
-						
+
 					case $param == 'ticket_progress':
 						$param = 'ticket_progress';
 						break;
-						
+
 					case $param == 'ticket_description':
 						$param = 'ticket_description';
 						break;
-						
+
 					case $param == 'project_id':
 						$param = 'project_id';
 						break;
-						
+
 					case $param == 'priority_id':
 						$param = 'priority_id';
 						break;
-						
+
 					case $param == 'statut_id':
 						$param = 'statut_id';
 						break;
-						
+
 					case $param == 'tracker_id':
 						$param = 'tracker_id';
 						break;
-						
+
 					case $param == 'roadmap_id':
 						$param = 'roadmap_id';
 						break;
-						
+
 					default:
 						DebugTool::$error->catchError(array('Colonne introuvable: est-elle presente dans la base de donnée ?', __FILE__,__LINE__, true));
 						return false;
@@ -406,27 +406,27 @@
 					$this->ticket_progress = $result->ticket_progress;
 					$this->ticket_description = $result->ticket_description;
 					$this->project_id = $result->project_id;
-					
+
                     $entityProject_id = tzSQL::getEntity('projects');
                     $contentProject_id =  $entityProject_id->findManyBy('project_id',$result->project_id, 'no');
                     $this->projects = $contentProject_id;
                 $this->priority_id = $result->priority_id;
-					
+
                     $entityPriority_id = tzSQL::getEntity('priorities');
                     $contentPriority_id =  $entityPriority_id->findManyBy('priority_id',$result->priority_id, 'no');
                     $this->priorities = $contentPriority_id;
                 $this->statut_id = $result->statut_id;
-					
+
                     $entityStatut_id = tzSQL::getEntity('status');
                     $contentStatut_id =  $entityStatut_id->findManyBy('status_id',$result->statut_id, 'no');
                     $this->status = $contentStatut_id;
                 $this->tracker_id = $result->tracker_id;
-					
+
                     $entityTracker_id = tzSQL::getEntity('trackers');
                     $contentTracker_id =  $entityTracker_id->findManyBy('tracker_id',$result->tracker_id, 'no');
                     $this->trackers = $contentTracker_id;
                 $this->roadmap_id = $result->roadmap_id;
-					
+
 					return true;
 				}
 				else{
@@ -435,7 +435,7 @@
 				}
 			}
 
-					
+
 
 			/********************** Find(id) ***********************/
 			public function find($id){
@@ -455,27 +455,27 @@
 					$this->ticket_progress = $formatResult->ticket_progress;
 					$this->ticket_description = $formatResult->ticket_description;
 					$this->project_id = $formatResult->project_id;
-				
+
                     $entityProject_id = tzSQL::getEntity('projects');
                     $contentProject_id =  $entityProject_id->findManyBy('project_id',$formatResult->project_id, 'no');
                     $this->projects = $contentProject_id;
                 	$this->priority_id = $formatResult->priority_id;
-				
+
                     $entityPriority_id = tzSQL::getEntity('priorities');
                     $contentPriority_id =  $entityPriority_id->findManyBy('priority_id',$formatResult->priority_id, 'no');
                     $this->priorities = $contentPriority_id;
                 	$this->statut_id = $formatResult->statut_id;
-				
+
                     $entityStatut_id = tzSQL::getEntity('status');
                     $contentStatut_id =  $entityStatut_id->findManyBy('status_id',$formatResult->statut_id, 'no');
                     $this->status = $contentStatut_id;
                 	$this->tracker_id = $formatResult->tracker_id;
-				
+
                     $entityTracker_id = tzSQL::getEntity('trackers');
                     $contentTracker_id =  $entityTracker_id->findManyBy('tracker_id',$formatResult->tracker_id, 'no');
                     $this->trackers = $contentTracker_id;
                 	$this->roadmap_id = $formatResult->roadmap_id;
-				
+
 					return true;
 				}
 				else{
@@ -483,70 +483,70 @@
 					return false;
 				}
 			}
-			
+
 
 			/************* FindManyBy(column, value) ***************/
 			public function findManyBy($param,$value,$recursif = 'yes'){
 
 
 				switch ($param){
-					
+
 					case $param == 'ticket_id':
 						$param = 'ticket_id';
 						break;
-						
+
 					case $param == 'ticket_name':
 						$param = 'ticket_name';
 						break;
-						
+
 					case $param == 'ticket_code':
 						$param = 'ticket_code';
 						break;
-						
+
 					case $param == 'ticket_date_create':
 						$param = 'ticket_date_create';
 						break;
-						
+
 					case $param == 'ticket_date_update':
 						$param = 'ticket_date_update';
 						break;
-						
+
 					case $param == 'ticket_deadline':
 						$param = 'ticket_deadline';
 						break;
-						
+
 					case $param == 'ticket_spend_time':
 						$param = 'ticket_spend_time';
 						break;
-						
+
 					case $param == 'ticket_progress':
 						$param = 'ticket_progress';
 						break;
-						
+
 					case $param == 'ticket_description':
 						$param = 'ticket_description';
 						break;
-						
+
 					case $param == 'project_id':
 						$param = 'project_id';
 						break;
-						
+
 					case $param == 'priority_id':
 						$param = 'priority_id';
 						break;
-						
+
 					case $param == 'statut_id':
 						$param = 'statut_id';
 						break;
-						
+
 					case $param == 'tracker_id':
 						$param = 'tracker_id';
 						break;
-						
+
 					case $param == 'roadmap_id':
 						$param = 'roadmap_id';
 						break;
-						
+
 					default:
 						DebugTool::$error->catchError(array('Colonne introuvable: est-elle presente dans la base de donnée ?', __FILE__,__LINE__, true));
 						return false;
@@ -682,6 +682,52 @@
 
                 return $tickets->nb_evolution;
             }
+
+            public function myTickets($user_id, $project_id){
+                $sql = 'SELECT *
+                        FROM `users_receive_tickets`
+                        LEFT JOIN `tickets` ON `users_receive_tickets`.`ticket_id` = `tickets`.`ticket_id`
+                        WHERE `users_receive_tickets`.`user_id` = '.$user_id. ' AND `tickets`.`project_id` = '.$project_id.'
+                        ORDER BY `tickets`.`ticket_date_create` ASC';
+
+                $pdo = TzSQL::getPDO();
+
+                foreach  ($pdo->query($sql) as $row) {
+                    $myTickets[] = $row;
+
+                }
+
+                if (!isset($myTickets))
+                    return false;
+
+                return $myTickets;
+
+            }
+
+
+            public function allTickets($project_id){
+                $sql = 'SELECT *
+                        FROM `tickets`
+                        LEFT JOIN `users_receive_tickets` ON `tickets`.`ticket_id` = `users_receive_tickets`.`ticket_id`
+                        LEFT JOIN `users` ON `users`.`id` = `users_receive_tickets`.`user_id`
+                        WHERE `tickets`.`project_id` = '.$project_id.'
+                        ORDER BY `tickets`.`ticket_date_create` ASC';
+
+                $pdo = TzSQL::getPDO();
+
+                foreach  ($pdo->query($sql) as $row) {
+                    $allTickets[] = $row;
+
+                }
+
+                if (!isset($allTickets))
+                    return false;
+
+
+                return $allTickets;
+
+            }
+
 
         }
 

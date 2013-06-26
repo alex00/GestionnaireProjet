@@ -10,11 +10,11 @@
 			
 			private $ticket_id;
 			
-            private $relations = array('tickets'=>array('ticket_id'=>'ticket_id'),'users'=>array('user_id'=>'id'),);
+            private $relations = array('users'=>array('user_id'=>'id'),'tickets'=>array('ticket_id'=>'ticket_id'),);
         
-            private $tickets;
-            
             private $users;
+            
+            private $tickets;
             
 
 

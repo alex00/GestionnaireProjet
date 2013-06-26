@@ -160,10 +160,6 @@ function toolBarSubmit (id, id_project,  name_project) {
                 if (id == 'project')
                     code = name.toLowerCase().replace(/ /g,"-");
 
-                toolBarAdmin.alerting = true;
-                toolBarAdmin.alert_type = id;
-
-
                 window.location.href = '/'+code;
                 return;
 
@@ -180,6 +176,7 @@ function toolBarAlert(id){
     else
         var msg = toolBarAdmin.infosToolBar.messageSuccess[id];
 
+    $("#alertHeader").val('false');
     $("#headerAlert").html(msg)
         .animate({
             'opacity': 10

@@ -62,9 +62,11 @@
     `announce_date_create` datetime NOT NULL,
     `announce_date_update` datetime NOT NULL,
     `announce_description` text NOT NULL,
+    `creator_id` int(11) NOT NULL,
     `project_id` int(11) NOT NULL,
     PRIMARY KEY (`announce_id`),
-    KEY `fk_announces_projects1` (`project_id`)
+    KEY `fk_announces_projects1` (`project_id`),
+    KEY `fk_announces_creator1` (`creator_id`)
   ) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
   -- --------------------------------------------------------
@@ -191,8 +193,10 @@
     `roadmap_date_create` datetime NOT NULL,
     `roadmap_date_update` datetime NOT NULL,
     `roadmap_description` text NOT NULL,
+    `creator_id` int(11) NOT NULL,
     PRIMARY KEY (`roadmap_id`),
-    KEY `fk_roadmaps_projects1` (`project_id`)
+    KEY `fk_roadmaps_projects1` (`project_id`),
+    KEY `fk_roadmaps_creator1` (`creator_id`)
   ) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
   -- --------------------------------------------------------
