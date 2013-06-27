@@ -29,8 +29,17 @@ class accountController extends TzController {
             'list_project_created' => $listProjectCreated,
             'list_project_affiliated' => $listProjectAffiliated,
             'list_project_commun' => $listProjectCommun,
-            'user' => $usersEntity,
-            'session'   => $_SESSION
+            'user' => $usersEntity
+            ));
+    }
+    
+    public function settingAction(){
+        
+        $arianeParams = array('category' => 'Account');
+        
+         $this->tzRender->run('/templates/settings', array('header' => 'headers/accountHeader.html.twig',
+            'subMenu' => 'true',
+            'paramsAriane' => $arianeParams,
             ));
     }
 
