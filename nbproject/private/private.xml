@@ -1,4 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/1">
+        <file>file:/Users/Alex/NetBeansProjects/GestionnaireProjet/web/js/toolBar/toolBarController.js</file>
+        <file>file:/Users/Alex/NetBeansProjects/GestionnaireProjet/src/entities/user_serviceEntity.class.php</file>
+        <file>file:/Users/Alex/NetBeansProjects/GestionnaireProjet/src/controllers/dashboardController.php</file>
+        <file>file:/Users/Alex/NetBeansProjects/GestionnaireProjet/src/controllers/homeController.php</file>
+        <file>file:/Users/Alex/NetBeansProjects/GestionnaireProjet/src/views/templates/dashboard.html.twig</file>
+        <file>file:/Users/Alex/NetBeansProjects/GestionnaireProjet/src/views/headers/dashboardHeader.html.twig</file>
+        <file>file:/Users/Alex/NetBeansProjects/GestionnaireProjet/src/views/layout.html.twig</file>
+        <file>file:/Users/Alex/NetBeansProjects/GestionnaireProjet/src/controllers/activityController.php</file>
+        <file>file:/Users/Alex/NetBeansProjects/GestionnaireProjet/src/config/routing.yml</file>
+        <file>file:/Users/Alex/NetBeansProjects/GestionnaireProjet/src/entities/usersEntity.class.php</file>
+    </open-files>
 </project-private>

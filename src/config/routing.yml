@@ -8,11 +8,18 @@ home_index:
 
 # Account Controller
 
-account_index:
+account_settings:
 	pattern:	/my-account
-	controller: account:index
+	controller: account:setting
 	requirements:
             only_connected: true
+
+account_index:
+	pattern:	/account/{login}
+	controller: account:index
+	requirements:
+    login: string
+    only_connected: true
 
 account_connect:
 	pattern:	/connect

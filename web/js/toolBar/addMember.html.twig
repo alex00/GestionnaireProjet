@@ -1,14 +1,14 @@
 <!-- first modal window -->
 <header class="modal-header">
     <a href="#" class="close" data-dismiss="modal">x</a>
-    <h6>Add a Member</h6>
+    <h6>Add a Member </h6>
 </header>
 
 <div class="modal-body">
     <form id="addMember" action="" method="post" name="newMember">
         <table>
             <tr>
-                <td><label for="loginMember1">Login :</label></td><td colspan="3"><input type="text" name="loginMember1" id="loginMember1"/></td>
+                <td><label for="loginMember1">Login :</label></td><td colspan="3"><input data-provide="typeahead" type="text" name="loginMember1" id="loginMember1" /></td>
             </tr>
             <tr>
                 <td><label for="loginMember2"></label></td><td colspan="3"><input type="text" name="loginMember2" id="loginMember2"/></td>
@@ -27,5 +27,15 @@
 </div>
 
 <footer class="modal-footer">
+    {{ currentProject.project_name }}
     <a href="#" class="btn btn-primary" id="okwin01" onclick="toolBarSubmit('membre', '[project_name]','[project_code]')">Add</a>
 </footer>
+
+<script type="text/javascript">
+
+    var deps = ['Ain','Aisne','Allier','Alpes de-Htes','Alpes de-Htes Provence','Hautes-Alpes',
+'Alpes-Maritimes','Ardèche','Ardennes','Ariege','Aube','Aude','Aveyron','Bouches-du-Rhône','Calvados',
+'Cantal','Charente','Charente-Maritime','Cher','Correze','Côte d\'Or', 'Côtes d\'Armor','Creuse',
+'Dordogne','Doubs','Drome','Eure','Eure-et-Loire','Finistère'];
+   $('#loginMember1').typeahead({source: deps});
+</script>

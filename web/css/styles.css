@@ -1,3 +1,7 @@
+.dropdown-menu{
+  z-index: 2000;  
+}
+
 .btn{
     border-radius: 3px;
 }

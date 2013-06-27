@@ -32,6 +32,7 @@ class activityController extends TzController {
             'subMenuCurrent' => 'activity',
             'paramsAriane' => $arianeParams));
     }
+    
 
     public function announceDetailAction ($params) {
 

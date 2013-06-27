@@ -397,6 +397,21 @@
         $nb = $result->fetch(PDO::FETCH_OBJ);
         return $nb->nb_members;
     }
+    
+    public function countMembersProjectNew($project_code){
+
+        $sql = 'SELECT COUNT(`user_id`) AS nb_members FROM user_service 
+LEFT JOIN
+    projects
+ON 
+    user_service.project_id = projects.project_id
+WHERE project_code = "'.$project_code.'"';
+
+        $result = TzSQL::getPDO()->prepare($sql);
+        $result->execute();
+        $nb = $result->fetch(PDO::FETCH_OBJ);
+        return $nb->nb_members;
+    }
 
 
     public function findCreatedProjects($project_id){
@@ -439,6 +454,56 @@
 
         foreach ($formatResult as $value) {
             array_push($entitiesArray, $value);
+        }
+
+        return $entitiesArray;
+    }
+    
+    public function listProjectCommun($user_id_connected, $user_id){
+        $sql =  'SELECT projects.* 
+                    FROM projects, user_service, users
+                    WHERE 
+                      user_service.project_id = projects.project_id
+                    AND
+                     users.id = user_service.user_id
+                    AND 
+                    users.id = :id';
+
+        $data = TzSQL::getPDO()->prepare($sql);
+        $data->bindValue('id', $user_id_connected, PDO::PARAM_INT);
+        
+        $data->execute();
+
+        $formatResult = $data->fetchAll(PDO::FETCH_ASSOC);
+        $entitiesArrayConnected = array();
+
+        foreach ($formatResult as $value) {
+            
+            array_push($entitiesArrayConnected, $value['project_id']);
+        }
+        
+        
+        $sql =  'SELECT projects.* 
+                    FROM projects, user_service, users
+                    WHERE 
+                      user_service.project_id = projects.project_id
+                    AND
+                     users.id = user_service.user_id
+                    AND 
+                    users.id = :id';
+
+        $data = TzSQL::getPDO()->prepare($sql);
+        $data->bindValue('id', $user_id, PDO::PARAM_INT);
+        $data->execute();
+
+        $formatResult = $data->fetchAll(PDO::FETCH_ASSOC);
+        
+        $entitiesArray = array();
+
+        foreach ($formatResult as $value) {
+            if(in_array($value['project_id'], $entitiesArrayConnected)){
+                array_push($entitiesArray, $value);
+            }        
         }
 
         return $entitiesArray;

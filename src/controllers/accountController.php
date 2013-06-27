@@ -11,24 +11,27 @@ class accountController extends TzController {
         $login = $params['login'];
         
         $usersEntity = tzSQL::getEntity('users');
-        $user = $usersEntity->findManyBy('user_login_code', $login);
-        $user = $user[0];
- 
-        $projectsEntity = TzSQL::getEntity('projects');
-        $projects = $projectsEntity->get('user_login_code', $login);
+        $usersEntity->findOneBy('user_login_code', $login);
         
-        $nbe_project_create = 0;
-        $nbe_project_affilied = 0;
+        $user_serviceEntity = tzSQL::getEntity('user_service');
         
-        $arianeParams = array('category' => 'My account');
+        $listProjectAffiliated = $user_serviceEntity->listProjectAffiliated($usersEntity->getId());
+        $listProjectCreated = $user_serviceEntity->listProjectCreated($usersEntity->getId());
+        $listProjectCommun = $user_serviceEntity->listProjectCommun($_SESSION['User']['id'], $usersEntity->getId());
+        
+        
+        $arianeParams = array('category' => 'Account');
 
         $this->tzRender->run('/templates/account', array('header' => 'headers/accountHeader.html.twig',
             'subMenu' => 'true',
             'paramsAriane' => $arianeParams,
 
-            'nbe_project_create' => $nbe_project_create,
-            'nbe_project_affilied' => $nbe_project_affilied,
-            'projects' => $projects));
+            'list_project_created' => $listProjectCreated,
+            'list_project_affiliated' => $listProjectAffiliated,
+            'list_project_commun' => $listProjectCommun,
+            'user' => $usersEntity,
+            'session'   => $_SESSION
+            ));
     }
 
     public function signupAction() {

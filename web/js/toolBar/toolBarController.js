@@ -67,6 +67,7 @@ function toolBarLinks(id, name_project, code_project) {
 
 };
 
+
 function toolBarSubmit (id, id_project,  name_project) {
     var toolBarAdmin = toolBar.getInstance();
 

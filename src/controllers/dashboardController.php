@@ -20,6 +20,17 @@ class dashboardController extends TzController {
          $user_serviceEntity = tzSQL::getEntity('user_service');
          $infosHeader['creator'] = $user_serviceEntity->findCreatedProjects($user["currentProject"]->getProject_id());
          $infosHeader['nb_members'] = $user_serviceEntity->countMembersProject($user["id"]);
+         $infosHeader['nb_members_project'] = $user_serviceEntity->countMembersProjectNew($project_code);
+         
+         $userEntity = tzSQL::getEntity('users');
+         $listUser = $userEntity->findAll();
+         $tabUser = array();
+         
+         foreach ($listUser as $value) {
+             array_push($tabUser, $value->getUser_login_code());
+         }
+         
+//         var_dump($tabUser);
 
          $arianeParams = array('idProject' => $user['currentProject']->getProject_id(),
                                 'nameProject' => $user['currentProject']->getProject_name(),
@@ -34,6 +45,7 @@ class dashboardController extends TzController {
                                                             'currentPage' => 'dashboard',
                                                             'infosHeader' => $infosHeader,
                                                             'subMenuCurrent' => 'dashboard',
+                                                            'tabUser' => $tabUser,
                                                             'paramsAriane' => $arianeParams));
 
 
