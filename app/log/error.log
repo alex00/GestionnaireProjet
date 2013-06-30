@@ -240,3 +240,31 @@ type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/G
 type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-06-28 00:15:59
 type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-06-28 00:16:01
 type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-06-28 00:16:06
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-06-28 12:42:49
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-06-28 12:45:03
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-06-28 12:46:26
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-06-28 12:46:46
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-06-28 12:47:18
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-06-28 12:47:58
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-06-28 14:03:08
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-06-28 14:03:14
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-06-28 14:03:24
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-06-28 14:03:33
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-06-28 14:11:20
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-06-28 14:11:22
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-06-28 14:14:02
+type=>2	message=>Invalid argument supplied for foreach()	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/src/controllers/organizationController.php	line=>40	date=>2013-06-28 14:14:10
+type=>2	message=>PDO::query(): SQLSTATE[42S22]: Column not found: 1054 Unknown column 'announces.creator_id' in 'on clause'	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/src/entities/announcesEntity.class.php	line=>425	date=>2013-06-28 14:14:10
+type=>2	message=>Invalid argument supplied for foreach()	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/src/entities/announcesEntity.class.php	line=>425	date=>2013-06-28 14:14:10
+type=>2	message=>PDO::query(): SQLSTATE[42S22]: Column not found: 1054 Unknown column 'roadmaps.creator_id' in 'on clause'	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/src/entities/roadmapsEntity.class.php	line=>422	date=>2013-06-28 14:14:10
+type=>2	message=>Invalid argument supplied for foreach()	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/src/entities/roadmapsEntity.class.php	line=>422	date=>2013-06-28 14:14:10
+type=>8	message=>Undefined variable: projectServices	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/src/controllers/organizationController.php	line=>94	date=>2013-06-28 14:14:10
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-06-28 14:14:11
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-06-28 14:14:17
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-06-28 14:14:30
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-06-28 14:18:05
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-06-28 14:35:16
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-06-28 14:35:25
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-06-30 22:33:41
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-06-30 22:33:49
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-06-30 22:33:56
