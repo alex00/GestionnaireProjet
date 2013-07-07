@@ -861,7 +861,10 @@
                 $res['roadmap'] = $road;
                 $res['count'] = $count;
                 $res['countRoad'] = count($res['roadmap']);
-                $res['progress'] = round($res['status']['complete'] * 100 / $count);
+                if ($count == 0)
+                    $res['progress'] = 0;
+                else
+                    $res['progress'] = round($res['status']['complete'] * 100 / $count);
 
                 return $res;
 

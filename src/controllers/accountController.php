@@ -108,7 +108,8 @@ class accountController extends TzController {
             'homeContext' => true,
             'paramsAriane' => $arianeParams));
     }
+
     public function forbiddenAction(){
-        echo 'forbidden';
+        require ROOT.'/src/views/templates/pageForbidden.php';
     }
 }
