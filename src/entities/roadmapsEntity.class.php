@@ -292,7 +292,7 @@
 					return true;
 				}
 				else{
-					DebugTool::$error->catchError(array('Result is null', __FILE__,__LINE__, true));
+					//DebugTool::$error->catchError(array('Result is null', __FILE__,__LINE__, true));
 					return false;
 				}
 			}

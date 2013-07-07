@@ -23,8 +23,10 @@ class Guardian  {
             if ($lines){
                 foreach ($lines as $line){
 
-                    if ($line->getProject_id() == $exist[0]->getProject_id())
+                    if ($line->getProject_id() == $exist[0]->getProject_id()){
                         $right = $line->getRightKey();
+                        break;
+                    }
                     else
                         $right = 4;
                 }
@@ -33,9 +35,8 @@ class Guardian  {
                 $right = 4;
 
 
-            $user = TzAuth::readUser();
 
-            $user_serviceEntity = tzSQL::getEntity('user_service');
+            $user = TzAuth::readUser();
 
             if ($user['acl_group_id'] != $right){
                 TzAuth::addUserSession(array('acl_group_id' => $right));

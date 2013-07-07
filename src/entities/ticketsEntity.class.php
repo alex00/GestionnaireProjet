@@ -805,6 +805,68 @@
 
             }
 
+            public function getTicketsByUser ($project_id, $user_id){
+                $sql = 'SELECT *
+                        FROM `tickets`
+                        LEFT JOIN `users_receive_tickets` ON `tickets`.`ticket_id` = `users_receive_tickets`.`ticket_id`
+                        LEFT JOIN `users` ON `users`.`id` = `users_receive_tickets`.`user_id`
+                        LEFT JOIN `status` ON `status`.`status_id` = `tickets`.`statut_id`
+                        LEFT JOIN `trackers` ON `trackers`.`tracker_id` = `tickets`.`tracker_id`
+                        LEFT JOIN `roadmaps` ON `roadmaps`.`roadmap_id` = `tickets`.`roadmap_id`
+                        LEFT JOIN `priorities` ON `priorities`.`priority_id` = `tickets`.`priority_id`
+                        WHERE `tickets`.`project_id` = '.$project_id.'
+                        AND `users_receive_tickets`.`user_id` = '.$user_id.'
+                        ORDER BY `tickets`.`ticket_date_create` ASC';
+
+                $pdo = TzSQL::getPDO();
+                $count = 0;
+                $cat['1'] = 0;
+                $cat['2'] = 0;
+                $cat['3'] = 0;
+                $road = array();
+                $status['complete'] = 0;
+                $status['1'] = 0;
+                $status['2'] = 0;
+                $status['3'] = 0;
+                $status['4'] = 0;
+                $status['5'] = 0;
+                foreach  ($pdo->query($sql) as $row) {
+
+                    if (!isset($road[$row['roadmap_id']]['count']))
+                        $road[$row['roadmap_id']]['count'] = 0;
+
+                    if ($row['status_id'] == 4 || $row['status_id'] == 5)
+                        $status['complete'] = $status['complete'] + 1;
+
+                    $cat[$row['tracker_id']]++;
+                    $status[$row['status_id']]++;
+                    $road[$row['roadmap_id']]['count'] = $road[$row['roadmap_id']]['count'] + 1;
+
+
+                    $count++;
+                }
+
+                foreach ($road as $key=>$r){
+                    $roadmap = tzSQL::getEntity('roadmaps');
+
+                    if ($res = $roadmap->findOneBy('roadmap_id',$key))
+                        $road[$key]['name'] = $roadmap->getRoadmap_title();
+                    else
+                        $road[$key]['name'] = 'No Affiliated';
+                }
+
+
+                $res['cat'] = $cat;
+                $res['status'] = $status;
+                $res['roadmap'] = $road;
+                $res['count'] = $count;
+                $res['countRoad'] = count($res['roadmap']);
+                $res['progress'] = round($res['status']['complete'] * 100 / $count);
+
+                return $res;
+
+            }
+
 					
 
 		}

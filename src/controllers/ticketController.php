@@ -46,6 +46,9 @@ class ticketController extends TzController {
          else
             $infosHeader['progress'] = round(100 * $nb_finish/ $infosHeader['nb_total']);
 
+         $t = tzSQL::getEntity('tickets');
+         $statTicketsUser = $t->getTicketsByUser($user['currentProject']->getProject_id(), $user['id']);
+
          $arianeParams = array('idProject' => $user['currentProject']->getProject_id(),
              'alert' => $alert,
              'nameProject' => $user['currentProject']->getProject_name(),
@@ -62,6 +65,7 @@ class ticketController extends TzController {
                                                          'currentPage' => 'tickets',
                                                          'myTickets' => $myTickets,
                                                          'projectAll' => $projectAll,
+                                                         'statTicketsUser' => $statTicketsUser,
                                                          'alert' => $alert,
                                                          'allTickets' => $allTickets,
                                                          'infosHeader' => $infosHeader,
