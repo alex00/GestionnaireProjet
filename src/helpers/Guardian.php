@@ -49,7 +49,7 @@ class Guardian  {
             }
 
             TzAuth::addUserSession(array('currentProject' => $exist[0]));
-
+            $_SESSION['User']['idCurrentProject'] = $exist[0]->getProject_id();
 
             return true;
 

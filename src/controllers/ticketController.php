@@ -75,9 +75,35 @@ class ticketController extends TzController {
 
     public function ticketDetailAction ($params) {
 
+        $project_code = $params['project'];
+
+        $project = Guardian::guardEntryProject($project_code);
+        if (!$project)
+            return(tzController::CallController("pageNotFound", "show"));
+
         $infosHeader = array();
         $project_code = $params['project'];
         $ticket_code = $params['ticket'];
+        $user = TzAuth::readUser();
+
+        $ticketsEntity = tzSQL::getEntity('tickets');
+
+
+        $infosHeader['nb_total'] = $ticketsEntity->countTicketsTotal($user['currentProject']->getProject_id());
+        $infosHeader['nb_assigned'] = $ticketsEntity->countAssignedTickets($user['currentProject']->getProject_id());
+        $infosHeader['nb_inprogress'] = $ticketsEntity->countInprogressTickets($user['currentProject']->getProject_id());
+        $infosHeader['nb_resolved'] = $ticketsEntity->countResolvedTickets($user['currentProject']->getProject_id());
+        $infosHeader['nb_closed'] = $ticketsEntity->countClosedTickets($user['currentProject']->getProject_id());
+        $infosHeader['nb_canceled'] = $ticketsEntity->countCanceledTickets($user['currentProject']->getProject_id());
+        $infosHeader['nb_evolution'] = $ticketsEntity->countEvolutionTickets($user['currentProject']->getProject_id());
+        $infosHeader['nb_bug'] = $ticketsEntity->countBugTickets($user['currentProject']->getProject_id());
+        $infosHeader['nb_support'] = $ticketsEntity->countSupportTickets($user['currentProject']->getProject_id());
+
+        $nb_finish = intval($infosHeader['nb_closed'] +  $infosHeader['nb_canceled']);
+        if ($infosHeader['nb_total'] == 0)
+            $infosHeader['progress'] = 0;
+        else
+            $infosHeader['progress'] = round(100 * $nb_finish/ $infosHeader['nb_total']);
 
         $project = Guardian::guardEntryProject($project_code);
         if (!$project)

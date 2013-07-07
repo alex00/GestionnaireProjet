@@ -1,7 +1,7 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
-    <div id="contentLeft" class="span7" >
+    <div id="contentLeft" class="span9" >
         <article id="memberByService" class="roadMap">
             <h4>Members :</h4>
 
@@ -53,11 +53,11 @@
 
             {% endif %}
         </article>
-        <div class="span7 dividerBlock"></div>
+        <div class="span9 dividerBlock"></div>
         <article class="roadMap">
             <h4>Announces :</h4>
             {% for announce in announces %}
-            <div class="span7" style="margin-bottom: 10px">
+            <div class="span9" style="margin-bottom: 10px">
                 <p class="nameListAnnonces">
                     Posted by : <a class="linkRed" href="/user/{{ announce.user_login_code }}" >{{ announce.user_login }}</a> - {{ announce.announce_date_create|date('m-d-Y') }} - Comments :
                 </p>
@@ -69,11 +69,11 @@
             {% endfor %}
 
         </article>
-        <div class="span7 dividerBlock"></div>
+        <div class="span9 dividerBlock"></div>
         <article class="roadMap">
             <h4>Roadmaps :</h4>
             {% for roadmap in roadmaps %}
-                <div class="span7" style="margin-bottom: 10px">
+                <div class="span9" style="margin-bottom: 10px">
                     <p class="nameListAnnonces">
                         Posted by : <a class="linkRed" href="/user/{{ roadmap.user_login_code }}" >{{ roadmap.user_login }}</a> - {{ roadmap.roadmap_date_create|date('m-d-Y') }} - Comments :
                     </p>
@@ -85,23 +85,5 @@
             {% endfor %}
         </article>
     </div>
-
-    <article class="span4 offset1 pull-right">
-        <h4>Resume : </h4>
-        <ul id="listSuiviTickets">
-            <li><span>Not affiliated : </span><ul>
-                    <li><span >Tickets : 52</span></li>
-                    <li><span >Progress : 40%</span></ul>
-            </li>
-            <li><span>Deuxième version : </span><ul>
-                    <li><span >Tickets : 52</span></li>
-                    <li><span >Progress : 40%</span></ul>
-            </li>
-            <li><span>Première version : </span><ul>
-                    <li><span >Tickets : 18</span></li>
-                    <li><span >Progress : 100%</span></ul>
-            </li>
-        </ul>
-    </article>
     <div class="clear-fix"></div>
 {% endblock %}

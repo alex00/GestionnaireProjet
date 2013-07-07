@@ -7,7 +7,7 @@
 {% endif %}
 
 {% if params['categoryName'] and params['categoryName'] != 'members' and params['nameDetail'] %}
-    <img src="/img/lineStraight.png" alt="Ariane divider"/> <a class="linkRed" href="{{ params['codeProject'] }}/{{ params['categoryLink'] }}" >{{ params['categoryName']|capitalize }}</a>
+    <img src="/img/lineStraight.png" alt="Ariane divider"/> <a class="linkRed" href="/{{ params['codeProject'] }}/{{ params['categoryLink'] }}" >{{ params['categoryName']|capitalize }}</a>
 {% elseif params['categoryName'] %}
     <img src="/img/lineStraight.png" alt="Ariane divider"/> {{ params['categoryName']|capitalize }}
 {% endif %}
