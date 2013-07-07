@@ -35,6 +35,8 @@ class Guardian  {
 
             $user = TzAuth::readUser();
 
+            $user_serviceEntity = tzSQL::getEntity('user_service');
+
             if ($user['acl_group_id'] != $right){
                 TzAuth::addUserSession(array('acl_group_id' => $right));
                 $userEntity = tzSQL::getEntity('users');

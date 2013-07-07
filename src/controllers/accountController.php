@@ -21,11 +21,16 @@ class accountController extends TzController {
         
         
         $arianeParams = array('category' => 'Account');
+        $user_serviceEntity = tzSQL::getEntity('user_service');
+        $user = TzAuth::readUser();
+        $list_project_affiliated = $user_serviceEntity->listProjectAffiliated($user['id']);
+        $list_project_created = $user_serviceEntity->listProjectCreated($user['id']);
+        $projectAll = array_merge($list_project_created, $list_project_affiliated);
 
         $this->tzRender->run('/templates/account', array('header' => 'headers/accountHeader.html.twig',
             'subMenu' => 'true',
             'paramsAriane' => $arianeParams,
-
+            'projectAll' => $projectAll,
             'list_project_created' => $listProjectCreated,
             'list_project_affiliated' => $listProjectAffiliated,
             'list_project_commun' => $listProjectCommun,

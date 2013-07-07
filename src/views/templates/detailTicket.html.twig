@@ -2,10 +2,67 @@
 
 {% block content %}
     <div id="contentLeft" class="span7" >
-        <article class="span7 announceHome">
-        <h4>{{ entity.ticket_name|capitalize }}</h4>
+        <article id="ticketInfos" class="span7 announceHome">
+            <h4 style="float: left; margin-top: 0px">{{ entity.ticket_name|capitalize }}</h4>
+
+            {% if entity.user_id == User.id or entity.creator_id == User.id or (User.acl_group_id == 2 or User.acl_group_id == 1) %}
+                <div id="modifTicketInfos" >
+                    <a class="linkBlack pull-right" onclick="" data-toggle="modal" data-target="#modalmodifTicket">
+                        <img src="/img/settings.png" style="margin-top: 15px;margin-right: 50px;" alt="Change Ticket" title="Change Ticket" />
+                    </a>
+                </div>
+            {% endif %}
+            <div style="clear: both"></div>
             <p>{{ entity.ticket_description|capitalize }}</p>
 
+            <div style="margin-left:0" class="span4">
+                Assigned to : {{ entity.user_login }}
+            </div>
+            <div class="span3">
+                Deadline : {{ entity.ticket_deadline|date('d F Y') }}
+            </div>
+            <div style="margin-left:0;margin-top: 20px" class="span2">
+                Status : {{ entity.status_name|capitalize }}
+            </div>
+            <div style="margin-top: 20px" class="span2">
+                Priority : {{ entity.priority_name|capitalize }}
+            </div>
+            <div style="margin-top: 20px" class="span2">
+                Tracker : {{ entity.tracker_name|capitalize }}
+            </div>
+            {% if entity.roadmap_id != null  %}
+            <div style="margin-left:0;margin-top: 20px" class="span2">
+                Roadmap : {{ entity.roadmap_title|capitalize }}
+            </div>
+            {% endif %}
+        </article>
+        <article id="ticketTime" class="span7 announceHome">
+
+            <div class="dividerBlock span7"></div>
+
+            <h4 style="float: left; margin-top: 0px">Time : </h4>
+
+            {% if entity.user_id == User.id %}
+                <div id="modifTimeTicket" >
+                    <a class="linkBlack pull-right" onclick="" data-toggle="modal" data-target="#modalTime">
+                        <img src="/img/settings.png" style="margin-top: 15px;margin-right: 50px;" alt="Change Time" title="Change Time" />
+                    </a>
+                </div>
+            {% endif %}
+            <div style="clear: both"></div>
+            <div id="timeTicket" style="margin-left: 0;" class="span7">
+                <div style="margin-left:0;" class="span2">
+                    Estimate time : {{ entity.ticket_estimate_time }} hours
+                </div>
+                <div class="span2">
+                    Spend time : {{ entity.ticket_spend_time }} hours
+                </div>
+                <div class="span2">
+                    Progress : {{ entity.ticket_progress }}%
+                </div>
+            </div>
+        </article>
+        <article class="span7 announceHome">
             <div class="dividerBlock span7"></div>
             <h4>Comments : </h4>
             <p class="pseudoComment pull-left"><a class="linkBlack" href="" >AlexKtf</a></p><p class="pull-left dateComment">&nbsp;- 16/48/4955 16:31</p>
@@ -17,24 +74,146 @@
             <p class="pseudoComment pull-left"><a class="linkBlack" href="" >AlexKtf</a></p><p class="pull-left dateComment">&nbsp;- 16/48/4955 16:31</p>
             <div class="clear"></div>
             <p>psoefkposekfposkefôskefosopefsoefkospef</p>
-
-
         </article>
+
+
 
     </div>
     <div id="contentRight" class="span4 offset1 pull-right" >
-        <article class="span4 ">
-            <h4>My Projects : </h4>
-            <ul class="homeProjectList">
-                <li><a href="/project/1">Pjroeferf45</a></li>
-            </ul>
+        <article>
+            <h4>Activity :</h4>
+
+            <p style="font-size: 28px">#<span id="idTicket">{{ entity.ticket_id }}</span></p>
         </article>
-        <article class="span4 ">
-            <h4>Affiliated Projects : </h4>
-            <ul class="homeProjectList">
-                <li><a href="/project/1">Project 1 </a></li>
-                <li><a href="/project/1">Project 2 </a></li>
-            </ul>
-        </article>
+    </div>
+    <div id="modalTime" class="modal hide fade">
+
+        <header class="modal-header">
+            <a href="#" class="close" data-dismiss="modal">x</a>
+            <h6>Modify Time</h6>
+        </header>
+
+        <div class="modal-body">
+            <form id="changeTime" action="" method="post" name="changeTime">
+                <table cellspacing="10" style="margin-top: 20px">
+                    <tr>
+                        <td><label for="estimate_time">Estimate time :</label></td>
+                        <td colspan="3">
+                            <span style="margin-left: 10px">{{ entity.ticket_estimate_time }}</span> hours
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="changeSpendTime">Spend time :</label></td>
+                        <td colspan="3">
+                            <input type="text" name="changeSpendTime" id="changeSpendTime" value="{{ entity.ticket_spend_time }}" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="changeProgress">Progress :</label></td>
+                        <td colspan="3">
+                            <select style="margin-left: 10px" id="changeProgress">
+                                <option {% if entity.ticket_progress == 0 %}selected="selected"{% endif %} value="0">0</option>
+                                <option {% if entity.ticket_progress == 10 %}selected="selected"{% endif %}  value="10">10</option>
+                                <option {% if entity.ticket_progress == 20 %}selected="selected"{% endif %}  value="20">20</option>
+                                <option {% if entity.ticket_progress == 30 %}selected="selected"{% endif %}  value="30">30</option>
+                                <option {% if entity.ticket_progress == 40 %}selected="selected"{% endif %}  value="40">40</option>
+                                <option {% if entity.ticket_progress == 50 %}selected="selected"{% endif %}  value="50">50</option>
+                                <option {% if entity.ticket_progress == 60 %}selected="selected"{% endif %}  value="60">60</option>
+                                <option {% if entity.ticket_progress == 70 %}selected="selected"{% endif %}  value="70">70</option>
+                                <option {% if entity.ticket_progress == 80 %}selected="selected"{% endif %}  value="80">80</option>
+                                <option {% if entity.ticket_progress == 90 %}selected="selected"{% endif %}  value="90">90</option>
+                                <option {% if entity.ticket_progress == 100 %}selected="selected"{% endif %}  value="100">100</option>
+                            </select>
+                            %
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+        <footer class="modal-footer">
+            <a href="#" class="btn btn-primary" id="okwin01" onclick="changeTimeTicket('{{ currentProject.project_code }}', '{{ entity.ticket_code }}',{{ entity.ticket_id }})"  >Modify</a>
+        </footer>
+    </div>
+    <div id="modalmodifTicket" class="modal hide fade">
+
+        <header class="modal-header">
+            <a href="#" class="close" data-dismiss="modal">x</a>
+            <h6>Modify Ticket</h6>
+        </header>
+
+        <div class="modal-body">
+            <form id="addTicket" action="" method="post" name="newTicket" enctype="multipart/form-data">
+                <table>
+                    <tr>
+                        <td><label for="nameTicket">Name :</label></td><td colspan="3"><input type="text" name="nameTicket" id="nameTicket" value="{{ entity.ticket_name }}"/></td>
+                    </tr>
+                    <tr>
+                        <td><label for="descTicket">Description :</label></td><td colspan="3"><textarea name="descTicket" id="descTicket" rows="3">{{ entity.ticket_description }}</textarea></td>
+                    </tr>
+                    <tr>
+                        <td><label for="assignedTicket">Assigned to :</label></td>
+                        <td>
+                            <select name="assignedTicket" id="assignedTicket">
+                                {% for members in modalTicket.services %}
+                                    {% if members.name != 'Not affiliated' %}
+                                        <option class="selectModalTicketService" disabled="disabled" value="{{ members.id_service }}">{{ members.name|upper }}</option>
+                                    {% endif %}
+                                    {% for userTicket in members.members %}
+                                        <option {% if userTicket.id == entity.user_id %}selected="selected"{% endif %} value="{{ userTicket.id }}">{{ userTicket.login }}</option>
+                                    {% endfor %}
+                                {% endfor %}
+                            </select>
+                        </td>
+                        <td><label for="deadlineTicket">Deadline :</label></td>
+                        <td><input  style="width: 68%"  type="date" name="deadlineTicket" id="deadlineTicket"  value="{{ entity.ticket_deadline }}"/></td>
+                    </tr>
+                    <tr>
+                        <td><label for="priorityTicket">Priority :</label></td>
+                        <td>
+                            <select name="priorityTicket" id="priorityTicket">
+                                <option {% if entity.priority_id == 1 %}selected="selected" {% endif %} value="1">Low</option>
+                                <option {% if entity.priority_id == 2 %}selected="selected" {% endif %}  value="2" >Normal</option>
+                                <option {% if entity.priority_id == 3 %}selected="selected" {% endif %}  value="3">High</option>
+                                <option {% if entity.priority_id == 4 %}selected="selected" {% endif %}  value="4">Immediate</option>
+                            </select>
+                        </td>
+                        <td><label for="trackerTicket">Tracker :</label></td>
+                        <td>
+                            <select  style="width: 75%" name="trackerTicket" id="trackerTicket">
+                                <option  {% if entity.tracker_id == 1 %}selected="selected" {% endif %} value="1" >Evolution</option>
+                                <option  {% if entity.tracker_id == 2 %}selected="selected" {% endif %} value="2">Bug</option>
+                                <option  {% if entity.tracker_id == 3 %}selected="selected" {% endif %} value="3">Support</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="roadmapTicket">Link to a roadmap :</label></td>
+                        <td id="selectRoadmap">
+                            <select name="roadmapTicket" id="roadmapTicket">
+                                <option value="0">No roadmap linked</option>
+                                {% for roadmap in modalTicket.roadmaps %}
+                                    <option  {% if entity.roadmap_id == roadmap.roadmap_id %}selected="selected" {% endif %} value="{{ roadmap.id }}">{{ roadmap.title }}</option>
+                                {% endfor %}
+                            </select>
+                        </td>
+                        <td><label for="statutTicket">Status :</label></td>
+                        <td>
+                            <select  style="width: 75%" name="statutTicket" id="statutTicket">
+                                <option  {% if entity.statut_id == 1 %}selected="selected" {% endif %} value="1">Assigned</option>
+                                <option  {% if entity.statut_id == 2 %}selected="selected" {% endif %} value="2">In Progress</option>
+                                <option  {% if entity.statut_id == 3 %}selected="selected" {% endif %} value="3">Resolved</option>
+                                <option  {% if entity.statut_id == 4 %}selected="selected" {% endif %} value="4">Closed</option>
+                                <option  {% if entity.statut_id == 5 %}selected="selected" {% endif %} value="5">Canceled</option>
+                            </select>
+                        </td>
+                    </tr>
+                </table>
+                <input type="hidden" id="ticketId" value="{{ entity.ticket_id }}"  />
+            </form>
+        </div>
+
+        <footer class="modal-footer">
+            <a href="#" class="btn btn-primary" id="okwin01" onclick="toolBarSubmit('modifyTicket','{{ currentProject.project_id }}}','{{ currentProject.project_code }}')">Modify</a>
+        </footer>
     </div>
 {% endblock %}

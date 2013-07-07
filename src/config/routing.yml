@@ -46,6 +46,22 @@ organization_changeMemberInfos:
         ajax: true
         exclude_groups : visitor|user
 
+ticket_changeTimeTicket:
+    pattern:    /change-time-ticket
+    controller: ticket:changeTimeTicket
+    requirements:
+        only_connected: true
+        ajax: true
+        exclude_groups : visitor
+
+ticket_modify:
+    pattern:    /{project}/modify-ticket
+    controller: ticket:modifyTicket
+    requirements:
+        only_connected: true
+        ajax: true
+        exclude_groups : visitor
+
 
 
 # Tickets Controller
@@ -54,8 +70,6 @@ ticket_detail:
 	pattern:	/{project}/ticket/{ticket}/
 	controller: ticket:ticketDetail
 	requirements:
-	    project:   string
-	    ticket:   string
         only_connected: true
         exclude_groups: visitor
 

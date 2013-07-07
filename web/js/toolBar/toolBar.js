@@ -31,6 +31,7 @@ var toolBar = (function() {
                                       ticket: '/new-ticket',
                                       roadmap: '/new-roadmap',
                                       membre: '/new-member',
+                                      modifyTicket: '/modify-ticket',
                                       service: '/new-service',
                                       announce: '/new-announce'
                                     },
@@ -39,6 +40,7 @@ var toolBar = (function() {
                                       roadmap: '<img src="/img/check.png" title="Added" alt="Added" /> Roadmap Added',
                                       membre: '<img src="/img/check.png" title="Added" alt="Added" /> Invitation Sended',
                                       service: '<img src="/img/check.png" title="Added" alt="Added" /> Service Added',
+                                      modifyTicket: '<img src="/img/check.png" title="modify" alt="modify" /> Ticket Modified',
                                       announce: '<img src="/img/check.png" title="Added" alt="Added" /> Announce Added'
                                 }
                             }

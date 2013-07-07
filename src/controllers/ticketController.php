@@ -50,12 +50,18 @@ class ticketController extends TzController {
              'alert' => $alert,
              'nameProject' => $user['currentProject']->getProject_name(),
              'codeProject' => $user['currentProject']->getProject_code(),
-             'category' => 'Tickets');
+             'categoryName' => 'Tickets');
+
+         $user_serviceEntity = tzSQL::getEntity('user_service');
+         $list_project_affiliated = $user_serviceEntity->listProjectAffiliated($user['id']);
+         $list_project_created = $user_serviceEntity->listProjectCreated($user['id']);
+         $projectAll = array_merge($list_project_created, $list_project_affiliated);
 
          $this->tzRender->run('/templates/ticket', array('header' => 'headers/ticketHeader.html.twig',
                                                          'modalTicket' => $modalTicket,
                                                          'currentPage' => 'tickets',
                                                          'myTickets' => $myTickets,
+                                                         'projectAll' => $projectAll,
                                                          'alert' => $alert,
                                                          'allTickets' => $allTickets,
                                                          'infosHeader' => $infosHeader,
@@ -64,8 +70,8 @@ class ticketController extends TzController {
 	}
 
     public function ticketDetailAction ($params) {
-        var_dump('lol');die;
 
+        $infosHeader = array();
         $project_code = $params['project'];
         $ticket_code = $params['ticket'];
 
@@ -80,13 +86,18 @@ class ticketController extends TzController {
 
         $tickets = TzSQL::getEntity('tickets');
 
+        $user_serviceEntity = tzSQL::getEntity('user_service');
+        $list_project_affiliated = $user_serviceEntity->listProjectAffiliated($user['id']);
+        $list_project_created = $user_serviceEntity->listProjectCreated($user['id']);
+        $projectAll = array_merge($list_project_created, $list_project_affiliated);
+
         $allTickets = $tickets->findManyBy('ticket_code', $ticket_code);
 
         if ($allTickets){
             foreach ($allTickets as $ticket){
                 if ($ticket->getProject_id() == $user['currentProject']->getProject_id()){
 
-                    $detailTicket = $ticket;
+                    $detailTicket = $tickets->getDetailTicket($user['currentProject']->getProject_id(),$ticket->getTicket_id());
                 }
             }
         }
@@ -94,17 +105,73 @@ class ticketController extends TzController {
         $arianeParams = array('idProject' => $user['currentProject']->getProject_id(),
             'nameProject' => $user['currentProject']->getProject_name(),
             'codeProject' => $user['currentProject']->getProject_code(),
-            'categoryName' => 'announces',
-            'categoryLink' => 'organization',
-            'nameDetail' => $detailTicket->getTicket_name());
+            'categoryName' => 'tickets',
+            'categoryLink' => 'tickets',
+            'nameDetail' => $detailTicket['ticket_name']);
 
-
-        $this->tzRender->run('/templates/detailAnnounce', array('header' => 'headers/roadmapHeader.html.twig',
-            'subMenuCurrent' => 'organization',
+        $this->tzRender->run('/templates/detailTicket', array('header' => 'headers/ticketHeader.html.twig',
+            'subMenuCurrent' => 'tickets',
             'alert' => $alert,
+            'detailContext' => true,
+            'currentPage' => 'ticket',
+            'projectAll' => $projectAll,
+            'infosHeader' => $infosHeader,
+            'detailCode' => $detailTicket['ticket_code'],
             'modalTicket' => $modalTicket,
             'entity' => $detailTicket,
             'paramsAriane' => $arianeParams));
+    }
+
+
+
+    public function changeTimeTicketAction(){
+
+        $id = intval($_POST['ticket_id']);
+
+        $tickets = TzSQL::getEntity('tickets');
+
+        $tickets->findOneBy('ticket_id',$id);
+
+        if ($tickets == null)
+            return false;
+
+        $tickets->setTicket_progress($_POST['progress']);
+        $tickets->setTicket_spend_time($_POST['spend']);
+
+        $tickets->Update();
+
+        TzAuth::addUserSession(array('alert' => 'modifyTicket'));
+        return true;
+
+
+    }
+
+    public function modifyTicketAction (){
+        $id = intval($_POST['id_ticket']);
+
+        $tickets = TzSQL::getEntity('tickets');
+
+        $tickets->findOneBy('ticket_id',$id);
+
+        if ($tickets == null)
+            return false;
+
+        $tickets->setTicket_name($_POST['name']);
+        $code = Guardian::guardUrl($_POST['name']);
+        $tickets->setTicket_code($code);
+        $tickets->setTicket_deadline($_POST['deadline']);
+        $tickets->setTicket_description($_POST['desc']);
+
+        $tickets->setProject_id($_POST['id']);
+        $tickets->setPriority_id($_POST['priority']);
+        $tickets->setStatut_id($_POST['statut']);
+        $tickets->setTracker_id($_POST['tracker']);
+        $tickets->setRoadmap_id($_POST['roadmap']);
+
+        $tickets->Update();
+
+        TzAuth::addUserSession(array('alert' => 'modifyTicket'));
+        return true;
     }
 
 }

@@ -35,14 +35,20 @@ class dashboardController extends TzController {
          $arianeParams = array('idProject' => $user['currentProject']->getProject_id(),
                                 'nameProject' => $user['currentProject']->getProject_name(),
                                 'codeProject' => $user['currentProject']->getProject_code(),
-                                'category' => 'Dashboard');
+                                'categoryName' => 'Dashboard');
 
          $alert = Guardian::guardAlert();
+
+         $user_serviceEntity = tzSQL::getEntity('user_service');
+         $list_project_affiliated = $user_serviceEntity->listProjectAffiliated($user['id']);
+         $list_project_created = $user_serviceEntity->listProjectCreated($user['id']);
+         $projectAll = array_merge($list_project_created, $list_project_affiliated);
 
          $this->tzRender->run('/templates/dashboard', array('header' => 'headers/dashboardHeader.html.twig',
                                                             'modalTicket' => $modalTicket,
                                                             'alert' => $alert,
                                                             'currentPage' => 'dashboard',
+                                                            'projectAll' => $projectAll,
                                                             'infosHeader' => $infosHeader,
                                                             'subMenuCurrent' => 'dashboard',
                                                             'tabUser' => $tabUser,

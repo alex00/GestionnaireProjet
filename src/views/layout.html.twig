@@ -74,10 +74,13 @@
                         </li>
                         <li>
                             <div id="HeaderSearchBlock" class=" headerAdminBlock">
-                                <a data-target="#" id="HeaderSearch" class="pull-left headerAdminButton" >+</a>
-                                <form id="headerSearchBar" class="navbar-search pull-left">
-                                    <input type="text" class="search-query" placeholder="Search">
-                                </form>
+                                <img style="margin-top: -14px;" src="/img/arrow.png" alt="Current Project" title="Current Project" />
+                                <select id="selectProject" style="margin-top: -3px" onchange="javascript:selectProject(this.value);">
+                                    <option value="" {% if homeProject %}selected="selected"{% endif %} >Home</option>
+                                    {% for project in projectAll %}
+                                    <option {% if currentProject.project_id == project.id %}selected="selected"{% endif %} value="{{project.project_code}}">{{ project.project_name }}</option>
+                                    {% endfor %}
+                                </select>
                             </div>
                         </li>
                         <li class="divider-vertical"></li>
@@ -95,6 +98,18 @@
                                     <a href="/account/{{ User.user_login_code }}">My acount</a>
                                     <a href="/my-account">Settings</a>
                                     <a href="/deconnect">Deconnexion</a>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                    <ul id="notifs" class=" nav pull-right" style="margin-right: 50px;margin-top: 8px;">
+                        <li><div class="dropdown">
+                                <a class="dropdown-toggle" id="nots" role="button" data-toggle="dropdown" data-target="#" >
+                                     6 Notifications
+                                    <b class="caret" style="margin-top: 10px"></b>
+                                </a>
+                                <ul class="dropdown-menu" role="menu" aria-labelledby="nots" >
+                                    <a href="#" >No Notifications</a>
                                 </ul>
                             </div>
                         </li>
@@ -129,7 +144,7 @@
         <div class="row-1">
 
             <div class="container">
-                <div class="span12">
+                <div class="span12" style="margin-bottom: 20px">
                     {% include '/ariane/ariane.html.twig' with {'params' : paramsAriane }%}
                 </div>
                 {% block content %}
@@ -223,7 +238,7 @@
     </header>
 
     <div class="modal-body">
-        <form id="addTicket" action="" method="post" name="newTicket">
+        <form id="addTicket" action="" method="post" name="newTicket" enctype="multipart/form-data">
             <table>
                 <tr>
                     <td><label for="nameTicket">Name :</label></td><td colspan="3"><input type="text" name="nameTicket" id="nameTicket"/></td>
@@ -246,7 +261,7 @@
                         </select>
                     </td>
                     <td><label for="deadlineTicket">Deadline :</label></td>
-                    <td><input type="date" name="deadlineTicket" id="deadlineTicket" /></td>
+                    <td><input  style="width: 68%"  type="date" name="deadlineTicket" id="deadlineTicket" /></td>
                 </tr>
                 <tr>
                     <td><label for="priorityTicket">Priority :</label></td>
@@ -260,7 +275,7 @@
                     </td>
                     <td><label for="trackerTicket">Tracker :</label></td>
                     <td>
-                        <select name="trackerTicket" id="trackerTicket">
+                        <select  style="width: 75%" name="trackerTicket" id="trackerTicket">
                             <option value="1" selected="selected">Evolution</option>
                             <option value="2">Bug</option>
                             <option value="3">Support</option>
@@ -269,7 +284,7 @@
                 </tr>
                 <tr>
                     <td><label for="roadmapTicket">Link to a roadmap :</label></td>
-                    <td colspan="3" id="selectRoadmap">
+                    <td id="selectRoadmap">
                         <select name="roadmapTicket" id="roadmapTicket">
                             <option selected="select" value="0">No roadmap linked</option>
                             {% for roadmap in modalTicket.roadmaps %}
@@ -277,19 +292,25 @@
                             {% endfor %}
                         </select>
                     </td>
+
+                    <td><label for="estimateTicket">Estimate time :</label></td>
+                    <td id="selectRoadmap">
+                        <input type="text" style="width: 30%" name="estimateTicket" id="estimateTicket" value="0" />
+                        hours
+                    </td>
                 </tr>
             </table>
         </form>
     </div>
 
     <footer class="modal-footer">
-        <a href="#" class="btn btn-primary" id="okwin01" onclick="toolBarSubmit('ticket','{{ currentProject.project_id }}}','{{ currentProject.project_code }}')">Add</a>
+        <a href="#" class="btn btn-primary" id="okwin01" onclick="toolBarSubmit('modifyTicket','{{ currentProject.project_id }}}','{{ currentProject.project_code }}')">Add</a>
     </footer>
 </div>
         {% if currentPage == 'dashboard' %}
             <input type='hidden' name="modalReferer" id="modalReferer" value="{{ currentProject.project_code }}" />
         {% elseif detailContext %}
-            <input type='hidden' name="modalReferer" id="modalReferer" value="{{ currentProject.project_code }}/{{ currentPage }}/{{ detailType }}/{{ detailCode }}" />
+            <input type='hidden' name="modalReferer" id="modalReferer" value="{{ currentProject.project_code }}/{{ currentPage }}/{{ detailCode }}" />
         {% else %}
             <input type='hidden' name="modalReferer" id="modalReferer" value="{{ currentProject.project_code }}/{{ currentPage }}" />
         {% endif %}
