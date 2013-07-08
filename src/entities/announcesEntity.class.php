@@ -434,6 +434,20 @@
 
             }
 
+
+            public function countAnnounce($project_id){
+                $sql = 'SELECT COUNT(`announce_id`) as nb_total
+                        FROM `announces`
+                        WHERE `announces`.`project_id` = '.$project_id;
+
+                $result = TzSQL::getPDO()->prepare($sql);
+                $result->execute();
+                $tickets = $result->fetch(PDO::FETCH_OBJ);
+
+                return $tickets->nb_total;
+
+            }
+
 		}
 
 	?>

@@ -29,8 +29,10 @@ class dashboardController extends TzController {
          foreach ($listUser as $value) {
              array_push($tabUser, $value->getUser_login_code());
          }
-         
-//         var_dump($tabUser);
+
+
+         $projectEntity = tzSQL::getEntity('projects');
+         $statDash = $projectEntity->getInfosProject($user['currentProject']->getProject_id());
 
          $arianeParams = array('idProject' => $user['currentProject']->getProject_id(),
                                 'nameProject' => $user['currentProject']->getProject_name(),
@@ -49,6 +51,7 @@ class dashboardController extends TzController {
                                                             'alert' => $alert,
                                                             'currentPage' => 'dashboard',
                                                             'projectAll' => $projectAll,
+                                                            'statDash' => $statDash,
                                                             'infosHeader' => $infosHeader,
                                                             'subMenuCurrent' => 'dashboard',
                                                             'tabUser' => $tabUser,
