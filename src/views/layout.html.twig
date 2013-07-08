@@ -22,10 +22,10 @@
     <script type="text/javascript" src="/js/bootstrap/bootstrap-dropdown.js"></script>
     <link href='http://fonts.googleapis.com/css?family=Jockey+One' rel='stylesheet' type='text/css'>
 
-    <script type="text/javascript" language="javascript" src="/js/master.js" ></script>
+    <script type="text/javascript" src="/js/master.js" ></script>
 
-    <script type="text/javascript" language="javascript" src="/js/toolBar/toolBar.js" ></script>
-    <script type="text/javascript" language="javascript" src="/js/toolBar/toolBarController.js" ></script>
+    <script type="text/javascript" src="/js/toolBar/toolBar.js" ></script>
+    <script type="text/javascript" src="/js/toolBar/toolBarController.js" ></script>
     <style>
         #sortable1 li, #sortable2 li { margin: 0 5px 5px 5px; padding: 5px; font-size: 1.2em; width: 120px; }
     </style>
@@ -48,7 +48,7 @@
                 <a class="brand" href="/">QManager</a>
                 <div class="nav-collapse collapse nav-top-collapse">
                     <ul id ="toolBar" class="nav">
-                        <li class="home"><a href="/"><img src="/img/tm_home.png"></a></li>
+                        <li class="home"><a href="/"><img src="/img/tm_home.png" alt="Home"></a></li>
                         <li class="divider-vertical"></li>
                         <li>
                             <div class=" headerAdminBlock">
@@ -95,9 +95,9 @@
                                     <b class="caret"></b>
                                 </a>
                                 <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                                    <a href="/account/{{ User.user_login_code }}">My acount</a>
-                                    <a href="/my-account">Settings</a>
-                                    <a href="/deconnect">Deconnexion</a>
+                                    <li><a href="/account/{{ User.user_login_code }}">My acount</a></li>
+                                    <li><a href="/my-account">Settings</a></li>
+                                    <li><a href="/deconnect">Deconnexion</a></li>
                                 </ul>
                             </div>
                         </li>
@@ -304,7 +304,7 @@
     </div>
 
     <footer class="modal-footer">
-        <a href="#" class="btn btn-primary" id="okwin01" onclick="toolBarSubmit('modifyTicket','{{ currentProject.project_id }}}','{{ currentProject.project_code }}')">Add</a>
+        <a href="#" class="btn btn-primary" id="okwin01" onclick="toolBarSubmit('ticket','{{ currentProject.project_id }}}','{{ currentProject.project_code }}')">Add</a>
     </footer>
 </div>
   

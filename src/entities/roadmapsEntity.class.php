@@ -431,6 +431,19 @@
 
             }
 
+            public function countRoadmap($project_id){
+            $sql = 'SELECT COUNT(`roadmap_id`) as nb_total
+                        FROM `roadmaps`
+                        WHERE `roadmaps`.`project_id` = '.$project_id;
+
+            $result = TzSQL::getPDO()->prepare($sql);
+            $result->execute();
+            $tickets = $result->fetch(PDO::FETCH_OBJ);
+
+            return $tickets->nb_total;
+
+        }
+
 
 
             public function ticketsByRoadmap($project_id, $roadmap_id){
