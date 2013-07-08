@@ -268,3 +268,145 @@ type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/G
 type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-06-30 22:33:41
 type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-06-30 22:33:49
 type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-06-30 22:33:56
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-06-30 23:45:56
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-06-30 23:46:01
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-06-30 23:46:08
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-07-06 11:02:26
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-07-06 11:02:31
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-07-06 11:02:35
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-07-06 11:02:44
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-07-06 11:02:54
+type=>2	message=>Cannot modify header information - headers already sent by (output started at /Users/Alex/NetBeansProjects/GestionnaireProjet/src/entities/usersEntity.class.php:393)	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/src/controllers/accountController.php	line=>68	date=>2013-07-06 11:03:09
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-07-06 11:03:14
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-07-06 11:03:49
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-07-06 11:04:00
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-07-06 11:04:13
+type=>8	message=>Trying to get property of non-object	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/src/entities/user_serviceEntity.class.php	line=>425	date=>2013-07-06 11:04:13
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-07-06 11:04:14
+type=>8	message=>Trying to get property of non-object	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/src/entities/user_serviceEntity.class.php	line=>425	date=>2013-07-06 11:04:17
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-07-06 11:04:17
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-07-06 11:24:39
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-07-06 11:25:23
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-07-06 11:25:25
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-07-06 11:25:33
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-07-06 11:25:38
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-07-06 11:26:49
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-07-06 11:32:32
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-07-06 11:38:32
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-07-06 12:35:09
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-07-06 12:35:50
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-07-06 12:36:25
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-07-06 12:38:41
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-07-06 12:39:19
+type=>8	message=>Undefined index: login	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/src/controllers/accountController.php	line=>43	date=>2013-07-07 14:22:40
+type=>8	message=>Undefined index: mail	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/src/controllers/accountController.php	line=>44	date=>2013-07-07 14:22:40
+type=>8	message=>Undefined index: change_password	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/src/controllers/accountController.php	line=>58	date=>2013-07-07 14:22:40
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-07-07 14:22:41
+type=>none	message=>No Class accountController Found	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Kernel/TzKernel.php	line=>155	date=>2013-07-07 14:23:37
+type=>none	message=>No Class dashboardController Found	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Kernel/TzKernel.php	line=>155	date=>2013-07-07 14:23:43
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-07-07 15:37:23
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-07-07 15:37:36
+type=>8	message=>Undefined variable: error	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/src/controllers/accountController.php	line=>90	date=>2013-07-07 15:37:40
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-07-07 15:37:40
+type=>8	message=>Undefined variable: error	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/src/controllers/accountController.php	line=>90	date=>2013-07-07 15:38:10
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-07-07 15:38:10
+type=>8	message=>Undefined variable: error	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/src/controllers/accountController.php	line=>90	date=>2013-07-07 15:41:29
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-07-07 15:41:30
+type=>8	message=>Undefined index: change_password	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/src/controllers/accountController.php	line=>58	date=>2013-07-07 22:05:54
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-07-07 22:05:54
+type=>8	message=>Undefined index: change_password	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/src/controllers/accountController.php	line=>58	date=>2013-07-07 22:06:18
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-07-07 22:06:18
+type=>8	message=>Undefined variable: error	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/src/controllers/accountController.php	line=>90	date=>2013-07-07 23:05:41
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-07-07 23:05:41
+type=>8	message=>Undefined index: change_password	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/src/controllers/accountController.php	line=>58	date=>2013-07-07 23:05:46
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-07-07 23:05:46
+type=>8	message=>Undefined index: change_password	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/src/controllers/accountController.php	line=>58	date=>2013-07-07 23:06:03
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-07-07 23:06:03
+type=>8	message=>Undefined index: change_password	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/src/controllers/accountController.php	line=>58	date=>2013-07-07 23:07:13
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-07-07 23:07:13
+type=>8	message=>Undefined index: change_password	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/src/controllers/accountController.php	line=>58	date=>2013-07-07 23:10:09
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-07-07 23:10:09
+type=>8	message=>Undefined index: change_password	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/src/controllers/accountController.php	line=>58	date=>2013-07-07 23:14:33
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-07-07 23:14:33
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-07-07 23:25:40
+type=>8	message=>Undefined index: change_password	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/src/controllers/accountController.php	line=>58	date=>2013-07-07 23:25:54
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-07-07 23:25:54
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-07-07 23:26:11
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-07-07 23:49:39
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-07-07 23:49:47
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-07-07 23:49:56
+type=>2	message=>Cannot modify header information - headers already sent by (output started at /Users/Alex/NetBeansProjects/GestionnaireProjet/src/entities/usersEntity.class.php:404)	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/src/controllers/accountController.php	line=>117	date=>2013-07-07 23:50:28
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-07-07 23:50:32
+type=>8	message=>Undefined variable: error	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/src/controllers/accountController.php	line=>90	date=>2013-07-07 23:50:36
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-07-07 23:50:36
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-07-07 23:50:47
+type=>8	message=>Undefined variable: error	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/src/controllers/accountController.php	line=>88	date=>2013-07-07 23:53:30
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-07-07 23:53:30
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-07-07 23:53:34
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-07-07 23:54:22
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-07-07 23:54:33
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-07-07 23:54:47
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-07-07 23:56:36
+type=>8	message=>Undefined variable: error	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/src/controllers/accountController.php	line=>89	date=>2013-07-08 00:08:25
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-07-08 00:08:25
+type=>8	message=>Undefined variable: error	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/src/controllers/accountController.php	line=>89	date=>2013-07-08 00:11:29
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-07-08 00:11:29
+type=>8	message=>Undefined variable: error	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/src/controllers/accountController.php	line=>89	date=>2013-07-08 00:12:02
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-07-08 00:12:02
+type=>8	message=>Undefined variable: error	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/src/controllers/accountController.php	line=>89	date=>2013-07-08 00:12:56
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-07-08 00:12:56
+type=>8	message=>Undefined variable: error	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/src/controllers/accountController.php	line=>89	date=>2013-07-08 00:13:16
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-07-08 00:13:17
+type=>8	message=>Undefined variable: error	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/src/controllers/accountController.php	line=>89	date=>2013-07-08 00:13:32
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-07-08 00:13:32
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-07-08 00:16:52
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-07-08 00:46:41
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-07-08 00:46:53
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-07-08 00:47:34
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-07-08 00:47:59
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-07-08 00:48:05
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-07-08 00:48:37
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-07-08 00:48:40
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-07-08 00:49:03
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-07-08 00:50:05
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-07-08 00:50:54
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-07-08 00:51:21
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-07-08 00:51:37
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-07-08 00:53:29
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-07-08 00:53:34
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-07-08 00:59:36
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-07-08 00:59:43
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-07-08 01:00:37
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-07-08 01:00:42
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-07-08 01:00:46
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-07-08 01:19:01
+type=>8	message=>Undefined index: password	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/src/controllers/accountController.php	line=>77	date=>2013-07-08 01:19:14
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-07-08 01:19:14
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-07-08 01:19:26
+type=>8	message=>Undefined index: password	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/src/controllers/accountController.php	line=>74	date=>2013-07-08 01:20:42
+type=>8	message=>Undefined index: password	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/src/controllers/accountController.php	line=>77	date=>2013-07-08 01:20:42
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-07-08 01:20:42
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-07-08 01:21:38
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-07-08 01:22:09
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-07-08 01:22:12
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-07-08 01:22:41
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-07-08 01:22:46
+type=>none	message=>Result is null	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/src/entities/usersEntity.class.php	line=>287	date=>2013-07-08 01:22:50
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-07-08 01:22:50
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-07-08 01:22:50
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-07-08 01:26:19
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-07-08 01:26:23
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-07-08 01:26:29
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-07-08 01:28:24
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-07-08 01:28:28
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-07-08 01:28:30
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-07-08 01:28:45
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-07-08 01:28:52
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-07-08 01:28:57
+type=>none	message=>Result is null	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/src/entities/usersEntity.class.php	line=>287	date=>2013-07-08 13:27:18
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-07-08 13:27:19
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-07-08 13:29:13
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-07-08 13:29:15
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-07-08 13:35:04
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-07-08 13:35:18
+type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-07-08 13:35:43

@@ -17,8 +17,11 @@
 			private $user_date_create;
 			
 			private $acl_group_id;
-			
-            private $relations = array();
+                        
+                        private  $user_notification_mail;
+
+
+                        private $relations = array();
         
 
 
@@ -65,6 +68,10 @@
 			public function getAcl_group_id(){
 				return $this->acl_group_id;
 			}
+                        
+                         public function getUser_notification_mail(){
+				return $this->rightKey;
+			}
 
 			
 			/********************** SETTER ***********************/
@@ -108,6 +115,10 @@
 			public function setAcl_group_id($val){
 				$this->acl_group_id =  $val;
 			}
+                        
+                        public function setUser_notification_mail($val){
+                            $this->user_notification_mail =  $val;
+                        }
 
 					
 
