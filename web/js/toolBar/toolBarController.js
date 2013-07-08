@@ -94,6 +94,7 @@ function toolBarSubmit (id, id_project,  name_project) {
             var desc = $("#descTicket").val();
             var assigned = $("#assignedTicket").val();
             var deadline = $("#deadlineTicket").val();
+            var estimate = $("#estimateTicket").val();
             deadline = deadline.replace('/','-');
             var priority = $("#priorityTicket").val();
             var tracker = $("#trackerTicket").val();
@@ -103,6 +104,24 @@ function toolBarSubmit (id, id_project,  name_project) {
                 roadmap = 0;
 
         break;
+
+        case 'modifyTicket':
+            var name = $("#nameTicket").val();
+            var desc = $("#descTicket").val();
+            var assigned = $("#assignedTicket").val();
+            var deadline = $("#deadlineTicket").val();
+            var estimate = $("#estimateTicket").val();
+            deadline = deadline.replace('/','-');
+            var priority = $("#priorityTicket").val();
+            var tracker = $("#trackerTicket").val();
+            var roadmap = $("#roadmapTicket").val();
+            var id_ticket = $("#ticketId").val();
+            var statut = $("#statutTicket").val();
+
+            if (roadmap == '')
+                roadmap = 0;
+
+            break;
 
         case 'roadmap':
             var name = $("#nameRoadmap").val();
@@ -142,12 +161,19 @@ function toolBarSubmit (id, id_project,  name_project) {
     }
 
     if (id == 'ticket'){
-        $.post(url,{name: name, desc: desc, assigned: assigned, deadline: deadline, priority: priority, tracker: tracker, roadmap: roadmap, id: id_project }).success(function(){
+        $.post(url,{name: name, desc: desc, assigned: assigned, deadline: deadline, estimate: estimate, priority: priority, tracker: tracker, roadmap: roadmap, id: id_project }).success(function(){
 
             var code = $("#modalReferer").val();
 
-            toolBarAdmin.alerting = true;
-            toolBarAdmin.alert_type = id;
+            window.location.href = '/'+code;
+            return;
+        });
+    }
+    else if (id == 'modifyTicket'){
+
+        $.post(url,{id_ticket: id_ticket, statut: statut, name: name, desc: desc, assigned: assigned, deadline: deadline, estimate: estimate, priority: priority, tracker: tracker, roadmap: roadmap, id: id_project }).success(function(){
+
+            var code = $("#modalReferer").val();
 
             window.location.href = '/'+code;
             return;

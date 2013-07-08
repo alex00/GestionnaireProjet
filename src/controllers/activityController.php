@@ -2,6 +2,7 @@
 use Components\Auth\TzAuth;
 use Components\Controller\TzController;
 use Components\SQLEntities\TzSQL;
+use Components\FileManager\TzFileManager;
 use src\helpers\Guardian;
 
 class activityController extends TzController {
@@ -21,13 +22,18 @@ class activityController extends TzController {
         $arianeParams = array('idProject' => $user['currentProject']->getProject_id(),
             'nameProject' => $user['currentProject']->getProject_name(),
             'codeProject' => $user['currentProject']->getProject_code(),
-            'category' => 'Activity');
+            'categoryName' => 'Activity');
 
         $alert = Guardian::guardAlert();
+        $user_serviceEntity = tzSQL::getEntity('user_service');
+        $list_project_affiliated = $user_serviceEntity->listProjectAffiliated($user['id']);
+        $list_project_created = $user_serviceEntity->listProjectCreated($user['id']);
+        $projectAll = array_merge($list_project_created, $list_project_affiliated);
 
         $this->tzRender->run('/templates/activity', array('header' => 'headers/activityHeader.html.twig',
             'modalTicket' => $modalTicket,
             'alert' => $alert,
+            'projectAll' => $projectAll,
             'currentPage' => 'activity',
             'subMenuCurrent' => 'activity',
             'paramsAriane' => $arianeParams));
@@ -60,11 +66,18 @@ class activityController extends TzController {
                 }
             }
         }
+        $user_serviceEntity = tzSQL::getEntity('user_service');
+        $list_project_affiliated = $user_serviceEntity->listProjectAffiliated($user['id']);
+        $list_project_created = $user_serviceEntity->listProjectCreated($user['id']);
+        $projectAll = array_merge($list_project_created, $list_project_affiliated);
 
         $arianeParams = array('idProject' => $user['currentProject']->getProject_id(),
             'nameProject' => $user['currentProject']->getProject_name(),
             'codeProject' => $user['currentProject']->getProject_code(),
             'categoryName' => 'announces',
+            'detailContext' => true,
+            'currentPage' => 'announce',
+            'detailCode' => $detailAnnounce->getAnnounce_code(),
             'categoryLink' => 'organization',
             'nameDetail' => $detailAnnounce->getAnnounce_title());
 
@@ -72,6 +85,7 @@ class activityController extends TzController {
         $this->tzRender->run('/templates/detailAnnounce', array('header' => 'headers/roadmapHeader.html.twig',
             'subMenuCurrent' => 'organization',
             'entity' => $detailAnnounce,
+            'projectAll' => $projectAll,
             'alert' => $alert,
             'modalTicket' => $modalTicket,
             'paramsAriane' => $arianeParams));
@@ -203,6 +217,7 @@ class activityController extends TzController {
         $tickets->setTicket_date_create(date('Y-m-d'));
         $tickets->setTicket_date_update(date('Y-m-d'));
         $tickets->setTicket_deadline($_POST['deadline']);
+        $tickets->setTicket_estimate_time($_POST['estimate']);
         $tickets->setTicket_spend_time(0);
         $tickets->setTicket_progress(0);
         $tickets->setTicket_description($_POST['desc']);
@@ -212,8 +227,13 @@ class activityController extends TzController {
         $tickets->setStatut_id(1);
         $tickets->setTracker_id($_POST['tracker']);
         $tickets->setRoadmap_id($_POST['roadmap']);
-
+        $tickets->setCreator_id($_SESSION['User']['id']);
         $tickets->Insert();
+
+        $uploadFile = 'media/tickets/'.$tickets->getTicket_Id();
+        if (move_uploaded_file($_FILES['pjTicket']['tmp_name'], $uploadFile)) {
+            $upload = true;
+        }
 
         $receiver = tzSQL::getEntity('users_receive_tickets');
 

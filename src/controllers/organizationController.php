@@ -26,7 +26,7 @@ class organizationController extends TzController {
         $arianeParams = array('idProject' => $user['currentProject']->getProject_id(),
             'nameProject' => $user['currentProject']->getProject_name(),
             'codeProject' => $user['currentProject']->getProject_code(),
-            'category' => 'Organization');
+            'categoryName' => 'Organization');
 
         #check si on affiche une alert dans le header
         $alert = Guardian::guardAlert();
@@ -85,10 +85,16 @@ class organizationController extends TzController {
         $roadmaps = $allRoadmaps->allRoadmaps($user['currentProject']->getProject_id());
 
 
+        $user_serviceEntity = tzSQL::getEntity('user_service');
+        $list_project_affiliated = $user_serviceEntity->listProjectAffiliated($user['id']);
+        $list_project_created = $user_serviceEntity->listProjectCreated($user['id']);
+        $projectAll = array_merge($list_project_created, $list_project_affiliated);
+
         $this->tzRender->run('/templates/roadmap', array('header' => 'headers/roadmapHeader.html.twig',
             'modalTicket' => $modalTicket,
             'alert' => $alert,
             'memberTab' => $tab,
+            'projectAll' => $projectAll,
             'announces' => $announces,
             'roadmaps' => $roadmaps,
             'members' => $projectServices,
@@ -136,6 +142,10 @@ class organizationController extends TzController {
         $detailRoadmap->progress = $stats;
 
 
+        $user_serviceEntity = tzSQL::getEntity('user_service');
+        $list_project_affiliated = $user_serviceEntity->listProjectAffiliated($user['id']);
+        $list_project_created = $user_serviceEntity->listProjectCreated($user['id']);
+        $projectAll = array_merge($list_project_created, $list_project_affiliated);
         $arianeParams = array('idProject' => $user['currentProject']->getProject_id(),
             'nameProject' => $user['currentProject']->getProject_name(),
             'codeProject' => $user['currentProject']->getProject_code(),
@@ -147,7 +157,11 @@ class organizationController extends TzController {
         $this->tzRender->run('/templates/detailRoadmap', array('header' => 'headers/roadmapHeader.html.twig',
             'subMenuCurrent' => 'organization',
             'currentPage' => 'organization',
+            'detailContext' => true,
+            'currentPage' => 'ticket',
+            'detailCode' => $detailRoadmap->getRoadmap_code(),
             'alert' => $alert,
+            'projectAll' => $projectAll,
             'entity' => $detailRoadmap,
             'modalTicket' => $modalTicket,
             'paramsAriane' => $arianeParams));

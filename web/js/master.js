@@ -25,6 +25,10 @@ $(document).ready(function() {
 
 } );
 
+function selectProject(code){
+    window.location.href = '/'+code;
+}
+
 
 function changeModal(id, login, right, tab, current_service){
 
@@ -70,7 +74,17 @@ function changeMemberInformations (project_code, project_id){
         window.location.href = '/'+project_code+'/organization';
         return;
     });
+}
 
+function changeTimeTicket(code, ticket_code, ticket_id){
 
+    var spend = $("#changeSpendTime").val();
+    var progress = $("#changeProgress").val();
+
+    $.post('/change-time-ticket',{spend: spend, progress: progress, ticket_id: ticket_id }).success(function(){
+
+        window.location.href = '/'+code+'/ticket/'+ticket_code;
+        return;
+    });
 
 }

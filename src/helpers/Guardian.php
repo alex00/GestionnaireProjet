@@ -23,14 +23,17 @@ class Guardian  {
             if ($lines){
                 foreach ($lines as $line){
 
-                    if ($line->getProject_id() == $exist[0]->getProject_id())
+                    if ($line->getProject_id() == $exist[0]->getProject_id()){
                         $right = $line->getRightKey();
+                        break;
+                    }
                     else
                         $right = 4;
                 }
             }
             else
                 $right = 4;
+
 
 
             $user = TzAuth::readUser();
@@ -46,7 +49,7 @@ class Guardian  {
             }
 
             TzAuth::addUserSession(array('currentProject' => $exist[0]));
-
+            $_SESSION['User']['idCurrentProject'] = $exist[0]->getProject_id();
 
             return true;
 

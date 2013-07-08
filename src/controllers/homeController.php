@@ -25,8 +25,13 @@ class homeController extends TzController {
 
             $list_project_affiliated = $user_serviceEntity->listProjectAffiliated($user['id']);
             $list_project_created = $user_serviceEntity->listProjectCreated($user['id']);
+
+            $projectAll = array_merge($list_project_created, $list_project_affiliated);
+
             $this->tzRender->run('/templates/home', array('header' => "headers/homeHeader.html.twig",
                                                           'subMenu' => true,
+                                                          'homeProject' => true,
+                                                          'projectAll' => $projectAll,
                                                           'infosHeader' => $infosHeader,
                                                           'list_project_affiliated' => $list_project_affiliated,
                                                           'list_project_created' => $list_project_created,

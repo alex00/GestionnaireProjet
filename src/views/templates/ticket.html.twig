@@ -15,7 +15,7 @@
                 <tr>
                     <td>
                         <a class="linkBlack" href="/{{ currentProject.project_code }}/ticket/{{ ticket.ticket_code }}" title="{{ ticket.ticket_name }}" >
-                        {{ ticket.ticket_id }}
+                        #{{ ticket.ticket_id }}
                         </a>
                     </td>
                     <td class="notTooSmall">
@@ -52,21 +52,32 @@
     <article class="span4 offset1 pull-right">
         <h4>My stats : </h4>
         <p>
-            Total : 286
+            Total : {{ statTicketsUser.count }}
         </p>
         <p>
-            Progress : 26%
+            Progress : {{ statTicketsUser.progress }}%
         </p>
         <ul id="listSuiviTickets">
+            <li><span >Par status : </span><ul>
+                    <li><span>Assigned : {{ statTicketsUser.status.1 }}</span></li>
+                    <li><span>In progress : {{ statTicketsUser.status.2 }}</span></li>
+                    <li><span>Resolved : {{ statTicketsUser.status.3 }}</span></li>
+                    <li><span>Closed : {{ statTicketsUser.status.4 }}</span></li>
+                    <li><span>Canceled : {{ statTicketsUser.status.5 }}</span></ul>
+            </li>
             <li><span>Par catégories : </span><ul>
-                    <li><span >Evolution : 12</span></li>
-                    <li><span >Bug : 35</span></li>
-                    <li><span >Support : 12</span></li></ul>
+                    <li><span >Evolution : {{ statTicketsUser.cat.1 }}</span></li>
+                    <li><span >Bug : {{ statTicketsUser.cat.2 }}</span></li>
+                    <li><span >Support : {{ statTicketsUser.cat.3 }}</span></li></ul>
             </li>
             <li><span >Par roadmap : </span><ul>
-                    <li><span >Non-affilié : 125</span></li>
-                    <li><span >Deuxième version : 100</span></li>
-                    <li><span>Première version : 50</span></ul>
+                    {% for roadmapUser in statTicketsUser.roadmap %}
+                        {% if loop.index == statTicketsUser.countRoad %}
+                            <li><span>{{ roadmapUser.name }} : {{ roadmapUser.count }}</span></li></ul>
+                        {% else %}
+                            <li><span>{{ roadmapUser.name }} : {{ roadmapUser.count }}</span></li>
+                        {% endif %}
+                    {% endfor %}
             </li>
         </ul>
     </article>
@@ -85,7 +96,7 @@
                 <tr>
                     <td>
                         <a class="linkBlack" href="/{{ currentProject.project_code }}/ticket/{{ ticketAll.ticket_code }}" title="{{ ticketAll.ticket_name }}" >
-                        {{ ticketAll.ticket_id }}
+                        #{{ ticketAll.ticket_id }}
                         </a>
                     </td>
                     <td class="notTooSmall">

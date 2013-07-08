@@ -69,7 +69,7 @@ if ($connect){
             <span class="trigger"><strong></strong><em></em></span>
             <div class="navbar-inner" style="padding-left: 30px">
                 <button type="button" class="btn btn-navbar " data-toggle="collapse" data-target=".nav-top-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
-                <a class="brand" href="/">ProjectManager</a>
+                <a class="brand" href="/">QManager</a>
                 <div class="nav-collapse collapse nav-top-collapse">
                     <ul class="nav">
                         <li class="home"><a href="/"><img src="/img/tm_home.png"></a></li>
@@ -94,7 +94,7 @@ if ($connect){
     <div class="container">
         <div class="row" id="connectHeader">
             <div class="span5">
-                <a class="brand" href="/">ProjectManager</a>
+                <a class="brand" href="/">QManager</a>
             </div>
         </div>
     </div>
