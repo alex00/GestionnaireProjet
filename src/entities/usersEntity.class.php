@@ -395,9 +395,41 @@
 
 				}
 			}
-
-					
-
+                        
+                        public function allMembersProject($id_project){
+                            
+                            $sql =  'SELECT users.id as user_id FROM users, user_service
+                                    WHERE users.id = user_service.user_id 
+                                    AND user_service.project_id = '.$id_project;
+                            $data = TzSQL::getPDO()->prepare($sql);
+                            $data->execute();
+                            $formatResult = $data->fetchAll(PDO::FETCH_ASSOC);
+                            
+                            $entitiesArray = array();
+                            $usersArray = array();
+                            
+                            
+                            
+                            $sql2 = 'SELECT * FROM users';
+                            $data2 = TzSQL::getPDO()->prepare($sql2);
+                            $data2->execute();
+                            $formatResult2 = $data2->fetchAll(PDO::FETCH_ASSOC);
+                            
+                                                    
+                            foreach ($formatResult as $value) {
+                                array_push($entitiesArray, $value['user_id']);
+                            }
+                            
+                            foreach ($formatResult2 as $value2) {
+                                if(!in_array($value2['id'], $entitiesArray)){
+                                    array_push($usersArray, $value2);
+                                }
+                            }
+                            
+                            return $usersArray;
+                        }
+                        
+                        
 		}
 
 	?>

@@ -138,7 +138,7 @@ activity_newService:
         exclude_groups : visitor|user
 
 activity_newMember:
-    pattern:    /{project}/new-member/{login1}/{login2}/{login3}/{login4}/{login5}/{id}
+    pattern:    /{project}/new-member/{login1}/{login2}/{login3}/{login4}/{login5}/{id_project}
     controller: activity:newMember
     requirements:
         project:   string

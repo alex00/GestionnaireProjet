@@ -8,7 +8,7 @@ class dashboardController extends TzController {
 
 	 public function indexAction ($params) {
 
-		 $project_code = $params['project'];
+         $project_code = $params['project'];
          $project = Guardian::guardEntryProject($project_code);
          if (!$project)
             return(tzController::CallController("pageNotFound", "show"));
@@ -23,14 +23,14 @@ class dashboardController extends TzController {
          $infosHeader['nb_members_project'] = $user_serviceEntity->countMembersProjectNew($project_code);
          
          $userEntity = tzSQL::getEntity('users');
-         $listUser = $userEntity->findAll();
+         $listUser = $userEntity->allMembersProject($user["currentProject"]->getProject_id());
+        
          $tabUser = array();
          
          foreach ($listUser as $value) {
-             array_push($tabUser, $value->getUser_login_code());
-         }
+             array_push($tabUser, $value['user_login_code']);
+         }    
          
-//         var_dump($tabUser);
 
          $arianeParams = array('idProject' => $user['currentProject']->getProject_id(),
                                 'nameProject' => $user['currentProject']->getProject_name(),
@@ -38,6 +38,7 @@ class dashboardController extends TzController {
                                 'categoryName' => 'Dashboard');
 
          $alert = Guardian::guardAlert();
+         
 
          $user_serviceEntity = tzSQL::getEntity('user_service');
          $list_project_affiliated = $user_serviceEntity->listProjectAffiliated($user['id']);
@@ -51,7 +52,7 @@ class dashboardController extends TzController {
                                                             'projectAll' => $projectAll,
                                                             'infosHeader' => $infosHeader,
                                                             'subMenuCurrent' => 'dashboard',
-                                                            'tabUser' => $tabUser,
+                                                            'tabUsers' => $tabUser,
                                                             'paramsAriane' => $arianeParams));
 
 

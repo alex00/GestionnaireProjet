@@ -34,6 +34,7 @@ class accountController extends TzController {
             'list_project_created' => $listProjectCreated,
             'list_project_affiliated' => $listProjectAffiliated,
             'list_project_commun' => $listProjectCommun,
+            'homeContext' => true,
             'user' => $usersEntity
             ));
     }
@@ -94,6 +95,7 @@ class accountController extends TzController {
             'subMenu' => 'true',
             'paramsAriane' => $arianeParams,
              'error' => $error,
+             'homeContext' => true,
              'POST' => $_POST,
             ));
          

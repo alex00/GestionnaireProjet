@@ -181,13 +181,14 @@ function toolBarSubmit (id, id_project,  name_project) {
     }
     else{
         $.post(url).success(function(){
-
+               
                 var code = $("#modalReferer").val();
 
                 if (id == 'project')
                     code = name.toLowerCase().replace(/ /g,"-");
 
                 window.location.href = '/'+code;
+            
                 return;
 
         });

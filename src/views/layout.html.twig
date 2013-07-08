@@ -54,7 +54,7 @@
                             <div class=" headerAdminBlock">
                                 <a data-target="#" id="HeaderAction" onclick="javascript:toolBarController(this.id,{% if homeContext == true %}'home'{% else %}{{ User.acl_group_id }}{% endif %});" class="pull-left headerAdminButton" >+</a>
                                 <div class=" pull-left headerAdminLinks" >
-                                    {% if homeContext == true %}
+                                    {% if homeContext is defined %}
                                         <a id="addProjectLink" class="linkBlack pull-left" data-toggle="modal" href="#add-project" onclick="javascript:toolBarLinks(this.id,null,null);">Project</a>
                                     {% else %}
 
@@ -65,7 +65,7 @@
                                         {% if User.acl_group_id == 2 or User.acl_group_id == 1 %}
                                             <a id="addRoadmapLink" class="linkBlack pull-left" data-toggle="modal" href="#add-roadmap" onclick="javascript:toolBarLinks(this.id,'{{ currentProject.project_id }}','{{ currentProject.project_code }}');">Roadmap</a>
                                             <a id="addServiceLink" class="linkBlack pull-left" data-toggle="modal" href="#add-SERVICE" onclick="javascript:toolBarLinks(this.id,'{{ currentProject.project_id }}','{{ currentProject.project_code }}');">Service</a>
-                                            <a id="addMemberLink" class="linkBlack pull-left" data-toggle="modal" href="#add-member" onclick="javascript:toolBarLinks(this.id,'{{ currentProject.project_id }}','{{ currentProject.project_code }}');">Member</a>
+                                            <a id="addMemberLink" class="linkBlack pull-left" data-toggle="modal" href="#add-member" data-target="#modalAddMembre">Member</a>
                                             <a id="addAnnounceLink" class="linkBlack pull-left" data-toggle="modal" href="#add-announce" onclick="javascript:toolBarLinks(this.id,'{{ currentProject.project_id }}','{{ currentProject.project_code }}');">Announce</a>
                                         {% endif %}
                                     {% endif %}
@@ -307,6 +307,43 @@
         <a href="#" class="btn btn-primary" id="okwin01" onclick="toolBarSubmit('modifyTicket','{{ currentProject.project_id }}}','{{ currentProject.project_code }}')">Add</a>
     </footer>
 </div>
+  
+<div id="modalAddMembre" class="modal hide fade">       
+    <div class="modal-header">
+        <a href="#" class="close" data-dismiss="modal">x</a>
+        <h6>Add a Member </h6>
+    </div>
+
+    <div class="modal-body">
+        <form id="addMember" action="" method="post" name="newMember">
+            <table>
+                <tr>
+                    <td><label for="loginMember1">Login :</label></td><td colspan="3"><input data-provide="typeahead" type="text" name="loginMember1" id="loginMember1" data-source='[{% for user in tabUsers %} "{{user}}"{% if loop.last %}{% else %},{% endif %}{% endfor %}]' /></td>
+                </tr>
+                <tr>
+                    <td><label for="loginMember2"></label></td><td colspan="3"><input data-provide="typeahead" type="text" name="loginMember2" id="loginMember2" data-source='[{% for user in tabUsers %} "{{user}}"{% if loop.last %}{% else %},{% endif %}{% endfor %}]' /></td>
+                </tr>
+                <tr>
+                    <td><label for="loginMember3"></label></td><td colspan="3"><input data-provide="typeahead" type="text" name="loginMember3" id="loginMember3" data-source='[{% for user in tabUsers %} "{{user}}"{% if loop.last %}{% else %},{% endif %}{% endfor %}]' /></td>
+                </tr>
+                <tr>
+                    <td><label for="loginMember4"></label></td><td colspan="3"><input data-provide="typeahead" type="text" name="loginMember4" id="loginMember4" data-source='[{% for user in tabUsers %} "{{user}}"{% if loop.last %}{% else %},{% endif %}{% endfor %}]' /></td>
+                </tr>
+                <tr>
+                    <td><label for="loginMember5"></label></td><td colspan="3"><input data-provide="typeahead" type="text" name="loginMember5" id="loginMember5" data-source='[{% for user in tabUsers %} "{{user}}"{% if loop.last %}{% else %},{% endif %}{% endfor %}]' /></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+
+    <div class="modal-footer">
+        
+        <a href="#" class="btn btn-primary" id="okwin01" onclick="toolBarSubmit('membre', '{{ currentProject.project_id }}','{{ currentProject.project_code }}')">Add</a>
+    </div>
+</div>
+        
+        
+        
         {% if currentPage == 'dashboard' %}
             <input type='hidden' name="modalReferer" id="modalReferer" value="{{ currentProject.project_code }}" />
         {% elseif detailContext %}

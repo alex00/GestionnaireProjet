@@ -103,11 +103,21 @@ class Guardian  {
 
     public static function guardUrl($data){
 
-        if (!is_string($data))
-            return false;
-
-        $data = trim(str_replace(" ","-",strtolower($data)));
-
+        $data = trim($data); 
+        $data = strtr($data, 
+       "ÀÁÂÃÄÅàáâãäåÒÓÔÕÖØòóôõöøÈÉÊËèéêëÇçÌÍÎÏìíîïÙÚÛÜùúûüÿÑñ", 
+       "aaaaaaaaaaaaooooooooooooeeeeeeeecciiiiiiiiuuuuuuuuynn"); 
+        $data = strtr($data,"ABCDEFGHIJKLMNOPQRSTUVWXYZ","abcdefghijklmnopqrstuvwxyz"); 
+        $data = preg_replace('#([^.a-z0-9]+)#i', '-', $data); 
+        $data = preg_replace('#-{2,}#','-',$data); 
+        $data = preg_replace('#-$#','',$data); 
+        $data = preg_replace('#^-#','',$data); 
+//        $url = preg_replace("`\[.*\]`U", "", $url);
+//        $url = preg_replace('`&(amp;)?#?[a-z0-9]+;`i', '-', $url);
+//        $url = htmlentities($url, ENT_COMPAT);
+//        $url = preg_replace("`&([a-z])(acute|uml|circ|grave|ring|cedil|slash|tilde|caron|lig);`i", "\\1", $url);
+//        $url = preg_replace(array("`[^a-z0-9]`i", "`[-]+`"), "-", $url);
+//        $url = ( $url == "" ) ? $type : strtolower(trim($url, '-'));
         return $data;
     }
 
@@ -167,4 +177,11 @@ class Guardian  {
 
         return $servicesProject;
     }
+    
+//    public static function guardTabMembers(){
+//        $users = TzSQL::getEntity('users');
+//        $listUsers = $users->findAll();
+//        
+//        
+//    }
 }
