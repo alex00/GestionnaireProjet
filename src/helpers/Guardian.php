@@ -102,6 +102,20 @@ class Guardian  {
                 $notif->setAnnounce_id($paramsNotif['announce_id']);             
                 $notif->setType_id(1);
                 $notif->Insert();
+                
+                
+                $userEntity = TzSQL::getEntity('users');
+                $tabUserId = $userEntity->allMembersProject($paramsNotif['project_id']);
+                foreach ($tabUserId as $value) {
+                    $usernotif = TzSQL::getEntity('user_notification');
+                    $usernotif -> setNotification_id($notif->getNotification_id());
+                    error_log(var_export($value, value));
+                    $usernotif -> setUser_id($value);
+                    $usernotif -> setNotification_view(0);
+                    $usernotif -> Insert();
+                }
+                
+                
             break;
                 case 'newTicket':
                 $notif = tzSQL::getEntity('notifications');
