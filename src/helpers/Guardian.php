@@ -130,6 +130,7 @@ class Guardian  {
                 $notif->setUser_creator_id($paramsNotif['user_creator_id']);
                 $notif->setService_id($paramsNotif['service_id']);
                 $notif->setType_id(5);
+                $notif->Insert();
             break;
         
                 case 'newRoadmap':
@@ -141,6 +142,20 @@ class Guardian  {
                 $notif->setType_id(2);
                 //($notif);
                 $notif->Insert();
+                
+                case 'newMember':
+                $notif = tzSQL::getEntity('notifications');
+
+                $notif->setProject_id($paramsNotif['project_id']);
+                $notif->setUser_creator_id($paramsNotif['user_creator_id']);             
+                $notif->setType_id(3);
+                $notif->Insert();
+                
+                $usernotif = TzSQL::getEntity('user_notification');
+                $usernotif -> setNotification_id($notif->getNotification_id());
+                $usernotif -> setUser_id($paramsNotif['user_add_id']);
+                $usernotif -> setNotification_view(0);
+                $usernotif -> Insert();
             break;
         
         }

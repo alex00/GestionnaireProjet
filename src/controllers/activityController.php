@@ -221,21 +221,17 @@ class activityController extends TzController {
 
                 $user_serviceEntity->Insert();
                 
+                $paramsNotif = array('user_creator_id' => $_SESSION['User']['id'],
+                             'project_id' => $project_id,
+                             'user_add_id' => $user_id
+                            );
+
+                Guardian::guardAddNotif('newMember', $paramsNotif);
+                
             }
             
             //Add notif
             
-            $notif = tzSQL::getEntity('notifications');
-
-                $notif->setProject_id($paramsNotif['project_id']);
-                $notif->setTicket_id(1);
-                $notif->setUser_creator_id($paramsNotif['user_creator_id']);
-                $notif->setAnnounce_id($paramsNotif['announce_id']);
-                $notif->setRoadmap_id(1);
-                $notif->setUser_dest_id(1);
-                $notif->setService_id(1);
-                $notif->setType_id(3);
-                $notif->Insert();
         }
 
         return true;
