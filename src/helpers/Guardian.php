@@ -73,30 +73,71 @@ class Guardian  {
 
     }
 
-    public static function guardAddNotif($type, $params){
+    public static function guardAddNotif($type, $paramsNotif){
 
-        if (!is_array($params))
+        if (!is_array($paramsNotif))
             return false;
 
-        $user = TzAuth::readUser();
+        $user = $_SESSION['User'];
 
         switch ($type){
             case 'newProject':
                 $notif = tzSQL::getEntity('notifications');
 
                 $notif->setProject_id($params['project_id']);
-                $notif->setTicket_id(0);
+                $notif->setTicket_id(4);
                 $notif->setUser_creator_id($user['id']);
-                $notif->setAnnounce_id(0);
-                $notif->setRoadmap_id(0);
-                $notif->setUser_dest(0);
-                $notif->setService_id(0);
-                $notif->setType_id(0);
-
+                $notif->setAnnounce_id(4);
+                $notif->setRoadmap_id(4);
+                $notif->setUser_dest_id(1);
+                $notif->setService_id(2);
+                $notif->setType_id(2);
+                $notif->Insert();
             break;
+                case 'newAnnounce':
+                $notif = tzSQL::getEntity('notifications');
+
+                $notif->setProject_id($paramsNotif['project_id']);
+                $notif->setUser_creator_id($paramsNotif['user_creator_id']);
+                $notif->setAnnounce_id($paramsNotif['announce_id']);             
+                $notif->setType_id(1);
+                $notif->Insert();
+            break;
+                case 'newTicket':
+                $notif = tzSQL::getEntity('notifications');
+
+                $notif->setProject_id($paramsNotif['project_id']);
+                $notif->setTicket_id($paramsNotif['ticket_id']);
+                $notif->setUser_creator_id($paramsNotif['user_creator_id']);     
+                $notif->setType_id(4);
+                var_dump($notif);
+                $notif->Insert();
+                
+            break;  
+                
+                case 'newService':
+                $notif = tzSQL::getEntity('notifications');
+
+                $notif->setProject_id($paramsNotif['project_id']);
+                $notif->setUser_creator_id($paramsNotif['user_creator_id']);
+                $notif->setService_id($paramsNotif['service_id']);
+                $notif->setType_id(5);
+            break;
+        
+                case 'newRoadmap':
+                $notif = tzSQL::getEntity('notifications');
+
+                $notif->setProject_id($paramsNotif['project_id']);
+                $notif->setUser_creator_id($user['id']);
+                $notif->setRoadmap_id($paramsNotif['roadmap_id']);
+                $notif->setType_id(2);
+                //($notif);
+                $notif->Insert();
+            break;
+        
         }
 
-        $notif->Insert();
+       
 
         return true;
     }

@@ -152,13 +152,16 @@ class activityController extends TzController {
 
         $announce->Insert();
 
-        $user = tzAuth::readSession('User');
+        $user = $_SESSION['User'];
+        //$user_dest = tzSQL::getEntity('user_service');
+        //$userByService = $user_dest->findManyBy('project_id', $params['id']);
+        //var_dump($userByService);
 
         $paramsNotif = array('announce_id' => $announce->getAnnounce_id(),
                              'user_creator_id' => $user['id'],
-                             'project_id' => $announce->getProject_id());
+                             'project_id' => $params['id']);
 
-        //self::addNotif('newAnnounce', $paramsNotif);
+        Guardian::guardAddNotif('newAnnounce', $paramsNotif);
 
         TzAuth::addUserSession(array('alert' => 'announce'));
 
@@ -183,6 +186,18 @@ class activityController extends TzController {
             }
 
             //Add notif
+            
+            $notif = tzSQL::getEntity('notifications');
+
+                $notif->setProject_id($paramsNotif['project_id']);
+                $notif->setTicket_id(1);
+                $notif->setUser_creator_id($paramsNotif['user_creator_id']);
+                $notif->setAnnounce_id($paramsNotif['announce_id']);
+                $notif->setRoadmap_id(1);
+                $notif->setUser_dest_id(1);
+                $notif->setService_id(1);
+                $notif->setType_id(3);
+                $notif->Insert();
         }
 
         return true;
@@ -199,6 +214,13 @@ class activityController extends TzController {
 
         $service->Insert();
         //Add notif
+        
+        $paramsNotif = array('user_creator_id' => $user['id'],
+                             'project_id' => $_POST['id'],
+                             'ticket_id' => $tickets->getTicket_id()
+                            );
+
+        Guardian::guardAddNotif('newTicket', $paramsNotif);
 
         TzAuth::addUserSession(array('alert' => 'service'));
 
@@ -228,6 +250,7 @@ class activityController extends TzController {
         $tickets->setTracker_id($_POST['tracker']);
         $tickets->setRoadmap_id($_POST['roadmap']);
         $tickets->setCreator_id($_SESSION['User']['id']);
+        var_dump($tickets);
         $tickets->Insert();
 
         $uploadFile = 'media/tickets/'.$tickets->getTicket_Id();
@@ -243,6 +266,14 @@ class activityController extends TzController {
         $receiver->Insert();
 
         //Add notif
+        $user = $_SESSION['User'];
+        
+        $paramsNotif = array('user_creator_id' => $_SESSION['User']['id'],
+                             'project_id' => $_POST['id'],
+                             'ticket_id' => $tickets->getTicket_id()
+                            );
+                            var_dump($paramsNotif);
+        Guardian::guardAddNotif('newTicket', $paramsNotif);
         TzAuth::addUserSession(array('alert' => 'ticket'));
         return true;
 

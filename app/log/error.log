@@ -240,3 +240,89 @@ type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/G
 type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-06-28 00:15:59
 type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-06-28 00:16:01
 type=>8	message=>Array to string conversion	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/app/Components/Router/TzRouter.php	line=>26	date=>2013-06-28 00:16:06
+type=>none	message=>No Class dashboardController Found	file=>/home/sdiallo/web-dev/GestionnaireProjet/app/Components/Kernel/TzKernel.php	line=>155	date=>2013-07-08 21:57:39
+type=>none	message=>No Class dashboardController Found	file=>/home/sdiallo/web-dev/GestionnaireProjet/app/Components/Kernel/TzKernel.php	line=>155	date=>2013-07-08 21:58:30
+type=>none	message=>No Class dashboardController Found	file=>/home/sdiallo/web-dev/GestionnaireProjet/app/Components/Kernel/TzKernel.php	line=>155	date=>2013-07-08 21:59:29
+type=>8	message=>Undefined variable: paramsNotif	file=>/home/sdiallo/web-dev/GestionnaireProjet/src/controllers/activityController.php	line=>204	date=>2013-07-08 22:19:41
+type=>8	message=>Undefined variable: paramsNotif	file=>/home/sdiallo/web-dev/GestionnaireProjet/src/controllers/activityController.php	line=>206	date=>2013-07-08 22:19:41
+type=>8	message=>Undefined variable: paramsNotif	file=>/home/sdiallo/web-dev/GestionnaireProjet/src/controllers/activityController.php	line=>207	date=>2013-07-08 22:19:41
+type=>8	message=>Undefined variable: paramsNotif	file=>/home/sdiallo/web-dev/GestionnaireProjet/src/controllers/activityController.php	line=>204	date=>2013-07-08 22:19:41
+type=>8	message=>Undefined variable: paramsNotif	file=>/home/sdiallo/web-dev/GestionnaireProjet/src/controllers/activityController.php	line=>206	date=>2013-07-08 22:19:41
+type=>8	message=>Undefined variable: paramsNotif	file=>/home/sdiallo/web-dev/GestionnaireProjet/src/controllers/activityController.php	line=>207	date=>2013-07-08 22:19:41
+type=>8	message=>Undefined variable: paramsNotif	file=>/home/sdiallo/web-dev/GestionnaireProjet/src/controllers/activityController.php	line=>204	date=>2013-07-08 22:19:41
+type=>8	message=>Undefined variable: paramsNotif	file=>/home/sdiallo/web-dev/GestionnaireProjet/src/controllers/activityController.php	line=>206	date=>2013-07-08 22:19:41
+type=>8	message=>Undefined variable: paramsNotif	file=>/home/sdiallo/web-dev/GestionnaireProjet/src/controllers/activityController.php	line=>207	date=>2013-07-08 22:19:41
+type=>8	message=>Undefined variable: paramsNotif	file=>/home/sdiallo/web-dev/GestionnaireProjet/src/controllers/activityController.php	line=>204	date=>2013-07-08 22:19:41
+type=>8	message=>Undefined variable: paramsNotif	file=>/home/sdiallo/web-dev/GestionnaireProjet/src/controllers/activityController.php	line=>206	date=>2013-07-08 22:19:41
+type=>8	message=>Undefined variable: paramsNotif	file=>/home/sdiallo/web-dev/GestionnaireProjet/src/controllers/activityController.php	line=>207	date=>2013-07-08 22:19:41
+type=>8	message=>Undefined variable: paramsNotif	file=>/home/sdiallo/web-dev/GestionnaireProjet/src/controllers/activityController.php	line=>204	date=>2013-07-08 22:19:41
+type=>8	message=>Undefined variable: paramsNotif	file=>/home/sdiallo/web-dev/GestionnaireProjet/src/controllers/activityController.php	line=>206	date=>2013-07-08 22:19:41
+type=>8	message=>Undefined variable: paramsNotif	file=>/home/sdiallo/web-dev/GestionnaireProjet/src/controllers/activityController.php	line=>207	date=>2013-07-08 22:19:41
+type=>none	message=>No Class organizationController Found	file=>/home/sdiallo/web-dev/GestionnaireProjet/app/Components/Kernel/TzKernel.php	line=>155	date=>2013-07-09 01:27:43
+type=>none	message=>No Class dashboardController Found	file=>/home/sdiallo/web-dev/GestionnaireProjet/app/Components/Kernel/TzKernel.php	line=>155	date=>2013-07-09 01:27:44
+type=>none	message=>No Class dashboardController Found	file=>/home/sdiallo/web-dev/GestionnaireProjet/app/Components/Kernel/TzKernel.php	line=>155	date=>2013-07-09 01:27:50
+type=>8	message=>Undefined variable: paramsNotif	file=>/home/sdiallo/web-dev/GestionnaireProjet/src/helpers/Guardian.php	line=>99	date=>2013-07-09 01:42:32
+type=>8	message=>Undefined variable: paramsNotif	file=>/home/sdiallo/web-dev/GestionnaireProjet/src/helpers/Guardian.php	line=>101	date=>2013-07-09 01:42:32
+type=>8	message=>Undefined variable: paramsNotif	file=>/home/sdiallo/web-dev/GestionnaireProjet/src/helpers/Guardian.php	line=>102	date=>2013-07-09 01:42:32
+type=>none	message=>No Class dashboardController Found	file=>/home/sdiallo/web-dev/GestionnaireProjet/app/Components/Kernel/TzKernel.php	line=>155	date=>2013-07-09 03:14:08
+type=>none	message=>No Class dashboardController Found	file=>/home/sdiallo/web-dev/GestionnaireProjet/app/Components/Kernel/TzKernel.php	line=>155	date=>2013-07-09 03:14:19
+type=>2	message=>fopen(/home/sdiallo/web-dev/GestionnaireProjet/src/entities/notificationsEntity.class.php): failed to open stream: Permission denied	file=>/home/sdiallo/web-dev/GestionnaireProjet/app/Components/Gui/includes/entityGenerator.php	line=>26	date=>2013-07-09 03:15:50
+type=>2	message=>fwrite() expects parameter 1 to be resource, boolean given	file=>/home/sdiallo/web-dev/GestionnaireProjet/app/Components/Gui/includes/entityGenerator.php	line=>463	date=>2013-07-09 03:15:51
+type=>2	message=>fopen(/home/sdiallo/web-dev/GestionnaireProjet/src/entities/roadmapsEntity.class.php): failed to open stream: Permission denied	file=>/home/sdiallo/web-dev/GestionnaireProjet/app/Components/Gui/includes/entityGenerator.php	line=>26	date=>2013-07-09 03:15:51
+type=>2	message=>fwrite() expects parameter 1 to be resource, boolean given	file=>/home/sdiallo/web-dev/GestionnaireProjet/app/Components/Gui/includes/entityGenerator.php	line=>463	date=>2013-07-09 03:15:51
+type=>2	message=>fopen(/home/sdiallo/web-dev/GestionnaireProjet/src/entities/user_notificationEntity.class.php): failed to open stream: Permission denied	file=>/home/sdiallo/web-dev/GestionnaireProjet/app/Components/Gui/includes/entityGenerator.php	line=>26	date=>2013-07-09 03:15:51
+type=>2	message=>fwrite() expects parameter 1 to be resource, boolean given	file=>/home/sdiallo/web-dev/GestionnaireProjet/app/Components/Gui/includes/entityGenerator.php	line=>463	date=>2013-07-09 03:15:51
+type=>none	message=>No Class dashboardController Found	file=>/home/sdiallo/web-dev/GestionnaireProjet/app/Components/Kernel/TzKernel.php	line=>155	date=>2013-07-09 03:15:52
+type=>none	message=>No Class dashboardController Found	file=>/home/sdiallo/web-dev/GestionnaireProjet/app/Components/Kernel/TzKernel.php	line=>155	date=>2013-07-09 03:17:15
+type=>none	message=>No Class dashboardController Found	file=>/home/sdiallo/web-dev/GestionnaireProjet/app/Components/Kernel/TzKernel.php	line=>155	date=>2013-07-09 03:17:37
+type=>none	message=>No Class dashboardController Found	file=>/home/sdiallo/web-dev/GestionnaireProjet/app/Components/Kernel/TzKernel.php	line=>155	date=>2013-07-09 03:17:44
+type=>8	message=>Undefined index: id_ticket	file=>/home/sdiallo/web-dev/GestionnaireProjet/src/controllers/ticketController.php	line=>180	date=>2013-07-09 03:51:56
+type=>none	message=>Result is null	file=>/home/sdiallo/web-dev/GestionnaireProjet/src/entities/ticketsEntity.class.php	line=>471	date=>2013-07-09 03:51:56
+type=>8	message=>Undefined index: statut	file=>/home/sdiallo/web-dev/GestionnaireProjet/src/controllers/ticketController.php	line=>197	date=>2013-07-09 03:51:56
+type=>2	message=>PDOStatement::execute(): SQLSTATE[42S22]: Column not found: 1054 Unknown column 'ticket_estimate_time' in 'field list'	file=>/home/sdiallo/web-dev/GestionnaireProjet/src/entities/ticketsEntity.class.php	line=>275	date=>2013-07-09 03:51:56
+type=>none	message=>Fail update: primkey is null	file=>/home/sdiallo/web-dev/GestionnaireProjet/src/entities/ticketsEntity.class.php	line=>286	date=>2013-07-09 03:51:56
+type=>8	message=>Undefined index: id_ticket	file=>/home/sdiallo/web-dev/GestionnaireProjet/src/controllers/ticketController.php	line=>180	date=>2013-07-09 04:10:39
+type=>none	message=>Result is null	file=>/home/sdiallo/web-dev/GestionnaireProjet/src/entities/ticketsEntity.class.php	line=>471	date=>2013-07-09 04:10:39
+type=>8	message=>Undefined index: statut	file=>/home/sdiallo/web-dev/GestionnaireProjet/src/controllers/ticketController.php	line=>197	date=>2013-07-09 04:10:39
+type=>2	message=>PDOStatement::execute(): SQLSTATE[42S22]: Column not found: 1054 Unknown column 'ticket_estimate_time' in 'field list'	file=>/home/sdiallo/web-dev/GestionnaireProjet/src/entities/ticketsEntity.class.php	line=>275	date=>2013-07-09 04:10:39
+type=>none	message=>Fail update: primkey is null	file=>/home/sdiallo/web-dev/GestionnaireProjet/src/entities/ticketsEntity.class.php	line=>286	date=>2013-07-09 04:10:39
+type=>8	message=>Undefined index: id_ticket	file=>/home/sdiallo/web-dev/GestionnaireProjet/src/controllers/ticketController.php	line=>180	date=>2013-07-09 04:24:54
+type=>none	message=>Result is null	file=>/home/sdiallo/web-dev/GestionnaireProjet/src/entities/ticketsEntity.class.php	line=>471	date=>2013-07-09 04:24:54
+type=>8	message=>Undefined index: statut	file=>/home/sdiallo/web-dev/GestionnaireProjet/src/controllers/ticketController.php	line=>197	date=>2013-07-09 04:24:54
+type=>2	message=>PDOStatement::execute(): SQLSTATE[42S22]: Column not found: 1054 Unknown column 'ticket_estimate_time' in 'field list'	file=>/home/sdiallo/web-dev/GestionnaireProjet/src/entities/ticketsEntity.class.php	line=>275	date=>2013-07-09 04:24:54
+type=>none	message=>Fail update: primkey is null	file=>/home/sdiallo/web-dev/GestionnaireProjet/src/entities/ticketsEntity.class.php	line=>286	date=>2013-07-09 04:24:54
+type=>8	message=>Undefined index: id_ticket	file=>/home/sdiallo/web-dev/GestionnaireProjet/src/controllers/ticketController.php	line=>180	date=>2013-07-09 04:27:00
+type=>none	message=>Result is null	file=>/home/sdiallo/web-dev/GestionnaireProjet/src/entities/ticketsEntity.class.php	line=>471	date=>2013-07-09 04:27:00
+type=>8	message=>Undefined index: statut	file=>/home/sdiallo/web-dev/GestionnaireProjet/src/controllers/ticketController.php	line=>197	date=>2013-07-09 04:27:00
+type=>2	message=>PDOStatement::execute(): SQLSTATE[42S22]: Column not found: 1054 Unknown column 'ticket_estimate_time' in 'field list'	file=>/home/sdiallo/web-dev/GestionnaireProjet/src/entities/ticketsEntity.class.php	line=>275	date=>2013-07-09 04:27:00
+type=>none	message=>Fail update: primkey is null	file=>/home/sdiallo/web-dev/GestionnaireProjet/src/entities/ticketsEntity.class.php	line=>286	date=>2013-07-09 04:27:00
+type=>8	message=>Undefined index: id_ticket	file=>/home/sdiallo/web-dev/GestionnaireProjet/src/controllers/ticketController.php	line=>180	date=>2013-07-09 04:35:09
+type=>none	message=>Result is null	file=>/home/sdiallo/web-dev/GestionnaireProjet/src/entities/ticketsEntity.class.php	line=>471	date=>2013-07-09 04:35:09
+type=>8	message=>Undefined index: statut	file=>/home/sdiallo/web-dev/GestionnaireProjet/src/controllers/ticketController.php	line=>197	date=>2013-07-09 04:35:09
+type=>2	message=>PDOStatement::execute(): SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 't", `ticket_code` = "et"t", `ticket_date_create` = "", `ticket_date_update` = ""' at line 1	file=>/home/sdiallo/web-dev/GestionnaireProjet/src/entities/ticketsEntity.class.php	line=>275	date=>2013-07-09 04:35:09
+type=>none	message=>Fail update: primkey is null	file=>/home/sdiallo/web-dev/GestionnaireProjet/src/entities/ticketsEntity.class.php	line=>286	date=>2013-07-09 04:35:09
+type=>8	message=>Undefined index: id_ticket	file=>/home/sdiallo/web-dev/GestionnaireProjet/src/controllers/ticketController.php	line=>180	date=>2013-07-09 04:44:42
+type=>none	message=>Result is null	file=>/home/sdiallo/web-dev/GestionnaireProjet/src/entities/ticketsEntity.class.php	line=>471	date=>2013-07-09 04:44:42
+type=>8	message=>Undefined index: statut	file=>/home/sdiallo/web-dev/GestionnaireProjet/src/controllers/ticketController.php	line=>197	date=>2013-07-09 04:44:42
+type=>2	message=>PDOStatement::execute(): SQLSTATE[42S22]: Column not found: 1054 Unknown column 'ticket_estimate_time' in 'field list'	file=>/home/sdiallo/web-dev/GestionnaireProjet/src/entities/ticketsEntity.class.php	line=>275	date=>2013-07-09 04:44:42
+type=>none	message=>Fail update: primkey is null	file=>/home/sdiallo/web-dev/GestionnaireProjet/src/entities/ticketsEntity.class.php	line=>286	date=>2013-07-09 04:44:42
+type=>8	message=>Undefined index: id_ticket	file=>/home/sdiallo/web-dev/GestionnaireProjet/src/controllers/ticketController.php	line=>180	date=>2013-07-09 04:46:50
+type=>none	message=>Result is null	file=>/home/sdiallo/web-dev/GestionnaireProjet/src/entities/ticketsEntity.class.php	line=>471	date=>2013-07-09 04:46:50
+type=>8	message=>Undefined index: statut	file=>/home/sdiallo/web-dev/GestionnaireProjet/src/controllers/ticketController.php	line=>197	date=>2013-07-09 04:46:50
+type=>2	message=>PDOStatement::execute(): SQLSTATE[42S22]: Column not found: 1054 Unknown column 'ticket_estimate_time' in 'field list'	file=>/home/sdiallo/web-dev/GestionnaireProjet/src/entities/ticketsEntity.class.php	line=>275	date=>2013-07-09 04:46:50
+type=>none	message=>Fail update: primkey is null	file=>/home/sdiallo/web-dev/GestionnaireProjet/src/entities/ticketsEntity.class.php	line=>286	date=>2013-07-09 04:46:50
+type=>8	message=>Undefined index: id_ticket	file=>/home/sdiallo/web-dev/GestionnaireProjet/src/controllers/ticketController.php	line=>180	date=>2013-07-09 04:50:49
+type=>none	message=>Result is null	file=>/home/sdiallo/web-dev/GestionnaireProjet/src/entities/ticketsEntity.class.php	line=>471	date=>2013-07-09 04:50:49
+type=>8	message=>Undefined index: statut	file=>/home/sdiallo/web-dev/GestionnaireProjet/src/controllers/ticketController.php	line=>197	date=>2013-07-09 04:50:49
+type=>2	message=>PDOStatement::execute(): SQLSTATE[42S22]: Column not found: 1054 Unknown column 'ticket_estimate_time' in 'field list'	file=>/home/sdiallo/web-dev/GestionnaireProjet/src/entities/ticketsEntity.class.php	line=>275	date=>2013-07-09 04:50:49
+type=>none	message=>Fail update: primkey is null	file=>/home/sdiallo/web-dev/GestionnaireProjet/src/entities/ticketsEntity.class.php	line=>286	date=>2013-07-09 04:50:49
+type=>8	message=>Undefined index: id_ticket	file=>/home/sdiallo/web-dev/GestionnaireProjet/src/controllers/ticketController.php	line=>180	date=>2013-07-09 04:53:20
+type=>none	message=>Result is null	file=>/home/sdiallo/web-dev/GestionnaireProjet/src/entities/ticketsEntity.class.php	line=>471	date=>2013-07-09 04:53:20
+type=>8	message=>Undefined index: statut	file=>/home/sdiallo/web-dev/GestionnaireProjet/src/controllers/ticketController.php	line=>197	date=>2013-07-09 04:53:20
+type=>2	message=>PDOStatement::execute(): SQLSTATE[42S22]: Column not found: 1054 Unknown column 'ticket_estimate_time' in 'field list'	file=>/home/sdiallo/web-dev/GestionnaireProjet/src/entities/ticketsEntity.class.php	line=>275	date=>2013-07-09 04:53:20
+type=>none	message=>Fail update: primkey is null	file=>/home/sdiallo/web-dev/GestionnaireProjet/src/entities/ticketsEntity.class.php	line=>286	date=>2013-07-09 04:53:20
+type=>8	message=>Undefined index: id_ticket	file=>/home/sdiallo/web-dev/GestionnaireProjet/src/controllers/ticketController.php	line=>180	date=>2013-07-09 04:55:32
+type=>none	message=>Result is null	file=>/home/sdiallo/web-dev/GestionnaireProjet/src/entities/ticketsEntity.class.php	line=>471	date=>2013-07-09 04:55:32
+type=>8	message=>Undefined index: statut	file=>/home/sdiallo/web-dev/GestionnaireProjet/src/controllers/ticketController.php	line=>197	date=>2013-07-09 04:55:32
+type=>2	message=>PDOStatement::execute(): SQLSTATE[42S22]: Column not found: 1054 Unknown column 'ticket_estimate_time' in 'field list'	file=>/home/sdiallo/web-dev/GestionnaireProjet/src/entities/ticketsEntity.class.php	line=>275	date=>2013-07-09 04:55:32
+type=>none	message=>Fail update: primkey is null	file=>/home/sdiallo/web-dev/GestionnaireProjet/src/entities/ticketsEntity.class.php	line=>286	date=>2013-07-09 04:55:32

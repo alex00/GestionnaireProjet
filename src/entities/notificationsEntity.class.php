@@ -16,8 +16,6 @@
 			
 			private $roadmap_id;
 			
-			private $user_dest_id;
-			
 			private $service_id;
 			
 			private $type_id;
@@ -64,12 +62,6 @@
 
 			public function getRoadmap_id(){
 				return $this->roadmap_id;
-			}
-
-			
-
-			public function getUser_dest_id(){
-				return $this->user_dest_id;
 			}
 
 			
@@ -123,12 +115,6 @@
 
 					
 
-			public function setUser_dest_id($val){
-				$this->user_dest_id =  $val;
-			}
-
-					
-
 			public function setService_id($val){
 				$this->service_id =  $val;
 			}
@@ -165,7 +151,7 @@
 
 			public function Update(){
 
-				$sql = 'UPDATE `notifications` SET `notification_id` = "'.$this->notification_id.'", `project_id` = "'.$this->project_id.'", `ticket_id` = "'.$this->ticket_id.'", `user_creator_id` = "'.$this->user_creator_id.'", `announce_id` = "'.$this->announce_id.'", `roadmap_id` = "'.$this->roadmap_id.'", `user_dest_id` = "'.$this->user_dest_id.'", `service_id` = "'.$this->service_id.'", `type_id` = "'.$this->type_id.'" WHERE notification_id = '.intval($this->notification_id);
+				$sql = 'UPDATE `notifications` SET `notification_id` = "'.$this->notification_id.'", `project_id` = "'.$this->project_id.'", `ticket_id` = "'.$this->ticket_id.'", `user_creator_id` = "'.$this->user_creator_id.'", `announce_id` = "'.$this->announce_id.'", `roadmap_id` = "'.$this->roadmap_id.'", `service_id` = "'.$this->service_id.'", `type_id` = "'.$this->type_id.'" WHERE notification_id = '.intval($this->notification_id);
 
 				$result = TzSQL::getPDO()->prepare($sql);
 				$result->execute();
@@ -190,7 +176,7 @@
 
 				$this->notification_id = '';
 
-				$sql = 'INSERT INTO notifications (`notification_id`,`project_id`,`ticket_id`,`user_creator_id`,`announce_id`,`roadmap_id`,`user_dest_id`,`service_id`,`type_id`) VALUES ("'.$this->notification_id.'","'.$this->project_id.'","'.$this->ticket_id.'","'.$this->user_creator_id.'","'.$this->announce_id.'","'.$this->roadmap_id.'","'.$this->user_dest_id.'","'.$this->service_id.'","'.$this->type_id.'")';
+				$sql = 'INSERT INTO notifications (`notification_id`,`project_id`,`ticket_id`,`user_creator_id`,`announce_id`,`roadmap_id`,`service_id`,`type_id`) VALUES ("'.$this->notification_id.'","'.$this->project_id.'","'.$this->ticket_id.'","'.$this->user_creator_id.'","'.$this->announce_id.'","'.$this->roadmap_id.'","'.$this->service_id.'","'.$this->type_id.'")';
 
 				$result = TzSQL::getPDO()->prepare($sql);
 				$result->execute();
@@ -277,10 +263,6 @@
 						$param = 'roadmap_id';
 						break;
 						
-					case $param == 'user_dest_id':
-						$param = 'user_dest_id';
-						break;
-						
 					case $param == 'service_id':
 						$param = 'service_id';
 						break;
@@ -306,7 +288,6 @@
 					$this->user_creator_id = $result->user_creator_id;
 					$this->announce_id = $result->announce_id;
 					$this->roadmap_id = $result->roadmap_id;
-					$this->user_dest_id = $result->user_dest_id;
 					$this->service_id = $result->service_id;
 					$this->type_id = $result->type_id;
 					
@@ -338,7 +319,6 @@
 					$this->user_creator_id = $formatResult->user_creator_id;
 					$this->announce_id = $formatResult->announce_id;
 					$this->roadmap_id = $formatResult->roadmap_id;
-					$this->user_dest_id = $formatResult->user_dest_id;
 					$this->service_id = $formatResult->service_id;
 					$this->type_id = $formatResult->type_id;
 				
@@ -383,10 +363,6 @@
 						
 					case $param == 'roadmap_id':
 						$param = 'roadmap_id';
-						break;
-						
-					case $param == 'user_dest_id':
-						$param = 'user_dest_id';
 						break;
 						
 					case $param == 'service_id':

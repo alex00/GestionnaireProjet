@@ -181,7 +181,7 @@ function toolBarSubmit (id, id_project,  name_project) {
     }
     else{
         $.post(url).success(function(){
-
+           
                 var code = $("#modalReferer").val();
 
                 if (id == 'project')

@@ -183,6 +183,13 @@ class organizationController extends TzController {
         $roadmap->setProject_id($params['id']);
 
         $roadmap->Insert();
+        
+        $paramsNotif = array('roadmap_id' => $roadmap->getRoadmap_id(),
+                             'user_creator_id' => $_SESSION['User']['id'],
+                             'project_id' => $params['id']);
+
+        Guardian::guardAddNotif('newRoadmap', $paramsNotif);
+
 
         TzAuth::addUserSession(array('alert' => 'roadmap'));
 

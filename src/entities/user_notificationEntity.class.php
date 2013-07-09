@@ -4,6 +4,8 @@
 
 		class user_notificationEntity {
 					
+			private $id;
+			
 			private $notification_id;
 			
 			private $user_id;
@@ -20,6 +22,12 @@
 
 
 			/********************** GETTER ***********************/
+			
+
+			public function getId(){
+				return $this->id;
+			}
+
 			
 
 			public function getNotification_id(){
@@ -40,6 +48,12 @@
 
 			
 			/********************** SETTER ***********************/
+
+			public function setId($val){
+				$this->id =  $val;
+			}
+
+					
 
 			public function setNotification_id($val){
 				$this->notification_id =  $val;
@@ -63,9 +77,9 @@
 
 			public function Delete(){
 
-				if(!empty($this->user_id)){
+				if(!empty($this->id)){
 
-					$sql = "DELETE FROM user_notification WHERE user_id = ".intval($this->user_id).";";
+					$sql = "DELETE FROM user_notification WHERE id = ".intval($this->id).";";
 
 					$result = TzSQL::getPDO()->prepare($sql);
 					$result->execute();
@@ -83,12 +97,12 @@
 
 			public function Update(){
 
-				$sql = 'UPDATE `user_notification` SET `notification_id` = "'.$this->notification_id.'", `user_id` = "'.$this->user_id.'", `notification_view` = "'.$this->notification_view.'" WHERE user_id = '.intval($this->user_id);
+				$sql = 'UPDATE `user_notification` SET `id` = "'.$this->id.'", `notification_id` = "'.$this->notification_id.'", `user_id` = "'.$this->user_id.'", `notification_view` = "'.$this->notification_view.'" WHERE id = '.intval($this->id);
 
 				$result = TzSQL::getPDO()->prepare($sql);
 				$result->execute();
 
-				if(!empty($this->user_id)){
+				if(!empty($this->id)){
 					if($result)
 						return true;
 					else{
@@ -106,16 +120,16 @@
 
 			public function Insert(){
 
-				$this->user_id = '';
+				$this->id = '';
 
-				$sql = 'INSERT INTO user_notification (`notification_id`,`user_id`,`notification_view`) VALUES ("'.$this->notification_id.'","'.$this->user_id.'","'.$this->notification_view.'")';
+				$sql = 'INSERT INTO user_notification (`id`,`notification_id`,`user_id`,`notification_view`) VALUES ("'.$this->id.'","'.$this->notification_id.'","'.$this->user_id.'","'.$this->notification_view.'")';
 
 				$result = TzSQL::getPDO()->prepare($sql);
 				$result->execute();
 
 				if($result){
 					$lastid = TzSQL::getPDO()->lastInsertId();
-					$this->user_id = $lastid;
+					$this->id = $lastid;
 					return true;
 				}
 				else{
@@ -171,6 +185,10 @@
 
 				switch ($param){
 					
+					case $param == 'id':
+						$param = 'id';
+						break;
+						
 					case $param == 'notification_id':
 						$param = 'notification_id';
 						break;
@@ -194,6 +212,7 @@
 				$result =  $data->fetch(PDO::FETCH_OBJ);
 
 				if(!empty($result)){
+					$this->id = $result->id;
 					$this->notification_id = $result->notification_id;
 					
                     $entityNotification_id = tzSQL::getEntity('notifications');
@@ -219,11 +238,12 @@
 			/********************** Find(id) ***********************/
 			public function find($id){
 
-				$sql = 'SELECT * FROM user_notification WHERE user_id = ' . $id;
+				$sql = 'SELECT * FROM user_notification WHERE id = ' . $id;
 				$result = TzSQL::getPDO()->prepare($sql);
 				$result->execute();
 				$formatResult = $result->fetch(PDO::FETCH_OBJ);
 				if(!empty($formatResult)){
+					$this->id = $formatResult->id;
 					$this->notification_id = $formatResult->notification_id;
 				
                     $entityNotification_id = tzSQL::getEntity('notifications');
@@ -251,6 +271,10 @@
 
 				switch ($param){
 					
+					case $param == 'id':
+						$param = 'id';
+						break;
+						
 					case $param == 'notification_id':
 						$param = 'notification_id';
 						break;

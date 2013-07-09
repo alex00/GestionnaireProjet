@@ -197,7 +197,7 @@ class ticketController extends TzController {
         $tickets->setStatut_id($_POST['statut']);
         $tickets->setTracker_id($_POST['tracker']);
         $tickets->setRoadmap_id($_POST['roadmap']);
-
+        var_dump($tickets);
         $tickets->Update();
 
         TzAuth::addUserSession(array('alert' => 'modifyTicket'));
