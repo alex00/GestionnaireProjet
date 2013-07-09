@@ -20,6 +20,8 @@
 			
 			private $type_id;
 			
+			private $create_at;
+			
             private $relations = array('notifiaction_types'=>array('type_id'=>'type_id'),);
         
             private $notifiaction_types;
@@ -77,6 +79,12 @@
 			}
 
 			
+
+			public function getCreate_at(){
+				return $this->create_at;
+			}
+
+			
 			/********************** SETTER ***********************/
 
 			public function setNotification_id($val){
@@ -127,6 +135,12 @@
 
 					
 
+			public function setCreate_at($val){
+				$this->create_at =  $val;
+			}
+
+					
+
 			/********************** Delete ***********************/
 
 			public function Delete(){
@@ -151,7 +165,7 @@
 
 			public function Update(){
 
-				$sql = 'UPDATE `notifications` SET `notification_id` = "'.$this->notification_id.'", `project_id` = "'.$this->project_id.'", `ticket_id` = "'.$this->ticket_id.'", `user_creator_id` = "'.$this->user_creator_id.'", `announce_id` = "'.$this->announce_id.'", `roadmap_id` = "'.$this->roadmap_id.'", `service_id` = "'.$this->service_id.'", `type_id` = "'.$this->type_id.'" WHERE notification_id = '.intval($this->notification_id);
+				$sql = 'UPDATE `notifications` SET `notification_id` = "'.$this->notification_id.'", `project_id` = "'.$this->project_id.'", `ticket_id` = "'.$this->ticket_id.'", `user_creator_id` = "'.$this->user_creator_id.'", `announce_id` = "'.$this->announce_id.'", `roadmap_id` = "'.$this->roadmap_id.'", `service_id` = "'.$this->service_id.'", `type_id` = "'.$this->type_id.'", `create_at` = "'.$this->create_at.'" WHERE notification_id = '.intval($this->notification_id);
 
 				$result = TzSQL::getPDO()->prepare($sql);
 				$result->execute();
@@ -176,7 +190,7 @@
 
 				$this->notification_id = '';
 
-				$sql = 'INSERT INTO notifications (`notification_id`,`project_id`,`ticket_id`,`user_creator_id`,`announce_id`,`roadmap_id`,`service_id`,`type_id`) VALUES ("'.$this->notification_id.'","'.$this->project_id.'","'.$this->ticket_id.'","'.$this->user_creator_id.'","'.$this->announce_id.'","'.$this->roadmap_id.'","'.$this->service_id.'","'.$this->type_id.'")';
+				$sql = 'INSERT INTO notifications (`notification_id`,`project_id`,`ticket_id`,`user_creator_id`,`announce_id`,`roadmap_id`,`service_id`,`type_id`,`create_at`) VALUES ("'.$this->notification_id.'","'.$this->project_id.'","'.$this->ticket_id.'","'.$this->user_creator_id.'","'.$this->announce_id.'","'.$this->roadmap_id.'","'.$this->service_id.'","'.$this->type_id.'","'.$this->create_at.'")';
 
 				$result = TzSQL::getPDO()->prepare($sql);
 				$result->execute();
@@ -271,6 +285,10 @@
 						$param = 'type_id';
 						break;
 						
+					case $param == 'create_at':
+						$param = 'create_at';
+						break;
+						
 					default:
 						DebugTool::$error->catchError(array('Colonne introuvable: est-elle presente dans la base de donnée ?', __FILE__,__LINE__, true));
 						return false;
@@ -294,7 +312,8 @@
                     $entityType_id = tzSQL::getEntity('notifiaction_types');
                     $contentType_id =  $entityType_id->findManyBy('type_id',$result->type_id, 'no');
                     $this->notifiaction_types = $contentType_id;
-                
+                $this->create_at = $result->create_at;
+					
 					return true;
 				}
 				else{
@@ -325,7 +344,8 @@
                     $entityType_id = tzSQL::getEntity('notifiaction_types');
                     $contentType_id =  $entityType_id->findManyBy('type_id',$formatResult->type_id, 'no');
                     $this->notifiaction_types = $contentType_id;
-                
+                	$this->create_at = $formatResult->create_at;
+				
 					return true;
 				}
 				else{
@@ -371,6 +391,10 @@
 						
 					case $param == 'type_id':
 						$param = 'type_id';
+						break;
+						
+					case $param == 'create_at':
+						$param = 'create_at';
 						break;
 						
 					default:

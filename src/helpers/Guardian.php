@@ -99,8 +99,10 @@ class Guardian  {
 
                 $notif->setProject_id($paramsNotif['project_id']);
                 $notif->setUser_creator_id($paramsNotif['user_creator_id']);
-                $notif->setAnnounce_id($paramsNotif['announce_id']);             
+                $notif->setAnnounce_id($paramsNotif['announce_id']);
                 $notif->setType_id(1);
+                $notif->setCreate_at(date('Y-m-d H:m:S'));
+                //var_dump($notif);
                 $notif->Insert();
                 
                 
@@ -124,7 +126,7 @@ class Guardian  {
                 $notif->setTicket_id($paramsNotif['ticket_id']);
                 $notif->setUser_creator_id($paramsNotif['user_creator_id']);     
                 $notif->setType_id(4);
-               // var_dump($notif);
+                $notif->setCreate_at(date('Y-m-d H:m:S'));
                 $notif->Insert();
                 
                 $usernotif = TzSQL::getEntity('user_notification');
@@ -144,6 +146,7 @@ class Guardian  {
                 $notif->setUser_creator_id($paramsNotif['user_creator_id']);
                 $notif->setService_id($paramsNotif['service_id']);
                 $notif->setType_id(5);
+                $notif->setCreate_at(date('Y-m-d H:m:S'));
                 $notif->Insert();
             break;
         
@@ -153,6 +156,7 @@ class Guardian  {
                 $notif->setProject_id($paramsNotif['project_id']);
                 $notif->setUser_creator_id($user['id']);
                 $notif->setRoadmap_id($paramsNotif['roadmap_id']);
+                $notif->setCreate_at(date('Y-m-d H:m:S'));
                 $notif->setType_id(2);
                 //($notif);
                 $notif->Insert();
@@ -173,6 +177,7 @@ class Guardian  {
                 $notif->setProject_id($paramsNotif['project_id']);
                 $notif->setUser_creator_id($paramsNotif['user_creator_id']);             
                 $notif->setType_id(3);
+                $notif->setCreate_at(date('Y-m-d H:m:S'));
                 $notif->Insert();
                 
                 $usernotif = TzSQL::getEntity('user_notification');
