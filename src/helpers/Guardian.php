@@ -195,4 +195,14 @@ class Guardian  {
          return $tabUser;
    
     }
+    
+    public static function guardVerifyMail($adresse){
+
+        $Syntaxe='#^[\w.-]+@[\w.-]+\.[a-zA-Z]{2,6}$#';  
+        if(preg_match($Syntaxe,$adresse))  
+           return true;  
+        else  
+          return false;  
+
+    }
 }

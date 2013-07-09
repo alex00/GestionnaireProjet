@@ -31,9 +31,9 @@
         <script type="text/javascript" language="javascript" src="/js/toolBar/toolBar.js" ></script>
         <script type="text/javascript" language="javascript" src="/js/toolBar/toolBarController.js" ></script>
         <script type="text/javascript">
-            $(document).ready(function(){
+            /*$(document).ready(function(){
                 $("#formSignUp").validate();
-            });
+            });*/
         </script>
 	</head>
 
@@ -58,13 +58,13 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td><input type="text" name="login" id="login"/></td>
+                                    <td><input type="text" name="login" id="login" value="{% if POST.login %}{{ POST.login }}{% endif %}"/></td>
                                     <td><input type="password" name="pass" /></td>
                                     <td class="btnConnectHeader"><input class="btn" type="submit" name="lol" value="Connexion" /></td>
                                 </tr>
                                 <tr>
                                     <td></td>
-                                    <td class="passConnectHeader"><a href="" >Mot de passe oublié ?</a></td>
+                                    <td class="passConnectHeader"><a data-target="#modalSendMail" data-toggle="modal" href="#" >Fogot your password ?</a></td>
                                     <td></td>
                                     </tr>
                             </tbody>
@@ -114,6 +114,20 @@
         </footer>
         </div>
     {% endblock %}
+    <div id="modalSendMail" class="modal hide fade"> 
+        <header class="modal-header">
+            <a href="#" class="close" data-dismiss="modal">x</a>
+            <h6>Forgot password</h6>
+        </header>
+        <div class="modal-body"> 
+            <form method="post">
+                <label for="mailforgot">Enter your email</label>
+                <input type="text" id="mailforgot" name="mailforgot" class="input-xlarge"/> <br />
+                <input type="submit" id="submit_mailforgot" name="submit_mailforgot" class="btn btn-primary"/>
+            </form>
+        </div>
+            
+    </div>
     </body>
 </html>
 
