@@ -7,8 +7,8 @@ template:    twig
 # database configuration
 database:
     user:		root
-    password:	sdiallo88	
-    dbname:		projectmanager
+    password:	root	
+    dbname:		gestionnaire_projet
     host:		localhost
     engine:		mysql
 

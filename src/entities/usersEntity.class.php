@@ -429,6 +429,29 @@
                             return $usersArray;
                         }
                         
+                        public function allMembersInProject($id_project){
+                            
+                            $sql =  'SELECT users.* FROM users, user_service
+                                    WHERE users.id = user_service.user_id 
+                                    AND user_service.project_id = '.$id_project;
+                            $data = TzSQL::getPDO()->prepare($sql);
+                            $data->execute();
+                            $formatResult = $data->fetchAll(PDO::FETCH_ASSOC);
+                            
+                            error_log(var_export($formatResult, true)); 
+                            
+                            $entitiesArray = array();
+                            
+                                                
+                            foreach ($formatResult as $value) {
+                                array_push($entitiesArray, $value);
+                            }
+                            
+                             
+                            
+                            return $entitiesArray;
+                        }
+                        
                         
 		}
 
