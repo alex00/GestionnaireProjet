@@ -26,9 +26,11 @@ class dashboardController extends TzController {
          $listUser = $userEntity->allMembersProject($user["currentProject"]->getProject_id());
         
          $tabUser = array();
-         
-         foreach ($listUser as $value) {
-             array_push($tabUser, $value->getUser_login_code());
+
+         if ($listUser){
+             foreach ($listUser as $value) {
+                 array_push($tabUser, $value['user_login_code']);
+             }
          }
 
 
