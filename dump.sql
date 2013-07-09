@@ -17,12 +17,12 @@
   /*!40101 SET NAMES utf8 */;
 
   --
-  -- Base de données: `projectmanager`
+  -- Base de données: `gestionnaire_projet`
   --
 
-  DROP DATABASE IF EXISTS `projectmanager`;
-  CREATE DATABASE `projectmanager`;
-  USE `projectmanager`;
+  DROP DATABASE IF EXISTS `gestionnaire_projet`;
+  CREATE DATABASE `gestionnaire_projet`;
+  USE `gestionnaire_projet`;
 
 
 
@@ -39,14 +39,7 @@
     PRIMARY KEY (`id`)
   ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
-  --
-  -- Contenu de la table `acl_groups`
-  --
 
-  INSERT INTO `acl_groups` (`id`, `name`) VALUES
-  (1, 'creator'),
-  (2, 'admin'),
-  (3, 'user');
 
   -- --------------------------------------------------------
 
@@ -151,15 +144,7 @@
     PRIMARY KEY (`priority_id`)
   ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
-  --
-  -- Contenu de la table `priorities`
-  --
 
-  INSERT INTO `priorities` (`priority_id`, `priority_name`) VALUES
-  (1, 'low'),
-  (2, 'normal'),
-  (3, 'high'),
-  (4, 'immediate');
 
   -- --------------------------------------------------------
 
@@ -228,16 +213,7 @@
     PRIMARY KEY (`status_id`)
   ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
-  --
-  -- Contenu de la table `status`
-  --
 
-  INSERT INTO `status` (`status_id`, `status_name`) VALUES
-  (1, 'assigned'),
-  (2, 'in progress'),
-  (3, 'resolved'),
-  (4, 'closed'),
-  (5, 'canceled');
 
   -- --------------------------------------------------------
 
@@ -297,14 +273,7 @@
     PRIMARY KEY (`tracker_id`)
   ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
-  --
-  -- Contenu de la table `trackers`
-  --
 
-  INSERT INTO `trackers` (`tracker_id`, `tracker_name`) VALUES
-  (1, 'evolution'),
-  (2, 'bug'),
-  (3, 'support');
 
   -- --------------------------------------------------------
 
@@ -439,3 +408,87 @@
   /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
   /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
   /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+
+
+
+
+
+
+INSERT INTO `acl_groups` (`id`, `name`) VALUES
+(1, 'creator'),
+(2, 'admin'),
+(3, 'user');
+
+--
+-- Contenu de la table `priorities`
+--
+
+INSERT INTO `priorities` (`priority_id`, `priority_name`) VALUES
+(1, 'low'),
+(2, 'normal'),
+(3, 'high'),
+(4, 'immediate');
+
+--
+-- Contenu de la table `projects`
+--
+
+INSERT INTO `projects` (`project_id`, `project_name`, `project_date_create`, `project_date_update`, `project_code`, `project_description`) VALUES
+(1, 'test', '2013-06-06 00:00:00', '2013-06-06 00:00:00', 'test', 'balbla'),
+(2, 'test2', '2013-06-06 00:00:00', '2013-06-22 00:00:00', 'test2', 'lkjlkjk'),
+(3, 'test3', '2013-06-26 00:00:00', '2013-06-20 00:00:00', 'test3', 'mljlkjklj'),
+(4, 'klj', '2013-06-26 00:00:00', '2013-06-26 00:00:00', 'klj', 'hjghjghjg'),
+(5, 'hass', '2013-06-27 00:00:00', '2013-06-27 00:00:00', 'hass', 'nononon');
+
+--
+-- Contenu de la table `services`
+--
+
+INSERT INTO `services` (`service_id`, `service_name`, `service_code`, `project_id`) VALUES
+(1, 'racine', 'racine', 0),
+(2, 'Not affiliated', 'not-affiliated', 4),
+(3, 'Not affiliated', 'not-affiliated', 5);
+
+--
+-- Contenu de la table `status`
+--
+
+INSERT INTO `status` (`status_id`, `status_name`) VALUES
+(1, 'assigned'),
+(2, 'in progress'),
+(3, 'resolved'),
+(4, 'closed'),
+(5, 'canceled');
+
+--
+-- Contenu de la table `trackers`
+--
+
+INSERT INTO `trackers` (`tracker_id`, `tracker_name`) VALUES
+(1, 'evolution'),
+(2, 'bug'),
+(3, 'support');
+
+--
+-- Contenu de la table `users`
+--
+
+INSERT INTO `users` (`id`, `user_mail`, `password`, `user_login`, `user_login_code`, `user_date_create`, `acl_group_id`) VALUES
+(1, 'alexandre.francois0000@gmail.com', '952a7c238933b79813ee1e70179d52635c0b6c7c', 'alex', 'alex', '0000-00-00 00:00:00', '4'),
+(2, 'babou@b.fr', '952a7c238933b79813ee1e70179d52635c0b6c7c', 'babou', 'babou', '0000-00-00 00:00:00', '1'),
+(3, 'p@p.fr', '952a7c238933b79813ee1e70179d52635c0b6c7c', 'personne', 'personne', '0000-00-00 00:00:00', '4');
+
+--
+-- Contenu de la table `user_service`
+--
+
+INSERT INTO `user_service` (`id`, `user_id`, `service_id`, `project_id`, `rightKey`) VALUES
+(3, 1, 1, 1, 2),
+(4, 1, 1, 2, 3),
+(5, 1, 1, 3, 1),
+(6, 1, 2, 4, 1),
+(7, 2, 3, 5, 1),
+(8, 1, 3, 5, 2),
+(9, 3, 1, 2, 1),
+(10, 3, 1, 3, 1);

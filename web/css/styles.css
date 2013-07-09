@@ -1,3 +1,24 @@
+@font-face
+{
+    font-family: snake;
+    src: url('snake.otf');
+}
+
+#Q {
+    font-family: snake;
+    margin-top: 260px;
+    font-size: 300px;
+    color: #df551e;
+}
+
+
+#QHeader {
+    font-family: snake;
+    font-size: 29px;
+    color: #505050;
+}
+
+
 .dropdown-menu{
   z-index: 2000;  
 }
@@ -529,7 +550,12 @@ li {
 }
 
 #HeaderSearchBlock {
-    min-width: 350px;
+    min-width: 300px;
+}
+
+.navbar-inverse .divider-vertical {
+    margin-top: 8px;
+    height: 32px;
 }
 
 .headerAdminButton {

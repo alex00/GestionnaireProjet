@@ -61,9 +61,9 @@
         <article class="span4 ">
             <h4> Resume : </h4>
             <ul id="listSuiviMembers">
-                <li><a href="">Roadmaps</a> - 2 </span></li>
-                <li><a href="">Tickets</a> - 206</span></li>
-                <li><a href="">Tickets</a> - 206</span></li>
+                <li><a href="/{{ currentProject.project_code }}/tickets">Tickets</a> : {{ statDash.totalTicket }} </span></li>
+                <li><a href="/{{ currentProject.project_code }}/organization">Roadmaps</a> : {{ statDash.totalRoadmap }}</span></li>
+                <li><a href="/{{ currentProject.project_code }}/organization">Announces</a> : {{ statDash.totalAnnounce }}</span></li>
             </ul>
         </article>
     </div>

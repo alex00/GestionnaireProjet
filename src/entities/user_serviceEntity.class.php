@@ -13,8 +13,11 @@
 			private $project_id;
 			
 			private $rightKey;
-			
-            private $relations = array('users'=>array('user_id'=>'id'),'services'=>array('service_id'=>'service_id'),'projects'=>array('project_id'=>'project_id'),);
+                        
+                       
+
+
+                        private $relations = array('users'=>array('user_id'=>'id'),'services'=>array('service_id'=>'service_id'),'projects'=>array('project_id'=>'project_id'),);
         
             private $users;
             
@@ -55,6 +58,8 @@
 			public function getRightKey(){
 				return $this->rightKey;
 			}
+                        
+                       
 
 			
 			/********************** SETTER ***********************/
@@ -86,6 +91,8 @@
 			public function setRightKey($val){
 				$this->rightKey =  $val;
 			}
+                        
+                       
 
 					
 

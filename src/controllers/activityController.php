@@ -30,12 +30,16 @@ class activityController extends TzController {
         $list_project_created = $user_serviceEntity->listProjectCreated($user['id']);
         $projectAll = array_merge($list_project_created, $list_project_affiliated);
 
+        // Liste user modal
+         $tabUser = Guardian::guardTabMembersAdd($user["currentProject"]->getProject_id());
+        
         $this->tzRender->run('/templates/activity', array('header' => 'headers/activityHeader.html.twig',
             'modalTicket' => $modalTicket,
             'alert' => $alert,
             'projectAll' => $projectAll,
             'currentPage' => 'activity',
             'subMenuCurrent' => 'activity',
+            'tabUsers' => $tabUser,
             'paramsAriane' => $arianeParams));
     }
     
@@ -81,6 +85,8 @@ class activityController extends TzController {
             'categoryLink' => 'organization',
             'nameDetail' => $detailAnnounce->getAnnounce_title());
 
+        // Liste user modal
+         $tabUser = Guardian::guardTabMembersAdd($user["currentProject"]->getProject_id());
 
         $this->tzRender->run('/templates/detailAnnounce', array('header' => 'headers/roadmapHeader.html.twig',
             'subMenuCurrent' => 'organization',
@@ -88,6 +94,7 @@ class activityController extends TzController {
             'projectAll' => $projectAll,
             'alert' => $alert,
             'modalTicket' => $modalTicket,
+            'tabUser' => $tabUser,
             'paramsAriane' => $arianeParams));
     }
 
@@ -170,21 +177,52 @@ class activityController extends TzController {
 
 
     public function newMemberAction ($params) {
-        $logins[] = $params['login1'];
-        $logins[] = $params['login2'];
-        $logins[] = $params['login3'];
-        $logins[] = $params['login4'];
-        $logins[] = $params['login5'];
+        
+        $logins = array();
+        
+        $params['login1'] != 'null' ? array_push($logins, $params['login1']) : false;
+        $params['login2'] != 'null' ? array_push($logins, $params['login2']) : false;
+        $params['login3'] != 'null' ? array_push($logins, $params['login3']) : false;
+        $params['login4'] != 'null' ? array_push($logins, $params['login4']) : false;
+        $params['login5'] != 'null' ? array_push($logins, $params['login5']) : false;
 
-        $users = tzSQL::getEntity('users');
 
+        $logins = array_unique($logins);
+        
         foreach($logins as $login){
 
-            $pos = strpos($login, '@');
-            if (!$pos){
-                //add mailer
+            $projectsEntity = tzSQL::getEntity('projects');
+            $serviesEntity = tzSQL::getEntity('services');
+            $user_serviceEntity = tzSQL::getEntity('user_service');
+            $usersEntity = tzSQL::getEntity('users');
+                     
+            $project_id = $params['id_project'];
+            $service_id = $serviesEntity->getIdForAddMember($project_id);
+            $usersEntity->findOneBy('user_login_code', $login);
+            
+            $user_id = $usersEntity->getId();
+            
+            $listUser = $usersEntity->allMembersProject($project_id);
+            $tab_user = array();
+            
+            foreach ($listUser as $value) {
+                array_push($tab_user, $value['user_login']) ;
             }
+            
+            
+            if($usersEntity && in_array($login, $tab_user)){
+                
+                error_log(var_export($login, true));
+                //Setter
+                $user_serviceEntity->setService_id($service_id);
+                $user_serviceEntity->setProject_id($project_id);
+                $user_serviceEntity->setUser_id($user_id);
+                $user_serviceEntity->setRightKey(3);
 
+                $user_serviceEntity->Insert();
+                
+            }
+            
             //Add notif
             
             $notif = tzSQL::getEntity('notifications');

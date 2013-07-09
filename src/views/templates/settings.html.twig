@@ -1,12 +1,112 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
-    Modifier ses infos
+<h3 style="margin-bottom: 20px">Modifier ses infos</h3>
+    <form method="post" action="/my-account">
     <div class="span12">
-        <label class="control-label" for="login">Login</label>
-        <input type="text" name="login" value="{{ User.user_login }}"/>
-        <label class="control-label" for="mail">Adresse mail</label>
-        <input type="text" name="mail" value="{{ User.user_mail }}"/>
+        <table>
+           {% if error|length > 0 %}
+            <tr>
+                <td colspan="2">
+                    <div class="alert alert-danger">
+                        <ul class="unstyled">   
+                        {% for e in error %}
+                            <li>
+                                {{ e }}
+                            </li>
+                         {% endfor %}
+                         </ul>
+                    </div>
+            </tr>
+            {% elseif POST.update is defined %}
+            <tr>
+                <td colspan="2">
+                    <div class="alert alert-success">
+                        Your profile is mis a jour
+                    </div>
+            </tr>
+            {% endif %}
+            <tr>
+                <td>
+                    <label class="control-label" for="login">Login</label>
+                </td>
+                <td>
+                    <input id="login" type="text" name="login" value="{% if POST.login is not defined %}{{ User.user_login }}{% else %}{{ POST.login }}{% endif %}"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label class="control-label" for="mail">Adresse mail</label>
+                </td>
+                <td>
+                    <input id="mail" type="text" name="mail" value="{% if POST.mail is not defined %}{{ User.user_mail }}{% else %}{{ POST.mail }}{% endif %}"/>
+                </td>
+            </tr>
+            
+            <tr>
+                <td>
+                    <label class="control-label"> Change your password </label>
+                </td>
+                <td>
+                    <label class="checkbox inline" for="yes_change_password">Yes</label>
+                    <input id="yes_change_password" type="radio" name="change_password" {% if POST.change_password ==  1 %}checked="checked"{% endif %} value=1 />
+                    <label class="checkbox inline" for="no_change_password">No</label>
+                    <input id="no_change_password" type="radio" name="change_password" {% if POST.change_password is not defined or POST.change_password ==  0 %}checked="checked"{% endif %} value=0 />
+                </td>
+                <td>
+                   
+                </td>
+            </tr>
+            
+     
+            <tr class="contain-password">
+                <td>
+                    <label class="control-label" for="password_new">New password</label>
+                </td>
+                <td>
+                    <input id="password_new" type="password" name="password_new" />
+                </td>
+            </tr>
+            <tr class="contain-password">
+                <td>
+                    <label class="control-label" for="password_new_confirm">Confirm your new password</label>
+                </td>
+                <td>
+                    <input id="password_new_confirm" type="password" name="password_new_confirm" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label class="control-label"> Activate email notifications </label>
+                </td>
+                <td>
+                    <label class="checkbox inline" for="oui_notification">Yes</label>
+                        <input value="1" id="oui_notification" type="radio" name="mail_notification" {% if POST.mail_notification is not defined %} {% if User.user_notification_mail ==  1 %}checked="checked"{% endif %} {% else %} {% if POST.mail_notification ==  1 %}checked="checked" {% endif %}{% endif %}/> 
+                    
+                    
+                    <label class="checkbox inline" for="non_notification">No</label>
+                        <input value="0" id="non_notification" type="radio" name="mail_notification" {% if POST.mail_notification is not defined %} {% if User.user_notification_mail ==  0 %}checked="checked"{% endif %} {% else %} {% if POST.mail_notification ==  0 %}checked="checked" {% endif %}{% endif %}/>   
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="submit" class="btn btn-primary" name="update" value="Modifier"/>
+                </td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                </td>
+                <td>
+                </td>
+            </tr>
+        </table>
+        
+        
+        
+        
+        
     </div>
     <form>
     </form>

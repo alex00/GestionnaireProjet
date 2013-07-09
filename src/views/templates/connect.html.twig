@@ -1,40 +1,59 @@
 {% extends 'layoutConnect.html.twig' %}
 
 {% block content %}
+<div id="Q" class="span3 offset2">
+    Q
+</div>
 
-    <div class="span5 offset6" id="containerInscription">
-        <h4>Sign Up : </h4>
-        <form method="post" action="/signup">
-            <table cellspacing="10">
+<div class="span5 offset1" id="containerInscription">
+    <h4>Sign Up : </h4>
+    <form method="post" action="/signup">
+        <table cellspacing="10">
+                {% if error|length > 0 %}
                 <tr>
-                    <td class="titleFormConnect"><label for="login">Login :</label></td>
-                </tr>
-                <tr>
-                    <td><input type="text" name="login" id="login"/></td>
-                </tr>
-                <tr>
-                    <td class="titleFormConnect"><label for="pass">Password :</label></td>
-                </tr>
-                <tr>
-                    <td><input type="password" name="pass" id="pass"/></td>
-                </tr>
+                    <td colspan="2">
+                        <div class="alert alert-danger">
+                            <ul class="unstyled">   
+                        {% for e in error %}
+                                    <li>
+                                {{ e }}
+                                        </li>
+                         {% endfor %}
+                                    </ul>
+                                </div>
+                            </td>
+                        </tr>
 
-                <tr>
-                    <td class="titleFormConnect"><label for="confirm_pass">Confirm password :</label></td>
-                </tr>
-                <tr>
-                    <td><input type="password" name="confirm_pass" id="confirm_pass"/></td>
-                </tr>
-                <tr>
-                    <td class="titleFormConnect"><label for="mail">Mail :</label></td>
-                </tr>
-                <tr>
-                    <td><input type="text" name="mail" id="mail" /></td>
-                </tr>
-                <tr>
-                    <td class="btnInscription"><input class="btn" type="submit" name="submit" value="Sign Up" /></td>
-                </tr>
-            </table>
-        </form>
-    </div>
+                    {% endif %}
+                        <tr>
+                            <td class="titleFormConnect"><label for="login">Login :</label></td>
+                        </tr>
+                        <tr>
+                            <td><input type="text" name="login" id="login" value="{% if POST.login %}{{ POST.login }}{% endif %}"/></td>
+                        </tr>
+                        <tr>
+                            <td class="titleFormConnect"><label for="pass">Password :</label></td>
+                        </tr>
+                        <tr>
+                            <td><input type="password" name="pass" id="pass"/></td>
+                        </tr>
+
+                        <tr>
+                            <td class="titleFormConnect"><label for="confirm_pass">Confirm password :</label></td>
+                        </tr>
+                        <tr>
+                            <td><input type="password" name="confirm_pass" id="confirm_pass"/></td>
+                        </tr>
+                        <tr>
+                            <td class="titleFormConnect"><label for="mail">Mail :</label></td>
+                        </tr>
+                        <tr>
+                            <td><input type="text" name="mail" id="mail" value="{% if POST.mail %}{{ POST.mail }}{% endif %}" /></td>
+                        </tr>
+                        <tr>
+                            <td class="btnInscription"><input class="btn" type="submit" name="submit" value="Sign Up" /></td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
 {% endblock %}

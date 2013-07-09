@@ -188,6 +188,7 @@ function toolBarSubmit (id, id_project,  name_project) {
                     code = name.toLowerCase().replace(/ /g,"-");
 
                 window.location.href = '/'+code;
+            
                 return;
 
         });

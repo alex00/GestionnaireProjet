@@ -17,8 +17,11 @@
 			private $user_date_create;
 			
 			private $acl_group_id;
-			
-            private $relations = array();
+                        
+                        private  $user_notification_mail;
+
+
+                        private $relations = array();
         
 
 
@@ -65,6 +68,10 @@
 			public function getAcl_group_id(){
 				return $this->acl_group_id;
 			}
+                        
+                         public function getUser_notification_mail(){
+				return $this->rightKey;
+			}
 
 			
 			/********************** SETTER ***********************/
@@ -108,6 +115,10 @@
 			public function setAcl_group_id($val){
 				$this->acl_group_id =  $val;
 			}
+                        
+                        public function setUser_notification_mail($val){
+                            $this->user_notification_mail =  $val;
+                        }
 
 					
 
@@ -384,10 +395,41 @@
 
 				}
 			}
-
-					
-
+                        
+                        public function allMembersProject($id_project){
+                            
+                            $sql =  'SELECT users.id as user_id FROM users, user_service
+                                    WHERE users.id = user_service.user_id 
+                                    AND user_service.project_id = '.$id_project;
+                            $data = TzSQL::getPDO()->prepare($sql);
+                            $data->execute();
+                            $formatResult = $data->fetchAll(PDO::FETCH_ASSOC);
+                            
+                            $entitiesArray = array();
+                            $usersArray = array();
+                            
+                            
+                            
+                            $sql2 = 'SELECT * FROM users';
+                            $data2 = TzSQL::getPDO()->prepare($sql2);
+                            $data2->execute();
+                            $formatResult2 = $data2->fetchAll(PDO::FETCH_ASSOC);
+                            
+                                                    
+                            foreach ($formatResult as $value) {
+                                array_push($entitiesArray, $value['user_id']);
+                            }
+                            
+                            foreach ($formatResult2 as $value2) {
+                                if(!in_array($value2['id'], $entitiesArray)){
+                                    array_push($usersArray, $value2);
+                                }
+                            }
+                            
+                            return $usersArray;
+                        }
+                        
+                        
 		}
 
-	?>
 					

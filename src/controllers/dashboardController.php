@@ -8,7 +8,7 @@ class dashboardController extends TzController {
 
 	 public function indexAction ($params) {
 
-		 $project_code = $params['project'];
+         $project_code = $params['project'];
          $project = Guardian::guardEntryProject($project_code);
          if (!$project)
             return(tzController::CallController("pageNotFound", "show"));
@@ -22,15 +22,22 @@ class dashboardController extends TzController {
          $infosHeader['nb_members'] = $user_serviceEntity->countMembersProject($user["id"]);
          $infosHeader['nb_members_project'] = $user_serviceEntity->countMembersProjectNew($project_code);
          
-         $userEntity = tzSQL::getEntity('users');
-         $listUser = $userEntity->findAll();
-         $tabUser = array();
          
-         foreach ($listUser as $value) {
-             array_push($tabUser, $value->getUser_login_code());
-         }
+//         $userEntity = tzSQL::getEntity('users');
+//         $listUser = $userEntity->allMembersProject($user["currentProject"]->getProject_id());
+//        
+//         $tabUser = array();
+//         
+//         foreach ($listUser as $value) {
+//             array_push($tabUser, $value['user_login_code']);
+//         }
          
-//         var_dump($tabUser);
+         // Liste user modal
+         $tabUser = Guardian::guardTabMembersAdd($user["currentProject"]->getProject_id());
+
+
+         $projectEntity = tzSQL::getEntity('projects');
+         $statDash = $projectEntity->getInfosProject($user['currentProject']->getProject_id());
 
          $arianeParams = array('idProject' => $user['currentProject']->getProject_id(),
                                 'nameProject' => $user['currentProject']->getProject_name(),
@@ -38,6 +45,7 @@ class dashboardController extends TzController {
                                 'categoryName' => 'Dashboard');
 
          $alert = Guardian::guardAlert();
+         
 
          $user_serviceEntity = tzSQL::getEntity('user_service');
          $list_project_affiliated = $user_serviceEntity->listProjectAffiliated($user['id']);
@@ -49,9 +57,10 @@ class dashboardController extends TzController {
                                                             'alert' => $alert,
                                                             'currentPage' => 'dashboard',
                                                             'projectAll' => $projectAll,
+                                                            'statDash' => $statDash,
                                                             'infosHeader' => $infosHeader,
                                                             'subMenuCurrent' => 'dashboard',
-                                                            'tabUser' => $tabUser,
+                                                            'tabUsers' => $tabUser,
                                                             'paramsAriane' => $arianeParams));
 
 

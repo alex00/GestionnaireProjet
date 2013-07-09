@@ -361,6 +361,19 @@
 				}
 			}
 
+
+            public function getInfosProject ($project_id){
+
+                $ticketsEntity = tzSQL::getEntity('tickets');
+                $statsDash['totalTicket'] = $ticketsEntity->countTicketsTotal($project_id);
+                $roadmapsEntity = tzSQL::getEntity('roadmaps');
+                $statsDash['totalRoadmap'] = $roadmapsEntity->countRoadmap($project_id);
+                $announcesEntity = tzSQL::getEntity('announces');
+                $statsDash['totalAnnounce'] = $announcesEntity->countAnnounce($project_id);
+
+                return $statsDash;
+
+            }
 					
 
 		}

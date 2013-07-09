@@ -39,6 +39,30 @@ class homeController extends TzController {
                                                           'paramsAriane' => array()));
         }
         else{
+            if(isset($_POST['submit_mailforgot'])){
+                $usersEntity = tzSQL::getEntity('users');
+                $sameMail = count($usersEntity->findManyBy('user_mail', $_POST['mailforgot']));
+                
+                if($sameMail){
+                    $new_password = rand(100000, 99999);
+                    $message = Swift_Message::newInstance();
+                    // Give the message a subject
+                    $message->setSubject('Your subject');
+
+                    // Set the From address with an associative array
+                    $message->setFrom(array('alexandre.francois0000@gmail.com' => 'Qproject'));
+
+                    // Set the To addresses with an associative array
+                    $message->setTo(array($_POST['mailforgot'], $_POST['mailforgot'] => 'Name'));
+
+                    // Give it a body
+                    $message->setBody('Your new password '.$new_password);
+
+//                    $new_password_cry = TzAuth::encryptPwd($new_password);
+//                    $usersEntity->findOneBy('user_mail', $_POST['mail']);
+//                    $_SESSION;
+                }
+            }
             $this->tzRender->run('/templates/connect');
         }
     }

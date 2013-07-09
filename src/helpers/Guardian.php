@@ -144,11 +144,21 @@ class Guardian  {
 
     public static function guardUrl($data){
 
-        if (!is_string($data))
-            return false;
-
-        $data = trim(str_replace(" ","-",strtolower($data)));
-
+        $data = trim($data); 
+        $data = strtr($data, 
+       "ÀÁÂÃÄÅàáâãäåÒÓÔÕÖØòóôõöøÈÉÊËèéêëÇçÌÍÎÏìíîïÙÚÛÜùúûüÿÑñ", 
+       "aaaaaaaaaaaaooooooooooooeeeeeeeecciiiiiiiiuuuuuuuuynn"); 
+        $data = strtr($data,"ABCDEFGHIJKLMNOPQRSTUVWXYZ","abcdefghijklmnopqrstuvwxyz"); 
+        $data = preg_replace('#([^.a-z0-9]+)#i', '-', $data); 
+        $data = preg_replace('#-{2,}#','-',$data); 
+        $data = preg_replace('#-$#','',$data); 
+        $data = preg_replace('#^-#','',$data); 
+//        $url = preg_replace("`\[.*\]`U", "", $url);
+//        $url = preg_replace('`&(amp;)?#?[a-z0-9]+;`i', '-', $url);
+//        $url = htmlentities($url, ENT_COMPAT);
+//        $url = preg_replace("`&([a-z])(acute|uml|circ|grave|ring|cedil|slash|tilde|caron|lig);`i", "\\1", $url);
+//        $url = preg_replace(array("`[^a-z0-9]`i", "`[-]+`"), "-", $url);
+//        $url = ( $url == "" ) ? $type : strtolower(trim($url, '-'));
         return $data;
     }
 
@@ -207,5 +217,33 @@ class Guardian  {
         $servicesProject = $services->findManyBy('project_id', $user['currentProject']->getProject_id());
 
         return $servicesProject;
+    }
+    
+    
+    
+    public static function guardTabMembersAdd($project_id){
+        
+        $user = TzAuth::readUser();
+        $userEntity = tzSQL::getEntity('users');
+        $listUser = $userEntity->allMembersProject($project_id);
+        
+         $tabUser = array();
+         
+         foreach ($listUser as $value) {
+             array_push($tabUser, $value['user_login_code']);
+         }
+         
+         return $tabUser;
+   
+    }
+    
+    public static function guardVerifyMail($adresse){
+
+        $Syntaxe='#^[\w.-]+@[\w.-]+\.[a-zA-Z]{2,6}$#';  
+        if(preg_match($Syntaxe,$adresse))  
+           return true;  
+        else  
+          return false;  
+
     }
 }
