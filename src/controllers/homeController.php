@@ -28,9 +28,13 @@ class homeController extends TzController {
 
             $projectAll = array_merge($list_project_created, $list_project_affiliated);
 
+            $n = tzSQL::getEntity('notifications');
+            $notifs = $n->getNotificationsByUser($user['id']);
+
             $this->tzRender->run('/templates/home', array('header' => "headers/homeHeader.html.twig",
                                                           'subMenu' => true,
                                                           'homeProject' => true,
+                                                          'notif_center' => $notifs,
                                                           'projectAll' => $projectAll,
                                                           'infosHeader' => $infosHeader,
                                                           'list_project_affiliated' => $list_project_affiliated,

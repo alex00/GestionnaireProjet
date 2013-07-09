@@ -88,3 +88,11 @@ function changeTimeTicket(code, ticket_code, ticket_id){
     });
 
 }
+
+function clearNotifs(){
+
+    $.post('/clear-notifications').success(function(){
+        return;
+    });
+
+}

@@ -84,18 +84,14 @@ class Guardian  {
             case 'newProject':
                 $notif = tzSQL::getEntity('notifications');
 
-                $notif->setProject_id($params['project_id']);
-                $notif->setTicket_id(4);
+                $notif->setProject_id($paramsNotif['project_id']);
+                $notif->setTicket_id(0);
                 $notif->setUser_creator_id($user['id']);
-                $notif->setAnnounce_id(4);
-                $notif->setRoadmap_id(4);
-                $notif->setUser_dest_id(1);
-                $notif->setService_id(2);
-                $notif->setType_id(2);
-                $notif->Insert();
-            break;
-                case 'newAnnounce':
-                $notif = tzSQL::getEntity('notifications');
+                $notif->setAnnounce_id(0);
+                $notif->setRoadmap_id(0);
+                $notif->setUser_dest(0);
+                $notif->setService_id(0);
+                $notif->setType_id(0);
 
                 $notif->setProject_id($paramsNotif['project_id']);
                 $notif->setUser_creator_id($paramsNotif['user_creator_id']);
@@ -125,14 +121,15 @@ class Guardian  {
                 $notif->setProject_id($paramsNotif['project_id']);
                 $notif->setTicket_id($paramsNotif['ticket_id']);
                 $notif->setUser_creator_id($paramsNotif['user_creator_id']);     
-                $notif->setType_id(4);
+                $notif->setType_id(3);
+               // var_dump($notif);
                 $notif->setCreate_at(date('Y-m-d H:m:S'));
                 $notif->Insert();
                 
                 $usernotif = TzSQL::getEntity('user_notification');
                 $usernotif -> setNotification_id($notif->getNotification_id());
                 $usernotif -> setUser_id($paramsNotif['receiver']);
-                $usernotif -> setNotification_view(1);
+                $usernotif -> setNotification_view(0);
                 //var_dump($usernotif);
                 $usernotif -> Insert();
                         
@@ -148,6 +145,18 @@ class Guardian  {
                 $notif->setType_id(5);
                 $notif->setCreate_at(date('Y-m-d H:m:S'));
                 $notif->Insert();
+                
+                $userEntity = TzSQL::getEntity('users');
+                $tabUserId = $userEntity->allMembersInProject($paramsNotif['project_id']);
+                foreach ($tabUserId as $value) {
+                    $usernotif = TzSQL::getEntity('user_notification');
+                    $usernotif -> setNotification_id($notif->getNotification_id());
+//                    error_log(var_export($value['id'], true));
+                    $usernotif -> setUser_id($value['id']);
+                    $usernotif -> setNotification_view(0);
+                    $usernotif -> Insert();
+                }
+                
             break;
         
                 case 'newRoadmap':
@@ -171,7 +180,11 @@ class Guardian  {
                     $usernotif -> setNotification_view(0);
                     $usernotif -> Insert();
                 }
+
+            break;
+
                 case 'newMember':
+
                 $notif = tzSQL::getEntity('notifications');
 
                 $notif->setProject_id($paramsNotif['project_id']);
@@ -298,5 +311,52 @@ class Guardian  {
         else  
           return false;  
 
+    }
+//    public static function guardTabMembers(){
+//        $users = TzSQL::getEntity('users');
+//        $listUsers = $users->findAll();
+//        
+//        
+//    }
+
+
+    public static function guardGetNotifs(){
+
+        $user = TzAuth::readUser();
+        $notifs = TzSQL::getEntity('notifications');
+
+        $notifications = $notifs->getNotifications($user['currentProject']->getProject_id(), $user['id']);
+        $array_id = array();
+        $count=0;
+        if ($notifications){
+            foreach ($notifications as $notif){
+
+                if ($notif['type_id'] == 1){
+                    $n[$count]['text'] = str_replace('[creator]',$notif['user_login'],$notif['type_description']);
+                    $n[$count]['link'] = '/'.$notif['project_code'].'/announce/'.$notif['announce_code'];
+
+                }
+                elseif ($notif['type_id'] == 2){
+                    $n[$count]['text'] = str_replace('[creator]',$notif['user_login'],$notif['type_description']);
+                    $n[$count]['link'] = '/'.$notif['project_code'].'/roadmap/'.$notif['roadmap_code'];
+
+                }
+                elseif ($notif['type_id'] == 3){
+                    $n[$count]['text'] = str_replace('[creator]',$notif['user_login'],$notif['type_description']);
+                    $n[$count]['link'] = '/'.$notif['project_code'].'/ticket/'.$notif['ticket_code'];
+
+                }
+
+                if ($notif['type_id'] == 1 && $notif['type_id'] == 2 && $notif['type_id'] == 3){
+                    array_push($array_id, $notif['notification_id']);
+                    $count++;
+                }
+            }
+        }
+
+        $n['total'] = $count;
+        $_SESSION['User']['notifs_id'] = $array_id;
+
+        return $n;
     }
 }

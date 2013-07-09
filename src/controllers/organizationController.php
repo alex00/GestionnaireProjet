@@ -77,6 +77,7 @@ class organizationController extends TzController {
         else
             $tab = 0;
 
+
         $allAnnounces = tzSQL::getEntity('announces');
         $announces = $allAnnounces->allAnnounces($user['currentProject']->getProject_id());
 
@@ -92,14 +93,26 @@ class organizationController extends TzController {
 
         // Liste user modal
          $tabUser = Guardian::guardTabMembersAdd($user["currentProject"]->getProject_id());
-        
+
+
+        ######## GET des notifications pour l'affichage header ##############
+        $notifs = Guardian::guardGetNotifs();
+
+        $infosHeader = array();
+        $infosHeader['nb_members_project'] = $link->countMembersProjectNew($user['currentProject']->getProject_id());
+        $infosHeader['nb_announces'] = $allAnnounces->countAnnouncesProject($user["currentProject"]->getProject_id());
+        $infosHeader['nb_roadmaps'] = $allRoadmaps->countRoadmapsProject($user["currentProject"]->getProject_id());
+        $infosHeader['last_announce'] = $allAnnounces->getLastAnnounce($user["currentProject"]->getProject_id());
+
         $this->tzRender->run('/templates/roadmap', array('header' => 'headers/roadmapHeader.html.twig',
             'modalTicket' => $modalTicket,
             'alert' => $alert,
             'memberTab' => $tab,
             'projectAll' => $projectAll,
+            'notifs' => $notifs,
             'announces' => $announces,
             'roadmaps' => $roadmaps,
+            'infosHeader' => $infosHeader,
             'members' => $projectServices,
             'modalChangeMember' => $modalChangeMember,
             'currentPage' => 'organization',
@@ -136,6 +149,10 @@ class organizationController extends TzController {
                 }
             }
         }
+        $roadmapId = $detailRoadmap->getRoadmap_id();
+        $commentsEntity = TzSQL::getEntity('comments');
+        $comments = $commentsEntity->findAllComments('roadmap_id',$roadmapId);
+
         $roadmaps = TzSQL::getEntity('roadmaps');
 
         $allTickets = $roadmaps->ticketsByRoadmap($user['currentProject']->getProject_id(), $detailRoadmap->getRoadmap_id());
@@ -158,13 +175,20 @@ class organizationController extends TzController {
             'nameDetail' => $detailRoadmap->getRoadmap_title());
 
 
+
+        ######## GET des notifications pour l'affichage header ##############
+        $notifs = Guardian::guardGetNotifs();
+
+
         $this->tzRender->run('/templates/detailRoadmap', array('header' => 'headers/roadmapHeader.html.twig',
             'subMenuCurrent' => 'organization',
             'currentPage' => 'organization',
             'detailContext' => true,
             'currentPage' => 'ticket',
+            'comments'    => $comments,
             'detailCode' => $detailRoadmap->getRoadmap_code(),
             'alert' => $alert,
+            'notifs' => $notifs,
             'projectAll' => $projectAll,
             'entity' => $detailRoadmap,
             'modalTicket' => $modalTicket,

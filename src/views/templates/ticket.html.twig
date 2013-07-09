@@ -123,7 +123,7 @@
                         {% endif %}
 
                     </td>
-                    <td><a href="/users/{{ ticketAll.user_login_code }}"  class="linkBlack">{{ ticketAll.user_login}}</a></td>
+                    <td><a href="/account/{{ ticketAll.user_login_code }}"  class="linkBlack">{{ ticketAll.user_login}}</a></td>
                     <td>{{ ticketAll.ticket_deadline|date('m-d-Y')}}</td>
                     <td style="text-align: center">
                         {%  if ticketAll.statut_id == 1 %}

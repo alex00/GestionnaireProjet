@@ -13,10 +13,9 @@
     <link rel="stylesheet" type="text/css" href="/css/styles.css" >
 
     <script type="text/javascript" src="/js/jquery/jquery.js"></script>
-    <script type="text/javascript" src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+    <script type="text/javascript" src="/js/jquery/jquery-ui.js"></script>
     <script type="text/javascript" src="/js/jquery/jquery.cookie.js" ></script>
     <script type="text/javascript" src="/js/jquery/jquery.easing.1.3.js" ></script>
-    <script type="text/javascript" src="/js/jquery/jquery-validate.min.js" ></script>
     <script type="text/javascript" src="/js/jquery/jquery.dataTables.min.js" ></script>
     <script type="text/javascript" src="/js/bootstrap/bootstrap.js"></script>
     <script type="text/javascript" src="/js/bootstrap/bootstrap-dropdown.js"></script>
@@ -99,14 +98,22 @@
                             </div>
                         </li>
                     </ul>
-                    <ul id="notifs" class=" nav pull-right" style="margin-right: 50px;margin-top: 8px;">
+                    <ul id="notifs" class=" nav pull-right" style="margin-right: 75px;margin-top: 9px;">
                         <li><div class="dropdown">
-                                <a class="dropdown-toggle" id="nots" role="button" data-toggle="dropdown" data-target="#" >
-                                     6 Notifications
+                                <a class="dropdown-toggle" id="nots" role="button" onclick="javascript:clearNotifs();" data-toggle="dropdown" data-target="#" >
+                                     {{ notifs.total }} Notifications
                                     <b class="caret" style="margin-top: 10px"></b>
                                 </a>
                                 <ul class="dropdown-menu" role="menu" aria-labelledby="nots" >
-                                    <a href="#" >No Notifications</a>
+                                    {% if notifs.total == 0 %}
+                                        <a href="#" >No Notifications</a>
+                                    {% else %}
+                                        {% for notif in notifs %}
+                                            {% if notif.text is defined %}
+                                                <a class="linkNotifs" href="{{ notif.link }}" title="Notification">{{ notif.text }}</a>
+                                            {% endif %}
+                                        {% endfor %}
+                                    {% endif %}
                                 </ul>
                             </div>
                         </li>

@@ -20,11 +20,6 @@
   -- Base de données: `gestionnaire_projet`
   --
 
-  DROP DATABASE IF EXISTS `gestionnaire_projet`;
-  CREATE DATABASE `gestionnaire_projet`;
-  USE `gestionnaire_projet`;
-
-
 
   -- --------------------------------------------------------
 

@@ -503,6 +503,17 @@
 
 
             }
+            public function countRoadmapsProject($project_id){
+                $sql = 'SELECT COUNT(*) as nb_roadmaps
+                        FROM `roadmaps`
+                        WHERE `project_id` = '.$project_id;
+
+                $result = TzSQL::getPDO()->prepare($sql);
+                $result->execute();
+                $nb = $result->fetch(PDO::FETCH_OBJ);
+
+                return $nb->nb_roadmaps;
+            }
 
 		}
 

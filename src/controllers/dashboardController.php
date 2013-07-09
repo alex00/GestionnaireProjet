@@ -36,6 +36,8 @@ class dashboardController extends TzController {
          $tabUser = Guardian::guardTabMembersAdd($user["currentProject"]->getProject_id());
 
 
+         $notifs = Guardian::guardGetNotifs();
+
          $projectEntity = tzSQL::getEntity('projects');
          $statDash = $projectEntity->getInfosProject($user['currentProject']->getProject_id());
 
@@ -45,7 +47,10 @@ class dashboardController extends TzController {
                                 'categoryName' => 'Dashboard');
 
          $alert = Guardian::guardAlert();
-         
+
+         $noifs = tzSQl::getEntity('notifications');
+         $notifs_center = $noifs->getNotificationsByProject($user['currentProject']->getProject_id());
+
 
          $user_serviceEntity = tzSQL::getEntity('user_service');
          $list_project_affiliated = $user_serviceEntity->listProjectAffiliated($user['id']);
@@ -55,6 +60,8 @@ class dashboardController extends TzController {
          $this->tzRender->run('/templates/dashboard', array('header' => 'headers/dashboardHeader.html.twig',
                                                             'modalTicket' => $modalTicket,
                                                             'alert' => $alert,
+                                                            'notif_center' => $notifs_center,
+                                                            'notifs' => $notifs,
                                                             'currentPage' => 'dashboard',
                                                             'projectAll' => $projectAll,
                                                             'statDash' => $statDash,

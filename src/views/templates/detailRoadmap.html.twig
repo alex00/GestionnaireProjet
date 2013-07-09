@@ -10,7 +10,7 @@
                     <div class="bar" style="width: {{ entity.progress.progress }}%;"></div>
                 </div>
                 <div class="infoRoadMapBar">{{ entity.progress.finished }} / {{ entity.progress.total }} tickets</div>
-                <div class="clear-fix"></div>
+                <div style="clear: both"></div>
                 <table class="roadmapTable table table-list " >
                     <thead>
                     <tr style="border: none;">
@@ -39,7 +39,7 @@
                                     {%  elseif ticket.statut_id == 4 %}
                                         <img src="/img/closed.png" title="Closed" alt="Closed" />
                                     {%  elseif ticket.statut_id == 5 %}
-                                        <img src="/img/canceled.png" title="Canceled" alt="Canceled" />
+                                        <img src="/img/cancel.png" title="Canceled" alt="Canceled" />
                                     {%  endif  %}
                                 </td>
                             </tr>
@@ -49,19 +49,52 @@
                 </table>
 
             <div class="dividerBlock span9"></div>
-            <h4>Comments : </h4>
-            <p class="pseudoComment pull-left"><a class="linkBlack" href="" >AlexKtf</a></p><p class="pull-left dateComment">&nbsp;- 16/48/4955 16:31</p>
-            <div class="clear"></div>
-            <p>psoefkposekfposkefôskefosopefsoefkospef</p>
-            <p class="pseudoComment pull-left"><a class="linkBlack" href="" >AlexKtf</a></p><p class="pull-left dateComment">&nbsp;- 16/48/4955 16:31</p>
-            <div class="clear"></div>
-            <p>psoefkposekfposkefôskefosopefsoefkospef</p>
-            <p class="pseudoComment pull-left"><a class="linkBlack" href="" >AlexKtf</a></p><p class="pull-left dateComment">&nbsp;- 16/48/4955 16:31</p>
-            <div class="clear"></div>
-            <p>psoefkposekfposkefôskefosopefsoefkospef</p>
+            <div id="ticketInfos" style="display:none;">
+                <h4>Comments : </h4>
+                {% if entity.user_id == User.id or entity.creator_id == User.id or (User.acl_group_id == 2 or User.acl_group_id == 1) %}
+                    <div id="modifTicketInfos" >
+                        <a class="pull-right" onclick="" data-toggle="modal" data-target="#modalHeaders " id="addCommentLink">+</a>
+                    </div>
+                {% endif %}
+
+                {% for comment in comments %}
+                    <p class="pseudoComment pull-left"><a class="linkBlack" href="/account/{{ comment.user_login_code }}" >{{ comment.user_login }}</a></p><p class="pull-left dateComment">&nbsp;- {{ comment.comment_date_create }}</p>
+                    <div class="clear"></div>
+                    <p>{{ comment.comment_description }}</p>
+
+                {% else %}
+                    No comments
+                {% endfor %}
+            </div>
 
 
         </article>
 
+    </div>
+
+    <div id="modalHeaders" class="modal hide fade">
+        <!-- first modal window -->
+        <header class="modal-header">
+            <a href="#" class="close" data-dismiss="modal">x</a>
+            <h6>Add a Comment</h6>
+        </header>
+
+        <div class="modal-body">
+            <form id="addComment" action="" method="post" name="newComment">
+                <table>
+                    <tr>
+                        <td><label for="commentText">Comment :</label><td colspan="3"><textarea name="commentText" id="commentText" rows="5"></textarea></td>
+                        <input type="hidden" value="{{ roadmapId }}" id="commentEntityId"/>
+                        <input type="hidden" value="2" id="commentType"/>
+                        <input type="hidden" value="{{ currentProject.project_code }}/new-comment" id="modalCommentsReferer"/>
+                        <input type="hidden" value="{{ entity.roadmap_title }}" id="commentEntityName"/>
+                    </tr>
+                </table>
+            </form>
+        </div>
+
+        <footer class="modal-footer">
+            <a href="#" class="btn btn-primary" id="okwin01" onclick="toolBarSubmit('comment', '[project_name]', '[project_code]')">Comment</a>
+        </footer>
     </div>
 {% endblock %}

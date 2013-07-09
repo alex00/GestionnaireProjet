@@ -5,39 +5,55 @@
         <article class="span7 announceHome">
             <h4>Last activities :</h4>
             <div class="span7">
-                <p class="nameListAnnonces">
-                   Announce - 16/01/2013 21:07
-                </p>
-                <p class="titleListAnnonces">
-                    <img src="/img/lineBack.png" title="Assigned" alt="Assigned"><a class="linkRed" href="">Nouvelle arrangement du truc</a>
-                </p>
-            </div>
-            <div class="span7">
-                <p class="nameListAnnonces">
-                    <a class="linkRed" href="">Tickets</a> - 16/01/2013 21:07
-                </p>
-                <p class="titleListAnnonces">
-                    <img src="/img/lineBack.png" title="Assigned" alt="Assigned"><a class="linkRed" href="">Nouvelle arrangement du truc</a> assigned to <a class="linkRed" href="">AlexKtf</a>
-                </p>
-            </div>
-            <div class="span7">
-                <p class="nameListAnnonces">
-                    <a class="linkRed" href="">Roadmaps</a> - 16/01/2013 21:07
-                </p>
-                <p class="titleListAnnonces">
-                    <img src="/img/lineBack.png" title="Assigned" alt="Assigned"><a class="linkRed" href="">Nouvelle arrangement du truc</a>
-                </p>
-            </div>
-            <div class="span7">
-                <p class="nameListAnnonces">
-                    <a class="linkRed" href="">Members</a> - 16/01/2013 21:07
-                </p>
-                <p class="titleListAnnonces">
-                    <img src="/img/lineBack.png" title="Assigned" alt="Assigned"><a  href="" class="linkRed">SouleyD</a> is a new member of the project!
-                </p>
+
+                {% if notif_center is defined %}
+                    {% for notif in notif_center %}
+                        {% if notif.type_name == 'newAnnounce' %}
+                            <p class="nameListAnnonces">
+                                <a class="linkRed" href="/{{ currentProject.project_code }}/organization">Announce</a> - {{ notif.create_at|date('m-d-Y h:m') }}
+                            </p>
+                            <p class="titleListAnnonces"style="margin-bottom: 15px">
+                                <img src="/img/lineBack.png" title="title" alt="title"><a class="linkRed" href="/{{ currentProject.project_code }}/announce/{{ notif.announce_code }}">{{ notif.announce_title }}</a>
+                            </p>
+                        {% elseif notif.type_name == 'newRoadmap' %}
+                            <p class="nameListAnnonces">
+                                <a class="linkRed" href="/{{ currentProject.project_code }}/organization">Roadmap</a> - {{ notif.create_at|date('m-d-Y h:m') }}
+                            </p>
+                            <p class="titleListAnnonces"style="margin-bottom: 15px">
+                                <img src="/img/lineBack.png" title="title" alt="title"><a class="linkRed" href="/{{ currentProject.project_code }}/roadmap/{{ notif.roadmap_code }}">{{ notif.roadmap_title }}</a>
+                            </p>
+                        {% elseif notif.type_name == 'newTicket' %}
+                            <p class="nameListAnnonces">
+                                <a class="linkRed" href="/{{ currentProject.project_code }}/tickets">Ticket</a> - {{ notif.create_at|date('m-d-Y h:m') }}
+                            </p>
+                            <p class="titleListAnnonces"style="margin-bottom: 15px">
+                                <img src="/img/lineBack.png" title="title" alt="title"><a class="linkRed" href="/{{ currentProject.project_code }}/ticket/{{ notif.ticket_code }}">{{ notif.ticket_name }}</a>
+                            </p>
+                        {% elseif notif.type_name == 'newService' %}
+                            <p class="nameListAnnonces">
+                                <a class="linkRed" href="/{{ currentProject.project_code }}/organization">Service</a> - {{ notif.create_at|date('m-d-Y h:m') }}
+                            </p>
+                            <p class="titleListAnnonces" style="margin-bottom: 15px">
+                                <img src="/img/lineBack.png" title="title" alt="title">{{ notif.service_name }}
+                            </p>
+                        {% elseif notif.type_name == 'newMember' %}
+                            <p class="nameListAnnonces">
+                                <a class="linkRed" href="/{{ currentProject.project_code }}/organization">Member</a> - {{ notif.create_at|date('m-d-Y h:m') }}
+                            </p>
+                            <p class="titleListAnnonces" style="margin-bottom: 15px">
+                                <img src="/img/lineBack.png" title="title" alt="title"><a class="linkRed" href="/account/{{ notif.user_dest.user_login_code }}">{{ notif.user_dest.user_login }}</a> is a new member of the project !
+                            </p>
+                        {% elseif notif.type_name == 'modifyTicket' %}
+                            <p class="nameListAnnonces">
+                                <a class="linkRed" href="/{{ currentProject.project_code }}/tickets">Ticket</a> - {{ notif.create_at|date('m-d-Y h:m') }}
+                            </p>
+                            <p class="titleListAnnonces">
+                                <img src="/img/lineBack.png" title="title" alt="title"><a class="linkRed" href="/{{ currentProject.project_code }}/ticket/{{ notif.ticket_code }}">{{ notif.ticket_name }}</a>
+                            </p>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
             </div>
         </article>
-
-        <div class="dividerBlock span7"></div>
     </div>
 {% endblock %}

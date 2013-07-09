@@ -121,23 +121,34 @@ function toolBarSubmit (id, id_project,  name_project) {
             if (roadmap == '')
                 roadmap = 0;
 
+            if (name == '' || desc == ''){
+                return false;
+            }
             break;
 
         case 'roadmap':
             var name = $("#nameRoadmap").val();
             var desc = $("#descRoadmap").val();
+            if (name == '' || desc == ''){
+                return false;
+            }
 
             url += '/'+name+'/'+desc+'/'+id_project;
         break;
         case 'announce':
             var name = $("#nameAnnounce").val();
             var desc = $("#descAnnounce").val();
-
+            if (name == '' || desc == ''){
+                return false;
+            }
             url += '/'+name+'/'+desc+'/'+id_project;
         break;
         case 'service':
             var name = $("#nameService").val();
 
+            if (name == ''){
+                return false;
+            }
             url += '/'+name+'/'+id_project;
         break;
         case 'membre':
@@ -156,7 +167,17 @@ function toolBarSubmit (id, id_project,  name_project) {
             var mail5 = $("#loginMember5").val();
             if (mail5 == '')
                 mail5 = null;
+
+            if (mail1 == null && mail2 == null && mail3 == null && mail4 == null && mail5 == null){
+                return false;
+            }
             url += '/'+mail1+'/'+mail2+'/'+mail3+'/'+mail4+'/'+mail5+'/'+id_project;
+        break;
+        case 'comment':
+            var entityId = $("#commentEntityId").val();
+            var comment = $("#commentText").val();
+            var commentType = $("#commentType").val();
+
         break;
     }
 
@@ -176,6 +197,15 @@ function toolBarSubmit (id, id_project,  name_project) {
             var code = $("#modalReferer").val();
 
             window.location.href = '/'+code;
+            return;
+        });
+    }
+    else if (id == 'comment'){
+
+        $.post(url,{entityId: entityId, comment: comment, commentType: commentType}).success(function(){
+            var code = $("#currentProject").val();
+            var entityName = $("#entityName").val();
+            window.location.href = code+'/'+commentType+'/'+entityName;
             return;
         });
     }

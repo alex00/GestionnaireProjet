@@ -18,7 +18,28 @@
     color: #505050;
 }
 
+.linkNotifs{
+    height: 22px;
+}
 
+.linkNotifs:hover {
+    background: #ff5630; /* Old browsers */
+    background: -moz-linear-gradient(top,  #ff5630 0%, #ed5d31 45%, #ef5623 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ff5630), color-stop(45%,#ed5d31), color-stop(100%,#ef5623)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  #ff5630 0%,#ed5d31 45%,#ef5623 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #ff5630 0%,#ed5d31 45%,#ef5623 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #ff5630 0%,#ed5d31 45%,#ef5623 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  #ff5630 0%,#ed5d31 45%,#ef5623 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff5630', endColorstr='#ef5623',GradientType=0 ); /* IE6-9 */
+
+}
+
+#addCommentLink{
+    font-size: 40px;
+    margin-top: -50px;
+    margin-right: 40px;
+    color:#000000;
+}
 .dropdown-menu{
   z-index: 2000;  
 }

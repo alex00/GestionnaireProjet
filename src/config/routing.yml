@@ -6,6 +6,10 @@ home_index:
 	pattern:	/home
 	controller: home:index
 
+clear_notifs:
+    pattern:    /clear-notifications
+    controller: account:clearNotifs
+
 # Account Controller
 
 account_settings:
@@ -62,6 +66,13 @@ ticket_modify:
         ajax: true
         exclude_groups : visitor
 
+new_comment:
+    pattern:    /{project}/new-comment
+    controller: ticket:newComment
+    requirements:
+        only_connected: true
+        ajax: true
+        exclude_groups : visitor
 
 
 # Tickets Controller
@@ -79,6 +90,7 @@ ticket_index:
     requirements:
         project:   string
         only_connected: true
+        exclude_groups : visitor
 
 
 # Dashboard Controller
@@ -89,6 +101,7 @@ dashboard_index:
     requirements:
         project:   string
         only_connected: true
+        exclude_groups : visitor
 
 # Activity Controller
 
@@ -98,6 +111,7 @@ activity_index:
     requirements:
         project:   string
         only_connected: true
+        exclude_groups : visitor
 
 announce_detail:
     pattern:    /{project}/announce/{announce}/
@@ -162,6 +176,7 @@ organization_index:
     requirements:
         project:   string
         only_connected: true
+        exclude_groups : visitor
 
 organization_detail:
     pattern:    /{project}/roadmap/{roadmap}/

@@ -447,6 +447,35 @@
                 return $tickets->nb_total;
 
             }
+            public function countAnnouncesProject($project_id){
+                $sql = 'SELECT COUNT(*) as nb_announces
+                        FROM `announces`
+                        WHERE `project_id` = '.$project_id.'
+                        ORDER BY `announces`.`announce_date_create` ASC';
+
+                $result = TzSQL::getPDO()->prepare($sql);
+                $result->execute();
+                $nb = $result->fetch(PDO::FETCH_OBJ);
+
+                return $nb->nb_announces;
+
+            }
+
+            public function getLastAnnounce($project_id){
+                $sql = 'SELECT announce_title as last_announce
+                        FROM `announces`
+                        WHERE `project_id` = '.$project_id.'
+                        ORDER BY announce_date_create DESC
+                        LIMIT 0,1';
+
+                $result = TzSQL::getPDO()->prepare($sql);
+                $result->execute();
+                $nb = $result->fetch(PDO::FETCH_OBJ);
+                if(!$nb)
+                    return false;
+                return $nb->last_announce;
+
+            }
 
 		}
 

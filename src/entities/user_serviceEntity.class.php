@@ -404,15 +404,10 @@
         $nb = $result->fetch(PDO::FETCH_OBJ);
         return $nb->nb_members;
     }
-    
-    public function countMembersProjectNew($project_code){
 
-        $sql = 'SELECT COUNT(`user_id`) AS nb_members FROM user_service 
-LEFT JOIN
-    projects
-ON 
-    user_service.project_id = projects.project_id
-WHERE project_code = "'.$project_code.'"';
+    public function countMembersProjectNew($project_id){
+
+        $sql = 'SELECT COUNT(`user_id`) AS nb_members FROM user_service LEFT JOIN projects ON user_service.project_id = projects.project_id WHERE projects.project_id = "'.$project_id.'"';
 
         $result = TzSQL::getPDO()->prepare($sql);
         $result->execute();

@@ -443,6 +443,161 @@
 				}
 			}
 
+            public function getNotifications($project_id, $user_id){
+                $sql = 'SELECT *
+                        FROM `notifications`
+                        LEFT JOIN `user_notification` ON `notifications`.`notification_id` = `user_notification`.`notification_id`
+                        LEFT JOIN `notifiaction_types` ON `notifications`.`type_id` = `notifiaction_types`.`type_id`
+                        LEFT JOIN `roadmaps` ON `roadmaps`.`roadmap_id` = `notifications`.`roadmap_id`
+                        LEFT JOIN `announces` ON `announces`.`announce_id` = `notifications`.`announce_id`
+                        LEFT JOIN `projects` ON `projects`.`project_id` = `notifications`.`project_id`
+                        LEFT JOIN `services` ON `services`.`service_id` = `notifications`.`service_id`
+                        LEFT JOIN `tickets` ON `tickets`.`ticket_id` = `notifications`.`ticket_id`
+                        LEFT JOIN `users` ON `users`.`id` = `notifications`.`user_creator_id`
+                        WHERE `notifications`.`project_id` = '.$project_id.'
+                        AND `user_notification`.`user_id` = '.$user_id.'
+                        AND `user_notification`.`notification_view` = 0
+                        ORDER BY `notifications`.`notification_id` DESC';
+
+
+                $pdo = TzSQL::getPDO();
+
+                foreach  ($pdo->query($sql) as $row) {
+                    $notifs[] = $row;
+                }
+
+
+                if (!isset($notifs))
+                    return false;
+
+                return $notifs;
+
+            }
+
+            public function getNotificationsByProject($project_id){
+                $sql = 'SELECT *
+                        FROM `notifications`
+                        LEFT JOIN `user_notification` ON `notifications`.`notification_id` = `user_notification`.`notification_id`
+                        LEFT JOIN `notifiaction_types` ON `notifications`.`type_id` = `notifiaction_types`.`type_id`
+                        LEFT JOIN `roadmaps` ON `roadmaps`.`roadmap_id` = `notifications`.`roadmap_id`
+                        LEFT JOIN `announces` ON `announces`.`announce_id` = `notifications`.`announce_id`
+                        LEFT JOIN `projects` ON `projects`.`project_id` = `notifications`.`project_id`
+                        LEFT JOIN `services` ON `services`.`service_id` = `notifications`.`service_id`
+                        LEFT JOIN `tickets` ON `tickets`.`ticket_id` = `notifications`.`ticket_id`
+                        LEFT JOIN `users` ON `users`.`id` = `notifications`.`user_creator_id`
+                        WHERE `notifications`.`project_id` = '.$project_id.'
+                        ORDER BY `notifications`.`notification_id` DESC';
+
+
+                $pdo = TzSQL::getPDO();
+
+                foreach  ($pdo->query($sql) as $key=>$row) {
+
+                    $notifs[] = $row;
+
+                    if ($row['announce_description']){
+                        $notifs['announce_description'] = substr($row['announce_description'],0,100).'...';
+                    }
+                    elseif ($row['roadmap_description']){
+                        $notifs['roadmap_description'] = substr($row['roadmap_description'],0,100).'...';
+                    }
+                    elseif ($row['ticket_description']){
+                        $notifs['ticket_description'] = substr($row['ticket_description'],0,100).'...';
+                    }
+
+                    $user_id = (int) $row['user_id'];
+                    $sql2 = 'SELECT *
+                        FROM `users`
+                        WHERE id = '.$user_id;
+                    $o = TzSQL::getPDO();
+                    $o->prepare($sql2);
+
+
+                    foreach ($o->query($sql2) as $row){
+                        if (isset($details))
+                            break;
+
+                        $detail = $row;
+                    }
+                    $notifs[$key]['user_dest'] = $detail;
+
+                }
+
+
+                if (!isset($notifs))
+                    return false;
+
+                return array_slice($notifs,0,10);
+
+            }
+
+            public function getNotificationsByUser($user_id){
+                $sql = 'SELECT *
+                        FROM `user_notification`
+                        LEFT JOIN `notifications` ON `notifications`.`notification_id` = `user_notification`.`notification_id`
+                        LEFT JOIN `notifiaction_types` ON `notifications`.`type_id` = `notifiaction_types`.`type_id`
+                        LEFT JOIN `roadmaps` ON `roadmaps`.`roadmap_id` = `notifications`.`roadmap_id`
+                        LEFT JOIN `announces` ON `announces`.`announce_id` = `notifications`.`announce_id`
+                        LEFT JOIN `projects` ON `projects`.`project_id` = `notifications`.`project_id`
+                        LEFT JOIN `services` ON `services`.`service_id` = `notifications`.`service_id`
+                        LEFT JOIN `tickets` ON `tickets`.`ticket_id` = `notifications`.`ticket_id`
+                        LEFT JOIN `users` ON `users`.`id` = `notifications`.`user_creator_id`
+                        WHERE `user_notification`.`user_id` = '.$user_id.'
+                        ORDER BY `notifications`.`notification_id` DESC';
+
+
+                $pdo = TzSQL::getPDO();
+
+                foreach  ($pdo->query($sql) as $key=>$row) {
+
+                    $notifs[] = $row;
+
+                    if ($row['announce_description']){
+                        $notifs['announce_description'] = substr($row['announce_description'],0,100).'...';
+                    }
+                    elseif ($row['roadmap_description']){
+                        $notifs['roadmap_description'] = substr($row['roadmap_description'],0,100).'...';
+                    }
+                    elseif ($row['ticket_description']){
+                        $notifs['ticket_description'] = substr($row['ticket_description'],0,100).'...';
+                    }
+
+                    $user_id = (int) $row['user_id'];
+                    $sql2 = 'SELECT *
+                        FROM `users`
+                        WHERE id = '.$user_id;
+                    $o = TzSQL::getPDO();
+                    $o->prepare($sql2);
+
+
+                    foreach ($o->query($sql2) as $row){
+                        if (isset($details))
+                            break;
+
+                        $detail = $row;
+                    }
+                    $notifs[$key]['user_dest'] = $detail;
+
+                }
+
+
+                if (!isset($notifs))
+                    return false;
+
+                return array_slice($notifs,0,10);
+
+            }
+
+            public function clearNotif($id_notif, $id_user){
+
+                $sql = "UPDATE `user_notification` SET `notification_view` = 1 WHERE notification_id = ".$id_notif." AND user_id = ".$id_user;
+                $pdo = TzSQL::getPDO();
+
+                $pdo->prepare($sql)->execute();
+
+                return true;
+
+            }
 					
 
 		}

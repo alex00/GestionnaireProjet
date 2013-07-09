@@ -5,19 +5,17 @@
             <h2>Organization</h2>
             <div id="otherInfos">
                 <p class="nameHeaderHome">
-                    2 roadmaps
+                    {{ infosHeader.nb_members_project }} Members
                 </p>
                 <p class="projectHeaderHome pull-left">
-                    Biggest : Deuxième version
+                    {{ infosHeader.nb_announces }} Announces
                 </p>
                 <p class="projectHeaderHome pull-left" style="border-left: none">
-                    Most recent : Deuxième version
-                </p>
-                <p class="projectHeaderHome pull-left" style="border-left: none">
-                    Most urgent : Première version
+                    {{ infosHeader.nb_roadmaps }} Roadmaps
                 </p>
                 <div style="clear: both"></div>
                 <ul class="tasksHeaderHome">
+                    <li>Last announce : {{ infosHeader.last_announce | capitalize }}</li>
                 </ul>
             </div>
         </div>

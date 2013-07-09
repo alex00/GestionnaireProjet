@@ -295,6 +295,7 @@
 			public function find($id){
 
 				$sql = 'SELECT * FROM users WHERE id = ' . $id;
+
 				$result = TzSQL::getPDO()->prepare($sql);
 				$result->execute();
 				$formatResult = $result->fetch(PDO::FETCH_OBJ);

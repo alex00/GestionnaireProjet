@@ -63,11 +63,17 @@ class ticketController extends TzController {
          $list_project_created = $user_serviceEntity->listProjectCreated($user['id']);
          $projectAll = array_merge($list_project_created, $list_project_affiliated);
 
+
+
+         ######## GET des notifications pour l'affichage header ##############
+         $notifs = Guardian::guardGetNotifs();
+
          $this->tzRender->run('/templates/ticket', array('header' => 'headers/ticketHeader.html.twig',
                                                          'modalTicket' => $modalTicket,
                                                          'currentPage' => 'tickets',
                                                          'myTickets' => $myTickets,
                                                          'projectAll' => $projectAll,
+                                                         'notifs' => $notifs,
                                                          'statTicketsUser' => $statTicketsUser,
                                                          'alert' => $alert,
                                                          'allTickets' => $allTickets,
@@ -75,6 +81,7 @@ class ticketController extends TzController {
                                                          'subMenuCurrent' => 'tickets',
                                                          'tabUsers' => $tabUser,
                                                          'paramsAriane' => $arianeParams));
+
 	}
 
     public function ticketDetailAction ($params) {
@@ -135,7 +142,11 @@ class ticketController extends TzController {
                 }
             }
         }
-        
+
+
+        ######## GET des notifications pour l'affichage header ##############
+        $notifs = Guardian::guardGetNotifs();
+
         // Liste user modal
          $tabUser = Guardian::guardTabMembersAdd($user["currentProject"]->getProject_id());
 
@@ -153,6 +164,7 @@ class ticketController extends TzController {
             'currentPage' => 'ticket',
             'projectAll' => $projectAll,
             'infosHeader' => $infosHeader,
+            'notifs' => $notifs,
             'detailCode' => $detailTicket['ticket_code'],
             'modalTicket' => $modalTicket,
             'entity' => $detailTicket,

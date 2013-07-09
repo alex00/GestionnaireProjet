@@ -32,11 +32,26 @@ class activityController extends TzController {
 
         // Liste user modal
          $tabUser = Guardian::guardTabMembersAdd($user["currentProject"]->getProject_id());
-        
+
+
+
+
+
+        ######## GET des notifications pour l'affichage centrale ##############
+        $noifs = tzSQl::getEntity('notifications');
+        $notifs_center = $noifs->getNotificationsByProject($user['currentProject']->getProject_id());
+
+
+        ######## GET des notifications pour l'affichage header ##############
+        $notifs = Guardian::guardGetNotifs();
+
+
         $this->tzRender->run('/templates/activity', array('header' => 'headers/activityHeader.html.twig',
             'modalTicket' => $modalTicket,
             'alert' => $alert,
             'projectAll' => $projectAll,
+            'notif_center' => $notifs_center,
+            'notifs' => $notifs,
             'currentPage' => 'activity',
             'subMenuCurrent' => 'activity',
             'tabUsers' => $tabUser,
@@ -59,7 +74,6 @@ class activityController extends TzController {
         $user = TzAuth::readUser();
 
         $announces = TzSQL::getEntity('announces');
-
         $allAnnounces = $announces->findManyBy('announce_code', $announce_code);
 
         if ($allAnnounces){
@@ -88,10 +102,15 @@ class activityController extends TzController {
         // Liste user modal
          $tabUser = Guardian::guardTabMembersAdd($user["currentProject"]->getProject_id());
 
+
+        ######## GET des notifications pour l'affichage header ##############
+        $notifs = Guardian::guardGetNotifs();
+
         $this->tzRender->run('/templates/detailAnnounce', array('header' => 'headers/roadmapHeader.html.twig',
             'subMenuCurrent' => 'organization',
             'entity' => $detailAnnounce,
             'projectAll' => $projectAll,
+            'notifs' => $notifs,
             'alert' => $alert,
             'modalTicket' => $modalTicket,
             'tabUser' => $tabUser,

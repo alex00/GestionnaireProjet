@@ -356,6 +356,31 @@
 
 				}
 			}
+            public function findAllComments($entity, $entityId){
+                $sql =  'SELECT * , users.id
+                        FROM  `comments`
+                        LEFT JOIN users ON users.id = comments.user_id
+                        WHERE  '.$entity.' = '.$entityId;
+
+
+                $result = TzSQL::getPDO()->prepare($sql);
+                $result->execute();
+                $formatResult = $result->fetchAll(PDO::FETCH_ASSOC);
+                $entitiesArray = array();
+
+                foreach ($formatResult as $key => $data) {
+
+                    array_push($entitiesArray, $data);
+                }
+
+                if(!empty($entitiesArray))
+                    return $entitiesArray;
+
+                $nb = $result->fetch(PDO::FETCH_OBJ);
+
+                return $nb;
+            }
+
 
 					
 

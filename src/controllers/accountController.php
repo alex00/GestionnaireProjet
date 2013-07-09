@@ -11,12 +11,12 @@ class accountController extends TzController {
 
        
         $login = $params['login'];
-
+        
         $usersEntity = tzSQL::getEntity('users');
         $usersEntity->findOneBy('user_login_code', $login);
-
+        
         $user_serviceEntity = tzSQL::getEntity('user_service');
-
+        
         $listProjectAffiliated = $user_serviceEntity->listProjectAffiliated($usersEntity->getId());
         $listProjectCreated = $user_serviceEntity->listProjectCreated($usersEntity->getId());
         $listProjectCommun = $user_serviceEntity->listProjectCommun($_SESSION['User']['id'], $usersEntity->getId());
@@ -38,7 +38,7 @@ class accountController extends TzController {
             'list_project_commun' => $listProjectCommun,
             'homeContext' => true,
             'user' => $usersEntity
-        ));
+            ));
     }
 
     public function settingAction() {
@@ -194,8 +194,7 @@ class accountController extends TzController {
 
         header('Location: /');
     }
-
-    public function memberDetailAction($params) {
+    public function memberDetailAction($params){
 
         $project_name = intval($params['project']);
 
@@ -218,4 +217,15 @@ class accountController extends TzController {
         require ROOT . '/src/views/templates/pageForbidden.php';
     }
 
+    public function clearNotifsAction(){
+
+        $n = tzSQL::getEntity("notifications");
+        $notifs = $_SESSION['User']['notifs_id'];
+        foreach ($notifs as $notif=>$val){
+
+            $n->clearNotif($val, $_SESSION['User']['id']);
+        }
+
+        return true;
+    }
 }
