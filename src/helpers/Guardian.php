@@ -110,8 +110,16 @@ class Guardian  {
                 $notif->setTicket_id($paramsNotif['ticket_id']);
                 $notif->setUser_creator_id($paramsNotif['user_creator_id']);     
                 $notif->setType_id(4);
-                var_dump($notif);
+               // var_dump($notif);
                 $notif->Insert();
+                
+                $usernotif = TzSQL::getEntity('user_notification');
+                $usernotif -> setNotification_id($notif->getNotification_id());
+                $usernotif -> setUser_id($paramsNotif['receiver']);
+                $usernotif -> setNotification_view(1);
+                //var_dump($usernotif);
+                $usernotif -> Insert();
+                        
                 
             break;  
                 

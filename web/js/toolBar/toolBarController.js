@@ -163,6 +163,7 @@ function toolBarSubmit (id, id_project,  name_project) {
     if (id == 'ticket'){
         $.post(url,{name: name, desc: desc, assigned: assigned, deadline: deadline, estimate: estimate, priority: priority, tracker: tracker, roadmap: roadmap, id: id_project }).success(function(){
 
+      //     return;
             var code = $("#modalReferer").val();
 
             window.location.href = '/'+code;
@@ -181,7 +182,6 @@ function toolBarSubmit (id, id_project,  name_project) {
     }
     else{
         $.post(url).success(function(){
-           
                 var code = $("#modalReferer").val();
 
                 if (id == 'project')

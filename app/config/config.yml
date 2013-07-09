@@ -16,7 +16,7 @@ database:
 language:    fr
 
 # environnement (dev | prod)
-environnement:    dev
+environnement:    prod
 
 # Permit to check if a project is already started
 existingproject:    true

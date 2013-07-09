@@ -253,12 +253,12 @@ class activityController extends TzController {
         $service->Insert();
         //Add notif
         
-        $paramsNotif = array('user_creator_id' => $user['id'],
-                             'project_id' => $_POST['id'],
-                             'ticket_id' => $tickets->getTicket_id()
+        $paramsNotif = array('user_creator_id' => $_SESSION['User']['id'],
+                             'project_id' => $params['id'],
+                             'service_id' => $service->getService_id()
                             );
 
-        Guardian::guardAddNotif('newTicket', $paramsNotif);
+        Guardian::guardAddNotif('newService', $paramsNotif);
 
         TzAuth::addUserSession(array('alert' => 'service'));
 
@@ -288,14 +288,8 @@ class activityController extends TzController {
         $tickets->setTracker_id($_POST['tracker']);
         $tickets->setRoadmap_id($_POST['roadmap']);
         $tickets->setCreator_id($_SESSION['User']['id']);
-        var_dump($tickets);
+       // var_dump($tickets);
         $tickets->Insert();
-
-        $uploadFile = 'media/tickets/'.$tickets->getTicket_Id();
-        if (move_uploaded_file($_FILES['pjTicket']['tmp_name'], $uploadFile)) {
-            $upload = true;
-        }
-
         $receiver = tzSQL::getEntity('users_receive_tickets');
 
         $receiver->setUser_id($_POST['assigned']);
@@ -308,10 +302,12 @@ class activityController extends TzController {
         
         $paramsNotif = array('user_creator_id' => $_SESSION['User']['id'],
                              'project_id' => $_POST['id'],
-                             'ticket_id' => $tickets->getTicket_id()
+                             'ticket_id' => $tickets->getTicket_id(),
+                             'receiver' => $_POST['assigned']
                             );
-                            var_dump($paramsNotif);
+                         //  var_dump($paramsNotif);
         Guardian::guardAddNotif('newTicket', $paramsNotif);
+            
         TzAuth::addUserSession(array('alert' => 'ticket'));
         return true;
 
