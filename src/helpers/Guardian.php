@@ -105,12 +105,12 @@ class Guardian  {
                 
                 
                 $userEntity = TzSQL::getEntity('users');
-                $tabUserId = $userEntity->allMembersProject($paramsNotif['project_id']);
+                $tabUserId = $userEntity->allMembersInProject($paramsNotif['project_id']);
                 foreach ($tabUserId as $value) {
                     $usernotif = TzSQL::getEntity('user_notification');
                     $usernotif -> setNotification_id($notif->getNotification_id());
-                    error_log(var_export($value, value));
-                    $usernotif -> setUser_id($value);
+//                    error_log(var_export($value['id'], true));
+                    $usernotif -> setUser_id($value['id']);
                     $usernotif -> setNotification_view(0);
                     $usernotif -> Insert();
                 }
@@ -144,6 +144,18 @@ class Guardian  {
                 $notif->setUser_creator_id($paramsNotif['user_creator_id']);
                 $notif->setService_id($paramsNotif['service_id']);
                 $notif->setType_id(5);
+                
+                $userEntity = TzSQL::getEntity('users');
+                $tabUserId = $userEntity->allMembersInProject($paramsNotif['project_id']);
+                foreach ($tabUserId as $value) {
+                    $usernotif = TzSQL::getEntity('user_notification');
+                    $usernotif -> setNotification_id($notif->getNotification_id());
+//                    error_log(var_export($value['id'], true));
+                    $usernotif -> setUser_id($value['id']);
+                    $usernotif -> setNotification_view(0);
+                    $usernotif -> Insert();
+                }
+                
             break;
         
                 case 'newRoadmap':
@@ -155,6 +167,18 @@ class Guardian  {
                 $notif->setType_id(2);
                 //($notif);
                 $notif->Insert();
+                
+                $userEntity = TzSQL::getEntity('users');
+                $tabUserId = $userEntity->allMembersInProject($paramsNotif['project_id']);
+                foreach ($tabUserId as $value) {
+                    $usernotif = TzSQL::getEntity('user_notification');
+                    $usernotif -> setNotification_id($notif->getNotification_id());
+//                    error_log(var_export($value['id'], true));
+                    $usernotif -> setUser_id($value['id']);
+                    $usernotif -> setNotification_view(0);
+                    $usernotif -> Insert();
+                }
+                
             break;
         
         }
