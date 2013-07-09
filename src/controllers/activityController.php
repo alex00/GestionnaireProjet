@@ -30,12 +30,16 @@ class activityController extends TzController {
         $list_project_created = $user_serviceEntity->listProjectCreated($user['id']);
         $projectAll = array_merge($list_project_created, $list_project_affiliated);
 
+        // Liste user modal
+         $tabUser = Guardian::guardTabMembersAdd($user["currentProject"]->getProject_id());
+        
         $this->tzRender->run('/templates/activity', array('header' => 'headers/activityHeader.html.twig',
             'modalTicket' => $modalTicket,
             'alert' => $alert,
             'projectAll' => $projectAll,
             'currentPage' => 'activity',
             'subMenuCurrent' => 'activity',
+            'tabUsers' => $tabUser,
             'paramsAriane' => $arianeParams));
     }
     
@@ -81,6 +85,8 @@ class activityController extends TzController {
             'categoryLink' => 'organization',
             'nameDetail' => $detailAnnounce->getAnnounce_title());
 
+        // Liste user modal
+         $tabUser = Guardian::guardTabMembersAdd($user["currentProject"]->getProject_id());
 
         $this->tzRender->run('/templates/detailAnnounce', array('header' => 'headers/roadmapHeader.html.twig',
             'subMenuCurrent' => 'organization',
@@ -88,6 +94,7 @@ class activityController extends TzController {
             'projectAll' => $projectAll,
             'alert' => $alert,
             'modalTicket' => $modalTicket,
+            'tabUser' => $tabUser,
             'paramsAriane' => $arianeParams));
     }
 

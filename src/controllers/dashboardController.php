@@ -22,14 +22,18 @@ class dashboardController extends TzController {
          $infosHeader['nb_members'] = $user_serviceEntity->countMembersProject($user["id"]);
          $infosHeader['nb_members_project'] = $user_serviceEntity->countMembersProjectNew($project_code);
          
-         $userEntity = tzSQL::getEntity('users');
-         $listUser = $userEntity->allMembersProject($user["currentProject"]->getProject_id());
-        
-         $tabUser = array();
          
-         foreach ($listUser as $value) {
-             array_push($tabUser, $value->getUser_login_code());
-         }
+//         $userEntity = tzSQL::getEntity('users');
+//         $listUser = $userEntity->allMembersProject($user["currentProject"]->getProject_id());
+//        
+//         $tabUser = array();
+//         
+//         foreach ($listUser as $value) {
+//             array_push($tabUser, $value['user_login_code']);
+//         }
+         
+         // Liste user modal
+         $tabUser = Guardian::guardTabMembersAdd($user["currentProject"]->getProject_id());
 
 
          $projectEntity = tzSQL::getEntity('projects');

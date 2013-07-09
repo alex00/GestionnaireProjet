@@ -90,6 +90,9 @@ class organizationController extends TzController {
         $list_project_created = $user_serviceEntity->listProjectCreated($user['id']);
         $projectAll = array_merge($list_project_created, $list_project_affiliated);
 
+        // Liste user modal
+         $tabUser = Guardian::guardTabMembersAdd($user["currentProject"]->getProject_id());
+        
         $this->tzRender->run('/templates/roadmap', array('header' => 'headers/roadmapHeader.html.twig',
             'modalTicket' => $modalTicket,
             'alert' => $alert,
@@ -101,6 +104,7 @@ class organizationController extends TzController {
             'modalChangeMember' => $modalChangeMember,
             'currentPage' => 'organization',
             'subMenuCurrent' => 'organization',
+            'tabUsers' => $tabUser,
             'paramsAriane' => $arianeParams));
     }
 

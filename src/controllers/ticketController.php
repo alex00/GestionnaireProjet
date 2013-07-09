@@ -54,6 +54,9 @@ class ticketController extends TzController {
              'nameProject' => $user['currentProject']->getProject_name(),
              'codeProject' => $user['currentProject']->getProject_code(),
              'categoryName' => 'Tickets');
+         
+         // Liste user modal
+         $tabUser = Guardian::guardTabMembersAdd($user["currentProject"]->getProject_id());
 
          $user_serviceEntity = tzSQL::getEntity('user_service');
          $list_project_affiliated = $user_serviceEntity->listProjectAffiliated($user['id']);
@@ -70,6 +73,7 @@ class ticketController extends TzController {
                                                          'allTickets' => $allTickets,
                                                          'infosHeader' => $infosHeader,
                                                          'subMenuCurrent' => 'tickets',
+                                                         'tabUsers' => $tabUser,
                                                          'paramsAriane' => $arianeParams));
 	}
 
@@ -131,6 +135,9 @@ class ticketController extends TzController {
                 }
             }
         }
+        
+        // Liste user modal
+         $tabUser = Guardian::guardTabMembersAdd($user["currentProject"]->getProject_id());
 
         $arianeParams = array('idProject' => $user['currentProject']->getProject_id(),
             'nameProject' => $user['currentProject']->getProject_name(),
@@ -149,6 +156,7 @@ class ticketController extends TzController {
             'detailCode' => $detailTicket['ticket_code'],
             'modalTicket' => $modalTicket,
             'entity' => $detailTicket,
+            'tabUsers' => $tabUser,
             'paramsAriane' => $arianeParams));
     }
 

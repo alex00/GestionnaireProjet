@@ -2,16 +2,16 @@
     <div class="span12">
         <span id="responsiveFlag" ></span>
         <div class="block-slogan">
-            <h2>My Account</h2>
+            <h2>{% if SESSION.User.user_login_code == user.getUser_login() %}My Account{% else %}Account{% endif %}</h2>
             <div id="otherInfos">
                 <p class="nameHeaderHome">
                      {{ user.getUser_login() }}
                 </p>
                 <p class="projectHeaderHome pull-left">
-                    <span class="numberProjectHeaderHome" style="padding-left: 0px;padding-right: 10px;">0</span> created project
+                    <span class="numberProjectHeaderHome" style="padding-left: 0px;padding-right: 10px;">{{ list_project_created|length }}</span> created project
                 </p>
                 <p class="projectHeaderHome pull-left" style="border-left: none">
-                    <span class="numberProjectHeaderHome" style="padding-left: 0px;padding-right: 10px;">0</span> affiliated project
+                    <span class="numberProjectHeaderHome" style="padding-left: 0px;padding-right: 10px;">{{ list_project_affillied|length }}</span> affiliated project
                 </p>
                 <div style="clear: both"></div>
                 <p class="pull-left" style="padding: 0 0 0 27px">Mail : {{ user.getUser_mail() }}</p>

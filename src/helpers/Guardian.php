@@ -178,10 +178,21 @@ class Guardian  {
         return $servicesProject;
     }
     
-//    public static function guardTabMembers(){
-//        $users = TzSQL::getEntity('users');
-//        $listUsers = $users->findAll();
-//        
-//        
-//    }
+    
+    
+    public static function guardTabMembersAdd($project_id){
+        
+        $user = TzAuth::readUser();
+        $userEntity = tzSQL::getEntity('users');
+        $listUser = $userEntity->allMembersProject($project_id);
+        
+         $tabUser = array();
+         
+         foreach ($listUser as $value) {
+             array_push($tabUser, $value['user_login_code']);
+         }
+         
+         return $tabUser;
+   
+    }
 }

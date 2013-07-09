@@ -41,6 +41,20 @@ class accountController extends TzController {
     
     public function settingAction(){
         
+        $user = TzAuth::readUser();
+        
+        $usersEntity = tzSQL::getEntity('users');
+        $user_serviceEntity = tzSQL::getEntity('user_service');
+        
+        $list_project_affiliated = $user_serviceEntity->listProjectAffiliated($user['id']);
+        $list_project_created = $user_serviceEntity->listProjectCreated($user['id']);
+        $projectAll = array_merge($list_project_created, $list_project_affiliated);
+        
+        $usersEntity->findOneBy('user_login_code', $_SESSION['User']['user_login_code']);
+        
+        $listProjectAffiliated = $user_serviceEntity->listProjectAffiliated($usersEntity->getId());
+        $listProjectCreated = $user_serviceEntity->listProjectCreated($usersEntity->getId());
+        
          $error = array();
         if(isset($_POST["update"])){
            
@@ -96,7 +110,11 @@ class accountController extends TzController {
             'paramsAriane' => $arianeParams,
              'error' => $error,
              'homeContext' => true,
+             'list_project_created' => $listProjectCreated,
+            'list_project_affiliated' => $listProjectAffiliated,
+             'user' => $usersEntity,
              'POST' => $_POST,
+             'projectAll' => $projectAll
             ));
          
     }

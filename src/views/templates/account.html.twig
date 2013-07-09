@@ -1,12 +1,9 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
-    <div id="contentLeft" class="span7" >
-        </article>
-
-    </div>
-    <div id="contentRight" class="span4 offset1 pull-right" >
-        <article class="span4 ">
+    <div id="contentLeft" class="span12" >
+        <div class="row">
+            <article class="span4 ">
             <h4> Created Projects : </h4>
             {% if list_project_created|length == 0 %}
                 No project
@@ -41,5 +38,10 @@
             </ul>
         </article>
         {% endif %}
+        </div>
+
+    </div>
+    <div id="contentRight" class="span4 offset1 pull-right" >
+        
     </div>
 {% endblock %}

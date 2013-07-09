@@ -658,3 +658,18 @@ type=>none	message=>Result is null	file=>/Users/Alex/NetBeansProjects/Gestionnai
 type=>none	message=>Result is null	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/src/entities/usersEntity.class.php	line=>287	date=>2013-07-09 01:12:34
 type=>none	message=>Result is null	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/src/entities/usersEntity.class.php	line=>287	date=>2013-07-09 01:12:34
 type=>none	message=>Result is null	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/src/entities/usersEntity.class.php	line=>287	date=>2013-07-09 01:14:34
+type=>8	message=>Undefined index: getUser_login_code	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/src/controllers/dashboardController.php	line=>31	date=>2013-07-09 01:27:49
+type=>8	message=>Undefined index: getUser_login_code	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/src/controllers/dashboardController.php	line=>31	date=>2013-07-09 01:27:49
+type=>8	message=>Undefined index: getUser_login_code	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/src/controllers/dashboardController.php	line=>31	date=>2013-07-09 01:27:49
+type=>8	message=>Undefined index: getUser_login_code	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/src/controllers/dashboardController.php	line=>31	date=>2013-07-09 01:27:49
+type=>8	message=>Undefined index: getUser_login_code	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/src/controllers/dashboardController.php	line=>31	date=>2013-07-09 01:28:05
+type=>8	message=>Undefined index: getUser_login_code	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/src/controllers/dashboardController.php	line=>31	date=>2013-07-09 01:28:05
+type=>8	message=>Undefined index: getUser_login_code	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/src/controllers/dashboardController.php	line=>31	date=>2013-07-09 01:28:05
+type=>8	message=>Undefined index: getUser_login_code	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/src/controllers/dashboardController.php	line=>31	date=>2013-07-09 01:28:05
+type=>8	message=>Undefined variable: login	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/src/controllers/accountController.php	line=>44	date=>2013-07-09 01:37:16
+type=>none	message=>Result is null	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/src/entities/usersEntity.class.php	line=>287	date=>2013-07-09 01:37:16
+type=>8	message=>Undefined variable: tabUser	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/src/controllers/dashboardController.php	line=>61	date=>2013-07-09 02:03:17
+type=>8	message=>Undefined variable: tabUser	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/src/controllers/dashboardController.php	line=>61	date=>2013-07-09 02:12:49
+type=>2	message=>PDOStatement::execute(): SQLSTATE[42S22]: Column not found: 1054 Unknown column 'ticket_estimate_time' in 'field list'	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/src/entities/ticketsEntity.class.php	line=>300	date=>2013-07-09 02:20:20
+type=>8	message=>Undefined index: pjTicket	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/src/controllers/activityController.php	line=>272	date=>2013-07-09 02:20:20
+type=>2	message=>PDOStatement::execute(): SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`gestionnaire_projet`.`users_receive_tickets`, CONSTRAINT `fk_user_has_action_action1` FOREIGN KEY (`ticket_id`) REFERENCES `tickets` (`ticket_id`) ON DELETE CASCADE ON UPDATE CASCADE)	file=>/Users/Alex/NetBeansProjects/GestionnaireProjet/src/entities/users_receive_ticketsEntity.class.php	line=>114	date=>2013-07-09 02:20:20
